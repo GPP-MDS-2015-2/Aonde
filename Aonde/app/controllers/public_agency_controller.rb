@@ -1,0 +1,2 @@
+class PublicAgencyController < ApplicationController
+end
