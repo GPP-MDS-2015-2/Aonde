@@ -1,0 +1,16 @@
+<h1> Lista de Órgãos publicos </h1>
+
+<% if (@pb_agencies.empty?) %>
+
+	<strong> Não foi encontrado nenhum órgão</strong>
+
+<% else %>
+
+	<% @pb_agencies.each do |p_agency| %>
+
+		<%= p_agency.name %>
+		<%= p_agency.views_amount %>
+
+	<% end %>
+
+<% end %>
