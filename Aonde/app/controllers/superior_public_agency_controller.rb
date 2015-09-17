@@ -1,0 +1,2 @@
+class SuperiorPublicAgencyController < ApplicationController
+end
