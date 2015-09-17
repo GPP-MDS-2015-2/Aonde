@@ -1,14 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Aonde</title>
+  <title> 
+  	<%= full_title(yield(:title)) %>
+  </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="container">
+    <div class="head-container">
+      <div id="head-page">
+  		<img src="assets/images.jpeg">
+  	  </div>
+  	  <div id="name-application">
+  	    AondE  
+      </div>  
+    </div>
+    <div class="navbar navbar-fixed-botton">
+  	  <div class="container">
+	    <nav>
+	  	  <ul class="nav navbar-nav navbar-rigth">
+	  	    <li>
+	  	  	  <%= link_to "Home", root_path %>
+	  	    </li>
+	  	    <li>
+	  		  <%= link_to "Orgaos Publicos", '#' %>
+	  	    </li>
+	  	  </ul>
+	    </nav>
+	  </div>
+    </div>    
+    <div class="content-container">
+      <%= yield %>
+	    <div class="links-container">
+	    <ul>
+	      <li> <a href="#">portais</a> </li>
+	      <li> <a href="#">FGA</a> </li>
+	      <li> <a href="#">WIKI Lappis</a> </li>
+	    </ul>
+	  </div>
+    </div>
+    <div class="footer-container">
+      <div id="developer">
+        Desenvolvedores: Arthur,Artur,Eduardo,João,Marcelo,Matheus<br>
+      </div>
+    </div>
+  </div>  
 </body>
 </html>

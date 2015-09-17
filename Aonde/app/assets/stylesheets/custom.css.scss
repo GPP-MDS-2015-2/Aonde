@@ -6,6 +6,7 @@ body{
 	position: fix;
 	color: white;
 	background: black;
+	height: 100%;
 }
 section{
 	overflow: auto;
@@ -16,25 +17,46 @@ textarea{
 }
 
 .head-container{	
+	position: relative;
 	width: 100%;
 	heigth: 100%;
 	background: white;
 }
 
 #name-application{
-			padding-left: 50%;
+			padding-left: 45%;
 			padding-top: 5%;
 			color: red;
 			position: relative;
 			float: rigth;
 			font-size: 20px;
-			font: CenturyGothic;
-			
+			font: CenturyGothic;	
 }
+#head-page{
+	position: relative;
+	float: left;
+}
+
+.content-container{
+	position: relative;
+	background: blue;
+}
+
+
+.links-container{
+	position: relative;
+	float: left;
+	background: white;
+}
+
 .footer-container{	
-	width: 100%;
-	height: 40px;
-	float: botton;
+	position: absolute;
+	width: 90%;
+	bottom: 0;
 	background: white;
 	color: black;
+}
+
+#developer{
+	
 }
