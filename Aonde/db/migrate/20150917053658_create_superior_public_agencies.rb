@@ -3,6 +3,6 @@ class CreateSuperiorPublicAgencies < ActiveRecord::Migration
     create_table :superior_public_agencies do |t|
 
       t.timestamps null: false
-    end
+ 	 end
   end
 end

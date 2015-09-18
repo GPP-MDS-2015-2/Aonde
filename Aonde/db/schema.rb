@@ -11,24 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918162656) do
+ActiveRecord::Schema.define(version: 20150918221244) do
 
   create_table "expenses", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "program_id"
     t.string   "document_number"
     t.integer  "payment_management"
     t.date     "payment_date"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
   end
 
   add_index "expenses", ["program_id"], name: "index_expenses_on_program_id"
 
   create_table "programs", force: :cascade do |t|
-    t.integer  "public_agency_id"
-    t.string   "name"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "public_agency_id"
+    t.string   "name"
   end
 
   add_index "programs", ["public_agency_id"], name: "index_programs_on_public_agency_id"
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 20150918162656) do
   add_index "public_agencies", ["superior_public_agency_id"], name: "index_public_agencies_on_superior_public_agency_id"
 
   create_table "superior_public_agencies", force: :cascade do |t|
-    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
 end
