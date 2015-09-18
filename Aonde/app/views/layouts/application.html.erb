@@ -6,6 +6,7 @@
   </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= yield :css %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -19,10 +20,15 @@
   	    AondE  
       </div>  
     </div>
-
+        <div id="cssmenu">
+    <ul>
+        <li class='active'><a href='#'>Home</a></li>
+        <li><a href='#'>Órgãos Públicos</a></li>  
+    </ul>
+    </div>
     <!--Isso é o menu -->
-    <div class="navbar navbar-fixed-botton">
-  	  <div class="container">
+    <!--<div class="navbar navbar-fixed-botton">
+      <div class="container">
 	    <nav>
 	  	  <ul class="nav navbar-nav navbar-rigth">
 	  	    <li>
@@ -32,9 +38,9 @@
 	  		  <%= link_to "Orgaos Publicos", '#' %>
 	  	    </li>
 	  	  </ul>
-	    </nav>
+     </nav>
 	  </div>
-    </div>    
+    </div>    -->
     <!--Marcelo -->
     <div class="content-container">
       <%= yield %>
