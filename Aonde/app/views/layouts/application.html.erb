@@ -9,15 +9,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <!--Isso é o header ou seja onde ficara a logo -->
   <div class="container">
     <div class="head-container">
       <div id="head-page">
-  		<img src="assets/images.jpeg">
+  		  <img src="assets/images.jpeg">
   	  </div>
   	  <div id="name-application">
   	    AondE  
       </div>  
     </div>
+
+    <!--Isso é o menu -->
     <div class="navbar navbar-fixed-botton">
   	  <div class="container">
 	    <nav>
@@ -32,16 +35,11 @@
 	    </nav>
 	  </div>
     </div>    
+    <!--Marcelo -->
     <div class="content-container">
       <%= yield %>
-	    <div class="links-container">
-	    <ul>
-	      <li> <a href="#">portais</a> </li>
-	      <li> <a href="#">FGA</a> </li>
-	      <li> <a href="#">WIKI Lappis</a> </li>
-	    </ul>
-	  </div>
     </div>
+    <!--Isso é o rodape  -->
     <div class="footer-container">
       <div id="developer">
         Desenvolvedores: Arthur,Artur,Eduardo,João,Marcelo,Matheus<br>

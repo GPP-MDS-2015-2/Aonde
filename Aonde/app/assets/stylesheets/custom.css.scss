@@ -5,22 +5,20 @@ body{
 	font-family: Arial;
 	position: fix;
 	color: white;
-	background: black;
 	height: 100%;
+	background: url('denim.png');
 }
 section{
 	overflow: auto;
 }
-
-textarea{
-	resize: vertical;
-}
-
 .head-container{	
 	position: relative;
 	width: 100%;
 	heigth: 100%;
-	background: white;
+	background: green;
+}
+textarea{
+	resize: vertical;
 }
 
 #name-application{
@@ -42,18 +40,11 @@ textarea{
 	background: blue;
 }
 
-
-.links-container{
-	position: relative;
-	float: left;
-	background: white;
-}
-
 .footer-container{	
 	position: absolute;
 	width: 90%;
 	bottom: 0;
-	background: white;
+	background: gray;
 	color: black;
 }
 
