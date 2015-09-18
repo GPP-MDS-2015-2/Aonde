@@ -1,4 +1,4 @@
-class AddFieldsToProgram < ActiveRecord::Migration
+class AddColumnsToProgram < ActiveRecord::Migration
   def change
   	change_table :programs do |t|
 

@@ -1,4 +1,4 @@
-class AddFieldsToSuperiorPublicAgency < ActiveRecord::Migration
+class AddColumnsToSuperiorPublicAgency < ActiveRecord::Migration
   def change
   	change_table :superior_public_agencies do |t|
 

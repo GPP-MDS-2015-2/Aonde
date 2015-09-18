@@ -1,4 +1,4 @@
-class AddFieldsToExpense < ActiveRecord::Migration
+class AddColumnsToExpense < ActiveRecord::Migration
   def change
   	change_table :expenses do |t|
      
