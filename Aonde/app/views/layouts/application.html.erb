@@ -18,8 +18,8 @@
 <!--Isso é o menu -->
     <div id="cssmenu">
       <ul>
-        <li class='active'><a href='welcome/index'>Home</a></li>
-        <li><a href='public_agency/list'>Órgãos Públicos</a></li>  
+        <li class='active'><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
       </ul>
     </div>
 
@@ -30,7 +30,18 @@
   <!--/div--> 
 <!--Isso é o rodape  --> 
   <div class="footer-container">
-           
+      <div id="util_link">
+        <ul>
+          <li>Links Uteis:  </li>
+          <li><a href="#">Portal FGA</a></li>
+          <li>  |  </li>
+          <li><a href="#">Wiki</a></li>
+          <li>  |  </li>
+          <li><a href="#">GitHub</a></li>
+          <li>  |  </li>
+          <li><a href="#">Portal da Transparência</a></li>
+        </ul> 
+      </div>
     </div>
 </body>
 </html>
