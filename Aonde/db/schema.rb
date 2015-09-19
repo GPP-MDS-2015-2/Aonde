@@ -14,40 +14,43 @@
 ActiveRecord::Schema.define(version: 20150919165730) do
 
   create_table "expenses", force: :cascade do |t|
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "program_id"
-    t.string   "document_number"
-    t.integer  "payment_management"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "program_id",         limit: 4
+    t.string   "document_number",    limit: 255
+    t.integer  "payment_management", limit: 4
     t.date     "payment_date"
     t.decimal  "value"
   end
 
-  add_index "expenses", ["program_id"], name: "index_expenses_on_program_id"
+  add_index "expenses", ["program_id"], name: "index_expenses_on_program_id", using: :btree
 
   create_table "programs", force: :cascade do |t|
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "public_agency_id"
-    t.string   "name"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "public_agency_id", limit: 4
+    t.string   "name",             limit: 255
   end
 
-  add_index "programs", ["public_agency_id"], name: "index_programs_on_public_agency_id"
+  add_index "programs", ["public_agency_id"], name: "index_programs_on_public_agency_id", using: :btree
 
   create_table "public_agencies", force: :cascade do |t|
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "superior_public_agency_id"
-    t.string   "name"
-    t.integer  "views_amount"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "superior_public_agency_id", limit: 4
+    t.string   "name",                      limit: 255
+    t.integer  "views_amount",              limit: 4
   end
 
-  add_index "public_agencies", ["superior_public_agency_id"], name: "index_public_agencies_on_superior_public_agency_id"
+  add_index "public_agencies", ["superior_public_agency_id"], name: "index_public_agencies_on_superior_public_agency_id", using: :btree
 
   create_table "superior_public_agencies", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "name"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "name",       limit: 255
   end
 
+  add_foreign_key "expenses", "programs"
+  add_foreign_key "programs", "public_agencies"
+  add_foreign_key "public_agencies", "superior_public_agencies"
 end
