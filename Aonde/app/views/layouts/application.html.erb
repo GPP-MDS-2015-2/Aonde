@@ -20,6 +20,11 @@
       <ul>
         <li class='active'><%= link_to 'Home', root_path %></li>
         <li><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
+        <form id="divSearch">
+          
+          <input type="text" id="textSearch">
+          <button id="buttonSearch"> <img src=<%= image_path("lupa.png") %>>   </button>
+      </form>
       </ul>
     </div>
 
