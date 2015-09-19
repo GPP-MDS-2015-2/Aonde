@@ -12,9 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+// The requires bellow are to create the tables for Public Agencies
 //= require dataTables/jquery.dataTables
+//= require wice_grid.js
 //= require turbolinks
 //= require_tree .
+
+
+
 
 (function($) {
 

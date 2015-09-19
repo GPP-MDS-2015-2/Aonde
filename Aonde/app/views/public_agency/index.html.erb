@@ -3,12 +3,14 @@
   Lista de Órgãos publicos 
 </h1>
 
-<% isTableData = true #verify the type of table to show
+<% isTableData = false #verify the type of table to show
    if (@public_agencies.empty?) %>
   <strong> Não foi encontrado nenhum órgão</strong>
 <% elsif isTableData %>
   <!-- The first exemple of table -->
-  <%= render 'list_public_agencies' %>
+  <%= render 'list_public_agencies1' %>
 <% else %>
-	Case 2:
+	<!-- The second exemple of table, to execute this, is necessary
+	execute the command rails g wice_grid:install-->
+	<%= render 'list_public_agencies2' %>
 <% end %>
