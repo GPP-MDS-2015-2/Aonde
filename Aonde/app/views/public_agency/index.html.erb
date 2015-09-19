@@ -1,16 +1,14 @@
-<h1> Lista de Órgãos publicos </h1>
+<%= provide(:title, "Orgaos Publicos") %>
+<h1> 
+  Lista de Órgãos publicos 
+</h1>
 
-<% if (@pb_agencies.empty?) %>
-
-	<strong> Não foi encontrado nenhum órgão</strong>
-
+<% isTableData = true #verify the type of table to show
+   if (@public_agencies.empty?) %>
+  <strong> Não foi encontrado nenhum órgão</strong>
+<% elsif isTableData %>
+  <!-- The first exemple of table -->
+  <%= render 'list_public_agencies' %>
 <% else %>
-
-	<% @pb_agencies.each do |p_agency| %>
-
-		<%= p_agency.name %>
-		<%= p_agency.views_amount %>
-
-	<% end %>
-
+	Case 2:
 <% end %>

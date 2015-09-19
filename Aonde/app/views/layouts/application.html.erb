@@ -14,7 +14,7 @@
   <div class="container">
     <div class="head-container">
       <div id="head-page">
-  		  <img src="assets/images.jpeg">
+  		  <img src="assets/images.png" width="100" height="60">
   	  </div>
   	  <div id="name-application">
   	    AondE  
@@ -22,8 +22,8 @@
     </div>
         <div id="cssmenu">
     <ul>
-        <li class='active'><a href='#'>Home</a></li>
-        <li><a href='#'>Órgãos Públicos</a></li>  
+        <li class='active'><%= link_to "Inicio", root_path %></li>
+        <li><%= link_to "Órgãos Públicos",public_agency_list_path %></li>  
     </ul>
     </div>
     <!--Isso é o menu -->
