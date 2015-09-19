@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918221244) do
+ActiveRecord::Schema.define(version: 20150919165730) do
 
   create_table "expenses", force: :cascade do |t|
     t.datetime "created_at",         null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150918221244) do
     t.string   "document_number"
     t.integer  "payment_management"
     t.date     "payment_date"
+    t.decimal  "value"
   end
 
   add_index "expenses", ["program_id"], name: "index_expenses_on_program_id"

@@ -4,8 +4,8 @@ class AddColumnsToExpense < ActiveRecord::Migration
      
       t.references :program, index: true, foreign_key: true
       t.string :document_number
-      t.integer :payment_management
       t.date :payment_date
+      t.double :value
       
     end
   end
