@@ -1,4 +1,4 @@
-<%= grid(@public_agency_grid, show_filters: :no, html: {class: 'table'}) do |g|
+<%= grid(@public_agency_grid, show_filters: :yes, html: {class: 'table'}) do |g|
 	g.column name: "Nome",attribute: 'name'
 	g.column name: "Visualizacoes", attribute: 'views_amount'
 end %>
