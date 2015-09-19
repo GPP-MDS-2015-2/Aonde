@@ -9,6 +9,7 @@ two:
 
 #test made
 three:
+  id: 2
   superior_public_agency_id: 3
   name: ministerio_da_fazenda
-  #views_amount: 99
+  views_amount: 99

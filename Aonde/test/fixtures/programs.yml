@@ -1,6 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#HAVE SOMETHING WRONG HERE NO?
 one:
   public_agency_id: 
 
