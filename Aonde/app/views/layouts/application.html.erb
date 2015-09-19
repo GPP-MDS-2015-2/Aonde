@@ -10,42 +10,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <!--Isso é o header ou seja onde ficara a logo -->
+<!--Isso é o header ou seja onde ficara a logo -->
   <div class="container">
-    <div class="head-container">
-      <div id="head-page">
-  		  <img src="assets/images.png" width="100" height="60">
-  	  </div>
-  	  <div id="name-application">
-  	    AondE  
-      </div>  
+      <div id="headLogo">
+        Ola
+      </div>
+<!--Isso é o menu -->
+    <div id="cssmenu">
+      <ul>
+        <li class='active'><a href='#'>Home</a></li>
+        <li><a href='#'>Órgãos Públicos</a></li>  
+      </ul>
+>>>>>>> Modify layout
     </div>
-        <div id="cssmenu">
-    <ul>
-        <li class='active'><%= link_to "Inicio", root_path %></li>
-        <li><%= link_to "Órgãos Públicos",public_agency_list_path %></li>  
-    </ul>
-    </div>
-    <!--Isso é o menu -->
-    <!--<div class="navbar navbar-fixed-botton">
-      <div class="container">
-	    <nav>
-	  	  <ul class="nav navbar-nav navbar-rigth">
-	  	    <li>
-	  	  	  <%= link_to "Home", root_path %>
-	  	    </li>
-	  	    <li>
-	  		  <%= link_to "Orgaos Publicos", '#' %>
-	  	    </li>
-	  	  </ul>
-     </nav>
-	  </div>
-    </div>    -->
-    <!--Marcelo -->
+
+<!--Marcelo -->
     <div class="content-container">
       <%= yield %>
     </div>
-    <!--Isso é o rodape  -->
+    
+<!--Isso é o rodape  -->
     <div class="footer-container">
       <div id="developer">
         Desenvolvedores: Arthur,Artur,Eduardo,João,Marcelo,Matheus<br>

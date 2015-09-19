@@ -1,15 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-#headLogo{
-   width: 100%;
-   height: 100px;
-   margin-bottom: 5px;
-   margin-top: 5px;
-   background: #72B5A4;
-   position: relative;
-}
-
 .head-container{  
   position: relative;
   width: 100%;
@@ -18,26 +9,12 @@
   margin-bottom: 10px;
   background: green;
 }
-#head-page{
-  position: relative;
-  float: left;
-}
-#name-application{
-      padding-left: 45%;
-      padding-top: 5%;
-      color: red;
-      position: relative;
-      float: rigth;
-      font-size: 20px;
-      font: CenturyGothic;  
-}
-
 body{
 	font-family: Arial;
 	position: fix;
-	color: black;
+	color: white;
 	height: 100%;
-	background: url('denim.png');
+	background: url('bg.png');
 }
 section{
 	overflow: auto;
@@ -47,6 +24,19 @@ textarea{
 	resize: vertical;
 }
 
+#name-application{
+			padding-left: 45%;
+			padding-top: 5%;
+			color: red;
+			position: relative;
+			float: rigth;
+			font-size: 20px;
+			font: CenturyGothic;	
+}
+#head-page{
+	position: relative;
+	float: left;
+}
 
 .content-container{
 	position: relative;
@@ -58,7 +48,7 @@ textarea{
 	width: 70%;
   height: 10%; 
 	bottom: 0;
-	background: #595757;
+	background: gray;
 	color: black;
   margin-bottom: 0.5%;
 }
