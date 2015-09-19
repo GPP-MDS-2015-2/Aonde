@@ -35,14 +35,7 @@ textarea{
 	heigth: 100px;
   background: #036564;
 }
-
-.footer-container{	
-	position: absolute;
-	width: 100%; 
-	bottom: 0;
-	background: #036564;
-}
-#util_link ul
+.util_link ul
 {
   text-align: center;
   color: #F38630;
@@ -51,14 +44,22 @@ textarea{
   list-style-type: none;
 }
 
-#util_link ul li { display: inline; }
+.util_link ul li { display: inline; }
 
-.a{
+a{
   text-decoration: none;
   color: white;
 }
 
-.a:hover {
+a.util_link:hover {
   text-decoration: underline;
   color: #F38630;
+}
+
+.footer-container{  
+  position: absolute;
+  width: 100%; 
+  bottom: 0;
+  background: #036564;
+
 }
