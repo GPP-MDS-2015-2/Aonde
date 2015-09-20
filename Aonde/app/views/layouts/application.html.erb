@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> 
+  	<%= full_title(yield(:title)) %>
+  </title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= yield :css %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<!--Isso é o header ou seja onde ficara a logo -->
+    <div id="headLogo">
+      (Imagem)
+    </div>
+<div class="container">
+<!--Isso é o menu -->
+    <div id="cssmenu">
+      <ul>
+        <li class='active'><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
+        <form id="divSearch">
+          
+          <input type="text" id="textSearch">
+          <button id="buttonSearch"> <img src=<%= image_path("lupa.png") %>>   </button>
+      </form>
+      </ul>
+    </div>
+
+<!--Marcelo -->
+    <div class="content-container">
+      <%= yield %>
+    </div>
+  </div> 
+<!--Isso é o rodape  --> 
+  <div class="footer-container">
+      <div class="util_link">
+        <ul>
+          <li>Links Úteis:  </li>
+          <li><a href="#" class="util_link">Portal FGA</a></li>
+          <li>  |  </li>
+          <li><a href="#" class="util_link">Wiki</a></li>
+          <li>  |  </li>
+          <li><a href="#" class="util_link">GitHub</a></li>
+          <li>  |  </li>
+          <li><a href="#" class="util_link">Portal da Transparência</a></li>
+        </ul> 
+      </div>
+    </div>
+</body>
+</html>

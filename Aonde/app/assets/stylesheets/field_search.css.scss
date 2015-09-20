@@ -1,0 +1,36 @@
+#divSearch{    
+    float: right;
+    background-color:#E0EEEE;
+    border:solid 2px #F38630;
+    border-radius:10px;
+    width:245px;
+    height:40px;
+}
+ 
+#textSearch{
+    float:left;
+    background-color:transparent;
+    padding-left:5px;   
+    font-size:18px;
+    border:none;
+    height:36px;
+    width:191px;
+}
+ 
+#buttonSearch{   
+    background-color:transparent;
+    border:none;
+    float:left;
+    height:37px;
+    border-radius:0 7px 7px 0;
+    width:50px;
+    font-weight:bold;
+    
+}
+ 
+#divSearch img{
+    float:left;
+    width: 40px;
+    height: 30px;
+}
+

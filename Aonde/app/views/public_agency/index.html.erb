@@ -1,0 +1,12 @@
+<%= provide(:title, "Orgaos Publicos") %>
+<h1> 
+  Lista de Órgãos publicos 
+</h1>
+
+<% if (@public_agencies.empty?) %>
+  <strong> Não foi encontrado nenhum órgão</strong>
+<% else %>
+	<!-- render the data_wice to show the list of public agencies -->
+	<%= render 'list_public_agencies' %>
+<% end %>
+<%= expenses_public_agency(1)%>
