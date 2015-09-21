@@ -3,12 +3,13 @@
   width: 300px;
   vertical-align: middle;
   white-space: nowrap;
+  float: right;
 }
 
 .container-4 input#search{
   width: 300px;
   height: 50px;
-  background: #2b303b;
+  background: #036564;
   border: none;
   font-size: 10pt;
   float: left;
@@ -32,7 +33,7 @@
 }
  
 .container-4 input#search:-ms-input-placeholder {  
-   color: #65737e;  
+   color: #036564;  
 }
 
 .container-4 button.icon{
@@ -44,7 +45,7 @@
   border-bottom-right-radius: 5px;
  
   border: none;
-  background: #232833;
+  background: #F38630;
   height: 50px;
   width: 50px;
   color: #4f5b66;

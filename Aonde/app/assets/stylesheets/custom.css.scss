@@ -19,7 +19,7 @@ body{
 	position: fix;
 	color: black;
 	height: 100%;
-	background: #E8DDCB;
+	background: #E1E4D6;
 }
 
 section{
@@ -57,9 +57,8 @@ a.util_link:hover {
 }
 
 .footer-container{  
-  position: absolute;
+  position: fixed;
   width: 100%; 
   bottom: 0;
   background: #036564;
-
 }
