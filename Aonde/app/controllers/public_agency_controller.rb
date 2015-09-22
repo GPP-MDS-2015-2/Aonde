@@ -14,7 +14,8 @@ class PublicAgencyController < ApplicationController
 
 	def show
 
-		@public_agencies = PublicAgency.find(params[:public_agency_id])
+		@public_agency = PublicAgency.find(params[:id])
+		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
 
 	end
 

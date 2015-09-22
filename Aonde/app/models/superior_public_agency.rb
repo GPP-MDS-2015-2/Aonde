@@ -1,3 +1,3 @@
 class SuperiorPublicAgency < ActiveRecord::Base
-	has_many :public_agencies
+	has_many :public_agencies 
 end
