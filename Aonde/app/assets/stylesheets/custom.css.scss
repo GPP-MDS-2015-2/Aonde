@@ -8,7 +8,6 @@
    background: #036564;
    position: relative;
 }
-
 #head-page{
   position: relative;
   float: left;
@@ -61,4 +60,30 @@ a.util_link:hover {
   width: 100%; 
   bottom: 0;
   background: #036564;
+}
+
+.content-container table tr td a{
+  color: black;
+  text-decoration:none;
+}
+
+.content-container table tr:hover{
+  text-decoration:none;
+  font-size: 20px;
+  color: #F38630;
+}
+.content-container table tr:hover td a{
+  text-decoration:none;
+  font-size: 20px;
+  color: #F38630  ;
+}
+.content-container table th,
+table th:hover,
+table th a,
+table th a:hover,
+table th a:active,
+table th a:link{
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
 }

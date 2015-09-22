@@ -94,7 +94,7 @@
 })(jQuery);
 
 (function($){
-$(document).ready(function(){
+$(document).on("page:load ready",function(){
 
 $(document).ready(function() {
   $("#cssmenu").menumaker({
