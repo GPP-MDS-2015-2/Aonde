@@ -12,4 +12,10 @@ class PublicAgencyController < ApplicationController
 
 	end
 
+	def show
+
+		@public_agencies = PublicAgency.find(params[:public_agency_id])
+
+	end
+
 end
