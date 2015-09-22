@@ -1,0 +1,1149 @@
+---
+:cane:
+  :total_violations: 38
+  :violations:
+    :line_style:
+    - :line: app/controllers/public_agency_controller.rb:3
+      :description: Line contains hard tabs
+    - :line: app/controllers/public_agency_controller.rb:5
+      :description: Line contains hard tabs
+    - :line: app/controllers/public_agency_controller.rb:7
+      :description: Line contains hard tabs
+    - :line: app/controllers/public_agency_controller.rb:8
+      :description: Line contains hard tabs
+    - :line: app/controllers/public_agency_controller.rb:9
+      :description: Line contains hard tabs
+    - :line: app/controllers/public_agency_controller.rb:10
+      :description: Line contains hard tabs
+    - :line: app/controllers/public_agency_controller.rb:13
+      :description: Line contains hard tabs
+    - :line: app/controllers/superior_public_agency_controller.rb:2
+      :description: Line contains hard tabs
+    - :line: app/controllers/superior_public_agency_controller.rb:3
+      :description: Line contains hard tabs
+    - :line: app/helpers/application_helper.rb:2
+      :description: Line contains hard tabs
+    - :line: app/helpers/application_helper.rb:3
+      :description: Line contains hard tabs
+    - :line: app/helpers/application_helper.rb:4
+      :description: Line contains hard tabs
+    - :line: app/helpers/application_helper.rb:5
+      :description: Line contains hard tabs
+    - :line: app/helpers/application_helper.rb:6
+      :description: Line contains hard tabs
+    - :line: app/helpers/application_helper.rb:7
+      :description: Line contains hard tabs
+    - :line: app/helpers/application_helper.rb:8
+      :description: Line contains hard tabs
+    - :line: app/helpers/application_helper.rb:9
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:2
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:3
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:4
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:5
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:6
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:7
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:8
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:9
+      :description: Line contains trailing whitespace
+    - :line: app/helpers/public_agency_helper.rb:9
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:10
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:11
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:12
+      :description: Line contains hard tabs
+    - :line: app/helpers/public_agency_helper.rb:13
+      :description: Line contains trailing whitespace
+    - :line: app/helpers/public_agency_helper.rb:13
+      :description: Line contains hard tabs
+    - :line: app/models/expense.rb:2
+      :description: Line contains trailing whitespace
+    - :line: app/models/superior_public_agency.rb:2
+      :description: Line contains hard tabs
+    :comment:
+    - :line: app/controllers/public_agency_controller.rb:1
+      :class_name: PublicAgencyController
+    - :line: app/controllers/superior_public_agency_controller.rb:1
+      :class_name: SuperiorPublicAgencyController
+    - :line: app/controllers/welcome_controller.rb:1
+      :class_name: WelcomeController
+    - :line: app/helpers/application_helper.rb:1
+      :class_name: ApplicationHelper
+    - :line: app/helpers/public_agency_helper.rb:1
+      :class_name: PublicAgencyHelper
+:churn:
+  :changes:
+  - :file_path: Aonde/app/views/layouts/application.html.erb
+    :times_changed: 14
+  - :file_path: Aonde/app/assets/stylesheets/custom.css.scss
+    :times_changed: 12
+  :class_churn: []
+  :method_churn: []
+  :changed_files:
+  - Aonde/metrics/_data/20150922.yml
+  - '----'
+  - Aonde/metrics/metrics/040453e670f9bf522378f941c96f38.html
+  - Aonde/metrics/metrics/0b90c8285fde03c518b45ce09b35ee.html
+  - Aonde/metrics/metrics/0c989774c52b4d475789a082de7357.html
+  - Aonde/metrics/metrics/183005b69961e1f2f0219b75d82daa.html
+  - Aonde/metrics/metrics/1a0e8805057d5683118da970a1989b.html
+  - Aonde/metrics/metrics/1d379c7b5fad2d36e494c6cc178c6d.html
+  - Aonde/metrics/metrics/24c9885078855a0303187cfd0bb50f.html
+  - Aonde/metrics/metrics/2d691863ede8b3dc6905bfbaa6df29.html
+  - Aonde/metrics/metrics/3adf49d77e3ea0c2d140e5b54c2cb6.html
+  - Aonde/metrics/metrics/40dac7f2feb267796f0a08d103e39f.html
+  - Aonde/metrics/metrics/4d0ea7f062a23ef495836768dcbff3.html
+  - Aonde/metrics/metrics/61cd2240313d11d806d33520c58687.html
+  - Aonde/metrics/metrics/6a9e9d92ebaaa402f50e16f55fc225.html
+  - Aonde/metrics/metrics/769e39312ff0af8664c93c8b5666a5.html
+  - Aonde/metrics/metrics/7dc0dd94f601e507e2a20bad6adcf1.html
+  - Aonde/metrics/metrics/90daae73a1ddbcdeb5e9edb5294fdd.html
+  - Aonde/metrics/metrics/a13e98a4261f5fa0731868e14b51e4.html
+  - Aonde/metrics/metrics/bluff-min.js
+  - Aonde/metrics/metrics/bluff_graph.js
+  - Aonde/metrics/metrics/c76ab147aea7c1bac5f850299443e4.html
+  - Aonde/metrics/metrics/c9a881a3aa0480a5088ef54ab25684.html
+  - Aonde/metrics/metrics/cane.html
+  - '--------------------------------------------------------------- */'
+  - Aonde/metrics/metrics/cane.js
+  - Aonde/metrics/metrics/cb90195172a523f56bad28d5f7f2c3.html
+  - Aonde/metrics/metrics/churn.html
+  - Aonde/metrics/metrics/d194770ef7fea74f2031f28b8ddb7d.html
+  - Aonde/metrics/metrics/d4164473f38f8d958812da8aa8c746.html
+  - Aonde/metrics/metrics/eb241bb98b65478a86c390e147dfdd.html
+  - Aonde/metrics/metrics/ec61d0036c482cd7ff35e8cac525f7.html
+  - Aonde/metrics/metrics/excanvas.js
+  - Aonde/metrics/metrics/f3171573bfce58f4c90da7929b2f6a.html
+  - Aonde/metrics/metrics/f5bdd2d0895de364f795b6f9463d33.html
+  - Aonde/metrics/metrics/flay.html
+  - Aonde/metrics/metrics/flay.js
+  - Aonde/metrics/metrics/flog.html
+  - Aonde/metrics/metrics/flog.js
+  - Aonde/metrics/metrics/highcharts.js
+  - Aonde/metrics/metrics/highcharts_graph.js
+  - Aonde/metrics/metrics/hotspots.html
+  - Aonde/metrics/metrics/index.html
+  - Aonde/metrics/metrics/js-class.js
+  - Aonde/metrics/metrics/rails_best_practices.html
+  - Aonde/metrics/metrics/rails_best_practices.js
+  - Aonde/metrics/metrics/reek.html
+  - Aonde/metrics/metrics/reek.js
+  - Aonde/metrics/metrics/roodi.html
+  - Aonde/metrics/metrics/roodi.js
+  - Aonde/metrics/metrics/saikuro.html
+  - Aonde/metrics/metrics/standalone-framework.js
+  - Aonde/metrics/metrics/stats.html
+  - Aonde/metrics/metrics/stats.js
+  - Aonde/metrics/metrics/utils.js
+  - Aonde/metrics/output/040453e670f9bf522378f941c96f38.html
+  - Aonde/metrics/output/0b90c8285fde03c518b45ce09b35ee.html
+  - Aonde/metrics/output/0c989774c52b4d475789a082de7357.html
+  - Aonde/metrics/output/183005b69961e1f2f0219b75d82daa.html
+  - Aonde/metrics/output/1a0e8805057d5683118da970a1989b.html
+  - Aonde/metrics/output/1d379c7b5fad2d36e494c6cc178c6d.html
+  - Aonde/metrics/output/24c9885078855a0303187cfd0bb50f.html
+  - Aonde/metrics/output/2d691863ede8b3dc6905bfbaa6df29.html
+  - Aonde/metrics/output/3adf49d77e3ea0c2d140e5b54c2cb6.html
+  - Aonde/metrics/output/40dac7f2feb267796f0a08d103e39f.html
+  - Aonde/metrics/output/4d0ea7f062a23ef495836768dcbff3.html
+  - Aonde/metrics/output/61cd2240313d11d806d33520c58687.html
+  - Aonde/metrics/output/6a9e9d92ebaaa402f50e16f55fc225.html
+  - Aonde/metrics/output/769e39312ff0af8664c93c8b5666a5.html
+  - Aonde/metrics/output/7dc0dd94f601e507e2a20bad6adcf1.html
+  - Aonde/metrics/output/90daae73a1ddbcdeb5e9edb5294fdd.html
+  - Aonde/metrics/output/a13e98a4261f5fa0731868e14b51e4.html
+  - Aonde/metrics/output/bluff-min.js
+  - Aonde/metrics/output/bluff_graph.js
+  - Aonde/metrics/output/c76ab147aea7c1bac5f850299443e4.html
+  - Aonde/metrics/output/c9a881a3aa0480a5088ef54ab25684.html
+  - Aonde/metrics/output/cane.html
+  - Aonde/metrics/output/cane.js
+  - Aonde/metrics/output/cb90195172a523f56bad28d5f7f2c3.html
+  - Aonde/metrics/output/churn.html
+  - Aonde/metrics/output/d194770ef7fea74f2031f28b8ddb7d.html
+  - Aonde/metrics/output/d4164473f38f8d958812da8aa8c746.html
+  - Aonde/metrics/output/eb241bb98b65478a86c390e147dfdd.html
+  - Aonde/metrics/output/ec61d0036c482cd7ff35e8cac525f7.html
+  - Aonde/metrics/output/excanvas.js
+  - Aonde/metrics/output/f3171573bfce58f4c90da7929b2f6a.html
+  - Aonde/metrics/output/f5bdd2d0895de364f795b6f9463d33.html
+  - Aonde/metrics/output/flay.html
+  - Aonde/metrics/output/flay.js
+  - Aonde/metrics/output/flog.html
+  - Aonde/metrics/output/flog.js
+  - Aonde/metrics/output/highcharts.js
+  - Aonde/metrics/output/highcharts_graph.js
+  - Aonde/metrics/output/hotspots.html
+  - Aonde/metrics/output/index.html
+  - Aonde/metrics/output/js-class.js
+  - Aonde/metrics/output/rails_best_practices.html
+  - Aonde/metrics/output/rails_best_practices.js
+  - Aonde/metrics/output/reek.html
+  - Aonde/metrics/output/reek.js
+  - Aonde/metrics/output/roodi.html
+  - Aonde/metrics/output/roodi.js
+  - Aonde/metrics/output/saikuro.html
+  - Aonde/metrics/output/standalone-framework.js
+  - Aonde/metrics/output/stats.html
+  - Aonde/metrics/output/stats.js
+  - Aonde/metrics/output/utils.js
+  - Aonde/metrics/report.yml
+  - Aonde/metrics/scratch/churn/61bbcf1dad97734a8359a1e2d30283f8beb1f181.json
+  :changed_classes: []
+  :changed_methods: []
+:flay:
+  :total_score: '0'
+  :matches: []
+:flog:
+  :total: 30.115021520281054
+  :average: 3.764377690035132
+  :method_containers:
+  - :name: PublicAgencyHelper
+    :path: app/helpers/public_agency_helper.rb
+    :total_score: 9.95238664843765
+    :highest_score: 9.95238664843765
+    :average_score: 9.95238664843765
+    :methods:
+      PublicAgencyHelper#expenses_public_agency:
+        :operators:
+          :assignment: 4.5
+          :where: 2.2
+          :branch: 2.2
+          :each: 2.2
+          :id: 1.4000000000000001
+          :value: 1.5000000000000002
+          :+: 1.3000000000000003
+        :score: 9.95238664843765
+        :path: app/helpers/public_agency_helper.rb:2
+  - :name: ApplicationHelper
+    :path: app/helpers/application_helper.rb
+    :total_score: 5.114684741017769
+    :highest_score: 5.114684741017769
+    :average_score: 5.114684741017769
+    :methods:
+      ApplicationHelper#full_title:
+        :operators:
+          :assignment: 2.0
+          :branch: 1.0
+          :empty?: 1.2
+          :!: 1.0
+          :+: 2.4000000000000004
+        :score: 5.114684741017769
+        :path: app/helpers/application_helper.rb:2
+  - :name: PublicAgency
+    :path: ''
+    :total_score: 4.0
+    :highest_score: 4.0
+    :average_score: 4.0
+    :methods:
+      PublicAgency#none:
+        :operators:
+          :belongs_to: 1.0
+          :has_many: 1.0
+          :validates: 2.0
+        :score: 4.0
+        :path: 
+  - :name: PublicAgencyController
+    :path: app/controllers/public_agency_controller.rb
+    :total_score: 3.047950130825634
+    :highest_score: 3.047950130825634
+    :average_score: 3.047950130825634
+    :methods:
+      PublicAgencyController#index:
+        :operators:
+          :assignment: 2.0
+          :all: 1.0
+          :lit_fixnum: 0.3
+          :initialize_grid: 1.0
+        :score: 3.047950130825634
+        :path: app/controllers/public_agency_controller.rb:3
+  - :name: Expense
+    :path: ''
+    :total_score: 3.0
+    :highest_score: 3.0
+    :average_score: 3.0
+    :methods:
+      Expense#none:
+        :operators:
+          :belongs_to: 1.0
+          :validates: 2.0
+        :score: 3.0
+        :path: 
+  - :name: Program
+    :path: ''
+    :total_score: 3.0
+    :highest_score: 3.0
+    :average_score: 3.0
+    :methods:
+      Program#none:
+        :operators:
+          :belongs_to: 1.0
+          :has_many: 1.0
+          :validates: 1.0
+        :score: 3.0
+        :path: 
+  - :name: ApplicationController
+    :path: ''
+    :total_score: 1.0
+    :highest_score: 1.0
+    :average_score: 1.0
+    :methods:
+      ApplicationController#none:
+        :operators:
+          :protect_from_forgery: 1.0
+        :score: 1.0
+        :path: 
+  - :name: SuperiorPublicAgency
+    :path: ''
+    :total_score: 1.0
+    :highest_score: 1.0
+    :average_score: 1.0
+    :methods:
+      SuperiorPublicAgency#none:
+        :operators:
+          :has_many: 1.0
+        :score: 1.0
+        :path: 
+:stats:
+  :codeLOC: 215
+  :testLOC: 0
+  :code_to_test_ratio: 0.0
+  :lines:
+  - :name: Controllers
+    :lines: 32
+    :loc: 25
+    :classes: 6
+    :methods: 3
+    :methods_per_class: 0
+    :loc_per_method: 6
+  - :name: Helpers
+    :lines: 30
+    :loc: 29
+    :classes: 0
+    :methods: 2
+    :methods_per_class: 0
+    :loc_per_method: 12
+  - :name: Models
+    :lines: 22
+    :loc: 19
+    :classes: 4
+    :methods: 0
+    :methods_per_class: 0
+    :loc_per_method: 0
+  - :name: Mailers
+    :lines: 0
+    :loc: 0
+    :classes: 0
+    :methods: 0
+    :methods_per_class: 0
+    :loc_per_method: 0
+  - :name: Javascripts
+    :lines: 145
+    :loc: 98
+    :classes: 0
+    :methods: 13
+    :methods_per_class: 0
+    :loc_per_method: 5
+  - :name: Libraries
+    :lines: 0
+    :loc: 0
+    :classes: 0
+    :methods: 0
+    :methods_per_class: 0
+    :loc_per_method: 0
+  - :name: Controller tests
+    :lines: 28
+    :loc: 12
+    :classes: 4
+    :methods: 0
+    :methods_per_class: 0
+    :loc_per_method: 0
+  - :name: Helper tests
+    :lines: 0
+    :loc: 0
+    :classes: 0
+    :methods: 0
+    :methods_per_class: 0
+    :loc_per_method: 0
+  - :name: Model tests
+    :lines: 56
+    :loc: 32
+    :classes: 4
+    :methods: 4
+    :methods_per_class: 1
+    :loc_per_method: 6
+  - :name: Mailer tests
+    :lines: 0
+    :loc: 0
+    :classes: 0
+    :methods: 0
+    :methods_per_class: 0
+    :loc_per_method: 0
+  - :name: Integration tests
+    :lines: 0
+    :loc: 0
+    :classes: 0
+    :methods: 0
+    :methods_per_class: 0
+    :loc_per_method: 0
+  - :name: Total
+    :lines: 313
+    :loc: 215
+    :classes: 18
+    :methods: 22
+    :methods_per_class: 1
+    :loc_per_method: 7
+:saikuro:
+  :files:
+  - :classes:
+    - :class_name: PublicAgencyHelper
+      :complexity: 3
+      :lines: 12
+      :methods:
+      - :name: PublicAgencyHelper#expenses_public_agency
+        :complexity: 3
+        :lines: 10
+    :filename: app/helpers/public_agency_helper.rb
+  - :classes:
+    - :class_name: ApplicationHelper
+      :complexity: 2
+      :lines: 9
+      :methods:
+      - :name: ApplicationHelper#full_title
+        :complexity: 2
+        :lines: 7
+    :filename: app/helpers/application_helper.rb
+  - :classes:
+    - :class_name: WelcomeController
+      :complexity: 1
+      :lines: 3
+      :methods:
+      - :name: WelcomeController#index
+        :complexity: 1
+        :lines: 1
+    :filename: app/controllers/welcome_controller.rb
+  - :classes:
+    - :class_name: SuperiorPublicAgencyController
+      :complexity: 1
+      :lines: 3
+      :methods:
+      - :name: SuperiorPublicAgencyController#index
+        :complexity: 1
+        :lines: 1
+    :filename: app/controllers/superior_public_agency_controller.rb
+  - :classes:
+    - :class_name: PublicAgencyController
+      :complexity: 1
+      :lines: 14
+      :methods:
+      - :name: PublicAgencyController#index
+        :complexity: 1
+        :lines: 10
+    :filename: app/controllers/public_agency_controller.rb
+  - :classes:
+    - :class_name: ProgramHelper
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    :filename: app/helpers/program_helper.rb
+  - :classes:
+    - :class_name: Expense
+      :complexity: 0
+      :lines: 4
+      :methods: []
+    :filename: app/models/expense.rb
+  - :classes:
+    - :class_name: SuperiorPublicAgencyHelper
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    :filename: app/helpers/superior_public_agency_helper.rb
+  - :classes:
+    - :class_name: ExpenseHelper
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    :filename: app/helpers/expense_helper.rb
+  - :classes:
+    - :class_name: Program
+      :complexity: 0
+      :lines: 5
+      :methods: []
+    :filename: app/models/program.rb
+  - :classes:
+    - :class_name: PublicAgency
+      :complexity: 0
+      :lines: 7
+      :methods: []
+    :filename: app/models/public_agency.rb
+  - :classes:
+    - :class_name: SuperiorPublicAgency
+      :complexity: 0
+      :lines: 2
+      :methods: []
+    :filename: app/models/superior_public_agency.rb
+  - :classes:
+    - :class_name: Isso
+      :complexity: 0
+      :lines: 4
+      :methods: []
+    - :class_name: 'Isso::'
+      :complexity: 0
+      :lines: 0
+      :methods: []
+    :filename: app/views/layouts/application.html.erb
+  - :classes:
+    - :class_name: ProgramController
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    :filename: app/controllers/program_controller.rb
+  - :classes:
+    - :class_name: ExpenseController
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    :filename: app/controllers/expense_controller.rb
+  - :classes:
+    - :class_name: ApplicationController
+      :complexity: 0
+      :lines: 4
+      :methods: []
+    :filename: app/controllers/application_controller.rb
+  :classes:
+  - :name: PublicAgencyHelper
+    :complexity: 3
+    :lines: 12
+    :defs:
+    - :name: PublicAgencyHelper#expenses_public_agency
+      :complexity: 3
+      :lines: 10
+  - :name: ApplicationHelper
+    :complexity: 2
+    :lines: 9
+    :defs:
+    - :name: ApplicationHelper#full_title
+      :complexity: 2
+      :lines: 7
+  - :name: WelcomeController
+    :complexity: 1
+    :lines: 3
+    :defs:
+    - :name: WelcomeController#index
+      :complexity: 1
+      :lines: 1
+  - :name: SuperiorPublicAgencyController
+    :complexity: 1
+    :lines: 3
+    :defs:
+    - :name: SuperiorPublicAgencyController#index
+      :complexity: 1
+      :lines: 1
+  - :name: PublicAgencyController
+    :complexity: 1
+    :lines: 14
+    :defs:
+    - :name: PublicAgencyController#index
+      :complexity: 1
+      :lines: 10
+  - :name: ExpenseHelper
+    :complexity: 0
+    :lines: 1
+  - :name: PublicAgency
+    :complexity: 0
+    :lines: 7
+  - :name: Program
+    :complexity: 0
+    :lines: 5
+  - :name: SuperiorPublicAgency
+    :complexity: 0
+    :lines: 2
+  - :name: SuperiorPublicAgencyHelper
+    :complexity: 0
+    :lines: 1
+  - :name: Expense
+    :complexity: 0
+    :lines: 4
+  - :name: ProgramHelper
+    :complexity: 0
+    :lines: 1
+  - :name: Isso
+    :complexity: 0
+    :lines: 4
+  - :name: 'Isso::'
+    :complexity: 0
+    :lines: 0
+  - :name: ProgramController
+    :complexity: 0
+    :lines: 1
+  - :name: ExpenseController
+    :complexity: 0
+    :lines: 1
+  - :name: ApplicationController
+    :complexity: 0
+    :lines: 4
+  :methods:
+  - :name: PublicAgencyHelper#expenses_public_agency
+    :complexity: 3
+    :lines: 10
+  - :name: ApplicationHelper#full_title
+    :complexity: 2
+    :lines: 7
+  - :name: WelcomeController#index
+    :complexity: 1
+    :lines: 1
+  - :name: SuperiorPublicAgencyController#index
+    :complexity: 1
+    :lines: 1
+  - :name: PublicAgencyController#index
+    :complexity: 1
+    :lines: 10
+:reek:
+  :matches:
+  - :file_path: app/controllers/application_controller.rb
+    :code_smells:
+    - :method: ApplicationController
+      :message: has no descriptive comment
+      :type: IrresponsibleModule
+      :lines:
+      - 1
+  - :file_path: app/helpers/application_helper.rb
+    :code_smells:
+    - :method: ApplicationHelper#full_title
+      :message: doesn't depend on instance state
+      :type: UtilityFunction
+      :lines:
+      - 2
+  - :file_path: app/models/expense.rb
+    :code_smells:
+    - :method: Expense
+      :message: has no descriptive comment
+      :type: IrresponsibleModule
+      :lines:
+      - 1
+  - :file_path: app/controllers/expense_controller.rb
+    :code_smells:
+    - :method: ExpenseController
+      :message: has no descriptive comment
+      :type: IrresponsibleModule
+      :lines:
+      - 1
+  - :file_path: app/models/program.rb
+    :code_smells:
+    - :method: Program
+      :message: has no descriptive comment
+      :type: IrresponsibleModule
+      :lines:
+      - 1
+  - :file_path: app/controllers/program_controller.rb
+    :code_smells:
+    - :method: ProgramController
+      :message: has no descriptive comment
+      :type: IrresponsibleModule
+      :lines:
+      - 1
+  - :file_path: app/models/public_agency.rb
+    :code_smells:
+    - :method: PublicAgency
+      :message: has no descriptive comment
+      :type: IrresponsibleModule
+      :lines:
+      - 1
+  - :file_path: app/controllers/public_agency_controller.rb
+    :code_smells:
+    - :method: PublicAgencyController
+      :message: has no descriptive comment
+      :type: IrresponsibleModule
+      :lines:
+      - 1
+  - :file_path: app/helpers/public_agency_helper.rb
+    :code_smells:
+    - :method: PublicAgencyHelper#expenses_public_agency
+      :message: contains iterators nested 2 deep
+      :type: NestedIterators
+      :lines:
+      - 7
+    - :method: PublicAgencyHelper#expenses_public_agency
+      :message: doesn't depend on instance state
+      :type: UtilityFunction
+      :lines:
+      - 2
+    - :method: PublicAgencyHelper#expenses_public_agency
+      :message: has approx 7 statements
+      :type: TooManyStatements
+      :lines:
+      - 2
+  - :file_path: app/models/superior_public_agency.rb
+    :code_smells:
+    - :method: SuperiorPublicAgency
+      :message: has no descriptive comment
+      :type: IrresponsibleModule
+      :lines:
+      - 1
+  - :file_path: app/controllers/superior_public_agency_controller.rb
+    :code_smells:
+    - :method: SuperiorPublicAgencyController
+      :message: has no descriptive comment
+      :type: IrresponsibleModule
+      :lines:
+      - 1
+  - :file_path: app/controllers/welcome_controller.rb
+    :code_smells:
+    - :method: WelcomeController
+      :message: has no descriptive comment
+      :type: IrresponsibleModule
+      :lines:
+      - 1
+:roodi:
+  :total:
+  - Found 0 errors.
+  :problems: []
+:rails_best_practices:
+  :total:
+  - Found 11 errors.
+  :problems:
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/app/helpers/expense_helper.rb
+    :line: '1'
+    :problem: remove empty helpers
+    :url: http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/app/helpers/program_helper.rb
+    :line: '1'
+    :problem: remove empty helpers
+    :url: http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/app/helpers/superior_public_agency_helper.rb
+    :line: '1'
+    :problem: remove empty helpers
+    :url: http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/app/views/public_agency/_list_public_agencies.html.erb
+    :line: '1'
+    :problem: replace instance variable with local variable
+    :url: http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/app/models/expense.rb
+    :line: '2'
+    :problem: remove trailing whitespace
+    :url: http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/db/migrate/20150917235717_create_programs.rb
+    :line: '5'
+    :problem: remove trailing whitespace
+    :url: http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/db/migrate/20150918001444_create_expenses.rb
+    :line: '4'
+    :problem: remove trailing whitespace
+    :url: http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/db/migrate/20150918221244_add_columns_to_expense.rb
+    :line: '4'
+    :problem: remove trailing whitespace
+    :url: http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/db/migrate/20150919165730_add_columns_to_expenses.rb
+    :line: '4'
+    :problem: remove trailing whitespace
+    :url: http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/app/views/layouts/application.html.erb
+    :line: '4'
+    :problem: remove trailing whitespace
+    :url: http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/
+  - :file: /Users/gabrielssilva/Documents/UnB/2015.2/GPP/OMG/Aonde/app/views/public_agency/index.html.erb
+    :line: '2'
+    :problem: remove trailing whitespace
+    :url: http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/
+:hotspots:
+  files:
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/helpers/public_agency_helper.rb:2
+      file_name: app/helpers/public_agency_helper.rb
+      line_number: '2'
+      hash_key: '["app/helpers/public_agency_helper.rb:2", nil, nil]'
+    details:
+      flog: complexity is 10.0
+      saikuro: complexity is 3.0
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/helpers/application_helper.rb:2
+      file_name: app/helpers/application_helper.rb
+      line_number: '2'
+      hash_key: '["app/helpers/application_helper.rb:2", nil, nil]'
+    details:
+      flog: complexity is 5.1
+      saikuro: complexity is 2.0
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/controllers/public_agency_controller.rb:3
+      file_name: app/controllers/public_agency_controller.rb
+      line_number: '3'
+      hash_key: '["app/controllers/public_agency_controller.rb:3", nil, nil]'
+    details:
+      flog: complexity is 3.0
+      saikuro: complexity is 1.0
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/controllers/superior_public_agency_controller.rb
+      file_name: app/controllers/superior_public_agency_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/superior_public_agency_controller.rb", nil, nil]'
+    details:
+      saikuro: complexity is 1.0
+      reek: found 1 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/controllers/welcome_controller.rb
+      file_name: app/controllers/welcome_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/welcome_controller.rb", nil, nil]'
+    details:
+      saikuro: complexity is 1.0
+      reek: found 1 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/helpers/public_agency_helper.rb
+      file_name: app/helpers/public_agency_helper.rb
+      line_number: 
+      hash_key: '["app/helpers/public_agency_helper.rb", nil, nil]'
+    details:
+      reek: found 3 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/models/public_agency.rb
+      file_name: app/models/public_agency.rb
+      line_number: 
+      hash_key: '["app/models/public_agency.rb", nil, nil]'
+    details:
+      reek: found 1 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/models/expense.rb
+      file_name: app/models/expense.rb
+      line_number: 
+      hash_key: '["app/models/expense.rb", nil, nil]'
+    details:
+      reek: found 1 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/controllers/expense_controller.rb
+      file_name: app/controllers/expense_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/expense_controller.rb", nil, nil]'
+    details:
+      reek: found 1 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/models/program.rb
+      file_name: app/models/program.rb
+      line_number: 
+      hash_key: '["app/models/program.rb", nil, nil]'
+    details:
+      reek: found 1 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: Aonde/app/views/layouts/application.html.erb
+      file_name: Aonde/app/views/layouts/application.html.erb
+      line_number: 
+      hash_key: '["Aonde/app/views/layouts/application.html.erb", nil, nil]'
+    details:
+      churn: detected high level of churn (changed 14 times)
+  - location:
+      class_name: 
+      method_name: 
+      file_path: Aonde/app/assets/stylesheets/custom.css.scss
+      file_name: Aonde/app/assets/stylesheets/custom.css.scss
+      line_number: 
+      hash_key: '["Aonde/app/assets/stylesheets/custom.css.scss", nil, nil]'
+    details:
+      churn: detected high level of churn (changed 12 times)
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/controllers/program_controller.rb
+      file_name: app/controllers/program_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/program_controller.rb", nil, nil]'
+    details:
+      reek: found 1 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/helpers/application_helper.rb
+      file_name: app/helpers/application_helper.rb
+      line_number: 
+      hash_key: '["app/helpers/application_helper.rb", nil, nil]'
+    details:
+      reek: found 1 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/controllers/public_agency_controller.rb
+      file_name: app/controllers/public_agency_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/public_agency_controller.rb", nil, nil]'
+    details:
+      reek: found 1 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/controllers/application_controller.rb
+      file_name: app/controllers/application_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/application_controller.rb", nil, nil]'
+    details:
+      reek: found 1 code smells
+  - location:
+      class_name: 
+      method_name: 
+      file_path: app/models/superior_public_agency.rb
+      file_name: app/models/superior_public_agency.rb
+      line_number: 
+      hash_key: '["app/models/superior_public_agency.rb", nil, nil]'
+    details:
+      reek: found 1 code smells
+  classes:
+  - location:
+      class_name: PublicAgencyHelper
+      method_name: 
+      file_path: app/helpers/public_agency_helper.rb:2
+      file_name: app/helpers/public_agency_helper.rb
+      line_number: '2'
+      hash_key: '["app/helpers/public_agency_helper.rb:2", "PublicAgencyHelper", nil]'
+    details:
+      flog: complexity is 10.0
+      saikuro: complexity is 3.0
+      reek: found 3 code smells
+  - location:
+      class_name: ApplicationHelper
+      method_name: 
+      file_path: app/helpers/application_helper.rb:2
+      file_name: app/helpers/application_helper.rb
+      line_number: '2'
+      hash_key: '["app/helpers/application_helper.rb:2", "ApplicationHelper", nil]'
+    details:
+      flog: complexity is 5.1
+      saikuro: complexity is 2.0
+      reek: found 1 code smells
+  - location:
+      class_name: PublicAgency
+      method_name: 
+      file_path: 
+      file_name: 
+      line_number: 
+      hash_key: '[nil, "PublicAgency", nil]'
+    details:
+      flog: complexity is 4.0
+      reek: found 1 code smells
+  - location:
+      class_name: PublicAgencyController
+      method_name: 
+      file_path: app/controllers/public_agency_controller.rb:3
+      file_name: app/controllers/public_agency_controller.rb
+      line_number: '3'
+      hash_key: '["app/controllers/public_agency_controller.rb:3", "PublicAgencyController",
+        nil]'
+    details:
+      flog: complexity is 3.0
+      saikuro: complexity is 1.0
+      reek: found 1 code smells
+  - location:
+      class_name: Expense
+      method_name: 
+      file_path: 
+      file_name: 
+      line_number: 
+      hash_key: '[nil, "Expense", nil]'
+    details:
+      flog: complexity is 3.0
+      reek: found 1 code smells
+  - location:
+      class_name: Program
+      method_name: 
+      file_path: 
+      file_name: 
+      line_number: 
+      hash_key: '[nil, "Program", nil]'
+    details:
+      flog: complexity is 3.0
+      reek: found 1 code smells
+  - location:
+      class_name: ApplicationController
+      method_name: 
+      file_path: 
+      file_name: 
+      line_number: 
+      hash_key: '[nil, "ApplicationController", nil]'
+    details:
+      flog: complexity is 1.0
+      reek: found 1 code smells
+  - location:
+      class_name: SuperiorPublicAgency
+      method_name: 
+      file_path: 
+      file_name: 
+      line_number: 
+      hash_key: '[nil, "SuperiorPublicAgency", nil]'
+    details:
+      flog: complexity is 1.0
+      reek: found 1 code smells
+  - location:
+      class_name: SuperiorPublicAgencyController
+      method_name: 
+      file_path: app/controllers/superior_public_agency_controller.rb
+      file_name: app/controllers/superior_public_agency_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/superior_public_agency_controller.rb", "SuperiorPublicAgencyController",
+        nil]'
+    details:
+      saikuro: complexity is 1.0
+      reek: found 1 code smells
+  - location:
+      class_name: WelcomeController
+      method_name: 
+      file_path: app/controllers/welcome_controller.rb
+      file_name: app/controllers/welcome_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/welcome_controller.rb", "WelcomeController", nil]'
+    details:
+      saikuro: complexity is 1.0
+      reek: found 1 code smells
+  - location:
+      class_name: ExpenseController
+      method_name: 
+      file_path: app/controllers/expense_controller.rb
+      file_name: app/controllers/expense_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/expense_controller.rb", "ExpenseController", nil]'
+    details:
+      reek: found 1 code smells
+  - location:
+      class_name: ProgramController
+      method_name: 
+      file_path: app/controllers/program_controller.rb
+      file_name: app/controllers/program_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/program_controller.rb", "ProgramController", nil]'
+    details:
+      reek: found 1 code smells
+  methods:
+  - location:
+      class_name: PublicAgencyHelper
+      method_name: PublicAgencyHelper#expenses_public_agency
+      file_path: app/helpers/public_agency_helper.rb:2
+      file_name: app/helpers/public_agency_helper.rb
+      line_number: '2'
+      hash_key: '["app/helpers/public_agency_helper.rb:2", "PublicAgencyHelper", "PublicAgencyHelper#expenses_public_agency"]'
+      simple_method_name: '#expenses_public_agency'
+    details:
+      flog: complexity is 10.0
+      saikuro: complexity is 3.0
+      reek: found 3 code smells
+  - location:
+      class_name: ApplicationHelper
+      method_name: ApplicationHelper#full_title
+      file_path: app/helpers/application_helper.rb:2
+      file_name: app/helpers/application_helper.rb
+      line_number: '2'
+      hash_key: '["app/helpers/application_helper.rb:2", "ApplicationHelper", "ApplicationHelper#full_title"]'
+      simple_method_name: '#full_title'
+    details:
+      flog: complexity is 5.1
+      saikuro: complexity is 2.0
+      reek: found 1 code smells
+  - location:
+      class_name: PublicAgencyController
+      method_name: PublicAgencyController#index
+      file_path: app/controllers/public_agency_controller.rb:3
+      file_name: app/controllers/public_agency_controller.rb
+      line_number: '3'
+      hash_key: '["app/controllers/public_agency_controller.rb:3", "PublicAgencyController",
+        "PublicAgencyController#index"]'
+      simple_method_name: '#index'
+    details:
+      flog: complexity is 3.0
+      saikuro: complexity is 1.0
+  - location:
+      class_name: PublicAgency
+      method_name: PublicAgency#none
+      file_path: 
+      file_name: 
+      line_number: 
+      hash_key: '[nil, "PublicAgency", "PublicAgency#none"]'
+      simple_method_name: '#none'
+    details:
+      flog: complexity is 4.0
+  - location:
+      class_name: Expense
+      method_name: Expense#none
+      file_path: 
+      file_name: 
+      line_number: 
+      hash_key: '[nil, "Expense", "Expense#none"]'
+      simple_method_name: '#none'
+    details:
+      flog: complexity is 3.0
+  - location:
+      class_name: Program
+      method_name: Program#none
+      file_path: 
+      file_name: 
+      line_number: 
+      hash_key: '[nil, "Program", "Program#none"]'
+      simple_method_name: '#none'
+    details:
+      flog: complexity is 3.0
+  - location:
+      class_name: ApplicationController
+      method_name: ApplicationController#none
+      file_path: 
+      file_name: 
+      line_number: 
+      hash_key: '[nil, "ApplicationController", "ApplicationController#none"]'
+      simple_method_name: '#none'
+    details:
+      flog: complexity is 1.0
+  - location:
+      class_name: SuperiorPublicAgency
+      method_name: SuperiorPublicAgency#none
+      file_path: 
+      file_name: 
+      line_number: 
+      hash_key: '[nil, "SuperiorPublicAgency", "SuperiorPublicAgency#none"]'
+      simple_method_name: '#none'
+    details:
+      flog: complexity is 1.0
+  - location:
+      class_name: WelcomeController
+      method_name: WelcomeController#index
+      file_path: app/controllers/welcome_controller.rb
+      file_name: app/controllers/welcome_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/welcome_controller.rb", "WelcomeController", "WelcomeController#index"]'
+      simple_method_name: '#index'
+    details:
+      saikuro: complexity is 1.0
+  - location:
+      class_name: SuperiorPublicAgencyController
+      method_name: SuperiorPublicAgencyController#index
+      file_path: app/controllers/superior_public_agency_controller.rb
+      file_name: app/controllers/superior_public_agency_controller.rb
+      line_number: 
+      hash_key: '["app/controllers/superior_public_agency_controller.rb", "SuperiorPublicAgencyController",
+        "SuperiorPublicAgencyController#index"]'
+      simple_method_name: '#index'
+    details:
+      saikuro: complexity is 1.0
