@@ -2,7 +2,7 @@
 	g.column name: "Nome",attribute: 'name' do |agency|
 		link_to agency.name, public_agency_path(agency)
 	end
-	g.column name: "Visualizacoes", attribute: 'views_amount'
+	g.column name: "Visualizações", attribute: 'views_amount'
 	g.column name: "Gastos totais", attribute: 'id' do |agency|
 		expenses_public_agency(agency.id)
 	end

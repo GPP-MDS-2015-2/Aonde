@@ -30,7 +30,9 @@ textarea{
 }
 
 .content-container{
-	position: fix;
+	margin-top: 5px;
+  margin-bottom: 5px;
+  position: fix;
 	heigth: 100px;
   background: #036564;
 }
@@ -57,7 +59,8 @@ a.util_link:hover {
 
 .footer-container{  
   position: fixed;
-  width: 100%; 
+  width: 100%;
+  heigh: 10px; 
   bottom: 0;
   background: #036564;
 }
@@ -69,13 +72,13 @@ a.util_link:hover {
 
 .content-container table tr:hover{
   text-decoration:none;
-  font-size: 20px;
+  font-size: 14px;
   color: #F38630;
 }
 .content-container table tr:hover td a{
   text-decoration:none;
-  font-size: 20px;
-  color: #F38630  ;
+  font-size: 14px;
+  color: #F38630;
 }
 .content-container table th,
 table th:hover,
@@ -83,7 +86,8 @@ table th a,
 table th a:hover,
 table th a:active,
 table th a:link{
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
+text-decoration: none;
+color: white;
+background: blue;
+font-size: 16px;
 }

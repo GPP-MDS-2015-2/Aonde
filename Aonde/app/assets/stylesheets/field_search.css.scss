@@ -13,7 +13,7 @@
   border: none;
   font-size: 10pt;
   float: left;
-  color: #fff;
+  color: black;
   padding-left: 15px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -29,11 +29,11 @@
 }
  
 .container-4 input#search::-moz-placeholder {  /* Firefox 19+ */
-   color: #999999;  
+   color: black;  
 }
  
 .container-4 input#search:-ms-input-placeholder {  
-   color: #036564;  
+   color: black;  
 }
 
 .container-4 button.icon{

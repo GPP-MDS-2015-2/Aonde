@@ -10,12 +10,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<!--Isso é o header ou seja onde ficara a logo -->
-    <div id="headLogo">
-      (Imagem)
-    </div>
+<div id="headLogo">
+  (Imagem)
+</div>
 <div class="container">
-<!--Isso é o menu -->
     <div id="cssmenu">
       <ul>
         <li class='active'><%= link_to 'Home', root_path %></li>
@@ -29,25 +27,24 @@
       </ul>
     </div>
 
-<!--Marcelo -->
     <div class="content-container">
       <%= yield %>
     </div>
-  </div> 
-<!--Isso é o rodape  --> 
-  <div class="footer-container">
-      <div class="util_link">
-        <ul>
-          <li>Links Úteis:  </li>
-          <li><a href="#" class="util_link">Portal FGA</a></li>
-          <li>  |  </li>
-          <li><a href="#" class="util_link">Wiki</a></li>
-          <li>  |  </li>
-          <li><a href="#" class="util_link">GitHub</a></li>
-          <li>  |  </li>
-          <li><a href="#" class="util_link">Portal da Transparência</a></li>
-        </ul> 
-      </div>
-    </div>
+</div> 
+ 
+<div class="footer-container">
+  <div class="util_link">
+    <ul>
+      <li>Links Úteis:  </li>
+      <li><a href="#" class="util_link">Portal FGA</a></li>
+      <li>  |  </li>
+      <li><a href="#" class="util_link">Wiki</a></li>
+      <li>  |  </li>
+      <li><a href="#" class="util_link">GitHub</a></li>
+      <li>  |  </li>
+      <li><a href="#" class="util_link">Portal da Transparência</a></li>
+    </ul> 
+  </div>
+</div>
 </body>
 </html>
