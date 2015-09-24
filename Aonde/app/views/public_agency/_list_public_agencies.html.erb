@@ -1,9 +1,30 @@
-<%= grid(@public_agency_grid, show_filters: :no, html: {class: 'table'}) do |g|
-	g.column name: "Nome",attribute: 'name' do |agency|
-		link_to agency.name, public_agency_path(agency)
-	end
-	g.column name: "Visualizações", attribute: 'views_amount'
-	g.column name: "Gastos totais", attribute: 'id' do |agency|
-		expenses_public_agency(agency.id)
-	end
-end %>
+<table id="tableData" class="display">
+    <thead>
+	  <tr>
+	    <td>
+		  Nome
+		</td>
+		<td>
+		  Numero Visualizações
+		</td>
+		<td>
+		  Gastos Totais
+		</td>>
+	  </tr>
+	</thead>
+	<tbody>
+	  <% @public_agencies.each do |agency| %>
+	  	<tr>
+	  	  <td>
+	  	  	<%= agency.name %>
+	  	  </td>
+	  	  <td>
+	  	    <%= agency.views_amount %>
+	  	  </td>
+	  	  <td>
+			<%= expenses_public_agency(agency.id) %>
+		  </td>>
+	  	</tr>
+	  <% end %>
+	</tbody>
+  </table>	

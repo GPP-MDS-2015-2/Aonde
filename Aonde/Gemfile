@@ -30,9 +30,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Gem to create the table style 1: data table with jQuery
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-# Gem for the table grid
-gem "wice_grid", '3.6.0.pre4'
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
