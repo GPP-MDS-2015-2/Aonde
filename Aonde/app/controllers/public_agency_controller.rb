@@ -20,22 +20,22 @@ class PublicAgencyController < ApplicationController
 
 	end
 
+
+
 	def get_list_expense_month(id_public_agency)
 	  	total_expense_per_date = {"Data" => "gasto"}
-
 	  	programs = Program.where(public_agency_id: id_public_agency)
 	  	programs.each do |prog|
 	  		expenses = Expense.where(program_id: prog.id)
 	  		expenses.each do |exp|
-	  			month = Date::MONTHNAMES[exp.payment_date.month]
-	  			year = exp.payment_date.year
-	  			if total_expense_per_date ["#{month}/#{year}"] == nil
-	  				total_expense_per_date ["#{month}/#{year}"] = 0
+	  			date = l(Date.new(exp.payment_date.year,exp.payment_date.month,1))
+	  			if total_expense_per_date [date] == nil
+	  				total_expense_per_date [date] = 0
 	  			end
-	  			total_expense_per_date ["#{month}/#{year}"] += exp.value
+	  			total_expense_per_date [date] += exp.value
 	  		end	
 	  	end
-	  	return total_expense_per_date.to_a
+	  	return total_expense_per_date.sort_by { |date, expenses| date }.to_a
 	end
 
 end
