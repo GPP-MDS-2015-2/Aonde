@@ -9,7 +9,7 @@ name_nil:
 
 negative_number:
   superior_public_agency_id: 2
-  name: ministerio_da_fazenda
+  name: Public_Agency
   views_amount: -99
 
 wrong:
@@ -19,5 +19,5 @@ wrong:
 
 correct:
   superior_public_agency_id: 4
-  name: ministerio_da_fazenda
+  name: Public_Agency
   views_amount: 99
