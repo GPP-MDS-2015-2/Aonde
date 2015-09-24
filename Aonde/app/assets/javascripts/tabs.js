@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on("page:change",function(){
   
   $('ul.tabs li').click(function(){
     var tab_id = $(this).attr('data-tab');

@@ -1,0 +1,47 @@
+<script type="text/javascript">//Create the data to show in the chart
+console.log("read libraries");
+google.load('visualization', '1', {'packages':['corechart']});
+console.log("readed libraries");
+		
+console.log("before function of ready");
+$(document).ready(function(){
+	console.log("start the drawn");
+	google.setOnLoadCallback(drawChart);
+	
+	var dataTotal = '<%= raw @list_expense_month %>';
+	//drawn the linechart with curves
+	console.log(dataTotal);
+	function drawChart() {  
+	  console.log("parse array or json in data table");
+	  var data = google.visualization.arrayToDataTable($.parseJSON(dataTotal));
+
+	//informations of the chart
+	  var options = {
+		  title: 'Gastos do órgão',
+		  curveType: 'function',
+		  legend: { position: 'bottom' }
+		}
+		 
+		console.log("readed options");
+	  
+	  
+	  //create the objecto of chart and plot it
+	  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+		console.log("start the drawn in the div");
+	  	chart.draw(data, options); 
+		}
+	$(document).ready(function(){
+		$('button').on('click',function(){		
+			console.log("button log, change data");
+			dataTotal = '<%= raw @list_expense_month %>'
+			console.log("redrawn data");
+			drawChart();
+			console.log("chart conclude");
+		});
+	});
+});
+
+</script>
+
+<button> click me</button>
+<div id="chart_div"></div>
