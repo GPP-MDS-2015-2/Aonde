@@ -4,5 +4,5 @@
 
 #including validation.
   validates :name, presence: true
-  validates :views_amount, length: {minimum: 0}
+  validates :views_amount, numericality: {greater_than: 0}
 end

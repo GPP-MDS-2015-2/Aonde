@@ -2,22 +2,22 @@
 #Here are simulate data of public agencies.
 
 #test made
-one:
+name_nil:
   superior_public_agency_id: 1
-  name: nil
+  name:
   views_amount: 99
 
-two:
+negative_number:
   superior_public_agency_id: 2
   name: ministerio_da_fazenda
   views_amount: -99
 
-three:
+wrong:
   superior_public_agency_id: 3
-  name: nil
+  name:
   views_amount: -99
 
-four:
+correct:
   superior_public_agency_id: 4
   name: ministerio_da_fazenda
   views_amount: 99
