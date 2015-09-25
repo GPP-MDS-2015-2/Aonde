@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  public_agency_id: 
-
-two:
-  public_agency_id:
+name_nil:
+  name:
+correct:
+  name: "Programa"
