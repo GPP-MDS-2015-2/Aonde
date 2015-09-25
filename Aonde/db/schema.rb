@@ -20,16 +20,15 @@ ActiveRecord::Schema.define(version: 20150924193448) do
   end
 
   create_table "expenses", force: :cascade do |t|
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.integer  "program_id",         limit: 4
-    t.string   "document_number",    limit: 255
-    t.integer  "payment_management", limit: 4
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "program_id",      limit: 4
+    t.string   "document_number", limit: 255
     t.date     "payment_date"
-    t.decimal  "value",                          precision: 10
-    t.integer  "type_expense_id",    limit: 4
-    t.integer  "company_id",         limit: 4
-    t.integer  "function_id",        limit: 4
+    t.decimal  "value",                       precision: 10
+    t.integer  "type_expense_id", limit: 4
+    t.integer  "company_id",      limit: 4
+    t.integer  "function_id",     limit: 4
   end
 
   add_index "expenses", ["company_id"], name: "index_expenses_on_company_id", using: :btree
