@@ -10,6 +10,7 @@ class PublicAgencyController < ApplicationController
 		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
 		@list_expense_month = @public_agency.get_list_expense_month
 		@list_expense_month.unshift(["Data","gasto"])
+		increment_views_amount
 	end
 
 	#Calculate by month/year the total of expense
@@ -24,8 +25,12 @@ class PublicAgencyController < ApplicationController
 		  		end
 		  	end
 		end
-	  	return total_expense_per_date_by_period.to_a
-	  	
+	  	return total_expense_per_date_by_period.to_a	  	
 	end
-
+	
+	def increment_views_amount	
+		views_amount = @public_agency.views_amount
+		views_amount += 1
+		@public_agency.update(views_amount: views_amount)		
+	end
 end
