@@ -1,6 +1,6 @@
 <%= provide(:title, "Orgao Publico") %>
 <p>
-<h4><%= @superior_public_agency.name %></h4>
+<h3><%= @superior_public_agency.name %></h3>
 <!--<h1><%= @public_agency.name %></h1>-->
 <div class = 'container-tabs'>
 	<ul class="tabs">
@@ -9,7 +9,6 @@
 	</ul>
 
 	<div id="tab-1" class="tab-content current">
-		
 		<%= render 'chart_expenses' %>
 	</div>
 	<div id="tab-2" class="tab-content">
