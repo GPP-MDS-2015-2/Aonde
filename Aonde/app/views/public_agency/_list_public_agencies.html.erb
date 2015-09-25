@@ -1,30 +1,31 @@
-<table id="tableData" class="display">
-    <thead>
-	  <tr>
-	    <td>
-		  Nome
-		</td>
-		<td>
-		  Numero Visualizações
-		</td>
-		<td>
-		  Gastos Totais
-		</td>>
-	  </tr>
+<!-- table to show the data of public agencies -->
+<table id="tableData" class="display responsive no-wrap">
+	<thead>
+		<tr>
+			<td>
+				Nome Órgão
+			</td>
+			<td>
+				Quantidade de visualizações
+			</td>
+			<td>
+				Gasto total
+			</td>
+		</tr>
 	</thead>
 	<tbody>
-	  <% @public_agencies.each do |agency| %>
+	<% @public_agencies.each do |agency| %>
 	  	<tr>
-	  	  <td>
-	  	  	<%= agency.name %>
-	  	  </td>
-	  	  <td>
-	  	    <%= agency.views_amount %>
-	  	  </td>
-	  	  <td>
-			<%= expenses_public_agency(agency.id) %>
-		  </td>>
+		  	<td>
+		  	<%= link_to agency.name,public_agency_path(agency.id)%>
+		  	</td>
+		  	<td>
+		  		<%= agency.views_amount %>
+		  	</td>
+		  	<td>
+		  	<%= expenses_public_agency(agency.id)%>
+		  	</td>
 	  	</tr>
-	  <% end %>
+	<% end %>
 	</tbody>
-  </table>	
+</table>
