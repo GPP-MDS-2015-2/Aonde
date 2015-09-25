@@ -8,7 +8,7 @@ class PublicAgencyController < ApplicationController
 	def show
 		@public_agency = PublicAgency.find(params[:id])
 		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
-		@list_expense_month = get_list_expense_month(params[:id])
+		@list_expense_month = @public_agency.get_list_expense_month
 		@list_expense_month.unshift(["Data","gasto"])
 	end
 
@@ -25,5 +25,7 @@ class PublicAgencyController < ApplicationController
 		  	end
 		end
 	  	return total_expense_per_date_by_period.to_a
+	  	
 	end
+
 end
