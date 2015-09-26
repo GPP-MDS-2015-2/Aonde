@@ -74,8 +74,10 @@ def filter_chart
 				#verifyy if the date are in the interval
 				if date.year.to_i >= year_init.to_i && date.year.to_i <= year_final.to_i
 			  		if date.month.to_i >= conversion_data[month_init] && date.month.to_i <= conversion_data[month_final]
-			  			#create the date in the new hash, but the key is a string
 		        		date = l(Date.new(exp.payment_date.year,exp.payment_date.month,1))
+		        		if(new_total_expense_per_date[date] == nil)
+		        			new_total_expense_per_date [date] = 0
+		        		end
 		        		new_total_expense_per_date [date] = exp.value
 			  		end
 			  	end
