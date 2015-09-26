@@ -1,7 +1,32 @@
-<%= grid(@public_agency_grid, show_filters: :yes, html: {class: 'table'}) do |g|
-	g.column name: "Nome",attribute: 'name'
-	g.column name: "Visualizacoes", attribute: 'views_amount'
-	g.column name: "Gastos totais", attribute: 'id' do |agency|
-		expenses_public_agency(agency.id)
-	end
-end %>
+<!-- table to show the data of public agencies -->
+<table id="tableData" class="display responsive no-wrap">
+	<thead>
+		<tr>
+			<td>
+				<strong>Nome Órgão</strong>
+			</td>
+			<td>
+				<strong> Quantidade de visualizações</strong>
+			</td>
+			<td>
+				<strong> Gasto total (R$)</strong>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+	<% @public_agencies.each do |agency| %>
+	  	<tr>
+		  	<td>
+		  	<%= link_to agency.name,public_agency_path(agency.id)%>
+		  	</td>
+		  	<td>
+		  		<%= agency.views_amount %>
+		  	</td>
+		  	<td>
+		  	<!-- <%=  number_with_precision(expenses_public_agency(agency.id), :delimiter => ".", :separator => ",", :precision => 2)%> -->
+		  	<%= expenses_public_agency(agency.id) %>
+		  	</td>
+	  	</tr>
+	<% end %>
+	</tbody>
+</table>

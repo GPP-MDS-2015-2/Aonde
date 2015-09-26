@@ -11,19 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919165730) do
+ActiveRecord::Schema.define(version: 20150924193448) do
 
-  create_table "expenses", force: :cascade do |t|
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.integer  "program_id",         limit: 4
-    t.string   "document_number",    limit: 255
-    t.integer  "payment_management", limit: 4
-    t.date     "payment_date"
-    t.decimal  "value",                          precision: 10
+  create_table "companies", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
+  create_table "expenses", force: :cascade do |t|
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "program_id",      limit: 4
+    t.string   "document_number", limit: 255
+    t.date     "payment_date"
+    t.decimal  "value",                       precision: 10
+    t.integer  "type_expense_id", limit: 4
+    t.integer  "company_id",      limit: 4
+    t.integer  "function_id",     limit: 4
+  end
+
+  add_index "expenses", ["company_id"], name: "index_expenses_on_company_id", using: :btree
+  add_index "expenses", ["function_id"], name: "index_expenses_on_function_id", using: :btree
   add_index "expenses", ["program_id"], name: "index_expenses_on_program_id", using: :btree
+  add_index "expenses", ["type_expense_id"], name: "index_expenses_on_type_expense_id", using: :btree
+
+  create_table "functions", force: :cascade do |t|
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "programs", force: :cascade do |t|
     t.datetime "created_at",                   null: false
@@ -50,7 +67,16 @@ ActiveRecord::Schema.define(version: 20150919165730) do
     t.string   "name",       limit: 255
   end
 
+  create_table "type_expenses", force: :cascade do |t|
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_foreign_key "expenses", "companies"
+  add_foreign_key "expenses", "functions"
   add_foreign_key "expenses", "programs"
+  add_foreign_key "expenses", "type_expenses"
   add_foreign_key "programs", "public_agencies"
   add_foreign_key "public_agencies", "superior_public_agencies"
 end
