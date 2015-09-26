@@ -16,7 +16,7 @@ $(document).ready(function(){
 	  var data = google.visualization.arrayToDataTable($.parseJSON(dataTotal));
 	//informations of the chart
 	  var options = {
-		  title: 'Gastos do órgão',
+		  title: 'Gastos total do órgão: '+' <%= @total_expense%>',
 		  curveType: 'function',
 		  legend: { position: 'left' }
 		}

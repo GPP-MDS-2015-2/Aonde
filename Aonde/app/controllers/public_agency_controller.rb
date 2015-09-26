@@ -25,6 +25,7 @@ class PublicAgencyController < ApplicationController
 	def get_list_expense_month(id_public_agency)
     total_expense_per_date = {}
     #Takes all programs and return a list
+    @total_expense = 0
       expenses = Expense.where(program_id: Program.where(public_agency_id: id_public_agency).ids)
       expenses.each do |exp|
         date = l(Date.new(exp.payment_date.year,exp.payment_date.month,1))
@@ -32,6 +33,7 @@ class PublicAgencyController < ApplicationController
           total_expense_per_date [date] = 0
         end
         total_expense_per_date [date] += exp.value
+        @total_expense += exp.value
       end 
     return total_expense_per_date.sort_by { |date, expenses| Date.parse(date) }.to_a
   end
@@ -62,6 +64,7 @@ def filter_chart
 		conversion_data['Outubro'] = 10
 		conversion_data['Novembro'] = 11
 		conversion_data['Dezembro'] = 12
+		@total_expense = 0
 
 		#create a new hash to put the values
 		new_total_expense_per_date = {}
@@ -78,7 +81,8 @@ def filter_chart
 		        		if(new_total_expense_per_date[date] == nil)
 		        			new_total_expense_per_date [date] = 0
 		        		end
-		        		new_total_expense_per_date [date] = exp.value
+		        		new_total_expense_per_date [date] += exp.value
+		        		@total_expense += exp.value
 			  		end
 			  	end
 			end
