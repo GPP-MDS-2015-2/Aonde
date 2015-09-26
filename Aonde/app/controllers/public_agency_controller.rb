@@ -89,6 +89,13 @@ def filter_chart
 		else
 			return get_list_expense_month(id_public_agency)
 		end
+
+		#This is just to prevent the error if don't have a expense
+	  	if @total_expense == 0
+	  		return new_total_expense_per_date = {"":0}.to_a
+	  	end
+	  	
+
 	  	#return the hash with expenses like a array
 	  	return new_total_expense_per_date.sort_by { |date, expenses| Date.parse(date) }.to_a
 	end

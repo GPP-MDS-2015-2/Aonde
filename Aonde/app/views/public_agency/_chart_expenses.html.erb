@@ -6,6 +6,36 @@ var dataTotal = '<%= raw @list_expense_month %>';
 	//drawn the linechart with curves
 console.log(dataTotal);
 
+function transformValue(){
+	var value = '<%= @total_expense %>';
+	console.log("\n this is the value: "+value+"\n");
+	var based = 1000;
+	var count=0;
+	value/=based;
+	while(value > 1 ){
+		value/=based
+		count++;
+	}
+	value*=based;
+	var name = " R$: ";
+	switch(count){
+		case 0:
+				return name+""+value.toFixed(2)+"";
+		case 1:
+			return name+""+value.toFixed(2)+" mil";
+		case 2:
+			return name+""+value.toFixed(2)+" milhões";
+		case 3:
+			return name+""+value.toFixed(2)+" bilhões";
+		case 4:
+			return name+""+value.toFixed(2)+" trilhões";
+		case 5:
+			return name+""+value.toFixed(2)+" quadrilhões";
+		default:
+			return name + ""+value.toFixed(4);
+	}
+}
+
 $(document).ready(function(){
 	console.log("start the drawn");
 //Draw chart with options choose, the array to this chart is [['title','camp1'],['x','y'],...]
@@ -16,7 +46,7 @@ $(document).ready(function(){
 	  var data = google.visualization.arrayToDataTable($.parseJSON(dataTotal));
 	//informations of the chart
 	  var options = {
-		  title: 'Gastos total do órgão: '+' <%= @total_expense%>',
+		  title: 'Gastos total do órgão: '+ transformValue(),
 		  curveType: 'function',
 		  legend: { position: 'left' }
 		}
@@ -37,5 +67,10 @@ $(document).ready(function(){
 	 <%= select_tag :ends_in_the_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
  	 <%= select_tag :ends_in_the_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
     <%= submit_tag 'Filtrar' %>
-<% end %>
+<% end
+	#This is just to prevent the error if don't have a expense
+	  	if @total_expense == 0 %>
+	  	<h2> Não encontrado nenhum gasto neste intervalo de tempo, tente outro</h2>
+	  	<% else %>
 <div id="chart_div"> </div>
+<% end%>

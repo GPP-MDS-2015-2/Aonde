@@ -3,13 +3,13 @@
 	<thead>
 		<tr>
 			<td>
-				Nome Órgão
+				<strong>Nome Órgão</strong>
 			</td>
 			<td>
-				Quantidade de visualizações
+				<strong> Quantidade de visualizações</strong>
 			</td>
 			<td>
-				Gasto total
+				<strong> Gasto total (R$)</strong>
 			</td>
 		</tr>
 	</thead>
@@ -23,7 +23,8 @@
 		  		<%= agency.views_amount %>
 		  	</td>
 		  	<td>
-		  	<%= expenses_public_agency(agency.id)%>
+		  	<!-- <%=  number_with_precision(expenses_public_agency(agency.id), :delimiter => ".", :separator => ",", :precision => 2)%> -->
+		  	<%= expenses_public_agency(agency.id) %>
 		  	</td>
 	  	</tr>
 	<% end %>
