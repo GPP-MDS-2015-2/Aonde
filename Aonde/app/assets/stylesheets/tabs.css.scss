@@ -1,0 +1,40 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body-tabs{
+      font-family: Arial;
+      line-height: 1.6
+    }
+.container-tabs{
+      margin-top: 15px;
+      margin-bottom: 50px;
+      position: fix;
+      heigth: 90px;
+    }
+ul.tabs{
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+    }
+ul.tabs li{
+      background: #F38630;
+      color: black;
+      display: inline-block;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+ul.tabs li.current{
+      background: #036564;
+      color: black;
+    }
+
+.tab-content{
+      display: none;
+      background: #E1E4D6;
+      padding: 15px;
+      color: black
+    }
+
+.tab-content.current{
+      display: inherit;
+    }

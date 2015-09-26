@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#Here are simulate data of public agencies.
+
+#test made
+name_nil:
+  superior_public_agency_id: 1
+  name:
+  views_amount: 99
+
+negative_number:
+  superior_public_agency_id: 2
+  name: Public_Agency
+  views_amount: -99
+
+wrong:
+  superior_public_agency_id: 3
+  name:
+  views_amount: -99
+
+correct:
+  superior_public_agency_id: 4
+  name: Public_Agency
+  views_amount: 99

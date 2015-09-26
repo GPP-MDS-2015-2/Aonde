@@ -1,0 +1,41 @@
+<script type="text/javascript">//Create the data to show in the chart
+		
+//recive the array from controller to generate the datatable of chart 
+console.log("before function of ready");
+var dataTotal = '<%= raw @list_expense_month %>';
+	//drawn the linechart with curves
+console.log(dataTotal);
+
+$(document).ready(function(){
+	console.log("start the drawn");
+//Draw chart with options choose, the array to this chart is [['title','camp1'],['x','y'],...]
+	drawChart();	
+
+	function drawChart() {  
+	  console.log("parse array or json in data table");
+	  var data = google.visualization.arrayToDataTable($.parseJSON(dataTotal));
+	//informations of the chart
+	  var options = {
+		  title: 'Gastos total do órgão: '+' <%= @total_expense%>',
+		  curveType: 'function',
+		  legend: { position: 'left' }
+		}
+		console.log("readed options");
+	  //create the objecto of chart and plot it
+	  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+		console.log("start the drawn in the div");
+	  	chart.draw(data, options); 
+	}		
+
+});
+</script>
+<!-- just create the form to the filter -->
+<%= form_tag  filter_path , method: 'get' do %>
+	 <!-- <%= hidden_field_tag :id, params[:id]%> -->
+	 <%= select_tag :from_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Começa no Ano..." %>
+	 <%= select_tag :from_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Começa no mês..." %>
+	 <%= select_tag :ends_in_the_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
+ 	 <%= select_tag :ends_in_the_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
+    <%= submit_tag 'Filtrar' %>
+<% end %>
+<div id="chart_div"> </div>
