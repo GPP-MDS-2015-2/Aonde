@@ -11,11 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require wice_grid.js
+//= require dataTables/jquery.dataTables
+
 //= require turbolinks
 //= require_tree .
-
-
-
-
