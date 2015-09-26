@@ -62,24 +62,51 @@ def filter_chart
 		conversion_data['Outubro'] = 10
 		conversion_data['Novembro'] = 11
 		conversion_data['Dezembro'] = 12
-		
-		
+
 		#create a new hash to put the values
 		new_total_expense_per_date = {}
 		#take all of expenses
 		expenses = Expense.where(program_id: Program.where(public_agency_id: id_public_agency).ids)
-      	expenses.each do |exp|
-			date = exp.payment_date
-			#see if the date are in the hash and add in the new	
-			#verifyy if the date are in the interval
-			if date.year.to_i >= year_init.to_i && date.year.to_i <= year_final.to_i
-		  		if date.month.to_i >= conversion_data[month_init] && date.month.to_i <= conversion_data[month_final]
-		  			#create the date in the new hash, but the key is a string
-	        		new_total_expense_per_date [date.to_s] = exp.value
-		  		end
-		  	end
+      	if(valide_date(year_init,year_final,month_init,month_final))
+	      	expenses.each do |exp|
+				date = exp.payment_date
+				#see if the date are in the hash and add in the new	
+				#verifyy if the date are in the interval
+				if date.year.to_i >= year_init.to_i && date.year.to_i <= year_final.to_i
+			  		if date.month.to_i >= conversion_data[month_init] && date.month.to_i <= conversion_data[month_final]
+			  			#create the date in the new hash, but the key is a string
+		        		date = l(Date.new(exp.payment_date.year,exp.payment_date.month,1))
+		        		new_total_expense_per_date [date] = exp.value
+			  		end
+			  	end
+			end
+		else
+			return get_list_expense_month(id_public_agency)
 		end
 	  	#return the hash with expenses like a array
-	  	return new_total_expense_per_date.to_a
+	  	return new_total_expense_per_date.sort_by { |date, expenses| Date.parse(date) }.to_a
+	end
+	def valide_date(ano_inicio,ano_fim,mes_inicio,mes_fim)
+		conversion_data = {}
+		conversion_data['Janeiro'] = 1
+		conversion_data['Fevereiro'] = 2
+		conversion_data['Março'] = 3
+		conversion_data['Abril'] = 4
+		conversion_data['Maio'] = 5
+		conversion_data['Junho'] =6
+		conversion_data['Julho'] = 7
+		conversion_data['Agosto'] = 8
+		conversion_data['Setembro'] = 9
+		conversion_data['Outubro'] = 10
+		conversion_data['Novembro'] = 11
+		conversion_data['Dezembro'] = 12
+		if(ano_inicio == ano_fim)
+			if(conversion_data[mes_inicio] > conversion_data[mes_fim])
+				return false
+			end
+		elsif (ano_inicio > ano_fim)
+			return false
+		end
+		return true
 	end
 end
