@@ -88,13 +88,17 @@ $(document).ready(function(){
 
 </script>
 <!-- just create the form to the filter -->
+<div id="combobox">
+<form class="select_box">
 <%= form_tag  filter_path , method: 'get' do %>
 	 <!-- <%= hidden_field_tag :id, params[:id]%> -->
 	 <%= select_tag :from_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Começa no Ano..." %>
-	 <%= select_tag :from_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Começa no mês..." %>
+	 <%= select_tag :from_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"]																								,["Novembro"],["Dezembro"]]), prompt: "Começa no mês..." %>
 	 <%= select_tag :ends_in_the_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
- 	 <%= select_tag :ends_in_the_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
+ 	 <%= select_tag :ends_in_the_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["																						Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
     <%= submit_tag 'Filtrar' %>
+</form>
+</div>
 <% end
 	#This is just to prevent the error if don't have a expense
   	if @total_expense == 0 %>
@@ -102,4 +106,6 @@ $(document).ready(function(){
   	<% else %>
 <div id="chart_div"></div>
 <% end%>
-<div class="fb-share-button" data-href="http://aondebrasil.com/<%= public_agency_path(@public_agency.id) %>" data-layout="button_count"></div>
+<div id="share">
+	<center><div class="fb-share-button" data-href="http://aondebrasil.com/<%= public_agency_path(@public_agency.id) %>" data-layout="button_count"></div></center>
+</div>
