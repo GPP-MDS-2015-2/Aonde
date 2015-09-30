@@ -94,7 +94,6 @@
 })(jQuery);
 
 (function($){
-$(document).ready(function(){
 
 $(document).ready(function() {
   $("#cssmenu").menumaker({
@@ -106,7 +105,5 @@ $(document).ready(function() {
   	var linkTitle = $(this).text();
   	$(this).attr('data-title', linkTitle);
   });
-});
-
 });
 })(jQuery);
