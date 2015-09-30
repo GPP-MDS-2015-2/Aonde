@@ -57,7 +57,7 @@ class PublicAgencyController < ApplicationController
     	total_expense_per_date = {}
     	#Takes all programs and return a list
     	#@total_expense = 0
-    	expenses = Expense.where(program_id: Program.where(public_agency_id: id_public_agency).ids)
+    	expenses = Expense.where(public_agency_id: id_public_agency)
     	expenses.each do |exp|
         	date = Date.new(exp.payment_date.year,exp.payment_date.month,1)
         	if total_expense_per_date [date] == nil
