@@ -45,10 +45,11 @@ ActiveRecord::Schema.define(version: 20150930002126) do
   end
 
   create_table "programs", force: :cascade do |t|
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "name",        limit: 255
-    t.string   "description", limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "public_agency_id", limit: 4
+    t.string   "name",             limit: 255
+    t.string   "description",      limit: 255
   end
 
   create_table "public_agencies", force: :cascade do |t|

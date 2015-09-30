@@ -1,4 +1,5 @@
 class PublicAgencyController < ApplicationController
+	
 	#list of all public agencies in DB
 	def index
 		@public_agencies = PublicAgency.all
@@ -12,10 +13,12 @@ class PublicAgencyController < ApplicationController
 		@list_expense_month.unshift(["Data","gasto"])
 		
 	end
+
 	def find_agencies
 		@public_agency = PublicAgency.find(params[:id])
 		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
 	end
+
 	def filter_chart 
   		#find the same thing then the show
   		find_agencies
@@ -33,6 +36,7 @@ class PublicAgencyController < ApplicationController
 
 	#Calculate by month/year the total of expense
   	def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
+
 		@total_expense = 0		
 		new_total_expense_per_date = {}
 
@@ -56,7 +60,6 @@ class PublicAgencyController < ApplicationController
     	expenses = Expense.where(program_id: Program.where(public_agency_id: id_public_agency).ids)
     	expenses.each do |exp|
         	date = Date.new(exp.payment_date.year,exp.payment_date.month,1)
-        	#print ("\n\n\n\n\n\n#{date}\n\n\n\n\n\n\n")
         	if total_expense_per_date [date] == nil
           		total_expense_per_date [date] = 0
         	end
@@ -67,10 +70,12 @@ class PublicAgencyController < ApplicationController
   	end	
 
 	def increment_views_amount	
+
 		views_amount = @public_agency.views_amount
 		views_amount += 1
 		@public_agency.update(views_amount: views_amount)		
 	end
+
 	#create a hash to convert a name of month to int
   	def month_to_int(month)
 	
@@ -91,22 +96,24 @@ class PublicAgencyController < ApplicationController
 		return conversion_data[month]
 	end
 
-	#verifyy if the date are in the interval
+	#verify if the date are in the interval
 	def is_date_in_interval(first_month,first_year,last_month,last_year, date)
 
-		if date.year.to_i >= first_year.to_i && date.year.to_i <= last_year.to_i
-			if date.month.to_i >= month_to_int(first_month) && date.month.to_i <= month_to_int(last_month)
-				return true
-			else
-				return false
-		   	end
+		if month_to_int(first_month) == nil or month_to_int(first_year) == nil or month_to_int(last_month) == nil or month_to_int(last_year) == nil
+			if date.year.to_i >= first_year.to_i && date.year.to_i <= last_year.to_i
+				if date.month.to_i >= month_to_int(first_month) && date.month.to_i <= month_to_int(last_month)
+					return true
+				else
+					return false
+		   		end
+			end
+		else 
+			return false
 		end
-
 	end
-
 	
 	def is_date_valid(first_year,last_year,first_month,last_month)
-		#print ( "\n\n\n\n\n\n\n [#{first_month}]\n\n\n\n\n\n\n")
+
 		if first_year == nil or last_year == nil or first_month.empty? or last_month.empty?
 			return false
 		end
@@ -118,7 +125,6 @@ class PublicAgencyController < ApplicationController
 			return false
 		end
 		return true
-
 	end
 
 	#methods that's need to be private

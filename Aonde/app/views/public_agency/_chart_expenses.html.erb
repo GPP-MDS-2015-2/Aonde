@@ -67,10 +67,13 @@ $(document).ready(function(){
 	 <%= select_tag :ends_in_the_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
  	 <%= select_tag :ends_in_the_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
     <%= submit_tag 'Filtrar' %>
-<% end
+<% end 
 	#This is just to prevent the error if don't have a expense
 	  	if @total_expense == 0 %>
-	  	<h2> Não encontrado nenhum gasto neste intervalo de tempo, tente outro</h2>
+	  	<h2> Não foi encontrado nenhum gasto neste intervalo de tempo, tente outro</h2>
+	<!--Add a message if the value of the combo box were nil. And tell that will be show
+	the total value.-->
 	  	<% else %>
+	  	
 <div id="chart_div"></div>
 <% end%>
