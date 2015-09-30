@@ -1,63 +1,91 @@
-<script type="text/javascript">//Create the data to show in the chart
-		
+<!-- this beautifull script is to reload the page just one time when that is load -->
+<script type='text/javascript'>
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem( 'firstLoad' ) )
+    {
+      localStorage[ 'firstLoad' ] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem( 'firstLoad' );
+  }
+})();
+</script>
+
+<script type="text/javascript">//Create the data to 
 //recive the array from controller to generate the datatable of chart 
-console.log("before function of ready");
+//console.log("before function of ready");
 var dataTotal = '<%= raw @list_expense_month %>';
 	//drawn the linechart with curves
-console.log(dataTotal);
+//console.log(dataTotal);
 
-function transformValue(){
-	var value = '<%= @total_expense %>';
-	console.log("\n this is the value: "+value+"\n");
-	var based = 1000;
-	var count=0;
-	value/=based;
-	while(value > 1 ){
-		value/=based
-		count++;
-	}
-	value*=based;
-	var name = " R$: ";
-	switch(count){
-		case 0:
-				return name+""+value.toFixed(2)+"";
-		case 1:
-			return name+""+value.toFixed(2)+" mil";
-		case 2:
-			return name+""+value.toFixed(2)+" milhões";
-		case 3:
-			return name+""+value.toFixed(2)+" bilhões";
-		case 4:
-			return name+""+value.toFixed(2)+" trilhões";
-		case 5:
-			return name+""+value.toFixed(2)+" quadrilhões";
-		default:
-			return name + ""+value.toFixed(4);
-	}
-}
 
 $(document).ready(function(){
-	console.log("start the drawn");
+	function findGreatness(value){
+//		console.log("\n this is the value: "+value+"\n");
+		var based = 1000;
+		var count=0;
+		value/=based;
+		while(value > 1 ){
+			value/=based
+			count++;
+		}
+		return count
+	}
+	function convertValue(value,count){
+		var div = Math.pow(1000,count);
+		value = parseFloat(value/div);
+		var name = " R$: ";
+		switch(count){
+			case 0:
+					return name+""+value.toFixed(2)+"";
+			case 1:
+				return name+""+value.toFixed(2)+" mil";
+			case 2:
+				return name+""+value.toFixed(2)+" milhões";
+			case 3:
+				return name+""+value.toFixed(2)+" bilhões";
+			case 4:
+				return name+""+value.toFixed(2)+" trilhões";
+			case 5:
+				return name+""+value.toFixed(2)+" quadrilhões";
+			default:
+				return name + ""+value.toFixed(4);
+		}
+	}
+	function transformValueName(){
+		var value = '<%= @total_expense %>';
+		var count = findGreatness(value);
+//		console.log("In the method transform value name the recived var:\n\t value: "+ value + "\n\tcount: "+count);
+		var nameFinal = convertValue(value,count);
+//		console.log("name final "+nameFinal);
+		return nameFinal;
+	}
+
+//	console.log("start the drawn");
 //Draw chart with options choose, the array to this chart is [['title','camp1'],['x','y'],...]
 	drawChart();	
-
 	function drawChart() {  
-	  console.log("parse array or json in data table");
+//	  console.log("parse array or json in data table");
 	  var data = google.visualization.arrayToDataTable($.parseJSON(dataTotal));
 	//informations of the chart
 	  var options = {
-		  title: 'Gastos totais do órgão: '+ transformValue(),
+		  title: 'Gastos totais do órgão: '+ transformValueName(),
 		  curveType: 'function',
 		  legend: { position: 'left' }
 		}
-		console.log("readed options");
+//		console.log("readed options");
 	  //create the objecto of chart and plot it
 	  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-		console.log("start the drawn in the div");
+//		console.log("start the drawn in the div");
 	  	chart.draw(data, options); 
 	}		
 
 });
+
 </script>
 <!-- just create the form to the filter -->
 <%= form_tag  filter_path , method: 'get' do %>
@@ -67,13 +95,11 @@ $(document).ready(function(){
 	 <%= select_tag :ends_in_the_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
  	 <%= select_tag :ends_in_the_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
     <%= submit_tag 'Filtrar' %>
-<% end 
+<% end
 	#This is just to prevent the error if don't have a expense
-	  	if @total_expense == 0 %>
-	  	<h2> Não foi encontrado nenhum gasto neste intervalo de tempo, tente outro</h2>
-	<!--Add a message if the value of the combo box were nil. And tell that will be show
-	the total value.-->
-	  	<% else %>
-	  	
+  	if @total_expense == 0 %>
+  		<h2> Não encontrado nenhum gasto neste intervalo de tempo, tente outro</h2>
+  	<% else %>
 <div id="chart_div"></div>
 <% end%>
+<div class="fb-share-button" data-href="http://aondebrasil.com/<%= public_agency_path(@public_agency.id) %>" data-layout="button_count"></div>
