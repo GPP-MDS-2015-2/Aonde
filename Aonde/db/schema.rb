@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20150930002126) do
   create_table "programs", force: :cascade do |t|
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.integer  "public_agency_id", limit: 4
     t.string   "name",             limit: 255
     t.string   "description",      limit: 255
   end
@@ -56,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150930002126) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.integer  "superior_public_agency_id", limit: 4
-    t.string   "name",                      limit: 255
+    t.string   "name",                      limit: 255''
     t.integer  "views_amount",              limit: 4
   end
 
