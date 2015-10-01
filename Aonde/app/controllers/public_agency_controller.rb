@@ -22,9 +22,13 @@ class PublicAgencyController < ApplicationController
   		#find the same thing then the show
   		find_agencies
   		#create the new list with filters apllied
-		if is_date_valid(params[:from_year],params[:ends_in_the_year],params[:from_months],params[:ends_in_the_months])
+  		message_invalid_input(params[:from_year],params[:ends_in_the_year],params[:from_months],
+			params[:ends_in_the_months])
+		if is_date_valid(params[:from_year],params[:ends_in_the_year],params[:from_months],
+		params[:ends_in_the_months])
   			@list_expense_month = get_list_expenses_by_period(@public_agency.id,params[:from_months],params[:from_year],params[:ends_in_the_months],params[:ends_in_the_year])
   		else
+  			#<script> alert ("voce tentou filtrar com algum campo errado"); <script> 
   			@list_expense_month = get_list_expenses_by_period(@public_agency.id)
   		end
   		#insert the head in the list
@@ -54,6 +58,7 @@ class PublicAgencyController < ApplicationController
 	def get_expenses_agency(id_public_agency)
     	total_expense_per_date = {}
     	#Takes all programs and return a list
+    	#@total_expense = 0
     	expenses = Expense.where(public_agency_id: id_public_agency)
     	expenses.each do |exp|
         	date = Date.new(exp.payment_date.year,exp.payment_date.month,1)
@@ -61,6 +66,7 @@ class PublicAgencyController < ApplicationController
           		total_expense_per_date [date] = 0
         	end
         	total_expense_per_date [date] += exp.value
+#        	@total_expense += exp.value
       	end 
     	return total_expense_per_date
   	end	
@@ -81,7 +87,7 @@ class PublicAgencyController < ApplicationController
 		conversion_data['Março'] = 3
 		conversion_data['Abril'] = 4
 		conversion_data['Maio'] = 5
-		conversion_data['Junho'] =6
+		conversion_data['Junho'] = 6
 		conversion_data['Julho'] = 7
 		conversion_data['Agosto'] = 8
 		conversion_data['Setembro'] = 9
@@ -92,46 +98,45 @@ class PublicAgencyController < ApplicationController
 		return conversion_data[month]
 	end
 
+	def message_invalid_input(first_year,last_year,first_month,last_month)
+		if is_date_valid(first_year,last_year,first_month,last_month) == false
+			flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:"
+		end
+	end
+
 	#verify if the date are in the interval
 	def is_date_in_interval(first_month,first_year,last_month,last_year, date)
 
-		if month_to_int(first_month) == nil or month_to_int(first_year) == nil or month_to_int(last_month) == nil or month_to_int(last_year) == nil
 			if date.year.to_i >= first_year.to_i && date.year.to_i <= last_year.to_i
 				if date.month.to_i >= month_to_int(first_month) && date.month.to_i <= month_to_int(last_month)
 					return true
 				else
-#Send flash when the  input is wrong
-					flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:"
 					return false
 		   		end
-			end
-		else
-			flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:"
-			return false
-		end
+			end		
 	end
 	
 	def is_date_valid(first_year,last_year,first_month,last_month)
 
 		if first_year == nil or last_year == nil or first_month.empty? or last_month.empty?
-			flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:"
+#			flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:1"
 			return false
 		else
 			
 		end
 		if(first_year == last_year)
 			if(month_to_int(first_month) > month_to_int(last_month))
-				flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:"
+#				flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:2"
 				return false
 			end
 		elsif (first_year > last_year)
-			flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:"
+#			flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:3"
 			return false
 		end
 		return true
 	end
 
 	#methods that's need to be private
-	#private :increment_views_amount, :month_to_int, :is_date_valid
-	private :increment_views_amount, :month_to_int
+	private :increment_views_amount, :month_to_int, :is_date_valid
+	#private :increment_views_amount, :month_to_int
 end
