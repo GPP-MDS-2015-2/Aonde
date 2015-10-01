@@ -1,5 +1,5 @@
 <!-- this beautifull script is to reload the page just one time when that is load -->
-<script type='text/javascript'>
+<!--<script type='text/javascript'>
 (function()
 {
   if( window.localStorage )
@@ -14,7 +14,7 @@
   }
 })();
 </script>
-
+-->
 <script type="text/javascript">//Create the data to 
 //recive the array from controller to generate the datatable of chart 
 //console.log("before function of ready");
@@ -106,6 +106,10 @@ $(document).ready(function(){
   	<% else %>
 <div id="chart_div"></div>
 <% end%>
-<div id="share">
-	<center><div class="fb-share-button" data-href="http://aondebrasil.com/<%= public_agency_path(@public_agency.id) %>" data-layout="button_count"></div></center>
+
+<a href="https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook">
+<i class="fa fa-facebook"></i></a>
+ 
+<%= facebook_share_amount("#{request.protocol}#{request.host_with_port}#{request.fullpath}") %>
+
 </div>
