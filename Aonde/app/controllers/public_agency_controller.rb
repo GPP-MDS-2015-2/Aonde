@@ -22,17 +22,18 @@ class PublicAgencyController < ApplicationController
   		#find the same thing then the show
   		find_agencies
   		#create the new list with filters apllied
-  		message_invalid_input(params[:from_year],params[:ends_in_the_year],params[:from_months],
+  		date_valid = message_invalid_input(params[:from_year],params[:ends_in_the_year],params[:from_months],
 			params[:ends_in_the_months])
-		if is_date_valid(params[:from_year],params[:ends_in_the_year],params[:from_months],
-		params[:ends_in_the_months])
+		@total_expense = 0		
+		if date_valid
   			@list_expense_month = get_list_expenses_by_period(@public_agency.id,params[:from_months],params[:from_year],params[:ends_in_the_months],params[:ends_in_the_year])
-  		else
-  			#<script> alert ("voce tentou filtrar com algum campo errado"); <script> 
+  		end
+  		if @total_expense == 0
+  			flash[:error] = "Não encontrou nenhum gasto neste perioso, grafico de gastos total:"
   			@list_expense_month = get_list_expenses_by_period(@public_agency.id)
   		end
   		#insert the head in the list
-  		@list_expense_month.unshift(["Data","Gasto"])
+		@list_expense_month.unshift(["Data","Gasto"])
 		render 'show'
   	end
 
@@ -101,6 +102,7 @@ class PublicAgencyController < ApplicationController
 	def message_invalid_input(first_year,last_year,first_month,last_month)
 		if is_date_valid(first_year,last_year,first_month,last_month) == false
 			flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:"
+			return false
 		end
 	end
 
@@ -135,7 +137,6 @@ class PublicAgencyController < ApplicationController
 		end
 		return true
 	end
-
 	#methods that's need to be private
 	private :increment_views_amount, :month_to_int, :is_date_valid
 	#private :increment_views_amount, :month_to_int

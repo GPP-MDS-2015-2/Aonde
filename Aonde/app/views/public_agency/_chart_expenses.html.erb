@@ -112,13 +112,8 @@ $(document).ready(function(){
     <%= submit_tag 'Filtrar' %>
 </div>
 </div>
-<% end
-	#This is just to prevent the error if don't have a expense
-  	if @total_expense == 0%>
-  		<h2> Não foi encontrado nenhum gasto neste intervalo de tempo, tente outro</h2>
-  	<% else %>
+<% end %>
 <div id="chart_div"></div>
-<% end%>
 <div id="cont_share"> 
 <a href="https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook">
 
