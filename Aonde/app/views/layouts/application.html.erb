@@ -26,12 +26,6 @@
           </div>
         </div>
       </ul>
-
-<!--Message that's show every messages of erro.-->
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: name %>
-    <% end %>
-
     </div>
     <div class="content-container">
       <%= yield %>
