@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#Creating params of public agency to be used in tests.
+name_nil:
+  name:
+correct:
+  name: "Programa"

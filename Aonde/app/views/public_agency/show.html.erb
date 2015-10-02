@@ -1,0 +1,19 @@
+<%= provide(:title, "Orgao Publico") %>
+<p>
+
+<center><font color="white"><h4><%= @superior_public_agency.name %></h4></font></center>
+<center><font color="white"><h3><%= @public_agency.name %></h3></font></center>
+<!-- create the tabs and render the informations of the public agency -->
+<div class = 'container-tabs'>
+ 	<ul class="tabs">
+		<li class="tab-link current" data-tab="tab-1">Gastos do Órgão</li>
+		<!-- <li class="tab-link" data-tab="tab-2">Gastos do Órgão</li> -->
+	</ul>
+
+ 	<div id="tab-1" class="tab-content current">
+		<%= render 'chart_expenses' %>
+ 	</div>
+	<!-- <div id="tab-2" class="tab-content">
+		huhuasaushuah
+	</div>  -->
+ </div>
