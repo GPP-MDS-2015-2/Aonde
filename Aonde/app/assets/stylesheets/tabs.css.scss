@@ -29,12 +29,12 @@ ul.tabs li:hover{
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbd5b7), color-stop(100%, #f38630));
 }
 ul.tabs li.current{
-      background: #333333;
+      background: #E1E4D6;
       color: black;
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, gainsboro));
     }
 ul.tabs li.current:hover{
-      background: #333333;
+      background: #E1E4D6;
       color: black;
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, gainsboro));}
 .tab-content{

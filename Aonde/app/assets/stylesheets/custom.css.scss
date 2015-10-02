@@ -68,7 +68,9 @@ a.util_link:hover {
   text-decoration: underline;
   color: #F38630;
 }
-a.util_link {
+a.util_link,
+a.util_link:active,
+a.util_link:visited {
   color: white;
 }
 .content-container table tr td a{

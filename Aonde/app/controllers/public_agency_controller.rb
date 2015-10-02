@@ -21,7 +21,7 @@ class PublicAgencyController < ApplicationController
   		#find the same thing then the show
   		find_agencies
   		#create the new list with filters apllied
-  		
+  		@true_total_expense = 0
   		message_invalid_input(params[:from_year],params[:ends_in_the_year],params[:from_months],
 			params[:ends_in_the_months])
   		#print("\n\n\n\n\n#{flash[:error]}\n\n\n\n\n")
@@ -31,10 +31,14 @@ class PublicAgencyController < ApplicationController
 			params[:ends_in_the_months])	
   			@list_expense_month = get_list_expenses_by_period(@public_agency.id,params[:from_months],params[:from_year],
   				params[:ends_in_the_months],params[:ends_in_the_year])
+  			@true_total_expense = @total_expense
   		else
+  			@true_total_expense = @total_expense
   			@list_expense_month = get_list_expenses_by_period(@public_agency.id)
   		end
+  		
   		if @total_expense == 0
+  			@true_total_expense = @total_expense
   			flash[:error] = "Não encontrou nenhum gasto neste periodo, grafico de gastos total:"
   			@list_expense_month = get_list_expenses_by_period(@public_agency.id)
   		end

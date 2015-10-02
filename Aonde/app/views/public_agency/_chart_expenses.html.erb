@@ -86,9 +86,15 @@ $(document).ready(function(){
 
 });
 $(document).ready(function(){
-  setTimeout(function(){
-    $('.msg_error').remove();
-  }, 5000);
+	var real_expense = '<%= raw @true_total_expense%>';
+	//alert(real_expense);
+	if( real_expense!=0 ){
+		$('.msg_error').remove();
+	}else{
+  		setTimeout(function(){
+		    $('.msg_error').remove();
+		}, 5000);
+  	}
  })
 
 
@@ -117,6 +123,6 @@ $(document).ready(function(){
 <div id="cont_share"> 
 <a href="https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook">
 
-<i class="fa fa-facebook"></i>acebook</a> Compartilhamentos: <%= facebook_share_amount("#{request.protocol}#{request.host_with_port}#{request.fullpath}") %>
+<i class="fa fa-facebook"></i>acebook</a> Compartilhamentos: <%= facebook_share_amount("http://aondebrasil.com"+ public_agency_path(@public_agency.id) ) %>
 </div>
 </div>
