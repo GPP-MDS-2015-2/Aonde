@@ -4,6 +4,7 @@ require 'test_helper'
 
 class PublicAgencyTest < ActiveSupport::TestCase
 
+#Testing save operation on model of program
   def test_save_name_nil
     public_agency = PublicAgency.new(:name => public_agencies(:name_nil).name, :views_amount => public_agencies(:name_nil).views_amount)
 

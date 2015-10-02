@@ -1,7 +1,16 @@
 require 'test_helper'
+require 'database_cleaner'
 
 class PublicAgencyControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+ 	
+ 	DatabaseCleaner.strategy = :truncation	
+
+	test "should get public_agencies" do
+		DatabaseCleaner.clean
+		get :index
+		assert_response :success
+		assert_not_nil assigns(:public_agencies)
+		assert_equal(assigns(:public_agencies).ids,[], msg=nil)
+	end
+		
 end

@@ -1,7 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  program_id: 
+document_number_nil:
+  program_id: 1
+  document_number:
+  payment_date: 2010-02-11
 
-two:
-  program_id: 
+not_a_number:
+  program_id: 2
+  document_number: não número
+  payment_date: 2015-05-07
+
+not_a_data:
+  program_id: 3
+  document_number: 23
+  payment_date: 
+
+right_case:
+  program_id: 4
+  document_number: 25
+  payment_date: 2015-02-01
+
+

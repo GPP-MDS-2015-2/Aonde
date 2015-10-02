@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ProgramTest < ActiveSupport::TestCase
 
+#Testing save operation on model of program
   def test_save_name_nil
   	program = Program.new(:name => programs(:name_nil).name)
 

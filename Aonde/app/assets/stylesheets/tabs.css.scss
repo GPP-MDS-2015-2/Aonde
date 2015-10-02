@@ -3,7 +3,7 @@
 
 body-tabs{
       font-family: Arial;
-      line-height: 1.6
+      line-height: 1.6;
     }
 .container-tabs{
       margin-top: 15px;
@@ -17,17 +17,26 @@ ul.tabs{
       list-style: none;
     }
 ul.tabs li{
+      border: 1px solid transparent;
+      border-radius: 20px 20px 0px 0px;
       background: #F38630;
       color: black;
       display: inline-block;
       padding: 10px 15px;
       cursor: pointer;
     }
+ul.tabs li:hover{
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbd5b7), color-stop(100%, #f38630));
+}
 ul.tabs li.current{
-      background: #036564;
+      background: #E1E4D6;
       color: black;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, gainsboro));
     }
-
+ul.tabs li.current:hover{
+      background: #E1E4D6;
+      color: black;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, gainsboro));}
 .tab-content{
       display: none;
       background: #E1E4D6;

@@ -7,4 +7,16 @@ module ApplicationHelper
 			return title_default
 		end
 	end
+
+#Define how flash messages will work
+  def flash_message
+    messages = ""
+    [:notice, :info, :warning, :error].each {|type|
+      if flash[type]
+        messages += "<p class=\"#{type}\">#{flash[type]}</p>"
+      end
+    }
+
+    messages
+  end
 end
