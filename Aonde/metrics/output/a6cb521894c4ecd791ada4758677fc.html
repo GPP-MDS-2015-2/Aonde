@@ -35,7 +35,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="keyword">class</span> <span class="class">SuperiorPublicAgency</span> &lt; <span class="constant">ActiveRecord</span>::<span class="constant">Base</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="keyword">class</span> <span class="class">TypeExpense</span> &lt; <span class="constant">ActiveRecord</span>::<span class="constant">Base</span>
 </pre></div>
 </div>
 
@@ -51,7 +51,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>        has_many <span class="symbol">:public_agencies</span> 
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>        belongs_to <span class="symbol">:expense</span>
 </pre></div>
 </div>
 
@@ -67,39 +67,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>        validates <span class="symbol">:name</span>, <span class="key">presence</span>: <span class="predefined-constant">true</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span><span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span><span class="keyword">end</span>
 </pre></div>
 </div>
 
