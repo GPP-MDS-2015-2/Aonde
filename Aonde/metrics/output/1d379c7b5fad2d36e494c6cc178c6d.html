@@ -51,7 +51,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>  belongs_to <span class="symbol">:public_agency</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>
 </pre></div>
 </div>
 
@@ -83,7 +83,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>  has_one <span class="symbol">:function</span>
 </pre></div>
 </div>
 
@@ -99,7 +99,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>  validates <span class="symbol">:name</span>, <span class="key">presence</span>: <span class="predefined-constant">true</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>  has_one <span class="symbol">:type_expense</span>
 </pre></div>
 </div>
 
@@ -115,7 +115,55 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span><span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>  has_one <span class="symbol">:company</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>  validates <span class="symbol">:name</span>, <span class="key">presence</span>: <span class="predefined-constant">true</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span><span class="keyword">end</span>
 </pre></div>
 </div>
 

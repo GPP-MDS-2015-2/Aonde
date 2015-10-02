@@ -35,7 +35,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="keyword">class</span> <span class="class">PublicAgency</span> &lt; <span class="constant">ActiveRecord</span>::<span class="constant">Base</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="keyword">class</span> <span class="class">CreateFunctions</span> &lt; <span class="constant">ActiveRecord</span>::<span class="constant">Migration</span>
 </pre></div>
 </div>
 
@@ -51,7 +51,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>  belongs_to <span class="symbol">:superior_public_agency</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>  <span class="keyword">def</span> <span class="function">change</span>
 </pre></div>
 </div>
 
@@ -67,7 +67,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>  has_many <span class="symbol">:expense</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>    create_table <span class="symbol">:functions</span> <span class="keyword">do</span> |t|
 </pre></div>
 </div>
 
@@ -83,7 +83,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>            
 </pre></div>
 </div>
 
@@ -99,7 +99,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span><span class="comment">#including validation.</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>            t.string <span class="symbol">:description</span>
 </pre></div>
 </div>
 
@@ -115,7 +115,27 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>  validates <span class="symbol">:name</span>, <span class="key">presence</span>: <span class="predefined-constant">true</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>        t.timestamps <span class="key">null</span>: <span class="predefined-constant">false</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>remove trailing whitespace &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>    
 </pre></div>
 </div>
 
@@ -131,7 +151,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>  validates <span class="symbol">:views_amount</span>, <span class="key">numericality</span>: {<span class="key">greater_than</span>: <span class="integer">0</span>}
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -147,7 +167,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -163,7 +183,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span><span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span><span class="keyword">end</span>
 </pre></div>
 </div>
 
