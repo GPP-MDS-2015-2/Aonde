@@ -9,8 +9,7 @@ class PublicAgencyController < ApplicationController
 		find_agencies
 		increment_views_amount
 		@list_expense_month = get_list_expenses_by_period(@public_agency.id)
-		@list_expense_month.unshift(["Data","gasto"])
-		
+		@list_expense_month.unshift(["Data","gasto"])		
 	end
 
 	def find_agencies
@@ -22,14 +21,21 @@ class PublicAgencyController < ApplicationController
   		#find the same thing then the show
   		find_agencies
   		#create the new list with filters apllied
-  		date_valid = message_invalid_input(params[:from_year],params[:ends_in_the_year],params[:from_months],
+  		
+  		message_invalid_input(params[:from_year],params[:ends_in_the_year],params[:from_months],
 			params[:ends_in_the_months])
-		@total_expense = 0		
-		if date_valid
-  			@list_expense_month = get_list_expenses_by_period(@public_agency.id,params[:from_months],params[:from_year],params[:ends_in_the_months],params[:ends_in_the_year])
+  		#print("\n\n\n\n\n#{flash[:error]}\n\n\n\n\n")
+		#@total_expense = 0		
+		#print("\n\n\n\n\n#{date_valid}\n\n\n\n\n")
+		if is_date_valid(params[:from_year],params[:ends_in_the_year],params[:from_months],
+			params[:ends_in_the_months])	
+  			@list_expense_month = get_list_expenses_by_period(@public_agency.id,params[:from_months],params[:from_year],
+  				params[:ends_in_the_months],params[:ends_in_the_year])
+  		else
+  			@list_expense_month = get_list_expenses_by_period(@public_agency.id)
   		end
   		if @total_expense == 0
-  			flash[:error] = "Não encontrou nenhum gasto neste perioso, grafico de gastos total:"
+  			flash[:error] = "Não encontrou nenhum gasto neste periodo, grafico de gastos total:"
   			@list_expense_month = get_list_expenses_by_period(@public_agency.id)
   		end
   		#insert the head in the list
@@ -73,7 +79,6 @@ class PublicAgencyController < ApplicationController
   	end	
 
 	def increment_views_amount	
-
 		views_amount = @public_agency.views_amount
 		views_amount += 1
 		@public_agency.update(views_amount: views_amount)		
@@ -100,24 +105,11 @@ class PublicAgencyController < ApplicationController
 	end
 
 	def message_invalid_input(first_year,last_year,first_month,last_month)
+		#print("\n\n\n\n\n#{first_year} #{last_year} #{first_month} #{last_month}\n\n\n\n\n\n")
 		if is_date_valid(first_year,last_year,first_month,last_month) == false
 			flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:"
-			return false
 		end
 	end
-
-	#verify if the date are in the interval
-	def is_date_in_interval(first_month,first_year,last_month,last_year, date)
-
-			if date.year.to_i >= first_year.to_i && date.year.to_i <= last_year.to_i
-				if date.month.to_i >= month_to_int(first_month) && date.month.to_i <= month_to_int(last_month)
-					return true
-				else
-					return false
-		   		end
-			end		
-	end
-	
 	def is_date_valid(first_year,last_year,first_month,last_month)
 
 		if first_year == nil or last_year == nil or first_month.empty? or last_month.empty?
@@ -137,6 +129,19 @@ class PublicAgencyController < ApplicationController
 		end
 		return true
 	end
+
+	#verify if the date are in the interval
+	def is_date_in_interval(first_month,first_year,last_month,last_year, date)
+
+			if date.year.to_i >= first_year.to_i && date.year.to_i <= last_year.to_i
+				if date.month.to_i >= month_to_int(first_month) && date.month.to_i <= month_to_int(last_month)
+					return true
+				else
+					return false
+		   		end
+			end		
+	end
+	
 	#methods that's need to be private
 	private :increment_views_amount, :month_to_int, :is_date_valid
 	#private :increment_views_amount, :month_to_int
