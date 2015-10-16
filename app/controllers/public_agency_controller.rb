@@ -10,16 +10,13 @@ class PublicAgencyController < ApplicationController
 
 	#Find the data of one public agency to show in the view with chart
 	def show
-		find_agencies
+		find_agencies(params[:id])
 		increment_views_amount
 		@list_expense_month = get_list_expenses_by_period(@public_agency.id)
 		@list_expense_month.unshift(["Data","gasto"])		
 	end
 
-	def find_agencies
-		@public_agency = PublicAgency.find(params[:id])
-		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
-	end
+	
 
 	def expenses_public_agency(id_pub_agency)
 	  	total_expense = Expense.where(public_agency_id: id_pub_agency).sum(:value)
@@ -28,14 +25,12 @@ class PublicAgencyController < ApplicationController
 
 	def filter_chart 
   		#find the same thing then the show
-  		find_agencies
+  		find_agencies(params[:id])
   		#create the new list with filters apllied
   		@true_total_expense = 0
   		message_invalid_input(params[:from_year],params[:ends_in_the_year],params[:from_months],
 			params[:ends_in_the_months])
-  		#print("\n\n\n\n\n#{flash[:error]}\n\n\n\n\n")
-		#@total_expense = 0		
-		#print("\n\n\n\n\n#{date_valid}\n\n\n\n\n")
+  		
 		if is_date_valid(params[:from_year],params[:ends_in_the_year],params[:from_months],
 			params[:ends_in_the_months])	
   			@list_expense_month = get_list_expenses_by_period(@public_agency.id,params[:from_months],params[:from_year],
@@ -97,28 +92,9 @@ class PublicAgencyController < ApplicationController
 		@public_agency.update(views_amount: views_amount)		
 	end
 
-	#create a hash to convert a name of month to int
-  	def month_to_int(month)
-	
-		conversion_data = {}
-		conversion_data['Janeiro'] = 1
-		conversion_data['Fevereiro'] = 2
-		conversion_data['Março'] = 3
-		conversion_data['Abril'] = 4
-		conversion_data['Maio'] = 5
-		conversion_data['Junho'] = 6
-		conversion_data['Julho'] = 7
-		conversion_data['Agosto'] = 8
-		conversion_data['Setembro'] = 9
-		conversion_data['Outubro'] = 10
-		conversion_data['Novembro'] = 11
-		conversion_data['Dezembro'] = 12
-
-		return conversion_data[month]
-	end
 
 	def message_invalid_input(first_year,last_year,first_month,last_month)
-		#print("\n\n\n\n\n#{first_year} #{last_year} #{first_month} #{last_month}\n\n\n\n\n\n")
+		
 		if is_date_valid(first_year,last_year,first_month,last_month) == false
 			flash[:error] = "Intervalo de tempo invalido, grafico de gastos total:"
 		end
