@@ -24,9 +24,8 @@
 		  		<center><%= agency.views_amount %></center>
 		  	</td>
 		  	<td>
-		  	<!-- <%=  number_with_precision(expenses_public_agency(agency.id), :delimiter => ".", :separator => ",", :precision => 2)%> -->
-		  	<center><%= expenses_public_agency(agency.id) %> 
-		  	<!--<%= number_to_currency(expenses_public_agency(agency.id))%>--></center>
+		  	
+		  	<center><%= @total_expense_agency[agency.id] %></center>
 		  	</td>
 	  	</tr>
 	<% end %>

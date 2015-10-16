@@ -2,6 +2,10 @@ class PublicAgencyController < ApplicationController
 	#list of all public agencies in DB
 	def index
 		@public_agencies = PublicAgency.all
+		@total_expense_agency = {}
+		@public_agencies.each do |agency|
+			@total_expense_agency[agency.id] = expenses_public_agency(agency.id)
+		end
 	end
 
 	#Find the data of one public agency to show in the view with chart
@@ -15,6 +19,11 @@ class PublicAgencyController < ApplicationController
 	def find_agencies
 		@public_agency = PublicAgency.find(params[:id])
 		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
+	end
+
+	def expenses_public_agency(id_pub_agency)
+	  	total_expense = Expense.where(public_agency_id: id_pub_agency).sum(:value)
+	  	return total_expense
 	end
 
 	def filter_chart 
