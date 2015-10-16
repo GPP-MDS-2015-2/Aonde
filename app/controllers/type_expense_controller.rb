@@ -2,7 +2,7 @@ class TypeExpenseController < ApplicationController
 	def show
 		@public_agency = PublicAgency.find(params[:id])
 		@data_type_expense = get_expense_by_type(@public_agency.id)
-		#sleep(2)
+		
 	end
 
 	def get_expense_by_type(id_public_agency)

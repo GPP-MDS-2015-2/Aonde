@@ -1,0 +1,25 @@
+
+<script>
+$(function () {
+    var d = '<%= raw @data_type_expense%>';
+    console.log(d);
+
+
+    $('#container').highcharts({
+        colorAxis: {
+            minColor: '#FFFFFF',
+            maxColor: Highcharts.getOptions().colors[0]
+        },
+        series: [{
+            type: "treemap",
+            layoutAlgorithm: 'squarified',
+            data: JSON.parse('<%= raw @data_type_expense%>')
+        }],
+        title: {
+            text: 'Highcharts Treemap'
+        }
+    });
+});
+</script>
+<div id="container">
+</div>

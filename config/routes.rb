@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "welcome/index" => "welcome#index"
   get "public_agency/list" => "public_agency#index"
   get "public_agency/:id", to: "public_agency#show", as: 'public_agency'
+  get "public_agency/:id/type_expense",to: "type_expense#show"
   get "public_agency/:id/list_chart" ,to: "public_agency#filter_chart", as: "filter"
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
