@@ -9,8 +9,8 @@
 	nomes = ["ministerio","tribunal","secretaria"]
 	complementos = ["saude","segurança","justica","trabalho"]
 	bolsa = ["saude","remedio","educacao","familia","gasolina","telefone"]
-	nome_company = ["CIA", "Comercial", "Deposito", "Mercado"]
-	complemento_company = ["das bebidas", "Marabás", "Bersan", "do fluxo"]
+	nome_company = ["CIA","Comercial","Depósito","Mercado"]
+	complemento_company = ["das bebidas","Marabás","Bersan","do fluxo"]
 	views_amount = (0..9).to_a
 	
 	SuperiorPublicAgency.create(name:"Republica Federativa")
@@ -30,9 +30,11 @@
 		10.times do
 			print("Add expense #{i} from public agency #{agency.id}\n")
 			date = Date.new(2015,day_month[rand(9)],day_month[rand(9)])
-			name_company = nome_company.sample(1).join+""+complemento_company.sample(1).join
+			name_company = nome_company.sample(1).join+" "+complemento_company.sample(1).join
 			company = Company.create(name: name_company)
-			Expense.create(document_number: i,payment_date: date,public_agency_id: agency.id,value: day_month[(rand(9))])
-			i+=1
+			3.times do
+				Expense.create(document_number: i,payment_date: date,public_agency_id: agency.id,value: day_month[(rand(9))],company_id: company.id)
+				i+=1
+			end
 		end
 	end
