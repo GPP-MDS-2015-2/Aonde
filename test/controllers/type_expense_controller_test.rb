@@ -36,4 +36,24 @@ class TypeExpenseControllerTest < ActionController::TestCase
 	assert_not_equal(not_expected_list,expense_list,"The list is equals at the not expected")
 
   end
+
+	test "Verify the list is empty in the method is_empty_filter" do
+
+		list_type_expenses = [{name: "Compra cadeiras",value: 100,colorValue: 50},
+								{name: "Compra livros",value: 100,colorValue: 50}]
+		not_empty_list = @controller.is_empty_filter(list_type_expenses)
+		assert_not (not_empty_list)
+		
+		list_type_expenses = []
+		empty_list = @controller.is_empty_filter(list_type_expenses)
+		assert (empty_list)
+
+		no_param = @controller.is_empty_filter()
+		assert (no_param)
+
+		#need the begin ... rescue instructions
+		#null_type_expenses = nil
+		#null_list = @controller.is_empty_filter(null_type_expenses)
+
+	end  
 end
