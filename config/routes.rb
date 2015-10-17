@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "public_agency/:id", to: "public_agency#show", as: 'public_agency'
   get "public_agency/:id/list_chart" ,to: "public_agency#filter_chart", as: "filter"
   root 'welcome#index'
+  get "public_agency/:id/company", to: "company#show", as: "company"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
