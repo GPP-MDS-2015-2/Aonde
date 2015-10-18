@@ -56,4 +56,31 @@ class TypeExpenseControllerTest < ActionController::TestCase
 		#null_list = @controller.is_empty_filter(null_type_expenses)
 
 	end  
+
+	test "Verify if is_date_select is true" do
+		
+		
+		default_params = @controller.is_date_select
+		assert(default_params)
+		year = "2014"
+		expense_test = Expense.new(payment_date: Date.new(2015,2,20))
+		year_params_false = @controller.is_date_select(year,"Todos",
+														expense_test)
+		
+		assert_not(year_params_false)
+		
+		year_params_true = @controller.is_date_select("2015","Janeiro",
+														expense_test)
+		assert_not(year_params_true)
+
+		all_month_params = @controller.is_date_select("2015","Todos",
+														expense_test)
+		assert(all_month_params)
+		
+		params_validate = @controller.is_date_select("2015","Fevereiro",
+														expense_test)
+		assert(params_validate)
+
+
+	end	
 end
