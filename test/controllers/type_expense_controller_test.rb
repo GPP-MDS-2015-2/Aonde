@@ -4,16 +4,40 @@ require 'test_helper'
 class TypeExpenseControllerTest < ActionController::TestCase
 		#assert_routing({ path: 'public_agency/:id/expenese_type', method: :get },{ controller: 'type_expense', action: 'get_expense_by_type' })
 	
+	test "Route to method show and the result of the request" do
+		create_entities				
+	  	assert_routing '/public_agency/1/type_expense', { :controller => "type_expense", :action => "show", :id => "1" }	
+		get :show, id: 1
+
+		assert_response :success
+
+		assert assigns(:data_type_expense)
+		assert assigns(:expense_type_find)
+	end
+
+	test "Routes to method filter_chart" do
+		create_entities
+		
+		get :filter_chart, id: 1, year: "2015", month: "Janeiro"
+
+		assert_response :success
+
+		assert assigns(:data_type_expense)
+		assert assigns(:expense_type_find)
+		
+
+	end
+
 	test "Sum of the type expenses in method get_expense_by_type" do
 		create_entities
 		id_public_agency = 1
 		expense_type_list = @controller.get_expense_by_type(id_public_agency)
 		assert_not expense_type_list.empty?
 
-		expected_list_equal = [{name: "Type expense one valid",value: 500,colorValue: 50},
+		expected_list = [{name: "Type expense one valid",value: 500,colorValue: 50},
 						{name: "Type expense three valid",value: 500,colorValue: 50}]
 
-		assert_equal(expected_list,expected_list_equal)
+		assert_equal(expected_list,expense_type_list)
  	end
 
 	test "The method find_expenses" do
@@ -57,25 +81,6 @@ class TypeExpenseControllerTest < ActionController::TestCase
 		assert (zero_expense.empty?)
 	end
 
-	def create_entities
-		PublicAgency.create(id: 1,views_amount: 0,name: "valid Agency")
-		PublicAgency.create(id: 2,views_amount: 0,name: "valid Agency")
-
-		TypeExpense.create(id: 1, description: "Type expense one valid")
-		TypeExpense.create(id: 2, description: "Type expense two invalid")
-		TypeExpense.create(id: 3, description: "Type expense three valid")
-
-		Expense.create(document_number: "0000",payment_date: Date.new(2010,1,1),
-							public_agency_id: 2,type_expense_id: 2,value: 100)
-		for i in 1..5
-			Expense.create(document_number: "0000",payment_date: Date.new(2013,i,1),
-							public_agency_id: 1,type_expense_id: 1,value: 100)
-		end
-		for i in 1..5
-			Expense.create(document_number: "0000",payment_date: Date.new(2013,i,1),
-							public_agency_id: 1,type_expense_id: 3,value: 100)
-		end
-	end
 	
   test "The calculo of the color based in the porcent in method define_color" do
   	total_expense = 100
@@ -154,11 +159,29 @@ class TypeExpenseControllerTest < ActionController::TestCase
 														expense_test)
 		assert(params_validate)
 
-
 	end
 
+	def create_entities
+		SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
 
+		PublicAgency.create(id: 1,views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
+		PublicAgency.create(id: 2,views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
 
+		TypeExpense.create(id: 1, description: "Type expense one valid")
+		TypeExpense.create(id: 2, description: "Type expense two invalid")
+		TypeExpense.create(id: 3, description: "Type expense three valid")
+
+		Expense.create(document_number: "0000",payment_date: Date.new(2010,1,1),
+							public_agency_id: 2,type_expense_id: 2,value: 100)
+		for i in 1..5
+			Expense.create(document_number: "0000",payment_date: Date.new(2013,i,1),
+							public_agency_id: 1,type_expense_id: 1,value: 100)
+		end
+		for i in 1..5
+			Expense.create(document_number: "0000",payment_date: Date.new(2013,i,1),
+							public_agency_id: 1,type_expense_id: 3,value: 100)
+		end
+	end
 	
 
 
