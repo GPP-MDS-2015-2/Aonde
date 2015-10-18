@@ -1,61 +1,20 @@
+<%= provide(:title, "Orgao Publico") %>
+<p>
 
-<script>
-$(function () {
-    var d = '<%= raw @data_type_expense%>';
-    console.log(d);
+<center><font color="white"><h4><%= @superior_public_agency.name %></h4></font></center>
+<center><font color="white"><h3><%= @public_agency.name %></h3></font></center>
+<!-- create the tabs and render the informations of the public agency -->
+<div class = 'container-tabs'>
+    <ul class="tabs">
+        <li class="tab-link" data-tab="tab-1"><%= link_to "Gastos do Órgão",public_agency_path(@public_agency.id)%></li>
+        <li class="tab-link current"><%= link_to "tipos de despesas",type_expense_path %></li>
+    </ul>
 
-
-    $('#treemapchart').highcharts({
-        colorAxis: {
-            minColor: '#FFFFFF',
-            maxColor: '#FF7600'//Highcharts.getOptions().colors[0]
-        },
-        series: [{
-            type: "treemap",
-            layoutAlgorithm: 'squarified',
-            data: JSON.parse('<%= raw @data_type_expense%>')
-        }],
-        title: {
-            text: 'Gastos por federação'
-        }
-    });
-});
-
-$(document).ready(function(){
-    var real_expense = '<%= raw @expense_type_find %>';
-    
-    if( real_expense != 0 ){
-        $('.msg_error').remove();
-    }else{
-        setTimeout(function(){
-            $('.msg_error').remove();
-        }, 5000);
-    }
- });
-
-</script>
-<!--Message that's show every messages of erro.-->
-<% flash.each do |name, msg| %>
-    <div class="msg_error">
-        <i class="fa fa-warning"></i>
-        <%= msg %>
+    <div id="tab-1" class="tab-content current">
+        <%= render 'chart_type' %>
     </div>
-<% end %>
-<div id="combobox">
-<div id="select_box">
-<%= form_tag  filter_type_expense_path , method: 'get' do %>
-     <!-- <%= hidden_field_tag :id, params[:id]%> -->
-     <%= select_tag :year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Escolha um ano..." %>
-     <%= select_tag :month, options_for_select([["Todos"],["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Escolha um mês..." %>
-    <%= submit_tag 'Filtrar' %>
-<% end %>
-<%= form_tag  filter_type_expense_path , method: 'get' do %>
-     <%= hidden_field_tag :year, "Todos" %>
-     <%= hidden_field_tag :month, "Todos" %>
-    <%= submit_tag 'Todos' %>
-<% end %>
-</div>
-</div>
+    <!-- <div id="tab-2" class="tab-content">
+        huhuasaushuah
+    </div>  -->
+ </div>
 
-<div id="treemapchart">
-</div>
