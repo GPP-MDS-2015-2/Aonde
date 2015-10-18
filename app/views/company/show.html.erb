@@ -1,16 +1,70 @@
 <h1>TEste</h1>
  <%= @a %>
 <script type="text/javascript">
+
+    var totalExpense = JSON.parse('<%= raw @a %>');   
+
 	$(document).ready(function(){
 			var a = '<%= raw @a %>';
 			$("#mychart").html("").append(a);
 			console.log(a);
 		});
-	$(function () {
-    $('#container').highcharts({
+
+    $(document).ready(function(){
+
+    var topThree = selectData(totalExpense);
+    drawChart(topThree,'#topthree',-90,90);
+    //drawChart(totalExpense,'#rest',90,270); 
+
+    });
+
+
+    $(document).ready( function () {
+        //$("#topthree").hide();
+        var tableDatas = dataTable(totalExpense)
+        
+        $('#tableCompany').DataTable({
+        data: tableDatas
+        });
+        
+
+    } );
+ 
+    function dataTable(totalExpense) {
+
+        var size = totalExpense.length;
+        var string
+
+        for (var i = size-1; i >= 0; i--) {
+
+            string = (i + 6) + "°" 
+            totalExpense[i].unshift(string);
+
+        }
+        return totalExpense;
+    }
+ 
+    function selectData(totalExpense){
+
+        var vector = []
+        var size = totalExpense.length
+
+        for (var i = size-1,j = 0; i >= 0 && j < 5; i--,j++) {
+
+            vector.push(totalExpense[i]);
+            //remove the last element
+            totalExpense.pop();
+        };
+
+        return vector;
+    }
+        
+    function drawChart(datas,idDiv,beginAngle,finishAngle){
+
+        $(idDiv).highcharts({
         chart: {
             plotBackgroundColor: null,
-            plotBorderWidth: 10,
+            plotBorderWidth: 0,
             plotShadow: true
         },
         title: {
@@ -33,8 +87,8 @@
                         textShadow: '0px 1px 2px black'
                     }
                 },
-                startAngle: -90,
-                endAngle: 90,
+                startAngle: beginAngle,
+                endAngle: finishAngle,
                 center: ['50%', '75%']
             }
         },
@@ -42,11 +96,39 @@
             type: 'pie',
             name: 'Browser share',
             innerSize: '50%',
-            data: JSON.parse('<%= raw @a %>')
+            data: datas
+
         }]
     });
-});
+
+    }
+
 </script>
 
 <div id="mychart" style="background:orange;">Content:</div>
-<div id="container"></div>
+<div id="container">     
+
+        <div id="topthree"></div>
+
+        <table id="tableCompany" style="display">
+            <thead>
+                <tr>
+                    <td>
+                        Posição
+                    </td>
+                    <td>
+                        Nome
+                    </td>
+                    <td>
+                        Valor
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+
+</div>    
+
+<div id="rest"></div>
