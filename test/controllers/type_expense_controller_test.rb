@@ -83,4 +83,25 @@ class TypeExpenseControllerTest < ActionController::TestCase
 
 
 	end	
+
+	test "The method create_dictionary" do
+		type_expense_equal = TypeExpense.new(description: "teste description")
+		value_expense_positive = 100
+		positive_expense = @controller.create_dictionary(value_expense_positive,type_expense_equal)
+		expect_dictionary_equal = {name: "teste description",value: 100,	colorValue: 0}
+		
+		assert_equal(expect_dictionary_equal, positive_expense)
+		
+		expect_dictionary_different = {name: "teste description",value: 101,	colorValue: 0}
+		assert_not_equal(expect_dictionary_different, positive_expense)
+
+		value_expense_negative = -1
+		negative_expense = @controller.create_dictionary(value_expense_negative,type_expense_equal)
+		assert (negative_expense.empty?)
+
+		value_expense_zero = 0
+
+		zero_expense = @controller.create_dictionary(value_expense_negative,type_expense_equal)
+		assert (zero_expense.empty?)
+	end
 end
