@@ -63,6 +63,40 @@ class CompanyControllerTest < ActionController::TestCase
 
 	end	
 
+	test "should return a array with key company name and value expense value" do 
+
+		company_expenses = {"company1"=>1,"company2"=>2,"company3"=>3}
+		company_empty = {}
+		company = generate_companies
+
+		expense = Expense.create(id: 2,value: 5)
+
+		company_expected = {"company1"=>6,"company2"=>2,"company3"=>3}	
+		@controller.testing_companies(company,expense,company_expenses)
+		assert_equal(company_expenses,company_expected)
+
+		company_expected2 = {"company1"=>5}
+		@controller.testing_companies(company,expense,company_empty)
+		assert_equal(company_empty,company_expected2)
+
+	end
+	
+	def generate_companies
+
+		companies = []
+		nome_company = ["company1","company2","company3"]	
+		
+		i=0
+		3.times do
+			created_company = Company.create(name: nome_company[i])
+			companies[i] = created_company
+			i+=1
+		end	
+		return companies
+
+	end	
+	
+
 	def generate_expense
 
 		nome_company = ["CIA","Comercial"]	
