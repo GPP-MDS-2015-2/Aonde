@@ -4,11 +4,11 @@ class CompanyController < ApplicationController
 		@public_agency = PublicAgency.find(params[:id])	
 	end
 
-	def find_expenses
+	def show
 		find_public_agency
 		expenses_public_agency = Expense.where(public_agency_id: @public_agency.id)
-		@a = find_company(expenses_public_agency).to_a
-		@a.to_json
+		@array_companies_expenses = find_company(expenses_public_agency).to_a
+		@array_companies_expenses.to_json
 	end
 
 	def find_company(expenses_public_agency)
@@ -34,9 +34,7 @@ class CompanyController < ApplicationController
 		return companies_expense.sort_by{ |date, expense| expense}
 	end
 
-	def show
-		find_expenses
-	end
+	
 
 
 end
