@@ -7,7 +7,7 @@
 }
 .inChart{
 	background: orange;
-	
+
 }
 .notInChart{
 	background: transparent;
@@ -16,5 +16,9 @@
 	list-style-type: none; 
 }
 #listChange ul li{
+	border: 1px solid;	
+}
+#listChange ul li:hover{
+	background: #FFB280;
 	border: 1px solid;	
 }
