@@ -124,5 +124,6 @@ $(document).ready(function(){
 <a href="https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook">
 
 <i class="fa fa-facebook"></i>acebook</a> Compartilhamentos: <%= facebook_share_amount("http://aondebrasil.com"+ public_agency_path(@public_agency.id) ) %>
+<%= link_to 'Company', company_path(@public_agency.id) %>
 </div>
 </div>
