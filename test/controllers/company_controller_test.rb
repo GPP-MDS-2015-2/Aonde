@@ -50,5 +50,41 @@ class CompanyControllerTest < ActionController::TestCase
 
 	end
 
+	test "should find a company" do
+
+		expenses = generate_expense
+		expense = @controller.find_company(expenses)
+		expense_expected = [["CIA",6],["Comercial",15]]
+		assert_equal(expense,expense_expected)
+
+		a = []
+		expense_empty = @controller.find_company(a)
+		assert expense_empty.empty?		
+
+	end	
+
+	def generate_expense
+
+		nome_company = ["CIA","Comercial"]	
+		b = []
+
+		i=1
+		2.times do
+			date = Date.new(2015,i,i)
+			company = Company.create(name: nome_company[i-1])
+			2.times do
+				a = Expense.create(document_number: i,payment_date: date,value: i + 5,company_id: company.id)
+				b[i-1] = a
+				i+=1
+			end
+			i -= 1
+		end	
+
+		return b
+
+	end
+
+
+
 end
 
