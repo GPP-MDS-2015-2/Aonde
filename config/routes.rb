@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "public_agency/:id/filter_type_expense",to: "type_expense#filter_chart", as: "filter_type_expense"
   get "public_agency/:id/company", to: "company#show", as: "company"
   #Routes of Programs
-  get "public_agency/:id/show" => "program#show"
+  get "public_agency/:id/programs" => "program#show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
