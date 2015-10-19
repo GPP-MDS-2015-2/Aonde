@@ -142,6 +142,26 @@ footer{
 #cont_share a{
   color: blue;
 }
-#tableCompany{
+#CompanyTable{
   text-align: center;
+}
+#Exibir {
+  background: #F38000;
+  text-align: center;
+  cursor: pointer;
+  width: 260px;
+  height: 30px;
+  border-radius: 10px 10px 10px 10px;  
+}
+a.exibir {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  margin-top: 10px;
+  list-style-type: none;
+  text-align: center;
+}
+a.exibir:hover {
+  text-decoration: underline;
+  color: #036564;
 }

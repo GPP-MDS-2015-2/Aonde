@@ -1,6 +1,5 @@
-<script type="text/javascript">
-
-    var totalExpense = JSON.parse('<%= raw @a %>');   
+<script type="text/javascript">  
+    var totalExpense = JSON.parse('<%= raw @a %>')
 
 	$(document).ready(function(){
 			var a = '<%= raw @a %>';
@@ -16,10 +15,13 @@
 
     });
 
-
     $(document).ready( function () {
         //$("#topthree").hide();
-        var tableDatas = dataTable(totalExpense)
+        var tableDatas = dataTable(totalExpense);
+
+        $('#Exibir').click(function() {
+            $('#tableCompany').toggle();
+        });
         
         $('#tableCompany').DataTable({
             data: tableDatas,
@@ -48,8 +50,8 @@
  
     function selectData(totalExpense){
 
-        var vector = []
-        var size = totalExpense.length
+        var vector = [];
+        var size = totalExpense.length;
 
         for (var i = size-1,j = 0; i >= 0 && j < 5; i--,j++) {
 
@@ -68,8 +70,7 @@
             plotBackgroundColor: null,
             plotBorderWidth: 0,
             plotShadow: true,
-            height: 750,
-            marginBottom: 0
+            height: 750
         },
         title: {
             text: 'TOP 5',
@@ -112,28 +113,33 @@
 
 <!--<div id="mychart" style="background:orange;">Content:</div>-->
 <div></div>
-<div id="container">     
+<div id="container" style="">     
 
-        <div id="topthree"></div>
+    <div id="topthree"></div>
 
-<table id="tableCompany" style="display"> 
-            <thead>
-                <tr>
-                    <td>
-                        <center><font color="white"><strong>Posição</strong></font></center>
-                    </td>
-                    <td>
-                        <center><font color="white"><strong>Nome da Empresa</strong></font></center>
-                    </td>
-                    <td>
-                        <center><font color="white"><strong>Gasto na Empresa</strong></font></center>
-                    </td>
-                </tr>
-            </thead>
-            <tbody id= "tableCompany">
-            
-            </tbody>
-        </table>
+    <div id="Exibir">
+        <a class="exibir">+ Empresas</a>
+        <div></div>
+    </div>
+
+    <div><table id="tableCompany" style="display: none"> 
+        <thead>
+            <tr>
+                <td>
+                    <center><font color="white"><strong>Posição</strong></font></center>
+                </td>
+                <td>
+                    <center><font color="white"><strong>Nome da Empresa</strong></font></center>
+                </td>
+                <td>
+                    <center><font color="white"><strong>Gasto na Empresa</strong></font></center>
+                </td>
+            </tr>
+        </thead>
+        <tbody id= "CompanyTable">
+        
+        </tbody>
+    </table></div>
 
 </div>    
 
