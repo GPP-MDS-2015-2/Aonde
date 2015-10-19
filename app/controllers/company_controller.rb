@@ -3,8 +3,8 @@ class CompanyController < ApplicationController
 	def show
 		find_public_agency
 		expenses_public_agency = Expense.where(public_agency_id: @public_agency.id)
-		@a = find_company(expenses_public_agency)
-		@a.to_json
+		@array_company_expense = find_company(expenses_public_agency)
+		@array_company_expense.to_json
 	end
 
 	def find_public_agency
