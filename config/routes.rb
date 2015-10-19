@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   #Routes of Programs
-  get "public_agency/:id/show" => "program#show"
+  get "public_agency/:id/programs" => "program#show"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
