@@ -8,6 +8,7 @@ class CompanyControllerTest < ActionController::TestCase
 		assert_routing 'public_agency/1/company', { :controller => "company", :action => "show", :id => "1" }
 		get :show, id: 1
 		assert_response :success
+		assert assigns :array_company_expense
 
 	end
 
