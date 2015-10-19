@@ -1,6 +1,6 @@
 require 'test_helper'
 require 'database_cleaner'
-
+=begin
 class PublicAgencyControllerTest < ActionController::TestCase
  	
  	DatabaseCleaner.strategy = :truncation	
@@ -14,3 +14,4 @@ class PublicAgencyControllerTest < ActionController::TestCase
 	end
 		
 end
+=end
