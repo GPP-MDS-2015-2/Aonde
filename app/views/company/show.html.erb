@@ -1,153 +1,19 @@
-<script type="text/javascript">  
-    var totalExpense = JSON.parse('<%= raw @a %>')
+<%= provide(:title, "Orgao Publico") %>
+<p>
 
-	$(document).ready(function(){
-			var a = '<%= raw @a %>';
-			$("#mychart").html("").append(a);
-			console.log(a);
-		});
+<center><font color="white"><h4><%= @superior_public_agency.name %></h4></font></center>
+<center><font color="white"><h3><%= @public_agency.name %></h3></font></center>
+<!-- create the tabs and render the informations of the public agency -->
+<div class = 'container-tabs'>
+ 	<ul class="tabs">
+		<li class="tab-link" data-tab="tab-1"><%= link_to 'Gastos Orgão', public_agency_path%></li>
+		<li class="tab-link" data-tab="tab-2" current><%= link_to 'Empresas', company_path %></li>
+	</ul>
 
-    $(document).ready(function(){
-
-    var topThree = selectData(totalExpense);
-    drawChart(topThree,'#topthree',-105,105);
-    //drawChart(totalExpense,'#rest',90,270); 
-
-    });
-
-    $(document).ready( function () {
-        //$("#topthree").hide();
-        var tableDatas = dataTable(totalExpense);
-
-        $('#Exibir').click(function() {
-            $('#tableCompany').toggle();
-        });
-        
-        $('#tableCompany').DataTable({
-            data: tableDatas,
-            pageLength: 1000,
-            lengthChange: false,
-            searching: false,
-            paging: false,
-            oLanguage:{
-            sUrl: '//cdn.datatables.net/plug-ins/1.10.9/i18n/Portuguese-Brasil.json'
-            }
-        });
-        
-
-    } );
- 
-    function dataTable(totalExpense) {
-
-        var size = totalExpense.length;
-
-        for (var i = size-1,j = 0; i >= 0 && j < size; i--,j++) {
-            totalExpense[i].unshift(i+1);
-
-        }
-        return totalExpense;
-    }
- 
-    function selectData(totalExpense){
-
-        var vector = [];
-        var size = totalExpense.length;
-
-        for (var i = size-1,j = 0; i >= 0 && j < 5; i--,j++) {
-
-            vector.push(totalExpense[i]);
-            //remove the last element
-            //totalExpense.pop();
-        };
-
-        return vector;
-    }
-        
-    function drawChart(datas,idDiv,beginAngle,finishAngle){
-
-        $(idDiv).highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: 0,
-            plotShadow: true,
-            height: 580
-        },
-        title: {
-            text: 'TOP 5',
-            align: 'center',
-            verticalAlign: 'middle',
-            y: 150,
-            x: -160,
-            style: {
-                color: 'black',
-                fontWeight: 'bold',
-                fontFamily: 'Times New Roman',
-                fontSize: '120px'
-            }
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.3f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                dataLabels: {
-                    enabled: true,
-                    distance: 30,
-                    style: {
-                        fontWeight: 'bold',
-                        color: 'black',
-                        fontSize: '12px'
-                    }
-                },
-                startAngle: beginAngle,
-                endAngle: finishAngle,
-                center: ['35%', '65%']
-            }
-        },
-        series: [{
-            type: 'pie',
-            size: '100%',
-            name: 'Porcentagem',
-            innerSize: '50%',
-            data: datas
-
-        }]
-    });
-
-    }
-
-</script>
-
-<!--<div id="mychart" style="background:orange;">Content:</div>-->
-<div></div>
-<div id="container" style="">     
-
-    <div id="topthree"></div>
-
-    <div id="Exibir">
-        <a class="exibir">+ Empresas</a>
-        <div></div>
-    </div>
-
-    <div><table id="tableCompany" style="display: none"> 
-        <thead>
-            <tr>
-                <td>
-                    <center><font color="white"><strong>Posição</strong></font></center>
-                </td>
-                <td>
-                    <center><font color="white"><strong>Nome da Empresa</strong></font></center>
-                </td>
-                <td>
-                    <center><font color="white"><strong>Gasto na Empresa</strong></font></center>
-                </td>
-            </tr>
-        </thead>
-        <tbody id= "CompanyTable">
-        
-        </tbody>
-    </table></div>
-
-</div>    
-
-<div id="rest"></div>
+ 	<div id="tab-2" class="tab-content current">
+		<%= render 'chart_company' %>
+ 	</div>
+	<!-- <div id="tab-2" class="tab-content">
+		huhuasaushuah
+	</div>  -->
+ </div>

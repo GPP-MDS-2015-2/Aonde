@@ -8,7 +8,8 @@ class CompanyController < ApplicationController
 	end
 
 	def find_public_agency
-		@public_agency = PublicAgency.find(params[:id])	
+		@public_agency = PublicAgency.find(params[:id])
+		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
 	end
 
 	def find_company(expenses_public_agency)
