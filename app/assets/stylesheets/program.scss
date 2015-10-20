@@ -2,6 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #table_list_programs{
-	whith:auto;
-	background:black;
+	width:auto;
+	background:#277455;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:15px;
+	margin-bottom:15px;
+}
+#listChange{
+    width: 100%;
+    height: 170px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.inChart{
+	background:#277455;
+
+}
+.notInChart{
+	background: #AA3939;
+}
+#listChange ul{
+	list-style-type: none; 
+}
+#listChange ul li{
+	border: 1px solid;	
+}
+#listChange ul li:hover{
+	background: #0D9CCC;
+	border: 1px solid;	
 }

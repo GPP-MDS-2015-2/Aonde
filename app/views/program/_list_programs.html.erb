@@ -15,34 +15,29 @@ var removed=[],inChart = [];
 inChart = dataController.clone();
 
 $(function () {
-    function sortData(dataUnorder){
-        dataOrder = []
-        for (var expenses in dataController){
-          dataOrder.push([expenses, dataController[expenses].value,dataController[expenses].name])
-        }
-        dataOrder.sort(function(a, b) {return b[1] - a[1]})
-        return dataOrder;
-    }
     function createChart(dataUnorder){
-        sortData(dataUnorder).forEach(function (obj){
-            $("#listChange ul").append("<li class='inChart'>"+obj[2]+"</li>");
+        dataUnorder.sort(function(a, b) {return b[1] - a[1]})
+        dataUnorder.forEach(function (obj){
+            $("#listChange ul").append("<li class='inChart'>"+obj[0]+"</li>");
         });
     }
     createChart(dataController);
     drawChart(dataController);
     $("#listChange ul li").click(function(){
         contentRemove = $(this)[0].innerHTML;
+
         var node = $(this);
+        console.log(contentRemove);
         dataController.forEach(function(element){
             console.log(removed.indexOf(element) == -1);              
-            if ( contentRemove === element.name ){
+            if ( contentRemove === element[0] ){
                 if( removed.indexOf(element) == -1 ){
                     removed.push(element);
                     inChart.remove(inChart.indexOf(element),1);
                     node.addClass("notInChart");
                     node.removeClass("inChart");
                 }else{
-                    node.addClass("inChart");g
+                    node.addClass("inChart");
                     node.removeClass("notInChart");
                     inChart.push(element);
                     removed.remove(removed.indexOf(element),1);
@@ -53,7 +48,9 @@ $(function () {
     });
     function drawChart(datas){
         console.log(datas);
-            $('#container').highcharts({
+        datas.sort(function(a, b) {return b[1] - a[1]})
+    
+        $('#container').highcharts({
         chart: {
             type: 'pyramid',
             marginRight: 400
@@ -77,7 +74,7 @@ $(function () {
         },
         series: [{
             name: 'Gastos R$ ',
-            data: JSON.parse('<%= raw @all_programs%>')
+            data:  datas
         }]
     });
     }
@@ -115,11 +112,9 @@ $(document).ready(function(){
         <%= msg %>
     </div>
 <% end %>
-
 <!--<div id="container" style="min-width: 410px; max-width: auto; height: 500px; margin: 0 auto"></div>-->
-
 <!--Table with list of prgrams-->
-<!--<div id="listChange"><ul></ul></div>-->
+<div id="listChange"><center>Selecione um ou mais programas para não serem visualizados no gráfico</center><ul></ul></div>
 <div id="table_list_programs">
     <table id="tableCompany" style="display"> 
             <thead>
@@ -134,4 +129,3 @@ $(document).ready(function(){
             </thead>
     </table>
 </div>    
-
