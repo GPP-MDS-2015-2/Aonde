@@ -1,0 +1,24 @@
+#listChange{
+    width: 100%	;
+    height: 150px;
+    overflow: scroll;
+    overflow-x: hidden;
+
+}
+.inChart{
+	background: orange;
+
+}
+.notInChart{
+	background: transparent;
+}
+#listChange ul{
+	list-style-type: none; 
+}
+#listChange ul li{
+	border: 1px solid;	
+}
+#listChange ul li:hover{
+	background: #FFB280;
+	border: 1px solid;	
+}
