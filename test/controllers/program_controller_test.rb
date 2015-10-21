@@ -5,9 +5,41 @@ class ProgramControllerTest < ActionController::TestCase
   def create_programs_expense
     Program.create(name: "ProgramaValido", description: "Programa valido")
   end
+
+    def generate_expense
+     name_program = ["Programa1", "Programa2"]
+     programs = []
+     j = 0
+     for i in 1..2
+       date = Date.new(2015, i, i)
+       program = Program.create(id: i,name: name_program[i-1], description: "Outros")
+       2.times do
+         expense = Expense.new(id: j, document_number: i, payment_date: date, value: i + 5,program_id: i)
+         expense.save
+         programs << expense
+         j+=1
+       end
+     end
+     programs
+
+    end
+
+  test "Verify method find_program" do
+
+       expenses = generate_expense
+       expense = @controller.find_program(expenses)
+       expense_expected = {"Programa1"=> 12, "Programa2"=>14}
+       assert_equal(expense_expected,expense)
+
+       a = []
+       expense_empty = @controller.find_program(a)
+       assert expense_empty.empty?
+  end
+
   test "Verify the sum of method add_expense_program" do
     
     create_programs_expense
+
     program = Program.new(id: 1,name: "program test",description: "Program to make a test")
     program2 = Program.new(id: 2, name: "program not test",description: "Program to make a test")
     expense = Expense.new(document_number: "0000", payment_date: Date.new(2015,01,01),value: 100,program_id: 1)
@@ -17,18 +49,12 @@ class ProgramControllerTest < ActionController::TestCase
 
   	@controller.add_expense_program(program, expense, program_expense)
     @controller.add_expense_program(program2, expense2, program_expense)
-
   	expect_hash = {"program test" => 100,"program not test" => 100}
 
   	assert_equal( expect_hash, program_expense)
 
-
-
-
     sum_program_expense = {"program test" => 100}
-
     @controller.add_expense_program(program,expense,sum_program_expense)
-
     expect_hash_sum = {"program test" => 200}
 
     assert_equal(expect_hash_sum,sum_program_expense)
@@ -67,25 +93,19 @@ class ProgramControllerTest < ActionController::TestCase
     assert_not program_expense.empty?
   end
 
-=begin
+  test "Verify method show" do
 
-  test "teste com parametros" do
-    Program.create(id:1)
-    get :show ,id: 1
-    
-    assert :success
+    program = Program.new(id: 1,name: "program test",description: "Program to make a test")
+      assert_routing '/program/1/type_expense', { :controller => "type_expense", :action => "show", :id => "1" }  
+    get :show, id: 1
 
-    assert assings[:program_expenses]
+    assert_response :success
+
+    assert assigns(:data_type_expense)
+    assert assigns(:expense_type_find)
   end
 
-  test "routas" do
-    assert_routes (action: "show",id: 1, )
-  end
+  test "verify find_expenses" do
 
-  def create_programs_expense
-    
   end
-  
-=end
-
 end

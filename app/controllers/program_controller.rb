@@ -16,12 +16,14 @@ class ProgramController < ApplicationController
 		@all_programs.to_json
 	end
 
-	def find_program(expenses_public_agency)
+	def find_program(find_expenses_public_agency)
 		programs_expense = {}
 
-		expenses_public_agency.each do |expense|
-
+		find_expenses_public_agency.each do |expense|
+												#PROBLEMA AQUI
 			program = Program.where(id: expense.program_id)
+			sum_expense_program(program,expense,programs_expense)
+			puts "#{programs_expense}"
 		end
 		return programs_expense
 	end
@@ -39,7 +41,7 @@ class ProgramController < ApplicationController
 		if not programs_expense [program.name]
 	    	programs_expense [program.name] = expense.value
 	    else
-	    	programs_expense[program.name] += expense.value
+	    	programs_expense [program.name] += expense.value
 	    end	
 	end
 end
