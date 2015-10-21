@@ -1,7 +1,8 @@
 class ProgramController < ApplicationController
 
 	def find_public_agency(id_public_agency)
-   	 @public_agency = PublicAgency.find(id_public_agency)    
+   	 @public_agency = PublicAgency.find(id_public_agency)
+   	 @superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)    
     end
 
     def show
