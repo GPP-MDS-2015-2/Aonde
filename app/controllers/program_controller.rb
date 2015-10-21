@@ -1,20 +1,21 @@
 class ProgramController < ApplicationController
 
-	def show
-		find_public_agency
-		find_expenses(@public_agency.id)
-	end
+	def find_public_agency(id_public_agency)
+   	 @public_agency = PublicAgency.find(id_public_agency)    
+    end
 
-	def find_public_agency
-		@public_agency = PublicAgency.find(params[:id])	
-	end
+    def show
+   	 find_public_agency(params[:id])
+   	 @all_programs = find_expenses(@public_agency.id)
+   	 @all_programs.to_json
+    end
 
-	def find_expenses(public_agency_id)
-		find_public_agency
-		expenses_public_agency = Expense.where(public_agency_id: @public_agency.id)
-		@all_programs = find_program(expenses_public_agency).to_a
-		@all_programs.to_json
-	end
+    def find_expenses(public_agency_id)
+   	 expenses_public_agency = Expense.where(public_agency_id: public_agency_id)
+   	 list_expenses =  find_program(expenses_public_agency).to_a
+   	 return list_expenses
+    end
+
 
 	def find_program(find_expenses_public_agency)
 		programs_expense = {}
@@ -23,7 +24,7 @@ class ProgramController < ApplicationController
 												#PROBLEMA AQUI
 			program = Program.where(id: expense.program_id)
 			sum_expense_program(program,expense,programs_expense)
-			puts "#{programs_expense}"
+			#puts "#{programs_expense}"
 		end
 		return programs_expense
 	end

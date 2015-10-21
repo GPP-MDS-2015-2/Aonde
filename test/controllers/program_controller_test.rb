@@ -7,14 +7,17 @@ class ProgramControllerTest < ActionController::TestCase
   end
 
     def generate_expense
+     PublicAgency.create(id: 1, name: "PublicAgency1",views_amount: 10)
      name_program = ["Programa1", "Programa2"]
      programs = []
      j = 0
      for i in 1..2
        date = Date.new(2015, i, i)
-       program = Program.create(id: i,name: name_program[i-1], description: "Outros")
+       program = Program.create(id: i,name: name_program[i-1],
+        description: "Outros")
        2.times do
-         expense = Expense.new(id: j, document_number: i, payment_date: date, value: i + 5,program_id: i)
+         expense = Expense.new(id: j, document_number: i, payment_date: date,
+           value: i + 5,program_id: i,public_agency_id: 1)
          expense.save
          programs << expense
          j+=1
@@ -22,6 +25,21 @@ class ProgramControllerTest < ActionController::TestCase
      end
      programs
 
+    end
+
+test "verify find_expenses" do
+     generate_expense
+     not_empty_list = @controller.find_expenses(1)
+     assert_not not_empty_list.empty?
+
+     #the public_agency_id = 1 has 2 programs with expenses
+     size_expected = 2
+
+     assert_equal(size_expected, not_empty_list.size)
+
+     PublicAgency.create(id: 2, name:"PublicAgency2",views_amount: 1)
+     empty_list = @controller.find_expenses(2)
+     assert empty_list.empty?
     end
 
   test "Verify method find_program" do
@@ -95,17 +113,14 @@ class ProgramControllerTest < ActionController::TestCase
 
   test "Verify method show" do
 
-    program = Program.new(id: 1,name: "program test",description: "Program to make a test")
-      assert_routing '/program/1/type_expense', { :controller => "type_expense", :action => "show", :id => "1" }  
+    generate_expense
+
+    assert_routing '/public_agency/1/programs', { :controller => "program", :action => "show", :id => "1" }  
     get :show, id: 1
 
     assert_response :success
 
-    assert assigns(:data_type_expense)
-    assert assigns(:expense_type_find)
-  end
-
-  test "verify find_expenses" do
-
+    assert assigns(:public_agency)
+    assert assigns(:all_programs)
   end
 end
