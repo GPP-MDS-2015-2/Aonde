@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Code coverage from CodeClimate
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 gem 'database_cleaner'
 # Internationalization and localization
 gem 'rails-i18n'
