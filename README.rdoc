@@ -1,5 +1,9 @@
 == README
 
+{<img src="https://travis-ci.org/GPP-MDS-2015-2/Aonde.svg" alt="Build Status" />}[https://travis-ci.org/GPP-MDS-2015-2/Aonde]
+{<img src="https://codeclimate.com/github/GPP-MDS-2015-2/Aonde/badges/gpa.svg" />}[https://codeclimate.com/github/GPP-MDS-2015-2/Aonde]
+{<img src="https://codeclimate.com/github/GPP-MDS-2015-2/Aonde/badges/coverage.svg" />}[https://codeclimate.com/github/GPP-MDS-2015-2/Aonde/coverage]
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
