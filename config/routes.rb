@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'compare_budgets_expenses/show'
+
   root 'welcome#index'
   get "welcome/index" => "welcome#index"
   
