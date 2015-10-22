@@ -1,0 +1,59 @@
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+dataTotal = JSON.parse('<%= raw @list_expense_month%>')
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Comparação do orçamento com os gastos dos órgãos'
+        },
+        xAxis: [{
+            categories: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            crosshair: true
+        }],
+        yAxis: [{ // Primary yAxis
+            labels: {
+                format: 'R$ {value}',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            title: {
+                text: 'Orçamento',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            }
+        },{ // Secondary yAxis
+            opposite: true
+        }],
+        tooltip: {
+            shared: true
+        },
+        series: [{
+            name: 'Gastos',
+            type: 'column',
+            yAxis: 1,
+            data: dataTotal,
+            tooltip: {
+                valuePrefix: 'R$ '
+            }
+
+        }, {
+            name: 'Orçamento',
+            type: 'spline',
+            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+            tooltip: {
+                valuePrefix: 'R$ '
+            }
+        }]
+    });
+});
+
+</script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

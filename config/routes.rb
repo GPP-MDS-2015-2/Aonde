@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'compare_budgets_expenses/show'
+  get 'public_agency/:id/budgets', to: "budget#show", as: "budget"
 
   root 'welcome#index'
   get "welcome/index" => "welcome#index"
