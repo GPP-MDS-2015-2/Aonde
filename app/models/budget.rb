@@ -1,3 +1,3 @@
 class Budget < ActiveRecord::Base
-	belongs_to :publicagency
+	belongs_to :public_agency
 end

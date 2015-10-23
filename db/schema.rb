@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930002126) do
+ActiveRecord::Schema.define(version: 20151023114758) do
+
+  create_table "budgets", force: :cascade do |t|
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "public_agency_id", limit: 4
+  end
+
+  add_index "budgets", ["public_agency_id"], name: "index_budgets_on_public_agency_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -73,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150930002126) do
     t.datetime "updated_at",              null: false
   end
 
+  add_foreign_key "budgets", "public_agencies"
   add_foreign_key "expenses", "companies"
   add_foreign_key "expenses", "functions"
   add_foreign_key "expenses", "programs"

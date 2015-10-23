@@ -1,14 +1,5 @@
 class BudgetController < ApplicationController
-	#list of all public agencies in DB
-	def index
-		@public_agencies = PublicAgency.all
-		@total_expense_agency = {}
-		@public_agencies.each do |agency|
-			@total_expense_agency[agency.id] = expenses_public_agency(agency.id)
-		end
-	end
-
-  	def show
+	def show
   		find_public_agency
   		@list_expense_month = get_list_expenses_by_period(@public_agency.id)
   		@list_expense_month.to_json
@@ -23,12 +14,27 @@ class BudgetController < ApplicationController
 		temporary_expenses_agency.each do |date,value|
 		#see if the date are in the hash and add in the new
 			if is_date_in_interval(first_month,first_year,last_month,last_year, date)
-	        	new_total_expense_per_date [l(date)] = value
-	        	@total_expense += value
+	        	if new_total_expense_per_date[date.year] == nil
+	        		new_total_expense_per_date[date.year] = initialize_hash(date.year)
+	        	end	        	
+        		new_total_expense_per_date [date.year][l(date)] = value
+        		@total_expense += value
 		  	end
 		end
 	  	#return the hash with expenses like a array
-	  	return new_total_expense_per_date.sort_by { |date, expenses| Date.parse(date) }.to_a
+	  	expense_by_month = ordenate_array(new_total_expense_per_date)
+	  	expense_by_month.sort_by! {|expense_month| Date.parse(expense_month[0])}
+
+	  	return expense_by_month
+	end
+
+	def array_ordination(expense_by_year)
+		ordered_array = []	
+		expense_by_year.each do |year, expenses|
+			expense_month_year = expenses.to_a
+			ordered_array = concat(expense_month_year)
+		end
+		return ordered_array
 	end
 
 	def get_expenses_agency(id_public_agency)
@@ -61,5 +67,14 @@ class BudgetController < ApplicationController
   	def find_public_agency
 		@public_agency = PublicAgency.find(params[:id])
 		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
+	end
+
+	def initialize_hash(year)
+		expenses_months = {}
+		for month in 1..12
+			date = Date.new(year,month, 1);
+			expenses_months[l(date)]= 0
+		end
+		return expenses_months
 	end
 end
