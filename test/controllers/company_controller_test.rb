@@ -29,10 +29,10 @@ class CompanyControllerTest < ActionController::TestCase
 
 	test "should validate an array of companies" do
 
-		company = Company.new(id: 1000,name: "company 1")
-		company1 = Company.new(id: 1001,name: "company 2")
+		company1 = Company.new(id: 1000,name: "company 1")
+		company2 = Company.new(id: 1001,name: "company 2")
 		
-		company_multiples = [company,company1]
+		company_multiples = [company1,company2]
 
 		expense = Expense.new(value: 100,payment_date: Date.new, document_number: '0000')
 		hash_companies_multiple = {}
@@ -44,7 +44,7 @@ class CompanyControllerTest < ActionController::TestCase
 		@controller.test_add_expense(company_empty,expense,hash_companies_empty)
 		assert hash_companies_empty.empty?
 
-		company_single = [company]
+		company_single = [company1]
 		hash_companies_valid = {}
 		@controller.test_add_expense(company_single,expense,hash_companies_valid)
 		assert_not hash_companies_valid.empty?		
