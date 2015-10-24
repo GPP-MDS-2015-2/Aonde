@@ -8,8 +8,8 @@ class FunctionController < ApplicationController
 
 	def insert_expenses_functions
 
-		function = Function.new
-		expenses = function.get_expenses_by_function
+		@function = Function.new
+		expenses = @function.get_expenses_by_function
 		expense_hash = convert_to_a_hash(expenses)
 		correct_datas = filter_datas_in_expense(expense_hash)
 		
@@ -28,6 +28,7 @@ class FunctionController < ApplicationController
     		correct_hash[hash["description"]] = hash["sumValue"]    
   		end
   		return correct_hash
+
 	end
 
 end	
