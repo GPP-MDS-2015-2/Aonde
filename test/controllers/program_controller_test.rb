@@ -6,26 +6,27 @@ class ProgramControllerTest < ActionController::TestCase
     Program.create(name: "ProgramaValido", description: "Programa valido")
   end
 
-    def generate_expense
-     PublicAgency.create(id: 1, name: "PublicAgency1",views_amount: 10)
-     name_program = ["Programa1", "Programa2"]
-     programs = []
-     j = 0
-     for i in 1..2
-       date = Date.new(2015, i, i)
-       program = Program.create(id: i,name: name_program[i-1],
-        description: "Outros")
-       2.times do
-         expense = Expense.new(id: j, document_number: i, payment_date: date,
-           value: i + 5,program_id: i,public_agency_id: 1)
-         expense.save
-         programs << expense
-         j+=1
-       end
+  def generate_expense
+   SuperiorPublicAgency.create(id:1,name: "SuperiorPublicAgency")
+   PublicAgency.create(id: 1, name: "PublicAgency1",views_amount: 10,superior_public_agency_id: 1)
+   name_program = ["Programa1", "Programa2"]
+   programs = []
+   j = 0
+   for i in 1..2
+     date = Date.new(2015, i, i)
+     program = Program.create(id: i,name: name_program[i-1],
+      description: "Outros")
+     2.times do
+       expense = Expense.new(id: j, document_number: i, payment_date: date,
+         value: i + 5,program_id: i,public_agency_id: 1)
+       expense.save
+       programs << expense
+       j+=1
      end
-     programs
+   end
+   programs
 
-    end
+  end
 
 test "verify find_expenses" do
      generate_expense
@@ -63,13 +64,13 @@ test "verify find_expenses" do
     expense = Expense.new(document_number: "0000", payment_date: Date.new(2015,01,01),value: 100,program_id: 1)
     expense2 = Expense.new(document_number: "0000", payment_date: Date.new(2015,01,01),value: 100,program_id: 2)
 
-  	program_expense = {}
+    program_expense = {}
 
-  	@controller.add_expense_program(program, expense, program_expense)
+    @controller.add_expense_program(program, expense, program_expense)
     @controller.add_expense_program(program2, expense2, program_expense)
-  	expect_hash = {"program test" => 100,"program not test" => 100}
+    expect_hash = {"program test" => 100,"program not test" => 100}
 
-  	assert_equal( expect_hash, program_expense)
+    assert_equal( expect_hash, program_expense)
 
     sum_program_expense = {"program test" => 100}
     @controller.add_expense_program(program,expense,sum_program_expense)
@@ -123,4 +124,5 @@ test "verify find_expenses" do
     assert assigns(:public_agency)
     assert assigns(:all_programs)
   end
+
 end
