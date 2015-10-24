@@ -12,4 +12,13 @@ class FunctionControllerTest < ActionController::TestCase
 
 	end
 
+	test "Should filter datas" do
+
+		hash_json = [{"id"=>nil,"description"=>"Saúde","sumValue"=>2}]
+		expected_hash = {"Saúde"=>2}		
+		returned_hash = @controller.filter_datas_in_expense(hash_json)
+		assert_equal(expected_hash,returned_hash)
+
+	end
+
 end
