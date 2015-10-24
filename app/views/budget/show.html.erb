@@ -1,59 +1,22 @@
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<%= provide(:title, "Orgao Publico") %>
+<p>
 
-<script>
-dataTotal = JSON.parse('<%= raw @list_expense_month%>')
+<center><font color="white"><h4><%= @superior_public_agency.name %></h4></font></center>
+<center><font color="white"><h3><%= @public_agency.name %></h3></font></center>
+<!-- create the tabs and render the informations of the public agency -->
+<div class = 'container-tabs'>
+ 	<ul class="tabs">
+		<li class="tab-link" data-tab="tab-1"><%= link_to "Gastos do Órgão",public_agency_path%></li>
+		<li class="tab-link" data-tab="tab-2"><%= link_to "Empresas", company_path %></li>
+        <li class="tab-link" data-tab="tab-3"><%= link_to "Programas", program_path %></li>
+		<li class="tab-link" data-tab="tab-4"><%= link_to "Tipos de Despesas", type_expense_path %></li>
+		<li class="tab-link" data-tab="tab-5" current><%= link_to "Orçamento", budget_path %></li>
+	</ul>
 
-$(function () {
-    $('#container').highcharts({
-        chart: {
-            zoomType: 'xy'
-        },
-        title: {
-            text: 'Comparação do orçamento com os gastos dos órgãos'
-        },
-        xAxis: [{
-            categories: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-            crosshair: true
-        }],
-        yAxis: [{ // Primary yAxis
-            labels: {
-                format: 'R$ {value}',
-                style: {
-                    color: Highcharts.getOptions().colors[1]
-                }
-            },
-            title: {
-                text: 'Orçamento',
-                style: {
-                    color: Highcharts.getOptions().colors[1]
-                }
-            }
-        },{ // Secondary yAxis
-            opposite: true
-        }],
-        tooltip: {
-            shared: true
-        },
-        series: [{
-            name: 'Gastos',
-            type: 'column',
-            yAxis: 1,
-            data: dataTotal,
-            tooltip: {
-                valuePrefix: 'R$ '
-            }
-
-        }, {
-            name: 'Orçamento',
-            type: 'line',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
-            tooltip: {
-                valuePrefix: 'R$ '
-            }
-        }]
-    });
-});
-
-</script>
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+ 	<div id="tab-5" class="tab-content current">
+		<%= render 'chart_budget' %>
+ 	</div>
+	<!-- <div id="tab-2" class="tab-content">
+		huhuasaushuah
+	</div>  -->
+ </div>
