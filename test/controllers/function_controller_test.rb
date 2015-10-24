@@ -2,6 +2,20 @@ require 'test_helper'
 
 class FunctionControllerTest < ActionController::TestCase
 	
+	test "Should validate atributtes" do
+
+		@controller.insert_expenses_functions
+		assert_nil(@function)
+		
+	end
+
+	test "Route to method show" do
+
+		assert_routing '/functions', { :controller => "function", :action => "show" }	
+		get :show
+
+		assert_response :success
+	end
 
 	test "Should convert to a hash" do
 
