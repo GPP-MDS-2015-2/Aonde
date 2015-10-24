@@ -2,7 +2,8 @@ class FunctionController < ApplicationController
 
 	def show
 	
-		@correct_datas = insert_expenses_functions
+		datas = insert_expenses_functions
+		@correct_datas = datas.to_json
 
 	end
 

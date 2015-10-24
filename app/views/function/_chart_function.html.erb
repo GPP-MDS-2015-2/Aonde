@@ -1,16 +1,33 @@
-
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-<div id="container" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-
+<div id="container" style=""></div>
 
 <script type="text/javascript">  
 
-    var correct_datas = '<%= @correct_datas %>'
+    var data = ('<%= raw @correct_datas%>');
+    var correct_data = JSON.parse(data);   
+    var array_keys = new Array();
+    var array_values = new Array();
 
-    $(function () {
+    $(document).ready(function(){  
+    teste(correct_data);
+    drawChart(); 
+
+    });
+    
+    function teste(correct_data){
+
+        for (var key in correct_data) {
+            array_keys.push(key);
+            array_values.push(correct_data[key]);
+        }
+
+    }
+
+
+    function drawChart() {
 
     $('#container').highcharts({
 
@@ -29,8 +46,7 @@
         },
 
         xAxis: {
-            categories: ['Sales', 'Marketing', 'Development', 'Customer Support',
-                    'Information Technology', 'Administration'],
+            categories: array_keys,
             tickmarkPlacement: 'on',
             lineWidth: 0
         },
@@ -54,16 +70,12 @@
         },
 
         series: [{
-            name: 'Allocated Budget',
-            data: [43000, 19000, 60000, 35000, 17000, 10000],
-            pointPlacement: 'on'
-        }, {
             name: 'Actual Spending',
-            data: [50000, 39000, 42000, 31000, 26000, 14000],
+            data: array_values,
             pointPlacement: 'on'
         }]
 
     });
-});
+}
 
 </script>
