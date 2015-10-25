@@ -55,5 +55,32 @@ $(function () {
     });
 });
 
+$(document).ready(function(){
+    var real_expense = '<%= raw @expense_find %>';
+    
+    if( real_expense != 0 ){
+        $('.msg_error').remove();
+    }else{
+        setTimeout(function(){
+            $('.msg_error').remove();
+        }, 5000);
+    }
+ });
+
+
 </script>
+
+<% flash.each do |name, msg| %>
+    <div class="msg_error">
+        <i class="fa fa-warning"></i>
+        <%= msg %>
+    </div>
+<% end %>
+<div id="combobox">
+<div id="select_box">
+<%= form_tag  filter_budget_path , method: 'get' do %>
+    <!-- <%= hidden_field_tag :id, params[:id]%> -->
+    <%= select_tag :year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]) %>
+    <%= submit_tag 'Filtrar' %>
+<% end %>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
