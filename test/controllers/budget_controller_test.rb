@@ -42,6 +42,27 @@ class BudgetControllerTest < ActionController::TestCase
 		assert_not_equal(hash_return, hash)
 	end
 
-	
+	test "Routes to method filter_chart_budget" do
+		create_public_agency
+		
+		get :filter_chart_budget, id: 1, year: "2015"
+
+		assert_response :success
+
+		assert assigns(:list_expense_month)
+		assert assigns(:expense_find)
+		
+
+	end
+
+	def create_public_agency
+		SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
+		PublicAgency.create(id: 1,views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
+
+		for i in 1..5
+			Expense.create(document_number: "0000",payment_date: Date.new(2013,i,1),
+							public_agency_id: 1,value: 100)
+		end
+	end
 end
 

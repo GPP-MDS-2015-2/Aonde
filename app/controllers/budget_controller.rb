@@ -4,7 +4,7 @@ class BudgetController < ApplicationController
   		find_public_agency
   		@list_expense_month = get_list_expenses_by_period(@public_agency.id)
   		@list_expense_month.to_json
-  		@expense_type_find = 1
+  		@expense_find = 1
   	end
 #Segunda - both 
   	def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
@@ -82,8 +82,8 @@ class BudgetController < ApplicationController
 		end
 		return expenses_months
 	end
-#Busche
-	def filter_chart
+#Done
+	def filter_chart_budget
 
 		find_public_agency
 		@list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", params[:year], "Dezembro", params[:year]);
