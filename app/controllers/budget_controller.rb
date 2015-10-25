@@ -25,19 +25,19 @@ class BudgetController < ApplicationController
 		  	end
 		end
 	  	#return the hash with expenses like a array
-	  	expense_by_month = array_ordination(new_total_expense_per_date)
+	  	expense_by_month = transform_hash_to_array(new_total_expense_per_date)
 	  	expense_by_month.sort_by! {|expense_month| Date.parse(expense_month[0])}
 
 	  	return expense_by_month
 	end
 #Busche
-	def array_ordination(expense_by_year)
-		ordered_array = []	
+	def transform_hash_to_array(expense_by_year)
+		hash_to_array = []	
 		expense_by_year.each do |year, expenses|
 			expense_month_year = expenses.to_a
-			ordered_array.concat(expense_month_year)
+			hash_to_array.concat(expense_month_year)
 		end
-		return ordered_array
+		return hash_to_array
 	end
 #Eduardo
 	def get_expenses_agency(id_public_agency)

@@ -44,16 +44,26 @@ class BudgetControllerTest < ActionController::TestCase
 
 	test "Routes to method filter_chart_budget" do
 		create_public_agency
-		
 		get :filter_chart_budget, id: 1, year: "2015"
-
 		assert_response :success
-
 		assert assigns(:list_expense_month)
 		assert assigns(:expense_find)
-		
-
 	end
+
+	test "Should return equals arrays" do
+		hash = {2015=>{"01/2015"=>0, "02/2015"=>0, "03/2015"=>0, "04/2015"=>0, "05/2015"=>0, "06/2015"=>0, "07/2015"=>0, "08/2015"=>0, "09/2015"=>0, "10/2015"=>0, "11/2015"=>0, "12/2015"=>0}}
+ 		array_expect = [["01/2015", 0], ["02/2015", 0], ["03/2015", 0], ["04/2015", 0], ["05/2015", 0], ["06/2015", 0], ["07/2015", 0], ["08/2015", 0], ["09/2015", 0], ["10/2015", 0], ["11/2015", 0], ["12/2015", 0]]
+ 		array_return = @controller.transform_hash_to_array(hash)
+ 		assert_equal(array_expect, array_return)
+	end
+
+	test "Should return diferents arrays" do
+		hash = {2015=>{"01/2015"=>0, "02/2015"=>0, "03/2015"=>0, "04/2015"=>0, "05/2015"=>0, "06/2015"=>0, "07/2015"=>0, "08/2015"=>0, "09/2015"=>0, "10/2015"=>0, "11/2015"=>0, "12/2015"=>0}}
+ 		array_expect = [[2015, ["01/2015", 0], ["02/2015", 0], ["03/2015", 0], ["04/2015", 0], ["05/2015", 0], ["06/2015", 0], ["07/2015", 0], ["08/2015", 0], ["09/2015", 0], ["10/2015", 0], ["11/2015", 0], ["12/2015", 0]]]
+ 		array_return = @controller.transform_hash_to_array(hash)
+ 		assert_not_equal(array_expect, array_return)
+	end
+
 
 	def create_public_agency
 		SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
