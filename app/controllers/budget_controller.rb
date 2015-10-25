@@ -1,5 +1,5 @@
 class BudgetController < ApplicationController
-  def get_api_data(year, public_agency_id)
+  def get_api_data(public_agency_id)
     budget_years = []
     begin
       budget_years = get_all_budget(public_agency_id)
@@ -14,34 +14,34 @@ class BudgetController < ApplicationController
 
   def get_all_budget(public_agency_id)
     budget_years = []
-    for year in 2011..2015
-      data_api = {}
-      begin
-        data_api = obtain_api_data(year, public_agency_id)
-      rescue
-        raise "Não foi possível conectar a API"
-      end
+    for year in 2011..2013
+      data_api = obtain_api_data(year, public_agency_id)
       budget_hash = parse_json_to_hash(data_api)
       value_budget = get_value_budget(budget_hash)
-      budget_years << value_budget
+      budget_years << { year => value_budget }
     end
     return budget_years
   end
 
   def obtain_api_data(year, public_agency_id)
-    url_query = get_url(year, public_agency_id)
-    uri_query = URI.parse(url_query)
-    data_api = Net::HTTP.get(uri_query)
+    data_api = ""
+    begin
+      url_query = get_url(year, public_agency_id)
+      uri_query = URI.parse(url_query)
+      data_api = Net::HTTP.get(uri_query)
+    rescue
+        raise "Não foi possível conectar a API"
+    end
     return data_api
   end
 
   def get_value_budget(budget_hash)
     value = 0
-    sum_total_budget = budget_hash['results']['bindings'][0]
+    value_budget_hash = budget_hash['results']['bindings'][0]
 
     # Verify if the result of the API has the value of budget
-    if !sum_total_budget.empty?
-      value = sum_total_budget['somaProjetoLei']['value']
+    if !value_budget_hash.empty?
+      value = value_budget_hash['somaProjetoLei']['value']
     else
       raise "Não foi possível obter o valor do orçamento pela api"
     end
@@ -72,7 +72,7 @@ class BudgetController < ApplicationController
 
     url = begin_url + url_query + end_url
 
-    puts "\n\n\n\n#{url}\n\n\n"
+    #puts "\n\n\n\n#{url}\n\n\n"
 
     return url
   end

@@ -18,7 +18,8 @@ gem 'coffee-rails', '~> 4.1.0'
 
 #Gem for bootstrap
 gem 'bootstrap-sass', '3.2.0.2'
-
+#Gem for test the connection with fake page web
+gem "fakeweb", "~> 1.3"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
