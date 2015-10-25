@@ -1,10 +1,12 @@
 class BudgetController < ApplicationController
+#Eduardo
 	def show
   		find_public_agency
   		@list_expense_month = get_list_expenses_by_period(@public_agency.id)
   		@list_expense_month.to_json
   		@expense_type_find = 1
   	end
+#Segunda - both 
   	def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
 
 		@total_expense = 0		
@@ -28,7 +30,7 @@ class BudgetController < ApplicationController
 
 	  	return expense_by_month
 	end
-
+#Busche
 	def array_ordination(expense_by_year)
 		ordered_array = []	
 		expense_by_year.each do |year, expenses|
@@ -37,7 +39,7 @@ class BudgetController < ApplicationController
 		end
 		return ordered_array
 	end
-
+#Eduardo
 	def get_expenses_agency(id_public_agency)
     	total_expense_per_date = {}
     	#Takes all programs and return a list
@@ -53,7 +55,7 @@ class BudgetController < ApplicationController
       	end 
     	return total_expense_per_date
   	end	
-
+#done
   	def is_date_in_interval(first_month,first_year,last_month,last_year, date)
 
 			if date.year.to_i >= first_year.to_i && date.year.to_i <= last_year.to_i
@@ -64,12 +66,12 @@ class BudgetController < ApplicationController
 		   		end
 			end		
 	end
-
+#Eduardo
   	def find_public_agency
 		@public_agency = PublicAgency.find(params[:id])
 		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
 	end
-
+#Busche
 	def initialize_hash(year)
 		expenses_months = {}
 		for month in 1..12
@@ -78,7 +80,7 @@ class BudgetController < ApplicationController
 		end
 		return expenses_months
 	end
-
+#Busche
 	def filter_chart
 
 		find_public_agency
@@ -95,7 +97,7 @@ class BudgetController < ApplicationController
 		render 'show'
 
 	end
-
+#Eduardo
 	def is_empty_filter(list_expenses = [])
 		
 		empty_filter = list_expenses.empty?
