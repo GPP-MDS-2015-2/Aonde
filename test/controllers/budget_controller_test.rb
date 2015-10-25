@@ -30,6 +30,18 @@ class BudgetControllerTest < ActionController::TestCase
 		assert (empty_list)
 	end
 
+	test "Should return a equals hashs" do
+		hash = {"01/2015"=>0, "02/2015"=>0, "03/2015"=>0, "04/2015"=>0, "05/2015"=>0, "06/2015"=>0, "07/2015"=>0, "08/2015"=>0, "09/2015"=>0, "10/2015"=>0, "11/2015"=>0, "12/2015"=>0}
+		hash_return = @controller.initialize_hash(2015)
+		assert_equal(hash_return, hash)
+	end
 
+	test "Should return diferents hashs" do
+		hash = {"01/2015"=>12, "02/2015"=>19, "03/2015"=>1, "04/2015"=>9, "05/2015"=>15, "06/2015"=>89, "07/2015"=>0, "08/2015"=>78, "09/2015"=>100, "10/2015"=>5, "11/2015"=>60, "12/2015"=>0}
+		hash_return = @controller.initialize_hash(2015)
+		assert_not_equal(hash_return, hash)
+	end
+
+	
 end
 

@@ -55,7 +55,7 @@ class BudgetController < ApplicationController
       	end 
     	return total_expense_per_date
   	end	
-#done
+#Done
   	def is_date_in_interval(first_month,first_year,last_month,last_year, date)
 
 			if date.year.to_i >= first_year.to_i && date.year.to_i <= last_year.to_i
@@ -73,7 +73,7 @@ class BudgetController < ApplicationController
 		@public_agency = PublicAgency.find(params[:id])
 		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
 	end
-#Busche
+#Done
 	def initialize_hash(year)
 		expenses_months = {}
 		for month in 1..12
