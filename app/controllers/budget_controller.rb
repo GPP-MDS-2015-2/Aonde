@@ -64,6 +64,8 @@ class BudgetController < ApplicationController
 				else
 					return false
 		   		end
+		   	else
+		   		return false
 			end		
 	end
 #Eduardo
@@ -97,7 +99,7 @@ class BudgetController < ApplicationController
 		render 'show'
 
 	end
-#Eduardo
+#Done
 	def is_empty_filter(list_expenses = [])
 		
 		empty_filter = list_expenses.empty?

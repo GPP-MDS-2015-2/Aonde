@@ -16,6 +16,20 @@ class BudgetControllerTest < ActionController::TestCase
 		assert_equal(expect_return,boolean)	
 	end
 
+	test "Should return a not empty filter" do
+		
+		list_type_expenses = [1, 2, 3, 4, 5, 6]
+		not_empty_list = @controller.is_empty_filter(list_type_expenses)
+		assert_not (not_empty_list)
+		
+	end
+
+	test "Should return a empty filter" do
+		list_type_expenses = []
+		empty_list = @controller.is_empty_filter(list_type_expenses)
+		assert (empty_list)
+	end
+
 
 end
 
