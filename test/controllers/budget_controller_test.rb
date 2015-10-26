@@ -1,5 +1,18 @@
 class BudgetControllerTest < ActionController::TestCase
 
+  test 'the empty return result of budgets' do
+    not_exist_id = -1
+    budget_epmty = @controller.get_all_budget(not_exist_id)
+    assert_empty budget_epmty
+  end
+
+  test 'the budgets not null' do
+    create_fake_web
+    budgets_not_nil = @controller.get_all_budget(20000)
+    FakeWeb.clean_registry
+    assert_not_nil(budgets_not_nil)
+  end
+  
   test 'exception in the generation of budget array' do
     create_fake_web
     budgets_by_year = @controller.get_all_budget(20000)
