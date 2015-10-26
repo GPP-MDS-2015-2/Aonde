@@ -1,5 +1,5 @@
 class BudgetController < ApplicationController
-#Eduardo
+#Done
 	def show
   		find_public_agency
   		@list_expense_month = get_list_expenses_by_period(@public_agency.id)
@@ -43,7 +43,6 @@ class BudgetController < ApplicationController
 	def get_expenses_agency(id_public_agency)
     	total_expense_per_date = {}
     	#Takes all programs and return a list
-    	#@total_expense = 0
     	expenses = Expense.where(public_agency_id: id_public_agency)
     	expenses.each do |exp|
         	date = Date.new(exp.payment_date.year,exp.payment_date.month,1)
@@ -51,8 +50,7 @@ class BudgetController < ApplicationController
           		total_expense_per_date [date] = 0
         	end
         	total_expense_per_date [date] += exp.value
-#        	@total_expense += exp.value
-      	end 
+		end 
     	return total_expense_per_date
   	end	
 #Done
@@ -68,7 +66,7 @@ class BudgetController < ApplicationController
 		   		return false
 			end		
 	end
-#Eduardo
+#Done
   	def find_public_agency
 		@public_agency = PublicAgency.find(params[:id])
 		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
@@ -110,5 +108,15 @@ class BudgetController < ApplicationController
 			flash[:error] = "Nenhuma despesa encontrada no periodo desejado! Veja o gráfico total:"
 		end
 		return empty_filter
+	end
+#method subtract
+	def subtract_spendig_budget(list_expense_month,budgets)
+		value_budgets = []
+		month_year = 12
+		for i in 1..month_year do |data,value|
+			budgets -= value
+			value_for_month[data.month-1] = budgets
+			return value_for_month
+		end
 	end
 end
