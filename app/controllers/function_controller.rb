@@ -2,15 +2,17 @@ class FunctionController < ApplicationController
 
 	def show
 	
-		datas = insert_expenses_functions
+		datas = insert_expenses_functions(params[:year],params[:month])
 		@correct_datas = datas.to_json
 
 	end
 
-	def insert_expenses_functions
+	def insert_expenses_functions(year,month)
 
+		#puts year
+		#puts month
 		@function = Function.new
-		expenses = @function.get_expenses_by_function
+		expenses = @function.get_expenses_by_function(year,month)
 		expense_hash = convert_to_a_hash(expenses)
 		correct_datas = filter_datas_in_expense(expense_hash)
 		

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get "public_agency/:id/filter_budget",to: "budget#filter_chart_budget", as: "filter_budget"
   #Routes of Programs
   get "/functions" => "function#show"
+  get "/functions/filter" => "function#show"
+    
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
