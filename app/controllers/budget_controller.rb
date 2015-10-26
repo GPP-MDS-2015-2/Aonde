@@ -1,24 +1,16 @@
 class BudgetController < ApplicationController
-  def get_api_data(public_agency_id)
-    budget_years = []
-    begin
-      budget_years = get_all_budget(public_agency_id)
-      puts budget_years
-    rescue Exception => error
-      budget_years = error
-      puts error
-    end
-
-    return budget_years
-  end
 
   def get_all_budget(public_agency_id)
     budget_years = []
-    for year in 2011..2013
-      data_api = obtain_api_data(year, public_agency_id)
-      budget_hash = parse_json_to_hash(data_api)
-      value_budget = get_value_budget(budget_hash)
-      budget_years << { year => value_budget }
+    begin
+      for year in 2011..2013
+        data_api = obtain_api_data(year, public_agency_id)
+        budget_hash = parse_json_to_hash(data_api)
+        value_budget = get_value_budget(budget_hash)
+        budget_years << { year => value_budget }
+      end
+    rescue Exception => error
+      puts error
     end
     return budget_years
   end
@@ -72,7 +64,7 @@ class BudgetController < ApplicationController
 
     url = begin_url + url_query + end_url
 
-    #puts "\n\n\n\n#{url}\n\n\n"
+#    puts "\n\n\n\n#{url}\n\n\n"
 
     return url
   end
