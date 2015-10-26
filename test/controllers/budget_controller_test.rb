@@ -81,16 +81,46 @@ class BudgetControllerTest < ActionController::TestCase
 		assert assigns(:list_expense_month)
 		assert assigns(:expense_find)
 	end
-	#Conferir esse daqui
-	test "Sum of the type expenses in method get_expenses_agency" do
-		create_public_agency
+
+ 	test "The method get_expenses_agency" do
+ 		id_public_agency = 1
+		public_agency_default = @controller.get_expenses_agency(id_public_agency)
+		expense_value_init = {}
+		assert_equal(expense_value_init,public_agency_default)
+		
+		create_entities
+		
 		id_public_agency = 1
-		expense_agency = @controller.get_expenses_agency(id_public_agency)
-		assert_not expense_agency.empty?
+		expected_data = {Date.new(2010,1,1)=>2000}
+		public_agency = @controller.get_expenses_agency(id_public_agency)
+		assert_equal(public_agency,expected_data)
 
-		expected_list = ["01 Jan 2013"=>100]
 
-		assert_equal(expected_list,expense_agency)
+		id_public_agency = 2
+		public_agency_false = @controller.get_expenses_agency(id_public_agency)
+		assert_equal(public_agency_false,{})				
+
+	end
+	test "Sum of the type expenses in method get_expense_by_type" do
+		create_entities
+		id_public_agency = 1
+		data = @controller.get_list_expenses_by_period(id_public_agency)
+		assert_not data.empty?
+
+		expected_list = [["01/2010", 2000], ["02/2010", 0], ["03/2010", 0], ["04/2010", 0], ["05/2010", 0], ["06/2010", 0], ["07/2010", 0], ["08/2010", 0], ["09/2010", 0], ["10/2010", 0], ["11/2010", 0], ["12/2010", 0]]
+
+		assert_equal(expected_list,data)
  	end
+	def create_entities
+		SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
+
+		PublicAgency.create(id: 1,views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
+
+		Expense.create(document_number: "0000",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 500)
+		Expense.create(document_number: "0001",payment_date: Date.new(2010,1,2),public_agency_id: 1,value: 500)
+		Expense.create(document_number: "0002",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 1000)
+		
+	end
+	
 end
 

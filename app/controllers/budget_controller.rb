@@ -1,12 +1,12 @@
 class BudgetController < ApplicationController
-#Done
+
 	def show
   		find_public_agency
   		@list_expense_month = get_list_expenses_by_period(@public_agency.id)
   		@list_expense_month.to_json
   		@expense_find = 1
   	end
-#Segunda - both 
+
   	def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
 
 		@total_expense = 0		
@@ -30,7 +30,7 @@ class BudgetController < ApplicationController
 
 	  	return expense_by_month
 	end
-#Busche
+
 	def transform_hash_to_array(expense_by_year)
 		hash_to_array = []	
 		expense_by_year.each do |year, expenses|
@@ -39,7 +39,7 @@ class BudgetController < ApplicationController
 		end
 		return hash_to_array
 	end
-#Eduardo
+
 	def get_expenses_agency(id_public_agency)
     	total_expense_per_date = {}
     	#Takes all programs and return a list
@@ -53,7 +53,7 @@ class BudgetController < ApplicationController
 		end 
     	return total_expense_per_date
   	end	
-#Done
+
   	def is_date_in_interval(first_month,first_year,last_month,last_year, date)
 
 			if date.year.to_i >= first_year.to_i && date.year.to_i <= last_year.to_i
@@ -66,12 +66,12 @@ class BudgetController < ApplicationController
 		   		return false
 			end		
 	end
-#Done
+
   	def find_public_agency
 		@public_agency = PublicAgency.find(params[:id])
 		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
 	end
-#Done
+
 	def initialize_hash(year)
 		expenses_months = {}
 		for month in 1..12
@@ -80,7 +80,7 @@ class BudgetController < ApplicationController
 		end
 		return expenses_months
 	end
-#Done
+
 	def filter_chart_budget
 
 		find_public_agency
@@ -97,7 +97,7 @@ class BudgetController < ApplicationController
 		render 'show'
 
 	end
-#Done
+
 	def is_empty_filter(list_expenses = [])
 		
 		empty_filter = list_expenses.empty?
@@ -110,13 +110,13 @@ class BudgetController < ApplicationController
 		return empty_filter
 	end
 #method subtract
-	def subtract_spendig_budget(list_expense_month,budgets)
-		value_budgets = []
-		month_year = 12
-		for i in 1..month_year do |data,value|
-			budgets -= value
-			value_for_month[data.month-1] = budgets
-			return value_for_month
-		end
-	end
+#	def subtract_spendig_budget(list_expense_month,budgets)
+#		value_budgets = []
+#		month_year = 12
+#		for i in 1..month_year do |data,value|
+#			budgets -= value
+#			value_for_month[data.month-1] = budgets
+#			return value_for_month
+#		end
+#	end
 end
