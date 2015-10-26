@@ -35,7 +35,7 @@ class FunctionControllerTest < ActionController::TestCase
 
 	end
 
-	test "Should return the last day of month"
+	test "Should return the last day of month" do
 
 		month_number = 1
 		last_day = @controller.find_month_limit(month_number)
@@ -44,7 +44,7 @@ class FunctionControllerTest < ActionController::TestCase
 
 	end
 
-	test "should return the last day of month"
+	test "should return the last day of month" do
 
 		month_number = 4
 		last_day = @controller.find_month_limit(month_number)
@@ -54,7 +54,7 @@ class FunctionControllerTest < ActionController::TestCase
 	end
 
 
-	test "should return the last day of month"
+	test "should return the last day of month" do
 
 		month_number = 2
 		last_day = @controller.find_month_limit(month_number)
