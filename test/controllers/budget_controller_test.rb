@@ -63,16 +63,34 @@ class BudgetControllerTest < ActionController::TestCase
  		array_return = @controller.transform_hash_to_array(hash)
  		assert_not_equal(array_expect, array_return)
 	end
-
-
 	def create_public_agency
 		SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
 		PublicAgency.create(id: 1,views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
 
 		for i in 1..5
-			Expense.create(document_number: "0000",payment_date: Date.new(2013,i,1),
-							public_agency_id: 1,value: 100)
+			Expense.create(document_number: "0000",payment_date: Date.new(2013,i,1),public_agency_id: 1,value: 100)
 		end
 	end
+	test "Route to method show and the result of the request" do
+		create_public_agency				
+	  	assert_routing '/public_agency/1/budgets', { :controller => "budget", :action => "show", :id => "1" }	
+		get :show, id: 1
+
+		assert_response :success
+
+		assert assigns(:list_expense_month)
+		assert assigns(:expense_find)
+	end
+	#Conferir esse daqui
+	test "Sum of the type expenses in method get_expenses_agency" do
+		create_public_agency
+		id_public_agency = 1
+		expense_agency = @controller.get_expenses_agency(id_public_agency)
+		assert_not expense_agency.empty?
+
+		expected_list = ["01 Jan 2013"=>100]
+
+		assert_equal(expected_list,expense_agency)
+ 	end
 end
 
