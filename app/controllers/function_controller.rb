@@ -18,37 +18,29 @@ class FunctionController < ApplicationController
 	def control_datas(year = "Todos",month = "Todos")
 
 		if year == "Todos"
-			insert_expenses_functions(2010,2015,1,12)
+			insert_expenses_functions(2010,2015,1,12,1,31)
 		elsif year == "Até hoje!"
-			insert_expenses_functions(2010,2015,1,12)
+			insert_expenses_functions(2010,2015,1,12,1,31)
 		else	
 			if month == "Todos"
-				insert_expenses_functions(2010,2015,1,12)
+				insert_expenses_functions(year.to_i,year.to_i,1,12,1,31)
 			else
-				insert_expenses_functions(year.to_i,year.to_i,month_to_int(month),month_to_int(month))
+				day_final = find_month_limit(month_to_int(month))
+				day_init = 1
+				insert_expenses_functions(year.to_i,year.to_i,month_to_int(month),month_to_int(month),day_init,day_final)
 			end
 		end
 
 	end
 
-	def insert_expenses_functions(yeari,yearf,monthi,monthf)
+	def insert_expenses_functions(year_init,year_final,month_init,month_final,day_init,day_final)
 
-		expenses = get_expenses_by_function(yeari,yearf,monthi,monthf)
+		@function = Function.new
+		expenses = @function.get_expenses_by_function(year_init,year_final,month_init,month_final,day_init,day_final)
 		expense_hash = convert_to_a_hash(expenses)
 		correct_datas = filter_datas_in_expense(expense_hash)
 		
 	end
-
-	def get_expenses_by_function(first_year,last_year,first_month,last_month)
-
-		start = Date.new(2015,first_month,1)
-		end_of = Date.new(2015,last_month,31)
-
-  		Function.joins(:expense).where("DATE(payment_date) BETWEEN ? AND ?", start, end_of).select("YEAR(payment_date) as date_test,sum(expenses.value) as sumValue,functions.description").group("YEAR(payment_date),functions.description").to_json
-
-	end
-
-	
 
 	def convert_to_a_hash(expenses)
 
@@ -64,6 +56,16 @@ class FunctionController < ApplicationController
   		end
   		return correct_hash
 
+	end
+
+	def find_month_limit(month)
+		if month == 1 or  month == 3 or month == 5 or month ==  7 or month == 8 or  month == 10 or month == 12
+			return 31
+		elsif month == 4 or  month == 6 or month == 9 or month == 11
+			return 30
+		elsif month == 2
+			return 28 
+		end
 	end
 
 end	

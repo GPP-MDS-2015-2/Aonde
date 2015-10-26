@@ -35,4 +35,32 @@ class FunctionControllerTest < ActionController::TestCase
 
 	end
 
+	test "Should return the last day of month"
+
+		month_number = 1
+		last_day = @controller.find_month_limit(month_number)
+		expected_last_day = 31
+		assert_equal(expected_last_day,last_day)
+
+	end
+
+	test "should return the last day of month"
+
+		month_number = 4
+		last_day = @controller.find_month_limit(month_number)
+		expected_last_day = 30
+		assert_equal(expected_last_day,last_day)
+
+	end
+
+
+	test "should return the last day of month"
+
+		month_number = 2
+		last_day = @controller.find_month_limit(month_number)
+		expected_last_day = 28
+		assert_equal(expected_last_day,last_day)
+
+	end
+
 end
