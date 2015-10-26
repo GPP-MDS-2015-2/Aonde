@@ -286,11 +286,17 @@ Highcharts.setOptions(Highcharts.theme);*/
 
 </script>
 
-
 <div id="select_box">
 <%= form_tag functions_filter_path , method: 'get' do %>
      <!-- <%= hidden_field_tag :id, params[:id]%> -->
-     <%= select_tag :year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]) %>
+     <%= select_tag :year, options_for_select([["Até hoje!"],["2015"],["2014"],["2013"],["2012"],["2011"]]) %>
+     <%= select_tag :month, options_for_select([["Todos"],["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]])%> 
     <%= submit_tag 'Filtrar' %>
+
 <% end %>
+</div>
+
+<div id="container" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+
+
 
