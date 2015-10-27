@@ -1,5 +1,17 @@
 class BudgetControllerTest < ActionController::TestCase
 
+  
+  test 'create the query of an year' do
+    correct_query = '?exercicioURI loa:identificador 2013 . '
+    query = @controoler.query_for_year('2013')
+    assert_equal(correct_query, query)
+  end
+
+  test 'the result empty of a year' do
+    query_empty = @controoler.query_for_year('Todos')
+    assert_empty(query_empty)
+  end
+=begin  
   test 'the size grow of budget by year' do
     budget_hash = { 'results' => { 'bindings' =>[create_budget,create_budget]}}
     budget_years = []
@@ -37,23 +49,11 @@ class BudgetControllerTest < ActionController::TestCase
     budget_epmty = @controller.create_budget_year(budget_hash)
     assert_empty(budget_epmty)
   end
-=begin  
 
 ######################################################
 change the name method get_all_budget to get_budget
 ######################################################
-  test 'the empty return result of budgets' do
-    not_exist_id = -1
-    budget_epmty = @controller.get_all_budget(not_exist_id)
-    assert_empty budget_epmty
-  end
 
-  test 'the budgets not null' do
-    create_fake_web
-    budgets_not_nil = @controller.get_all_budget(20_000)
-    FakeWeb.clean_registry
-    assert_not_nil(budgets_not_nil)
-  end
 
   test 'exception in the generation of budget array' do
     create_fake_web
@@ -104,8 +104,6 @@ change the name method get_value_budget to valid_data?
     assert_equal(value, value_hash)
   end
 ##############################################################
-=end
-
   test 'the budget query encode' do
     year = '2015'
     public_agency_id = '1'
@@ -187,6 +185,8 @@ change the name method get_value_budget to valid_data?
 
     assert_not_nil(json_changed)
   end
+=end
+
 
   private
 
