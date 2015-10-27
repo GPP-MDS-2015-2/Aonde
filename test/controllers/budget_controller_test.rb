@@ -1,6 +1,27 @@
 class BudgetControllerTest < ActionController::TestCase
 
 
+  
+  test 'the budgets not null' do
+    create_fake_web
+    FakeWeb.allow_net_connect = false
+    budgets_not_nil = @controller.get_budget(20000)
+    assert_not_nil(budgets_not_nil)
+    FakeWeb.clean_registry
+    FakeWeb.allow_net_connect = true
+  end
+  
+  test 'the empty return result of budgets' do
+    create_fake_web
+    FakeWeb.allow_net_connect = false
+    not_exist_id = -1
+    assert_raises(Exception) do
+      budget_epmty = @controller.get_budget(not_exist_id)
+    end
+    FakeWeb.clean_registry
+    FakeWeb.allow_net_connect = true
+  end
+
   test 'create the query of an year' do
     correct_query = '?exercicioURI loa:identificador 2013 . '
     query = @controller.query_for_year('2013')
@@ -10,23 +31,6 @@ class BudgetControllerTest < ActionController::TestCase
   test 'the result empty of a year' do
     query_empty = @controller.query_for_year('Todos')
     assert_empty(query_empty)
-  end
-
-    def valid_data?(budget_hash)
-    valid_data = true
-    # puts budget_hash
-    results_hash = budget_hash['results']
-    if !results_hash.nil? && !results_hash.empty?
-      bindings_array = results_hash['bindings']
-      if !bindings_array.nil? && !bindings_array.empty?
-        # Data in the budget_hash is valid
-      else
-        valid_data = false
-      end
-    else
-      valid_data = false
-    end
-    return valid_data
   end
 
   test 'the valid hash with budget' do
@@ -52,23 +56,6 @@ class BudgetControllerTest < ActionController::TestCase
   test 'the null bindings' do
     budgets_data = {'results' => {'bindings' => nil}}
     assert_not(@controller.valid_data?(budgets_data))
-  end
-=begin  
-
-test 'the empty return result of budgets' do
-    create_fake_web
-    not_exist_id = -1
-    assert_raises(Exception) do
-      budget_epmty = @controller.get_budget(not_exist_id)
-    end
-    FakeWeb.clean_registry
-  end
-  
-  test 'the budgets not null' do
-    create_fake_web
-    budgets_not_nil = @controller.get_budget(20000)
-    FakeWeb.clean_registry
-    assert_not_nil(budgets_not_nil)
   end
 
 
@@ -110,60 +97,7 @@ test 'the empty return result of budgets' do
     assert_empty(budget_epmty)
   end
 
-######################################################
-change the name method get_all_budget to get_budget
-######################################################
 
-
-  test 'exception in the generation of budget array' do
-    create_fake_web
-    budgets_by_year = @controller.get_all_budget(20_000)
-    expected_budgets = [{ 2011 => '7159141334' }, { 2012 => '7159141334' }, { 2013 => '7159141334' }]
-    FakeWeb.clean_registry
-    assert assert_equal(expected_budgets, budgets_by_year)
-  end
-  test 'generation of arary of budgets' do
-    create_fake_web
-    public_agency_id = 20_000
-    budget_array = @controller.get_all_budget(public_agency_id)
-    FakeWeb.clean_registry
-    assert_not_empty budget_array
-  end
-
-  test 'the return erros in the result of budgets' do
-    not_exist_id = -1
-    budget_epmty = @controller.get_all_budget(not_exist_id)
-    assert_empty budget_epmty
-  end
-######################################################
-=end
-=begin
-######################################################
-change the name method get_value_budget to valid_data?
-######################################################
-  test 'exception raise of empty budget value' do
-    assert_raises(Exception) do
-      data_budget = { 'head' => { 'link' => [], 'vars' => ['somaProjetoLei'] },
-                      'results' => { 'distinct' => false, 'ordered' => true,
-                                     'bindings' => [{}] } }
-      @controller.get_value_budget(data_budget)
-    end
-  end
-  test 'extract the value of budget' do
-    data_budget = { 'head' => { 'link' => [], 'vars' => ['somaProjetoLei'] },
-                    'results' => { 'distinct' => false, 'ordered' => true,
-                                   'bindings' => [{ 'somaProjetoLei' =>
-                                    { 'type' => 'typed-literal',
-                                      'datatype' => 'http://www.w3.org/2001/'\
-                                      'XMLSchema#double',
-                                      'value' => '7159141334' } }] } }
-    value = '7159141334'
-
-    value_hash = @controller.get_value_budget(data_budget)
-
-    assert_equal(value, value_hash)
-  end
-##############################################################
   test 'the budget query encode' do
     year = '2015'
     public_agency_id = '1'
@@ -192,30 +126,6 @@ change the name method get_value_budget to valid_data?
     url_not_nil = @controller.get_url( '20202','2015')
     assert_not_nil(url_not_nil)
   end
-
-  test 'the get to API of budget' do
-    create_fake_web
-    public_agency_id = 20000
-    year = 2013
-    data_api = @controller.obtain_api_data(public_agency_id, year)
-    # puts "#{data_api}"
-    FakeWeb.clean_registry
-    assert_not_empty data_api
-  end
-
-  test 'the fail connection with API of budget' do
-    create_fake_web
-    assert_raise(Exception) do
-      FakeWeb.allow_net_connect = false
-      year = 1000
-      public_agency_id = 20000
-      data_api = @controller.obtain_api_data(public_agency_id, year)
-     # puts "#{data_api}"
-    end
-    FakeWeb.clean_registry
-    FakeWeb.allow_net_connect = true
-  end
-
   test 'exception parse json' do
     assert_raises(Exception) do
       data_json = '{"first_key",test wrong hash}'
@@ -245,8 +155,29 @@ change the name method get_value_budget to valid_data?
 
     assert_not_nil(json_changed)
   end
-=end
 
+  test 'the get to API of budget' do
+    create_fake_web
+    public_agency_id = 20000
+    year = 2013
+    data_api = @controller.obtain_api_data(public_agency_id, year)
+    # puts "#{data_api}"
+    FakeWeb.clean_registry
+    assert_not_empty data_api
+  end
+
+  test 'the fail connection with API of budget' do
+    create_fake_web
+    assert_raise(Exception) do
+      FakeWeb.allow_net_connect = false
+      year = 1000
+      public_agency_id = 20000
+      data_api = @controller.obtain_api_data(public_agency_id, year)
+     # puts "#{data_api}"
+    end
+    FakeWeb.clean_registry
+    FakeWeb.allow_net_connect = true
+  end
 
   private
 
@@ -268,27 +199,40 @@ change the name method get_value_budget to valid_data?
     def create_fake_web
       for year in 2011..2014
         url = create_url(year)
-        FakeWeb.register_uri(:get, url, body: '{"head":{"link":[],"vars":'\
-          '["somaProjetoLei"]},"results":{"distinct":false,"ordered":true,'\
-          '"bindings":[{"somaProjetoLei":{"type":"typed-literal","datatype":'\
-          '"http://www.w3.org/2001/XMLSchema#double",'\
-          '"value":"7159141334"}}]}}')
+        FakeWeb.register_uri(:get, url, body: '{"results":{"bindings":['\
+          '{"ano": {"value":'+year.to_s+'},"somaProjetoLei":{"value":"1000"}}]}}')
       end
+      url_query = create_url_all_years
+      FakeWeb.register_uri(:get, url_query, body: '{"results":{"bindings":['\
+          '{"ano": {"value": "2014"},"somaProjetoLei":{"value":"1000"}}]}}')
     end
-   def create_url(year)
-    url = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query='\
-          'PREFIX%20rdf:%20%3Chttp://www.w3.org/1999/02/22-rdf-syntax-ns'\
-          '%23%3E%20PREFIX%20loa:%20%3Chttp://vocab.e.gov.br/2013/09/loa'\
-          '%23%3ESELECT%20?ano,%20(SUM(?valorProjetoLei)%20AS%20?somaProje'\
-          'toLei)%20WHERE%20%7B?itemBlankNode%20loa:temExercicio%20?exercic'\
-          'ioURI%20.%20?exercicioURI%20loa:identificador%20'+year.to_s+'%20'\
-          '.%20?exercicioURI%20loa:identificador%20?ano%20.%20?itemBlankNod'\
-          'e%20loa:temUnidadeOrcamentaria%20?uoURI%20.%20?uoURI%20loa:codig'\
-          'o%20%2220000%22%20.%20?itemBlankNode%20loa:valorProjetoLei%20?va'\
-          'lorProjetoLei%20.%20%7D&debug=on&timeout=&format=application%2Fs'\
-          'parql-results%2Bjson&save=display&fname='
-   end
-         def create_budget
+    def create_url(year)
+      url = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query='\
+            'PREFIX%20rdf:%20%3Chttp://www.w3.org/1999/02/22-rdf-syntax-ns'\
+            '%23%3E%20PREFIX%20loa:%20%3Chttp://vocab.e.gov.br/2013/09/loa'\
+            '%23%3ESELECT%20?ano,%20(SUM(?valorProjetoLei)%20AS%20?somaProje'\
+            'toLei)%20WHERE%20%7B?itemBlankNode%20loa:temExercicio%20?exercic'\
+            'ioURI%20.%20?exercicioURI%20loa:identificador%20'+year.to_s+'%20'\
+            '.%20?exercicioURI%20loa:identificador%20?ano%20.%20?itemBlankNod'\
+            'e%20loa:temUnidadeOrcamentaria%20?uoURI%20.%20?uoURI%20loa:codig'\
+            'o%20%2220000%22%20.%20?itemBlankNode%20loa:valorProjetoLei%20?va'\
+            'lorProjetoLei%20.%20%7D&debug=on&timeout=&format=application%2Fs'\
+            'parql-results%2Bjson&save=display&fname='
+     end
+    def create_url_all_years
+      url = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query=PREFIX'\
+            '%20rdf:%20%3Chttp://www.w3.org/1999/02/22-rdf-syntax-ns%23%3E%20PR'\
+            'EFIX%20loa:%20%3Chttp://vocab.e.gov.br/2013/09/loa%23%3ESELECT%20?'\
+            'ano,%20(SUM(?valorProjetoLei)%20AS%20?somaProjetoLei)%20WHERE%20%7'\
+            'B?itemBlankNode%20loa:temExercicio%20?exercicioURI%20.%20?exercici'\
+            'oURI%20loa:identificador%20?ano%20.%20?itemBlankNode%20loa:temUnid'\
+            'adeOrcamentaria%20?uoURI%20.%20?uoURI%20loa:codigo%20%2220000%22%2'\
+            '0.%20?itemBlankNode%20loa:valorProjetoLei%20?valorProjetoLei%20.%2'\
+            '0%7D&debug=on&timeout=&format=application%2Fsparql-results%2Bjson&'\
+            'save=display&fname='
+     end
+
+    def create_budget
       budget_hash = {"ano" => {"value" => "2011"},"somaProjetoLei" => {"value"=> "123456"}}
       return budget_hash
     end
