@@ -2,8 +2,10 @@ class BudgetController < ApplicationController
 
 	def show
   		find_public_agency
-  		@list_expense_month = get_list_expenses_by_period(@public_agency.id)
+  		@list_budget_month = subtract_expenses_on_budget(@public_agency.id, 2015)
+  		@list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", 2015, "Dezembro", 2015)
   		@list_expense_month.to_json
+  		@list_budget_month.to_json
   		@expense_find = 1
   	end
 
@@ -27,7 +29,6 @@ class BudgetController < ApplicationController
 	  	#return the hash with expenses like a array
 	  	expense_by_month = transform_hash_to_array(new_total_expense_per_date)
 	  	expense_by_month.sort_by! {|expense_month| Date.parse(expense_month[0])}
-
 	  	return expense_by_month
 	end
 
@@ -37,6 +38,7 @@ class BudgetController < ApplicationController
 			expense_month_year = expenses.to_a
 			hash_to_array.concat(expense_month_year)
 		end
+		#puts "#{hash_to_array}"
 		return hash_to_array
 	end
 
@@ -52,7 +54,7 @@ class BudgetController < ApplicationController
         	total_expense_per_date [date] += exp.value
 		end 
     	return total_expense_per_date
-  	end	
+  	end
 
   	def is_date_in_interval(first_month,first_year,last_month,last_year, date)
 
@@ -84,6 +86,7 @@ class BudgetController < ApplicationController
 	def filter_chart_budget
 
 		find_public_agency
+		@list_budget_month = subtract_expenses_on_budget(@public_agency.id, params[:year]);
 		@list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", params[:year], "Dezembro", params[:year]);
 		@expense_find = 0
 		if not is_empty_filter(@list_expense_month)
@@ -93,6 +96,7 @@ class BudgetController < ApplicationController
 			@list_expense_month = get_list_expenses_by_period(@public_agency.id)
 		end
 		@list_expense_month = @list_expense_month.to_json
+		@list_budget_month = @list_budget_month.to_json
 
 		render 'show'
 
@@ -109,14 +113,25 @@ class BudgetController < ApplicationController
 		end
 		return empty_filter
 	end
-#method subtract
-#	def subtract_spendig_budget(list_expense_month,budgets)
-#		value_budgets = []
-#		month_year = 12
-#		for i in 1..month_year do |data,value|
-#			budgets -= value
-#			value_for_month[data.month-1] = budgets
-#			return value_for_month
-#		end
-#	end
+
+	def subtract_expenses_on_budget(id_public_agency,year)
+		expense = get_list_expenses_by_period(id_public_agency, "Janeiro", year, "Dezembro", year)
+		budgets = [{'year'=>2015,'value'=>5252923}]
+		budget_array = create_budget_array(expense ,budgets, year)
+		return budget_array
+	end
+	def create_budget_array(expenses, budgets, year)
+		budget_array = []
+		budget = budgets[0]
+		if budget['year'] == year
+			for i in 0..11	
+				value = expenses[i][1]
+				budget["value"] -= value
+				budget_array << budget['value']
+			end
+		end
+	
+		return budget_array
+	end
+
 end

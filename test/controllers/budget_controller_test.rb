@@ -44,10 +44,11 @@ class BudgetControllerTest < ActionController::TestCase
 
 	test "Routes to method filter_chart_budget" do
 		create_public_agency
-		get :filter_chart_budget, id: 1, year: "2015"
+		get :filter_chart_budget, id: 2, year: "2015"
 		assert_response :success
 		assert assigns(:list_expense_month)
 		assert assigns(:expense_find)
+		assert assigns(:list_budget_month)
 	end
 
 	test "Should return equals arrays" do
@@ -63,32 +64,26 @@ class BudgetControllerTest < ActionController::TestCase
  		array_return = @controller.transform_hash_to_array(hash)
  		assert_not_equal(array_expect, array_return)
 	end
-	def create_public_agency
-		SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
-		PublicAgency.create(id: 1,views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
 
-		for i in 1..5
-			Expense.create(document_number: "0000",payment_date: Date.new(2013,i,1),public_agency_id: 1,value: 100)
-		end
-	end
 	test "Route to method show and the result of the request" do
 		create_public_agency				
 	  	assert_routing '/public_agency/1/budgets', { :controller => "budget", :action => "show", :id => "1" }	
-		get :show, id: 1
+		get :show, id: 2
 
 		assert_response :success
 
 		assert assigns(:list_expense_month)
 		assert assigns(:expense_find)
+		assert assigns(:list_budget_month)
 	end
 
- 	test "The method get_expenses_agency" do
+ 	test "Should return a hash with expenses" do
  		id_public_agency = 1
 		public_agency_default = @controller.get_expenses_agency(id_public_agency)
 		expense_value_init = {}
 		assert_equal(expense_value_init,public_agency_default)
 		
-		create_entities
+		create_public_agency
 		
 		id_public_agency = 1
 		expected_data = {Date.new(2010,1,1)=>2000}
@@ -96,13 +91,14 @@ class BudgetControllerTest < ActionController::TestCase
 		assert_equal(public_agency,expected_data)
 
 
-		id_public_agency = 2
+		id_public_agency = 3
 		public_agency_false = @controller.get_expenses_agency(id_public_agency)
 		assert_equal(public_agency_false,{})				
 
 	end
-	test "Sum of the type expenses in method get_expense_by_type" do
-		create_entities
+
+	test "Should return a ordenate array with expenses" do
+		create_public_agency
 		id_public_agency = 1
 		data = @controller.get_list_expenses_by_period(id_public_agency)
 		assert_not data.empty?
@@ -111,14 +107,36 @@ class BudgetControllerTest < ActionController::TestCase
 
 		assert_equal(expected_list,data)
  	end
-	def create_entities
+
+ 	test "Should return a array with budget by month" do
+ 		expenses = [["01/2015", 55], ["02/2015", 100], ["03/2015", 0], ["04/2015", 0], ["05/2015", 0], ["06/2015", 0], ["07/2015", 0], ["08/2015", 0], ["09/2015", 0], ["10/2015", 0], ["11/2015", 0], ["12/2015", 0]]
+ 		budget = [{'year'=>2015, 'value'=>2055}]
+ 		array_expect = [2000, 1900, 1900, 1900, 1900, 1900, 1900, 1900, 1900, 1900, 1900, 1900]
+ 		array_return = @controller.create_budget_array(expenses, budget, 2015)
+ 		assert_equal(array_expect, array_return)
+ 	end
+
+ 	test "Test of method subtract_expenses_on_budget" do
+ 		create_public_agency
+ 		id_public_agency = 2
+		array_expect = [5252423, 5251923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923]
+		array_return = @controller.subtract_expenses_on_budget(id_public_agency, 2015)
+		assert_equal(array_expect, array_return)
+ 	end
+
+	def create_public_agency
 		SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
 
-		PublicAgency.create(id: 1,views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
+		PublicAgency.create(id: 1, views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
+		PublicAgency.create(id: 2, views_amount: 0,name: "valid Agency 2",superior_public_agency_id: 1)
 
 		Expense.create(document_number: "0000",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 500)
 		Expense.create(document_number: "0001",payment_date: Date.new(2010,1,2),public_agency_id: 1,value: 500)
 		Expense.create(document_number: "0002",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 1000)
+
+		Expense.create(document_number: "0003",payment_date: Date.new(2015,1,1),public_agency_id: 2,value: 500)
+		Expense.create(document_number: "0004",payment_date: Date.new(2015,2,1),public_agency_id: 2,value: 500)
+		Expense.create(document_number: "0005",payment_date: Date.new(2015,3,1),public_agency_id: 2,value: 1000)
 		
 	end
 	

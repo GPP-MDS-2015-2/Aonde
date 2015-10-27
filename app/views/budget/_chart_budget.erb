@@ -2,7 +2,8 @@
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 <script>
-dataTotal = JSON.parse('<%= raw @list_expense_month%>')
+dataExpense = JSON.parse('<%= raw @list_expense_month%>')
+dataBudget = JSON.parse(' <%= raw @list_budget_month%>')
 
 $(function () {
     $('#container').highcharts({
@@ -30,6 +31,18 @@ $(function () {
                 }
             }
         },{ // Secondary yAxis
+            labels: {
+                format: 'R$ {value}',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            title: {
+                text: 'Gastos',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
             opposite: true
         }],
         tooltip: {
@@ -39,7 +52,7 @@ $(function () {
             name: 'Gastos',
             type: 'column',
             yAxis: 1,
-            data: dataTotal,
+            data: dataExpense,
             tooltip: {
                 valuePrefix: 'R$ '
             }
@@ -47,7 +60,7 @@ $(function () {
         }, {
             name: 'Orçamento',
             type: 'line',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+            data: dataBudget,
             tooltip: {
                 valuePrefix: 'R$ '
             }
