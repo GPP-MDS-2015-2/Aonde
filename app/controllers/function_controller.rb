@@ -2,7 +2,7 @@ class FunctionController < ApplicationController
 
 	def show
 	
-		datas = insert_expenses_functions(2015,2015,1,12)
+		datas = insert_expenses_functions(2015,2015,1,12,1,31)
 		@correct_datas = datas.to_json
 
 	end
@@ -55,7 +55,6 @@ class FunctionController < ApplicationController
     		correct_hash[hash["description"]] = hash["sumValue"]    
   		end
   		return correct_hash
-
 	end
 
 	def find_month_limit(month)
