@@ -28,7 +28,7 @@ class BudgetController < ApplicationController
     if !year.nil? && !value_budget.nil?
       budget_by_year = {'year' => year.to_i,'value'=>value_budget.to_i}
     else
-      # can't add the budget to hash
+      # One of informations is null, can't add to the array
     end
     return budget_by_year
   end
@@ -47,10 +47,15 @@ class BudgetController < ApplicationController
 
   def valid_data?(budget_hash)
     valid_data = true
-    #puts budget_hash
-    year_budget_hash = budget_hash['results']['bindings']
-    if !year_budget_hash.empty?
-      # Do nothing
+    # puts budget_hash
+    results_hash = budget_hash['results']
+    if !results_hash.nil? && !results_hash.empty?
+      bindings_array = results_hash['bindings']
+      if !bindings_array.nil? && !bindings_array.empty?
+        # Data in the budget_hash is valid
+      else
+        valid_data = false
+      end
     else
       valid_data = false
     end
@@ -108,7 +113,7 @@ class BudgetController < ApplicationController
     
     year_query = ''
     if year != 'Todos'
-      year_query = '?exercicioURI loa:identificador '+year+' . '\
+      year_query = '?exercicioURI loa:identificador '+year+' . '
     else
       # line_query empty
     end
