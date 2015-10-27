@@ -1,24 +1,38 @@
 class BudgetController < ApplicationController
 
-  def get_all_budget(public_agency_id)
+  def get_budget(public_agency_id, year = 'Todos')
+    data_api = obtain_api_data(public_agency_id,year)
+    data_budget = parse_json_to_hash(data_api)
+    valid_response = valid_data?(data_budget)
     budget_years = []
-    begin
-      for year in 2011..2013
-        data_api = obtain_api_data(year, public_agency_id)
-        budget_hash = parse_json_to_hash(data_api)
-        value_budget = get_value_budget(budget_hash)
-        budget_years << { year => value_budget }
-      end
-    rescue Exception => error
-      puts error
+    if valid_response
+      add_budget_array(budget_years, data_budget)
+    else
+      raise "Não foi possível obter o valor da API do orçamento"
     end
     return budget_years
   end
 
-  def obtain_api_data(year, public_agency_id)
+  def add_budget_array(budget_years,data_budget)
+    budgets = data_budget['results']['bindings']
+    budgets.each do |budget|
+      budget_by_year = create_budget_year(budget)
+      budget_years << budget_by_year
+    end
+  end
+  
+  def create_budget_year(budget)
+    year = budget["ano"]["value"]
+    value_budget = budget["somaProjetoLei"]["value"]
+    budget_by_year = {'year' => year,'value'=>value_budget}
+    return budget_by_year
+
+  end
+
+  def obtain_api_data(public_agency_id,year)
     data_api = ""
     begin
-      url_query = get_url(year, public_agency_id)
+      url_query = get_url(public_agency_id,year )
       uri_query = URI.parse(url_query)
       data_api = Net::HTTP.get(uri_query)
     rescue
@@ -27,18 +41,16 @@ class BudgetController < ApplicationController
     return data_api
   end
 
-  def get_value_budget(budget_hash)
-    value = 0
-    value_budget_hash = budget_hash['results']['bindings'][0]
-
-    # Verify if the result of the API has the value of budget
-    if !value_budget_hash.empty?
-      value = value_budget_hash['somaProjetoLei']['value']
+  def valid_data?(budget_hash)
+    valid_data = true
+    #puts budget_hash
+    year_budget_hash = budget_hash['results']['bindings']
+    if !year_budget_hash.empty?
+      # Do nothing
     else
-      raise "Não foi possível obter o valor do orçamento pela api"
+      valid_data = false
     end
-
-    return value
+    return valid_data
   end
 
   def parse_json_to_hash(data_api)
@@ -51,8 +63,8 @@ class BudgetController < ApplicationController
     return budget_year
   end
 
-  def get_url(year, public_agency_id)
-    begin_url = 'http://orcamento.dados.gov.br/sparql/?default-graph-uri=&query='
+  def get_url( public_agency_id, year = 'Todos')
+    begin_url = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query='
 
     end_url = '&debug=on&timeout=&format=application%2Fsparql-results%2Bjson'\
     '&save=display&fname='
@@ -60,8 +72,7 @@ class BudgetController < ApplicationController
     year = year.to_s
     public_agency_id = public_agency_id.to_s
 
-    url_query = generate_query(year, public_agency_id)
-
+    url_query = generate_query(public_agency_id,year)
     url = begin_url + url_query + end_url
 
 #    puts "\n\n\n\n#{url}\n\n\n"
@@ -69,17 +80,34 @@ class BudgetController < ApplicationController
     return url
   end
 
-  def generate_query(year, public_agency_id)
-    query = 'SELECT (SUM(?ProjetoLei) AS ?somaProjetoLei) WHERE {'\
-    '?itemBlankNode loa:temExercicio ?exercicioURI . '\
-    '?exercicioURI loa:identificador ' + year + ' . '\
+  def generate_query(public_agency_id, year = 'Todos')
+    prefix = 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> '\
+            'PREFIX loa: <http://vocab.e.gov.br/2013/09/loa#>'
+    
+    year_query = query_for_year(year)
+    
+    # puts year_query
+    query = 'SELECT ?ano, (SUM(?valorProjetoLei) AS ?somaProjetoLei) WHERE {'\
+    '?itemBlankNode loa:temExercicio ?exercicioURI . '+year_query+
+    '?exercicioURI loa:identificador ?ano . '\
     '?itemBlankNode loa:temUnidadeOrcamentaria ?uoURI . '\
-    '?uoURI loa:temOrgao ?orgaoURI . '\
-    '?orgaoURI loa:codigo "' + public_agency_id + '" . '\
-    '?itemBlankNode loa:valorProjetoLei ?ProjetoLei . }'
-
-    url_query = URI.encode(query)
+    '?uoURI loa:codigo "'+public_agency_id+'" . '\
+    '?itemBlankNode loa:valorProjetoLei ?valorProjetoLei . }'
+    
+    # puts query
+    url_query = URI.encode(prefix+query)
 
     return url_query
+  end
+  def query_for_year(year)
+    year = year.to_s
+    
+    year_query = ''
+    if year != 'Todos'
+      year_query = '?exercicioURI loa:identificador '+year+' . '\
+    else
+      # line_query empty
+    end
+    return year_query
   end
 end

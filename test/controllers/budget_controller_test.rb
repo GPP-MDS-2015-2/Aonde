@@ -1,4 +1,13 @@
 class BudgetControllerTest < ActionController::TestCase
+test "get url" do
+  x=@controller.get_budget(20101)
+  puts x
+  assert true
+end
+=begin  
+######################################################
+change the name method get_all_budget to get_budget
+######################################################
   test 'the empty return result of budgets' do
     not_exist_id = -1
     budget_epmty = @controller.get_all_budget(not_exist_id)
@@ -32,7 +41,12 @@ class BudgetControllerTest < ActionController::TestCase
     budget_epmty = @controller.get_all_budget(not_exist_id)
     assert_empty budget_epmty
   end
-
+######################################################
+=end
+=begin
+######################################################
+change the name method get_value_budget to valid_data?
+######################################################
   test 'exception raise of empty budget value' do
     assert_raises(Exception) do
       data_budget = { 'head' => { 'link' => [], 'vars' => ['somaProjetoLei'] },
@@ -41,7 +55,7 @@ class BudgetControllerTest < ActionController::TestCase
       @controller.get_value_budget(data_budget)
     end
   end
-
+###########################################################
   test 'extract the value of budget' do
     data_budget = { 'head' => { 'link' => [], 'vars' => ['somaProjetoLei'] },
                     'results' => { 'distinct' => false, 'ordered' => true,
@@ -56,6 +70,8 @@ class BudgetControllerTest < ActionController::TestCase
 
     assert_equal(value, value_hash)
   end
+##############################################################
+=end
   test 'the budget query encode' do
     year = '2015'
     public_agency_id = '1'
@@ -89,15 +105,28 @@ class BudgetControllerTest < ActionController::TestCase
     assert_not_nil(url_not_nil)
   end
 
-  def parse_json_to_hash(data_api)
-    budget_year = {}
-    begin
-      budget_year = JSON.parse(data_api)
-    rescue
-      raise 'Não foi possivel conventer os dados da API do orçamento'
+
+  test 'the get to API of budget' do
+    create_fake_web
+    public_agency_id = 20_000
+    year = 2013
+    data_api = @controller.obtain_api_data(year, public_agency_id)
+    # puts "#{data_api}"
+    FakeWeb.clean_registry
+    assert_not_empty data_api
+  end
+
+  test 'the fail connection with API of budget' do
+    create_fake_web
+    assert_raise(Exception) do
+      FakeWeb.allow_net_connect = false
+      year = 2014
+      public_agency_id = 20_000
+      data_api = @controller.obtain_api_data(year, public_agency_id)
+      puts "#{data_api}"
     end
-    budget_year
-end
+    FakeWeb.clean_registry
+  end
 
   test 'exception parse json' do
     assert_raises(Exception) do
@@ -129,43 +158,21 @@ end
     assert_not_nil(json_changed)
   end
 
-  test 'the get to API of budget' do
-    create_fake_web
-    public_agency_id = 20_000
-    year = 2013
-    data_api = @controller.obtain_api_data(year, public_agency_id)
-    # puts "#{data_api}"
-    FakeWeb.clean_registry
-    assert_not_empty data_api
-  end
-
-  test 'the fail connection with API of budget' do
-    create_fake_web
-    assert_raise(Exception) do
-      FakeWeb.allow_net_connect = false
-      year = 2014
-      public_agency_id = 20_000
-      data_api = @controller.obtain_api_data(year, public_agency_id)
-      puts "#{data_api}"
-    end
-    FakeWeb.clean_registry
-  end
-
   private
 
-  def create_query(year, public_agency_id)
-    test_query = 'SELECT (SUM(?ProjetoLei) AS ?somaProjetoLei) WHERE {'\
-                  '?itemBlankNode loa:temExercicio ?exercicioURI . '\
-                  '?exercicioURI loa:identificador ' + year + ' . '\
-                  '?itemBlankNode loa:temUnidadeOrcamentaria ?uoURI . '\
-                  '?uoURI loa:temOrgao ?orgaoURI . '\
-                  '?orgaoURI loa:codigo "' + public_agency_id + '" . '\
-                  '?itemBlankNode loa:valorProjetoLei ?ProjetoLei . }'
-    test_query
- end
+    def create_query(year, public_agency_id)
+      test_query = 'SELECT (SUM(?ProjetoLei) AS ?somaProjetoLei) WHERE {'\
+                    '?itemBlankNode loa:temExercicio ?exercicioURI . '\
+                    '?exercicioURI loa:identificador ' + year + ' . '\
+                    '?itemBlankNode loa:temUnidadeOrcamentaria ?uoURI . '\
+                    '?uoURI loa:temOrgao ?orgaoURI . '\
+                    '?orgaoURI loa:codigo "' + public_agency_id + '" . '\
+                    '?itemBlankNode loa:valorProjetoLei ?ProjetoLei . }'
+      test_query
+   end
 
   def create_fake_web
-    for year in 2011..2013
+    for year in 2011..2014
       url = 'http://orcamento.dados.gov.br/sparql/'\
       '?default-graph-uri=&query=SELECT%20(SUM(?ProjetoLei)%20AS%20'\
       '?somaProjetoLei)%20WHERE%20%7B?itemBlankNode%20loa:temExercicio%20'\
