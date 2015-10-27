@@ -1,5 +1,26 @@
 class BudgetControllerTest < ActionController::TestCase
 
+  test 'the size grow of budget by year' do
+    budget_hash = { 'results' => { 'bindings' =>[create_budget,create_budget]}}
+    budget_years = []
+    @controller.add_budget_array(budget_years,budget_hash)
+    expected_size = 2
+    assert_equal(expected_size,budget_years.size)
+  end
+  test 'not grow size of array budget by year' do
+    whithout_budget_hash = {'results'=>{'bindings'=>[]}}
+    budget_empty = []
+    @controller.add_budget_array(budget_empty,whithout_budget_hash)
+    assert_empty(budget_empty)
+  end
+  test 'insertion of one budget in the array' do
+    one_budget_hash = {'results'=>{'bindings'=>[create_budget]}}
+    budget_years = []
+    @controller.add_budget_array(budget_years,one_budget_hash)
+    expected_array = [{'year'=>2011,'value'=>123456}]
+    assert_equal(expected_array,budget_years)
+  end
+
   test 'the create of hash with budget' do
     budget_hash=create_budget
     budget_correct = @controller.create_budget_year(budget_hash)
@@ -84,6 +105,7 @@ change the name method get_value_budget to valid_data?
   end
 ##############################################################
 =end
+
   test 'the budget query encode' do
     year = '2015'
     public_agency_id = '1'
@@ -206,4 +228,8 @@ change the name method get_value_budget to valid_data?
           'lorProjetoLei%20.%20%7D&debug=on&timeout=&format=application%2Fs'\
           'parql-results%2Bjson&save=display&fname='
    end
+         def create_budget
+      budget_hash = {"ano" => {"value" => "2011"},"somaProjetoLei" => {"value"=> "123456"}}
+      return budget_hash
+    end
 end
