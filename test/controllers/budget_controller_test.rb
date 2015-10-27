@@ -1,17 +1,77 @@
 class BudgetControllerTest < ActionController::TestCase
 
-  
+
   test 'create the query of an year' do
     correct_query = '?exercicioURI loa:identificador 2013 . '
-    query = @controoler.query_for_year('2013')
+    query = @controller.query_for_year('2013')
     assert_equal(correct_query, query)
   end
 
   test 'the result empty of a year' do
-    query_empty = @controoler.query_for_year('Todos')
+    query_empty = @controller.query_for_year('Todos')
     assert_empty(query_empty)
   end
+
+    def valid_data?(budget_hash)
+    valid_data = true
+    # puts budget_hash
+    results_hash = budget_hash['results']
+    if !results_hash.nil? && !results_hash.empty?
+      bindings_array = results_hash['bindings']
+      if !bindings_array.nil? && !bindings_array.empty?
+        # Data in the budget_hash is valid
+      else
+        valid_data = false
+      end
+    else
+      valid_data = false
+    end
+    return valid_data
+  end
+
+  test 'the valid hash with budget' do
+    budgets_data = {'results' => {'bindings' => [0]}}
+    assert(@controller.valid_data?(budgets_data))
+  end
+
+  test 'the empty bindings' do
+    budgets_data = {'results' => {'bindings' => []}}
+    assert_not(@controller.valid_data?(budgets_data))
+  end
+
+  test 'the empty results' do
+    budgets_data = {'results' => {}}
+    assert_not(@controller.valid_data?(budgets_data))
+  end
+
+  test 'the null results' do
+    budgets_data = {'results' => nil}
+    assert_not(@controller.valid_data?(budgets_data))
+  end
+
+  test 'the null bindings' do
+    budgets_data = {'results' => {'bindings' => nil}}
+    assert_not(@controller.valid_data?(budgets_data))
+  end
 =begin  
+
+test 'the empty return result of budgets' do
+    create_fake_web
+    not_exist_id = -1
+    assert_raises(Exception) do
+      budget_epmty = @controller.get_budget(not_exist_id)
+    end
+    FakeWeb.clean_registry
+  end
+  
+  test 'the budgets not null' do
+    create_fake_web
+    budgets_not_nil = @controller.get_budget(20000)
+    FakeWeb.clean_registry
+    assert_not_nil(budgets_not_nil)
+  end
+
+
   test 'the size grow of budget by year' do
     budget_hash = { 'results' => { 'bindings' =>[create_budget,create_budget]}}
     budget_years = []
