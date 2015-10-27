@@ -16,6 +16,7 @@ inChart = dataController.clone();
 
 $(function () {
     function createChart(dataUnorder){
+        console.log(dataUnorder)
         dataUnorder.sort(function(a, b) {return b[1] - a[1]})
         dataUnorder.forEach(function (obj){
             $("#listChange ul").append("<li class='inChart'>"+obj[0]+"</li>");
