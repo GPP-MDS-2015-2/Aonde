@@ -1,9 +1,22 @@
 class BudgetControllerTest < ActionController::TestCase
-test "get url" do
-  x=@controller.get_budget(20101)
-  puts x
-  assert true
-end
+
+  test 'the create of hash with budget' do
+    budget_hash={"ano" => {"value" => "2011"},"somaProjetoLei" => {"value"=> "123456"}}
+    budget_correct = @controller.create_budget_year(budget_hash)
+    expected_budget = {"year"=>2011,"value" => 123456 }
+    assert_equal(expected_budget,budget_correct)
+  end
+  test 'not null budget return' do
+    budget_hash = {"ano" => {"value" => "2011"},"somaProjetoLei" => {"value"=> "123456"}}
+    budget_correct = @controller.create_budget_year(budget_hash)
+    assert_not_nil(budget_correct)
+  end
+  test 'empty budget return' do
+    budget_hash = {"ano" => {"value" => nil},"somaProjetoLei" => {"value"=> "123456"}}
+    budget_epmty = @controller.create_budget_year(budget_hash)
+    assert_empty(budget_epmty)
+  end
+  
 =begin  
 ######################################################
 change the name method get_all_budget to get_budget

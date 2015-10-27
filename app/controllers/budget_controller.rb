@@ -24,9 +24,13 @@ class BudgetController < ApplicationController
   def create_budget_year(budget)
     year = budget["ano"]["value"]
     value_budget = budget["somaProjetoLei"]["value"]
-    budget_by_year = {'year' => year,'value'=>value_budget}
+    budget_by_year = {}
+    if !year.nil? && !value_budget.nil?
+      budget_by_year = {'year' => year.to_i,'value'=>value_budget.to_i}
+    else
+      # can't add the budget to hash
+    end
     return budget_by_year
-
   end
 
   def obtain_api_data(public_agency_id,year)
@@ -85,7 +89,7 @@ class BudgetController < ApplicationController
             'PREFIX loa: <http://vocab.e.gov.br/2013/09/loa#>'
     
     year_query = query_for_year(year)
-    
+
     # puts year_query
     query = 'SELECT ?ano, (SUM(?valorProjetoLei) AS ?somaProjetoLei) WHERE {'\
     '?itemBlankNode loa:temExercicio ?exercicioURI . '+year_query+
