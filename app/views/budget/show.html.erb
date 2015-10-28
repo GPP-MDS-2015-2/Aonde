@@ -8,13 +8,13 @@
  	<ul class="tabs">
 		<li class="tab-link" data-tab="tab-1"><%= link_to "Gastos do Órgão",public_agency_path%></li>
 		<li class="tab-link" data-tab="tab-2"><%= link_to "Empresas", company_path %></li>
-        <li class="tab-link" data-tab="tab-3" current><%= link_to "Programas", program_path %></li>
+        <li class="tab-link" data-tab="tab-3"><%= link_to "Programas", program_path %></li>
 		<li class="tab-link" data-tab="tab-4"><%= link_to "Tipos de Despesas", type_expense_path %></li>
-		<li class="tab-link" data-tab="tab-5"><%= link_to "Orçamento", budget_path %></li>
+		<li class="tab-link" data-tab="tab-5" current><%= link_to "Orçamento", budget_path %></li>
 	</ul>
 
- 	<div id="tab-3" class="tab-content current">
-		<%= render 'list_programs' %>
+ 	<div id="tab-5" class="tab-content current">
+		<%= render 'chart_budget' %>
  	</div>
 	<!-- <div id="tab-2" class="tab-content">
 		huhuasaushuah

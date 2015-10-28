@@ -1,0 +1,99 @@
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+dataExpense = JSON.parse('<%= raw @list_expense_month%>')
+dataBudget = JSON.parse(' <%= raw @list_budget_month%>')
+
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Comparação do orçamento com os gastos dos órgãos'
+        },
+        xAxis: [{
+            categories: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            crosshair: true
+        }],
+        yAxis: [{ // Primary yAxis
+            labels: {
+                format: 'R$ {value}',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            title: {
+                text: 'Orçamento',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            }
+        },{ // Secondary yAxis
+            labels: {
+                format: 'R$ {value}',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            title: {
+                text: 'Gastos',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            opposite: true
+        }],
+        tooltip: {
+            shared: true
+        },
+        series: [{
+            name: 'Gastos',
+            type: 'column',
+            yAxis: 1,
+            data: dataExpense,
+            tooltip: {
+                valuePrefix: 'R$ '
+            }
+
+        }, {
+            name: 'Orçamento',
+            type: 'line',
+            data: dataBudget,
+            tooltip: {
+                valuePrefix: 'R$ '
+            }
+        }]
+    });
+});
+
+$(document).ready(function(){
+    var real_expense = '<%= raw @expense_find %>';
+    
+    if( real_expense != 0 ){
+        $('.msg_error').remove();
+    }else{
+        setTimeout(function(){
+            $('.msg_error').remove();
+        }, 5000);
+    }
+ });
+
+
+</script>
+
+<% flash.each do |name, msg| %>
+    <div class="msg_error">
+        <i class="fa fa-warning"></i>
+        <%= msg %>
+    </div>
+<% end %>
+<div id="combobox">
+<div id="select_box">
+<%= form_tag  filter_budget_path , method: 'get' do %>
+    <!-- <%= hidden_field_tag :id, params[:id]%> -->
+    <%= select_tag :year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]) %>
+    <%= submit_tag 'Filtrar' %>
+<% end %>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
