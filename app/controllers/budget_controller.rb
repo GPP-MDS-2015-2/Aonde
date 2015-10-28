@@ -116,7 +116,7 @@ class BudgetController < ApplicationController
 
 	def subtract_expenses_on_budget(id_public_agency,year)
 		expense = get_list_expenses_by_period(id_public_agency, "Janeiro", year, "Dezembro", year)
-		budgets = [{'year'=>2015,'value'=>5252923}]
+		budgets = get_budget(id_public_agency, year)
 		budget_array = create_budget_array(expense ,budgets, year)
 		return budget_array
 	end
