@@ -9,7 +9,7 @@ class BudgetController < ApplicationController
   		@expense_find = 1
   	end
 
-  	def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
+  def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
 
 		@total_expense = 0		
 		new_total_expense_per_date = {}
@@ -54,9 +54,9 @@ class BudgetController < ApplicationController
         	total_expense_per_date [date] += exp.value
 		end 
     	return total_expense_per_date
-  	end
+  end
 
-  	def is_date_in_interval(first_month,first_year,last_month,last_year, date)
+  def is_date_in_interval(first_month,first_year,last_month,last_year, date)
 
 			if date.year.to_i >= first_year.to_i && date.year.to_i <= last_year.to_i
 				if date.month.to_i >= month_to_int(first_month) && date.month.to_i <= month_to_int(last_month)
@@ -69,7 +69,7 @@ class BudgetController < ApplicationController
 			end		
 	end
 
-  	def find_public_agency
+  def find_public_agency
 		@public_agency = PublicAgency.find(params[:id])
 		@superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
 	end
@@ -120,7 +120,8 @@ class BudgetController < ApplicationController
 		budget_array = create_budget_array(expense ,budgets, year)
 		return budget_array
 	end
-	def create_budget_array(expenses, budgets, year)
+	
+  def create_budget_array(expenses, budgets, year)
 		budget_array = []
 		budget = budgets[0]
 		if budget['year'] == year
@@ -134,4 +135,123 @@ class BudgetController < ApplicationController
 		return budget_array
 	end
 
+  def get_budget(public_agency_id, year = 'Todos')
+    data_api = obtain_api_data(public_agency_id,year)
+    data_budget = parse_json_to_hash(data_api)
+    valid_response = valid_data?(data_budget)
+    budget_years = []
+    if valid_response
+      add_budget_array(budget_years, data_budget)
+    else
+      raise "Não foi possível obter o valor da API do orçamento"
+    end
+    return budget_years
+  end
+
+  def add_budget_array(budget_years,data_budget)
+    budgets = data_budget['results']['bindings']
+    budgets.each do |budget|
+      budget_by_year = create_budget_year(budget)
+      budget_years << budget_by_year
+    end
+  end
+  
+  def create_budget_year(budget)
+    year = budget["ano"]["value"]
+    value_budget = budget["somaProjetoLei"]["value"]
+    budget_by_year = {}
+    if !year.nil? && !value_budget.nil?
+      budget_by_year = {'year' => year.to_i,'value'=>value_budget.to_i}
+    else
+      # One of informations is null, can't add to the array
+    end
+    return budget_by_year
+  end
+
+  def obtain_api_data(public_agency_id,year)
+    data_api = ""
+    begin
+      url_query = get_url(public_agency_id,year )
+      uri_query = URI.parse(url_query)
+      data_api = Net::HTTP.get(uri_query)
+    rescue
+        raise "Não foi possível conectar a API"
+    end
+    return data_api
+  end
+
+  def valid_data?(budget_hash)
+    valid_data = true
+    # puts budget_hash
+    results_hash = budget_hash['results']
+    if !results_hash.nil? && !results_hash.empty?
+      bindings_array = results_hash['bindings']
+      if !bindings_array.nil? && !bindings_array.empty?
+        # Data in the budget_hash is valid
+      else
+        valid_data = false
+      end
+    else
+      valid_data = false
+    end
+    return valid_data
+  end
+
+  def parse_json_to_hash(data_api)
+    budget_year = {}
+    begin
+      budget_year = JSON.parse(data_api)
+    rescue
+      raise 'Não foi possivel conventer os dados da API do orçamento'
+    end
+    return budget_year
+  end
+
+  def get_url( public_agency_id, year = 'Todos')
+    begin_url = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query='
+
+    end_url = '&debug=on&timeout=&format=application%2Fsparql-results%2Bjson'\
+    '&save=display&fname='
+
+    year = year.to_s
+    public_agency_id = public_agency_id.to_s
+
+    url_query = generate_query(public_agency_id,year)
+    url = begin_url + url_query + end_url
+
+#    puts "\n\n\n\n#{url}\n\n\n"
+
+    return url
+  end
+
+  def generate_query(public_agency_id, year = 'Todos')
+    prefix = 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> '\
+            'PREFIX loa: <http://vocab.e.gov.br/2013/09/loa#>'
+    
+    year_query = query_for_year(year)
+
+    # puts year_query
+    query = 'SELECT ?ano, (SUM(?valorProjetoLei) AS ?somaProjetoLei) WHERE {'\
+    '?itemBlankNode loa:temExercicio ?exercicioURI . '+year_query+
+    '?exercicioURI loa:identificador ?ano . '\
+    '?itemBlankNode loa:temUnidadeOrcamentaria ?uoURI . '\
+    '?uoURI loa:codigo "'+public_agency_id+'" . '\
+    '?itemBlankNode loa:valorProjetoLei ?valorProjetoLei . }'
+    
+    # puts query
+    url_query = URI.encode(prefix+query)
+
+    return url_query
+  end
+  def query_for_year(year)
+    year = year.to_s
+    
+    year_query = ''
+    if year != 'Todos'
+      year_query = '?exercicioURI loa:identificador '+year+' . '
+    else
+      # line_query empty
+    end
+    return year_query
+  end
 end

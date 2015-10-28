@@ -14,8 +14,9 @@ class CompanyControllerTest < ActionController::TestCase
 
 	def generate_public_agency
 
-		PublicAgency.create(id: 1,views_amount: 0,name: "valid Agency")
-		
+		SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
+		PublicAgency.create(id: 1,views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
+
 	end	
 
 	test "should return a ordered hash" do
