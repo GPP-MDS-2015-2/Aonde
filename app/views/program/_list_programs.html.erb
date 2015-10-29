@@ -1,5 +1,8 @@
-<script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/funnel.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+<script>
 Array.prototype.clone = function() {
     return this.slice(0);
 };
@@ -16,12 +19,12 @@ $(function () {
         console.log(dataUnorder)
         dataUnorder.sort(function(a, b) {return b[1] - a[1]})
         dataUnorder.forEach(function (obj){
-            $("#listChange ul").append("<li class='inChart'>"+obj[0]+"</li>");
+            $("#listChange_1 ul").append("<li class='inChart_1'>"+obj[0]+"</li>");
         });
     }
     createChart(dataController);
     drawChart(dataController);
-    $("#listChange ul li").click(function(){
+    $("#listChange_1 ul li").click(function(){
         contentRemove = $(this)[0].innerHTML;
 
         var node = $(this);
@@ -31,18 +34,18 @@ $(function () {
             if ( contentRemove === element[0] ){
                 if( removed.indexOf(element) == -1 ){
                     removed.push(element);
-                    inChart.remove(inChart.indexOf(element),1);
-                    node.addClass("notInChart");
-                    node.removeClass("inChart");
+                    inChart_1.remove(inChart_1.indexOf(element),1);
+                    node.addClass("notInChart_1");
+                    node.removeClass("inChart_1");
                 }else{
-                    node.addClass("inChart");
-                    node.removeClass("notInChart");
-                    inChart.push(element);
+                    node.addClass("inChart_1");
+                    node.removeClass("notInChart_1");
+                    inChart_1.push(element);
                     removed.remove(removed.indexOf(element),1);
                 }                
             }
         });
-        drawChart(inChart);
+        drawChart(inChart_1);
     });
     function drawChart(datas){
         console.log(datas);
@@ -114,7 +117,7 @@ $(document).ready(function(){
 <% end %>
 <div id="container" style="min-width: 410px; max-width: auto; height: 500px; margin: 0 auto"></div>
 <!--Table with list of prgrams-->
-<div id="listChange"><center>Selecione um ou mais programas para não serem visualizados no gráfico</center><ul></ul></div>
+<div id="listChange_1"><center>Selecione um ou mais programas para não serem visualizados no gráfico</center><ul></ul></div>
 
 <div id="table_list_programs">
     <table id="tableCompany" style="display"> 

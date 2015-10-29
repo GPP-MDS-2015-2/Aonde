@@ -102,10 +102,10 @@ test "verify find_expenses" do
     generate_expense
     program_related = [[{"id" => 1,"label" => "Programa1"}],[]]
     
-    @controller.create_nodes(1, program_related,"public_agency_id")
+    @controller.create_nodes(1, program_related,"public_agency_id",PublicAgency)
 
     expected_sizes = [3,2]
-    puts program_related
+   # puts program_related
     find_sizes = [program_related[0].size,program_related[1].size]
 
     assert_equal(expected_sizes,find_sizes)
@@ -117,7 +117,7 @@ test "verify find_expenses" do
     
     expected_related = program_related.clone
     
-    @controller.create_nodes(1, program_related,"company_id")
+    @controller.create_nodes(1, program_related,"company_id",Company)
 
     assert_equal(expected_related , program_related)
   end
@@ -126,7 +126,7 @@ test "verify find_expenses" do
     generate_expense 
     id = 1
     field = "public_agency_id"
-    public_agency_list = @controller.find_entities(id,field)
+    public_agency_list = @controller.find_names(id, field, PublicAgency)
     public_agency_id = public_agency_list[0].public_agency_id
     assert_not_nil(public_agency_id)
   end
@@ -135,7 +135,7 @@ test "verify find_expenses" do
     generate_expense 
     id = 1
     field = "company_id"
-    company_list = @controller.find_entities(id,field)
+    company_list = @controller.find_names(id,field,Company)
     assert_not_nil(company_list)
   end
 
@@ -144,35 +144,36 @@ test "verify find_expenses" do
     id = -8
     field = "company_id"
     assert_raise(Exception) do
-      company_list = @controller.find_entities(id,field)
+      company_list = @controller.find_names(id,field,PublicAgency)
     end
   end
+  
   test "Add node to array" do
-    data_program = [ [{"id" => 1,"label" => "Programa1"}] ,[]]
-    
-    company_add = Company.new(id: 2,name: "company to test")
+    data_program = [[{"id" => 1,"label" => "Programa1"}] ,[]]
+    company_add = "company"
     
     @controller.add_node(company_add,data_program)
     
-    new_size = 2
-    nodes = 0
+    data_expected = [[{"id" => 1,"label" => "Programa1"},{"id" => 2,"label" => "company"}] ,[]]
 
-    assert_equal(new_size,data_program[nodes].size)
+    assert_equal(data_expected,data_program)
   end
 
-  test "Add vertice to array" do
+  test "Add edge to array" do
     data_program = [ [{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>"Company1"}] ,[]]
-       
-    @controller.add_vertice(data_program)
-    
-    new_size = 1
-    vertice = 1
+    @controller.add_edge(data_program)
 
-    assert_equal(new_size,data_program[vertice].size)
+    data_expected = [ [{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>"Company1"}] ,[{"from"=>1,"to" => 2}]]
+       
+    assert_equal(data_expected,data_program)
   end
   
+  test "Management of nodes" do
+  
+
+  end
+
   private
-    
     def generate_expense
      SuperiorPublicAgency.create(id:1,name: "SuperiorPublicAgency")
      PublicAgency.create(id: 1, name: "PublicAgency1",views_amount: 10,superior_public_agency_id: 1)
