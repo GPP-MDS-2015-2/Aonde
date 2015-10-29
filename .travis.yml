@@ -7,7 +7,7 @@ before_script:
 
 addons:
   code_climate:
-    repo_token: 5628bc3ae30ba0384803123a
+    repo_token: 300bb115981867e8f2c252ed70c128160866c46bf642e1b0e3dab8a9f11102d7
 
 script: rake test
 
