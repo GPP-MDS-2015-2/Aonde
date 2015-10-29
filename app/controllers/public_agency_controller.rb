@@ -1,7 +1,7 @@
 class PublicAgencyController < ApplicationController
 	#list of all public agencies in DB
 	def index
-		@public_agencies = PublicAgency.all
+		@public_agencies = PublicAgency.search(params[:search])
 		@total_expense_agency = {}
 		@public_agencies.each do |agency|
 			@total_expense_agency[agency.id] = expenses_public_agency(agency.id)
