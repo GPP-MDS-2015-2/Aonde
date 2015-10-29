@@ -1,7 +1,8 @@
 class FunctionController < ApplicationController
 
 	def show
-	
+
+		@correct_datas = []	
 		datas = insert_expenses_functions(2015,2015,1,12,1,31)
 		@correct_datas = datas.to_json
 
@@ -9,6 +10,7 @@ class FunctionController < ApplicationController
 
 	def filter
 
+		@correct_datas = []
 		datas = control_datas(params[:year],params[:month])
 		@correct_datas = datas.to_json
 		render 'show'

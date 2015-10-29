@@ -49,4 +49,22 @@ class CompanyController < ApplicationController
 		companies_expense.sort_by{ |name, expense| expense}
 	end
 
+	def find_expenses
+		expenses = Expense.where(company_id: params[:id])
+		@array_programs_public_agencies = find_programs_and_public_agencies(expenses)
+	end
+
+	def find_programs_and_public_agencies(expenses)
+		array_programs_public_agencies = []
+		expenses.each do |expense|
+			array_aux = []
+			program = Program.find(expense.program_id)
+			public_agency = PublicAgency.find(expenses.public_agency_id)
+			array_aux.push(program.name)
+			array_aux.push(public_agency.name)
+			array_programs_public_agencies.push(array_aux)
+		end
+		array_programs_public_agencies
+	end	
+	
 end
