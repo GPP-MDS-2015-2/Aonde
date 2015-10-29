@@ -99,7 +99,7 @@ test "verify find_expenses" do
     assert assigns(:all_programs)
   end
 
-  test "Filter data of programs" do
+  test "create data of programs" do
     generate_expense
     
     expected_nodes = [[{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>
@@ -107,6 +107,32 @@ test "verify find_expenses" do
     generate_nodes = @controller.create_nodes(1)
 
     assert_equal(expected_nodes,generate_nodes)
+  end
+
+  #validar se o dado não foi adicionado em um array vazio
+  test "validate add_programs" do 
+    expected_nodes = [[],[]]
+    generate_nodes = @controller.create_nodes(nil)
+
+    assert_equal(expected_nodes,generate_nodes)
+    assert_empty(generate_nodes[0])
+  end
+
+  test "methods search public_agency" do
+    generate_expense 
+    id = 1
+    field = "public_agency_id"
+    public_agency_list = @controller.find_entities(id,field)
+    public_agency_id = public_agency_list[0].public_agency_id
+    assert_not_nil(public_agency_id)
+  end
+
+  test "methods search company" do
+    generate_expense 
+    id = 1
+    field = "company_id"
+    company_list = @controller.find_entities(id,field)
+    assert_not_nil(company_list)
   end
 
   test "Add node to array" do
@@ -121,6 +147,7 @@ test "verify find_expenses" do
 
     assert_equal(new_size,data_program[nodes].size)
   end
+
   test "Add vertice to array" do
     data_program = [ [{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>"Company1"}] ,[]]
        

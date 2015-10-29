@@ -1,12 +1,7 @@
 class ProgramController < ApplicationController
 
-	def find_public_agency(id_public_agency)
-   	 @public_agency = PublicAgency.find(id_public_agency)
-   	 @superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)    
-    end
-
     def show
-   	 find_public_agency(params[:id])
+   	 find_agencies(params[:id])
    	 @all_programs = find_expenses(@public_agency.id)
    	 @all_programs.to_json
     end
@@ -45,5 +40,29 @@ class ProgramController < ApplicationController
 	    else
 	    	programs_expense [program.name] += expense.value
 	    end	
+	end
+#####################################################################################################	
+	def create_nodes(program_id)
+		array_validation = [[{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>
+		 "PublicAgency1"},{"id" => 3,"label" => "Company1"}],[{"from"=>1,"to"=>2},{"from"=>1,"to"=>3}]]
+		if program_id != nil
+			#Executa a parada 
+			return array_validation	
+		else
+			return [[],[]] 
+		end
+	end
+	def find_entities(program_id, field_entity)
+		if field_entity == "public_agency_id"
+			return [Expense.new(public_agency_id: 12345)]
+		else
+			return []
+		end
+	end
+	def add_node(entity,data_program)
+		data_program[0] <<"muahahah"
+	end
+	def add_vertice(data_program)
+		data_program[1] << "teste"
 	end
 end
