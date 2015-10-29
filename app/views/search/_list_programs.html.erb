@@ -1,0 +1,28 @@
+<% if (@programs.empty?) %>
+  <strong><font color="red" size="12px">Nenhum Programa Encontrado</font></strong>
+<% else %>
+	<table id="tableData2" class="hover row-border">
+		<thead>
+			<tr>
+				<th>
+					<center><font color="#036564"><strong>Nome do Programa</strong></font></center>
+				</th>
+				<th>
+					<center><font color="#036564"><strong>Gasto Total no Programa (R$)</strong></font></center>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @programs.each do |program| %>
+		  	<tr>
+			  	<td>
+			  		<center><%= program.name %></center>
+			  	</td>
+			  	<td>	
+			  		<center><%= @total_expense_program[program.id] %></center>
+			  	</td>
+		  	</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% end %>

@@ -1,0 +1,29 @@
+<% if (@companies.empty?) %>
+  <strong><font color="red" size="12px">Nenhuma Empresa Encontrado</font></strong>
+<% else %>
+	<table id="tableData1" class="hover row-border">
+		<thead>
+			<tr>
+				<th>
+					<center><font color="#036564"><strong>Nome da Empresa</strong></font></center>
+				</th>
+				<th>
+					<center><font color="#036564"><strong>Gasto Total na Empresa (R$)</strong></font></center>
+				</th>
+			</tr>
+		</thead>
+
+		<tbody>
+		<% @companies.each do |company| %>
+		  	<tr>
+			  	<td>
+			  		<center><%= company.name %></center>
+			  	</td>
+			  	<td>	
+			  		<center><%= @total_expense_company[company.id] %></center>
+			  	</td>
+		  	</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% end %>
