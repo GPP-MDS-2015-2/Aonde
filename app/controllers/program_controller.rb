@@ -42,33 +42,56 @@ class ProgramController < ApplicationController
     end 
   end
 ###########################################################3  
-  def create_nodes(program_id, program_related,field_entity)
+  def management_nodes
+    find_names(program_id,field_entity)
+    add_node(entity,data_program)
+    add_edge(data_program)
+
+  end
+  def create_nodes(program_id, program_related,field_entity,class_entity)
     begin
-      agency_list = find_entities(program_id,field_entity)
-      agency_list.each do |agency|
-        add_node(agency,program_related)
-        add_vertice(program_related)
+      name_entities = find_names(program_id,field_entity)
+      name_entities.each do |agency|
+        add_node(agency,program_related,class_entity)
+        add_edge(program_related)
       end
     rescue Exception => e
-      puts "\n#{e}"
+      #puts "\n#{e}"
     end
   end
-  def find_entities(program_id, field_entity)
-    entities = Expense.select("DISTINCT("+field_entity+")").where(program_id: program_id)
-    
+  def find_names(program_id, field_entity,class_entity)
+    entities = Expense.select('DISTINCT('+field_entity+')').where(program_id: program_id)
+    name_entities = []
     if !entities.nil? && !entities.empty?
-      #do nothing
+      entities.each do |entity|
+        correct_id = id_entity(entity,class_entity)
+        name_entities << class_entity.find(correct_id).name 
+      end
     else
       raise "Entities not found! \n #{program_id} with field #{field_entity}"
     end
 
-    return entities 
+    return name_entities 
   end
-  
+
+  def id_entity(entity,class_entity)
+    id = 1
+    if class_entity == PublicAgency
+      id = entity.public_agency_id
+    else
+      id = entity.company_id
+    end
+    return id
+  end
+
   def add_node(entity,data_program)
-    data_program[0] <<"muahahah"
+    node = 0
+    next_id = data_program[node].last["id"]+1
+    data_program[node] << {"id"=>next_id,"label"=>entity}
   end
-  def add_vertice(data_program)
-    data_program[1] << "teste"
+  def add_edge(data_program)
+    node = 0
+    last_id = data_program[node].last["id"]
+    data_program[1] << {"from"=>1,"to"=>2}
   end
 end
