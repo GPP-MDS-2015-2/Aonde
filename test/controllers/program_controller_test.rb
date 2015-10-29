@@ -6,7 +6,6 @@ class ProgramControllerTest < ActionController::TestCase
     Program.create(name: "ProgramaValido", description: "Programa valido")
   end
 
-
 test "verify find_expenses" do
      generate_expense
      not_empty_list = @controller.find_expenses(1)
@@ -99,23 +98,28 @@ test "verify find_expenses" do
     assert assigns(:all_programs)
   end
 
-  test "create data of programs" do
+  test "create related entities of programs" do
     generate_expense
+    program_related = [[{"id" => 1,"label" => "Programa1"}],[]]
     
-    expected_nodes = [[{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>
-      "PublicAgency1"},{"id" => 3,"label" => "Company1"}],[{"from"=>1,"to"=>2},{"from"=>1,"to"=>3}]]
-    generate_nodes = @controller.create_nodes(1)
+    @controller.create_nodes(1, program_related,"public_agency_id")
 
-    assert_equal(expected_nodes,generate_nodes)
+    expected_sizes = [3,2]
+    puts program_related
+    find_sizes = [program_related[0].size,program_related[1].size]
+
+    assert_equal(expected_sizes,find_sizes)
   end
 
-  #validar se o dado não foi adicionado em um array vazio
-  test "validate add_programs" do 
-    expected_nodes = [[],[]]
-    generate_nodes = @controller.create_nodes(nil)
+  test "not include entitie in the association" do 
+    generate_expense
+    program_related = [[{"id" => 1,"label" => "Programa1"}],[]]
+    
+    expected_related = program_related.clone
+    
+    @controller.create_nodes(1, program_related,"company_id")
 
-    assert_equal(expected_nodes,generate_nodes)
-    assert_empty(generate_nodes[0])
+    assert_equal(expected_related , program_related)
   end
 
   test "methods search public_agency" do
@@ -135,6 +139,14 @@ test "verify find_expenses" do
     assert_not_nil(company_list)
   end
 
+  test "exception in search entities" do
+    generate_expense
+    id = -8
+    field = "company_id"
+    assert_raise(Exception) do
+      company_list = @controller.find_entities(id,field)
+    end
+  end
   test "Add node to array" do
     data_program = [ [{"id" => 1,"label" => "Programa1"}] ,[]]
     
