@@ -6,26 +6,6 @@ class ProgramControllerTest < ActionController::TestCase
     Program.create(name: "ProgramaValido", description: "Programa valido")
   end
 
-  def generate_expense
-   SuperiorPublicAgency.create(id:1,name: "SuperiorPublicAgency")
-   PublicAgency.create(id: 1, name: "PublicAgency1",views_amount: 10,superior_public_agency_id: 1)
-   name_program = ["Programa1", "Programa2"]
-   programs = []
-   j = 0
-   for i in 1..2
-     date = Date.new(2015, i, i)
-     program = Program.create(id: i,name: name_program[i-1],
-      description: "Outros")
-     2.times do
-       expense = Expense.new(id: j, document_number: i, payment_date: date,
-         value: i + 5,program_id: i,public_agency_id: 1)
-       expense.save
-       programs << expense
-       j+=1
-     end
-   end
-   programs
-  end
 
 test "verify find_expenses" do
      generate_expense
@@ -118,4 +98,60 @@ test "verify find_expenses" do
     assert assigns(:public_agency)
     assert assigns(:all_programs)
   end
+
+  test "Filter data of programs" do
+    generate_expense
+    
+    expected_nodes = [[{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>
+      "PublicAgency1"},{"id" => 3,"label" => "Company1"}],[{"from"=>1,"to"=>2},{"from"=>1,"to"=>3}]]
+    generate_nodes = @controller.create_nodes(1)
+
+    assert_equal(expected_nodes,generate_nodes)
+  end
+
+  test "Add node to array" do
+    data_program = [ [{"id" => 1,"label" => "Programa1"}] ,[]]
+    
+    company_add = Company.new(id: 2,name: "company to test")
+    
+    @controller.add_node(company_add,data_program)
+    
+    new_size = 2
+    nodes = 0
+
+    assert_equal(new_size,data_program[nodes].size)
+  end
+  test "Add vertice to array" do
+    data_program = [ [{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>"Company1"}] ,[]]
+       
+    @controller.add_vertice(data_program)
+    
+    new_size = 1
+    vertice = 1
+
+    assert_equal(new_size,data_program[vertice].size)
+  end
+  
+  private
+    
+    def generate_expense
+     SuperiorPublicAgency.create(id:1,name: "SuperiorPublicAgency")
+     PublicAgency.create(id: 1, name: "PublicAgency1",views_amount: 10,superior_public_agency_id: 1)
+     name_program = ["Programa1", "Programa2"]
+     programs = []
+     j = 0
+     for i in 1..2
+       date = Date.new(2015, i, i)
+       program = Program.create(id: i,name: name_program[i-1],
+        description: "Outros")
+       2.times do
+         expense = Expense.new(id: j, document_number: i, payment_date: date,
+           value: i + 5,program_id: i,public_agency_id: 1)
+         expense.save
+         programs << expense
+         j+=1
+       end
+     end
+     programs
+    end
 end

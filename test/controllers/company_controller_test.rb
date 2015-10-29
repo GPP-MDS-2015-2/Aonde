@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CompanyControllerTest < ActionController::TestCase
-
+=begin
 	test "Route to method show and the result of the request" do
 
 		generate_public_agency
@@ -122,5 +122,6 @@ class CompanyControllerTest < ActionController::TestCase
 
 
 
+=end
 end
 
