@@ -103,8 +103,7 @@ test "verify find_expenses" do
     program_related = [[{"id" => 1,"label" => "Programa1"}],[]]
     
     @controller.create_nodes(1, program_related,"public_agency_id",PublicAgency)
-
-    expected_sizes = [3,2]
+    expected_sizes = [2,1]
    # puts program_related
     find_sizes = [program_related[0].size,program_related[1].size]
 
@@ -127,7 +126,7 @@ test "verify find_expenses" do
     id = 1
     field = "public_agency_id"
     public_agency_list = @controller.find_names(id, field, PublicAgency)
-    public_agency_id = public_agency_list[0].public_agency_id
+    public_agency_id = public_agency_list[0]
     assert_not_nil(public_agency_id)
   end
 
