@@ -49,9 +49,11 @@ class CompanyController < ApplicationController
 		companies_expense.sort_by{ |name, expense| expense}
 	end
 
-	def find_expenses
+	def index
+=begin
 		expenses = Expense.where(company_id: params[:id])
-		@array_programs_public_agencies = find_programs_and_public_agencies(expenses)
+		@array_programs_public_agencies = find_programs_and_public_agencies(expenses)=end
+=end
 	end
 
 	def find_programs_and_public_agencies(expenses)
@@ -66,5 +68,5 @@ class CompanyController < ApplicationController
 		end
 		array_programs_public_agencies
 	end	
-	
+
 end
