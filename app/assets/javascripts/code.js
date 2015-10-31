@@ -8,11 +8,13 @@ var cy = cytoscape({
   
   style: [
     {
+//Change style of node
       selector: 'node',
       css: {
         'content': 'data(id)',
         'text-valign': 'center',
-        'text-halign': 'center'
+        'text-halign': 'center',
+        'background-color': 'darkorange'
       }
     },
     {
@@ -24,16 +26,18 @@ var cy = cytoscape({
         'padding-right': '10px',
         'text-valign': 'top',
         'text-halign': 'center',
-        'background-color': '#bbb'
+        'background-color': 'lightblue'
       }
     },
     {
       selector: 'edge',
       css: {
-        'target-arrow-shape': 'triangle'
+        'target-arrow-shape': 'triangle',
+        'line-color': 'orange'
       }
     },
     {
+//Don't work this part of code
       selector: ':selected',
       css: {
         'background-color': 'black',
@@ -43,19 +47,19 @@ var cy = cytoscape({
       }
     }
   ],
-  
+//Insert new elements
   elements: {
     nodes: [
-      { data: { id: 'a', parent: 'b' }, position: { x: 215, y: 85 } },
-      { data: { id: 'b' } },
-      { data: { id: 'c', parent: 'b' }, position: { x: 300, y: 85 } },
-      { data: { id: 'd' }, position: { x: 215, y: 175 } },
-      { data: { id: 'e' } },
-      { data: { id: 'f', parent: 'e' }, position: { x: 300, y: 175 } }
+      { data: { id: 'Ministério2', parent: 'Órgãos Públicos' }, position: { x: 200, y: 80 } },
+      { data: { id: 'Órgãos Públicos' } },
+      { data: { id: 'Ministério1', parent: 'Órgãos Públicos' }, position: { x: 200, y: 30 } },
+      { data: { id: 'Empresas' }, position: { x: 100, y: 80 } },
+      { data: { id: 'qtde Contratações' } },
+      { data: { id: '37', parent: 'qtde Contratações' }, position: { x: 350, y: 30 } }
     ],
     edges: [
-      { data: { id: 'ad', source: 'a', target: 'd' } },
-      { data: { id: 'eb', source: 'e', target: 'b' } }
+      { data: { id: 'Ministério2Empresas', source: 'Ministério2', target: 'Empresas' } },
+      { data: { id: '37Ministério1', source: '37', target: 'Ministério1' } }
       
     ]
   },
