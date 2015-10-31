@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get "/functions" => "function#show"
   get "/functions/filter" => "function#filter"
   get "/companies_expenses" => "company#index"
-  get "/find" => "company#find"
+  get "/find/:id" => "company#find"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
