@@ -5,7 +5,7 @@ class SearchControllerTest < ActionController::TestCase
 	test "Should sum value expense of company" do
 		create_entities
 		id_company = 1
-		company_expense = @controller.expenses_company(id_company)
+		company_expense = @controller.expense_entities(:company_id,id_company)
 		assert_equal(company_expense, 400)
 		
 	end
@@ -13,14 +13,14 @@ class SearchControllerTest < ActionController::TestCase
 	test "Should sum value expense of program" do
 		create_entities
 		id_program = 1
-		program_expense = @controller.expenses_program(id_program)
+		program_expense = @controller.expense_entities(:company_id,id_program)
 		assert_equal(program_expense, 400)
 	end
 
 	test "Should sum value expense of agency" do
 		create_entities
 		id_public_agency= 1
-		agency_expense = @controller.expenses_public_agency(id_public_agency)
+		agency_expense = @controller.expense_entities(:company_id,id_public_agency)
 		assert_equal(agency_expense, 400)
 	end
 
