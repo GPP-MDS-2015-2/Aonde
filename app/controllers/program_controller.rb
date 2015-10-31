@@ -39,17 +39,23 @@ class ProgramController < ApplicationController
   end
 
   # ##########################################################3
-  def management_nodes
-    find_names(program_id, field_entity)
-    add_node(entity, data_program)
-    add_edge(data_program)
+  def show_program
+    program_id = params[:id]
+    program_id = program_id.to_i
+    program = Program.find(program_id)
+    program_related = [[{'id'=>program_id,'label'=>program.name}],[]]
+    create_nodes(program_id, program_related, "public_agency_id",PublicAgency)
+    create_nodes(program_id, program_related, "public_agency_id",PublicAgency)
+    @data_program = program_related
   end
 
   def create_nodes(program_id, program_related, field_entity, class_entity)
+    #puts "#{program_related}"
     begin
       name_entities = find_names(program_id, field_entity, class_entity)
       name_entities.each do |agency|
-        add_node(agency, program_related)
+
+        add_node(agency, program_related)    
         add_edge(program_related)
       end
     rescue Exception => e
@@ -96,6 +102,7 @@ class ProgramController < ApplicationController
   def add_edge(data_program)
     node = 0
     last_id = data_program[node].last['id']
-    data_program[1] << { 'from' => 1, 'to' => last_id }
+    edge = 1
+    data_program[edge] << { 'from' => 1, 'to' => last_id }
   end
 end

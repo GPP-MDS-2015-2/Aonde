@@ -1,13 +1,12 @@
 require 'test_helper'
 
 class ProgramControllerTest < ActionController::TestCase
-
   def create_programs_expense
     Program.create(name: "ProgramaValido", description: "Programa valido")
   end
 
 test "verify find_expenses" do
-     generate_expense
+     generate_program_seed
      not_empty_list = @controller.find_expenses(1)
      assert_not not_empty_list.empty?
 
@@ -23,7 +22,7 @@ test "verify find_expenses" do
 
   test "Verify method find_program" do
 
-       expenses = generate_expense
+       expenses = generate_program_seed
        expense = @controller.find_program(expenses)
        expense_expected = {"Programa1"=> 12, "Programa2"=>14}
        assert_equal(expense_expected,expense)
@@ -87,7 +86,7 @@ test "verify find_expenses" do
 
   test "Verify method show" do
 
-    generate_expense
+    generate_program_seed
 
     assert_routing '/public_agency/1/programs', { :controller => "program", :action => "show", :id => "1" }  
     get :show, id: 1
@@ -99,7 +98,7 @@ test "verify find_expenses" do
   end
 
   test "create related entities of programs" do
-    generate_expense
+    generate_program_seed
     program_related = [[{"id" => 1,"label" => "Programa1"}],[]]
     
     @controller.create_nodes(1, program_related,"public_agency_id",PublicAgency)
@@ -111,7 +110,7 @@ test "verify find_expenses" do
   end
 
   test "not include entitie in the association" do 
-    generate_expense
+    generate_program_seed
     program_related = [[{"id" => 1,"label" => "Programa1"}],[]]
     
     expected_related = program_related.clone
@@ -122,7 +121,7 @@ test "verify find_expenses" do
   end
 
   test "methods search public_agency" do
-    generate_expense 
+    generate_program_seed 
     id = 1
     field = "public_agency_id"
     public_agency_list = @controller.find_names(id, field, PublicAgency)
@@ -131,7 +130,7 @@ test "verify find_expenses" do
   end
 
   test "methods search company" do
-    generate_expense 
+    generate_program_seed 
     id = 1
     field = "company_id"
     company_list = @controller.find_names(id,field,Company)
@@ -139,7 +138,7 @@ test "verify find_expenses" do
   end
 
   test "exception in search entities" do
-    generate_expense
+    generate_program_seed
     id = -8
     field = "company_id"
     assert_raise(Exception) do
@@ -167,13 +166,20 @@ test "verify find_expenses" do
     assert_equal(data_expected,data_program)
   end
   
-  test "Management of nodes" do
+
   
 
-  end
+  test "Management of nodes" do
+    generate_program_seed
+    get :show_program, id: 1
+   
+    assert_response :success
 
+    assert assigns(:data_program)
+  end
+  #assert_routing 'public_agency/1/company', { :controller => "company", :action => "show", :id => "1" }
   private
-    def generate_expense
+    def generate_program_seed
      SuperiorPublicAgency.create(id:1,name: "SuperiorPublicAgency")
      PublicAgency.create(id: 1, name: "PublicAgency1",views_amount: 10,superior_public_agency_id: 1)
      name_program = ["Programa1", "Programa2"]
