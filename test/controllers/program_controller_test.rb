@@ -167,8 +167,29 @@ test "verify find_expenses" do
   end
   
 
-  
+  test"return valid public_agency_id" do
+    entity = Expense.new(public_agency_id: 3)
+    id = @controller.obtain_id(entity,PublicAgency)
+    id_expected = 3
 
+    assert(id_expected,id)
+  end
+
+  test"return valid company_id" do
+    entity = Expense.new(company_id: 2)
+    id = @controller.obtain_id(entity,Company)
+    id_expected = 2
+    
+    assert(id_expected,id)
+  end
+  
+  test"return invalid" do
+    entity = Expense.new(company_id: 4)
+    id = @controller.obtain_id(entity,Expense)
+
+    assert_nil(id)
+  end
+  
   test "Management of nodes" do
     generate_program_seed
     get :show_program, id: 1
@@ -177,7 +198,9 @@ test "verify find_expenses" do
 
     assert assigns(:data_program)
   end
-  #assert_routing 'public_agency/1/company', { :controller => "company", :action => "show", :id => "1" }
+  
+  assert_routing 'public_agency/1/company', { :controller => "company", :action => "show", :id => "1" }
+  
   private
     def generate_program_seed
      SuperiorPublicAgency.create(id:1,name: "SuperiorPublicAgency")

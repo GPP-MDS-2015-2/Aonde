@@ -87,10 +87,11 @@ class ProgramController < ApplicationController
     id = nil
     if class_entity == PublicAgency
       id = entity.public_agency_id
-    else
+    elsif class_entity == Company
       id = entity.company_id
+    else
+      id
     end
-    id
   end
 
   def add_node(name, data_program)
