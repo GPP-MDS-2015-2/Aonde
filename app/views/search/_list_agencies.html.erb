@@ -1,14 +1,11 @@
 <% if (@public_agencies.empty?) %>
-  <strong><font color="red" size="12px">Nenhum Ôrgão Encontrado</font></strong>
+  <strong><font color="red" size="12px">Nenhum Órgão Encontrado</font></strong>
 <% else %>
 	<table id="tableData" class="hover row-border">
 		<thead>
 			<tr>
 				<th>
-					<center><font color="#036564"><strong>Nome do Ôrgão</strong></font></center>
-				</th>
-				<th>
-					<center><font color="#036564"><strong>Quantidade de visualizações</strong></font></center>
+					<center><font color="#036564"><strong>Nome do Órgão</strong></font></center>
 				</th>
 				<th>
 					<center><font color="#036564"><strong>Gasto Total(R$)</strong></font></center>
@@ -20,9 +17,6 @@
 		  	<tr>
 			  	<td>
 			  		<center><%= link_to agency.name,public_agency_path(agency.id)%></center>
-			  	</td>
-			  	<td>
-			  		<center><%= agency.views_amount %></center>
 			  	</td>
 			  	<td>	
 			  		<center><%= @total_expense_agency[agency.id] %></center>

@@ -23,20 +23,34 @@
     </div>
 <% end %>
 <%else %>
-<div class = 'container-tabs'>
- 	<ul class="tabs">
-		<li class="tab-link" data-tab="tab-1" current><%= "Órgãos Públicos" %></li>
-		<li class="tab-link" data-tab="tab-2"><%= "Empresas" %></li>
-        <li class="tab-link" data-tab="tab-3"><%= "Programas" %></li>
-    </ul>
-    <div id="tab-1" class="tab-content current">
-		<%= render 'list_agencies' %>
- 	</div>
- 	<div id="tab-2" class="tab-content">
-		<%= render 'list_companies' %>
- 	</div>
- 	<div id="tab-3" class="tab-content">
-		<%= render 'list_programs' %>
- 	</div>
-</div>
+    <% if @entity == "Todos" %>
+        <div class = 'container-tabs'>
+         	<ul class="tabs">
+        		<li class="tab-link" data-tab="tab-1" current><%= "Órgãos Públicos" %></li>
+        		<li class="tab-link" data-tab="tab-2"><%= "Empresas" %></li>
+                <li class="tab-link" data-tab="tab-3"><%= "Programas" %></li>
+            </ul>
+            <div id="tab-1" class="tab-content current">
+        		<%= render 'list_agencies' %>
+         	</div>
+         	<div id="tab-2" class="tab-content">
+        		<%= render 'list_companies' %>
+         	</div>
+         	<div id="tab-3" class="tab-content">
+        		<%= render 'list_programs' %>
+         	</div>
+        </div>
+    <% elsif @entity == "Órgãos Públicos" %>
+        <div>
+            <%= render 'list_agencies' %>
+        </div>
+    <% elsif @entity == "Empresas" %>
+        <div>
+            <%= render 'list_companies' %>
+        </div>
+    <% elsif @entity == "Programas" %>
+        <div>
+            <%= render 'list_programs' %>
+        </div>
+    <% end%>
 <% end %>

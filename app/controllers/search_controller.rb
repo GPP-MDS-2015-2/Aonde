@@ -2,11 +2,12 @@ class SearchController < ApplicationController
 	
 	def index 
 		search = params[:search]
+		@entity = params[:entity]
 		@msg_error = 1
 		if search.length < 4
 			flash[:error] = "A Pesquisa não pode ter menos que 4 caracteres"
 			@msg_error = 0
-			@results = {}
+			@results = []
 		else
 			@public_agencies = PublicAgency.where("name LIKE ?", "%#{search}%")
 			@total_expense_agency = {}
@@ -23,7 +24,7 @@ class SearchController < ApplicationController
 			@companies.each do |company|
 				@total_expense_company[company.id] = expenses_company(company.id)
 			end
-			@results = @companies + @public_agencies + @programs
+			@results = [1]
 		end
 	end
 
