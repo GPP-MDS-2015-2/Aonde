@@ -14,23 +14,20 @@ class SearchController < ApplicationController
 		end
 	end
 
+	def search_entity(class_entity,name_field,keyword)
+
+		entities = class_entity.where("name LIKE ?", "%#{keyword}%")
+		total_expense_entity = {}
+		entities.each do |entity|
+			total_expense_entity[entity] = expense_entities(name_field,entity.id)
+		end
+		return total_expense_entity.to_a 
+	end
 	def search_entities
-	 	name_field = params[:search]
-	 	@public_agencies = PublicAgency.where("name LIKE ?", "%#{name_field}%")
-		@total_expense_agency = {}
-		@public_agencies.each do |agency|
-			@total_expense_agency[agency.id] = expense_entities(:public_agency_id,agency.id)
-		end
-		@programs = Program.where("name LIKE ?", "%#{name_field}%")
-		@total_expense_program = {}
-		@programs.each do |program|
-			@total_expense_program[program.id] = expense_entities(:program_id,program.id)
-		end
-		@companies = Company.where("name LIKE ?", "%#{name_field}%")
-		@total_expense_company = {}
-		@companies.each do |company|
-			@total_expense_company[company.id] = expense_entities(:company_id,company.id)
-		end
+	 	keyword = params[:search]
+	 	@public_agencies = search_entity(PublicAgency,:public_agency_id,keyword)
+		@programs = search_entity(Program,:program_id,keyword)
+		@companies = search_entity(Company,:company_id,keyword)
 	end 
 
 	def expense_entities(name_field,entity_id)

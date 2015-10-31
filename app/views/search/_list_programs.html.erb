@@ -13,13 +13,15 @@
 			</tr>
 		</thead>
 		<tbody>
-		<% @programs.each do |program| %>
+		<% entity = 0
+		   expense = 1
+		@programs.each do |program| %>
 		  	<tr>
 			  	<td>
-			  		<center><%= program.name %></center>
+			  		<center><%= program[entity].name %></center>
 			  	</td>
 			  	<td>	
-			  		<center><%= @total_expense_program[program.id] %></center>
+			  		<center><%= program[expense] %></center>
 			  	</td>
 		  	</tr>
 		<% end %>

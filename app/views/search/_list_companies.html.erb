@@ -12,15 +12,16 @@
 				</th>
 			</tr>
 		</thead>
-
 		<tbody>
-		<% @companies.each do |company| %>
+		<% entity = 0
+		   expense = 1
+		@companies.each do |company| %>
 		  	<tr>
 			  	<td>
-			  		<center><%= company.name %></center>
+			  		<center><%= company[entity].name %></center>
 			  	</td>
 			  	<td>	
-			  		<center><%= @total_expense_company[company.id] %></center>
+			  		<center><%= company[expense] %></center>
 			  	</td>
 		  	</tr>
 		<% end %>

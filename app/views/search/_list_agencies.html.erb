@@ -13,13 +13,15 @@
 			</tr>
 		</thead>
 		<tbody>
-		<% @public_agencies.each do |agency| %>
+		<% entity = 0
+		   expense = 1
+		@public_agencies.each do |agency| %>
 		  	<tr>
 			  	<td>
-			  		<center><%= link_to agency.name,public_agency_path(agency.id)%></center>
+			  		<center><%= link_to agency[entity].name,public_agency_path(agency[entity].id)%></center>
 			  	</td>
 			  	<td>	
-			  		<center><%= @total_expense_agency[agency.id] %></center>
+			  		<center><%= agency[expense] %></center>
 			  	</td>
 		  	</tr>
 		<% end %>
