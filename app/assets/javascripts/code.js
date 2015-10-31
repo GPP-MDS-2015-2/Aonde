@@ -58,10 +58,9 @@ var cy = cytoscape({
       { "data": { id: 'Ministério1', parent: 'Órgãos Públicos' }, position: { x: 200, y: 30 } },      
     ],
     edges: [
-      { data: { id: 'Ministério2Empresas', source: 'Ministério2', target: 'Empresas' } },
-      { data: { id: '37Ministério1', source: '37', target: 'Ministério1' } },
-      { data: { id: 'Ministério1Empresas', source: 'Ministério1', target: 'Empresas' } }
-      
+      { data: { source: 'Ministério2', target: 'Empresas' } },
+      { data: { source: '37', target: 'Ministério1' } },
+      { data: { source: 'Ministério1', target: 'Empresas' } }   
     ]
   },
   
