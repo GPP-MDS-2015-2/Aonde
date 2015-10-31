@@ -24,7 +24,24 @@ class SearchControllerTest < ActionController::TestCase
 		assert_equal(agency_expense, 400)
 	end
 
-	test "" do
+	test "Routes to method idex" do
+
+		create_entities
+		
+		get :index, id: 1, search: "valid", entity: "Todos"
+
+		assert_response :success
+
+		assert assigns(:entity)
+		assert assigns(:msg_error)
+		assert assigns(:public_agencies)
+		assert assigns(:total_expense_agency)
+		assert assigns(:companies)
+		assert assigns(:total_expense_company)
+		assert assigns(:programs)
+		assert assigns(:total_expense_program)
+		assert assigns(:results)
+		
 		
 	end
 
