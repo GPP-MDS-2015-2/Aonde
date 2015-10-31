@@ -18,7 +18,10 @@ class SearchControllerTest < ActionController::TestCase
 	end
 
 	test "Should sum value expense of agency" do
-		
+		create_entities
+		id_public_agency= 1
+		agency_expense = @controller.expenses_public_agency(id_public_agency)
+		assert_equal(agency_expense, 400)
 	end
 
 	test "" do
