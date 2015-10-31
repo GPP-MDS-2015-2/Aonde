@@ -26,7 +26,7 @@ var cy = cytoscape({
         'padding-right': '10px',
         'text-valign': 'top',
         'text-halign': 'center',
-        'background-color': 'lightblue'
+        'background-color': 'lightblue',
       }
     },
     {
@@ -50,16 +50,17 @@ var cy = cytoscape({
 //Insert new elements
   elements: {
     nodes: [
-      { data: { id: 'Ministério2', parent: 'Órgãos Públicos' }, position: { x: 200, y: 80 } },
-      { data: { id: 'Órgãos Públicos' } },
-      { data: { id: 'Ministério1', parent: 'Órgãos Públicos' }, position: { x: 200, y: 30 } },
-      { data: { id: 'Empresas' }, position: { x: 100, y: 80 } },
-      { data: { id: 'qtde Contratações' } },
-      { data: { id: '37', parent: 'qtde Contratações' }, position: { x: 350, y: 30 } }
+      { "data": { id: 'Empresas' }, position: { x: 100, y: 80 } },
+      { "data": { id: 'Ministério2', parent: 'Órgãos Públicos' }, position: { x: 200, y: 80 } },
+      { "data": { id: 'qtde Contratações' } },
+      { "data": { id: '37', parent: 'qtde Contratações' }, position: { x: 350, y: 30 } },
+      { "data": { id: 'Órgãos Públicos' } },
+      { "data": { id: 'Ministério1', parent: 'Órgãos Públicos' }, position: { x: 200, y: 30 } },      
     ],
     edges: [
       { data: { id: 'Ministério2Empresas', source: 'Ministério2', target: 'Empresas' } },
-      { data: { id: '37Ministério1', source: '37', target: 'Ministério1' } }
+      { data: { id: '37Ministério1', source: '37', target: 'Ministério1' } },
+      { data: { id: 'Ministério1Empresas', source: 'Ministério1', target: 'Empresas' } }
       
     ]
   },

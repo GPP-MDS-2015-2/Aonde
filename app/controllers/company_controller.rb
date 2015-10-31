@@ -42,21 +42,35 @@ class CompanyController < ApplicationController
     companies_expense.sort_by { |_name, expense| expense }
   end
 
+######################################### View hiring incidence ######################
+
+
   def index
     # 		expenses = Expense.where(company_id: params[:id])
     # 		@array_programs_public_agencies = find_programs_and_public_agencies(expenses)=end
   end
 
-  def find_programs_and_public_agencies(expenses)
-    array_programs_public_agencies = []
+  def find_public_agencies(expenses)
+    company_hiring_incidence  = {}
     expenses.each do |expense|
-      array_aux = []
-      program = Program.find(expense.program_id)
-      public_agency = PublicAgency.find(expenses.public_agency_id)
-      array_aux.push(program.name)
-      array_aux.push(public_agency.name)
-      array_programs_public_agencies.push(array_aux)
+      public_agency = PublicAgency.find(expenses.public_agency_id)     
+      verify_insert(company_hiring_incidence,public_agency,counting)
     end
-    return array_programs_public_agencies
   end
+
+  def find_hiring_count(public_agency)
+    
+    counting = Expense.where(public_agency_id: public_agency.id).count
+
+  end
+
+  def verify_insert(company_hiring_incidence,public_agency,counting)
+
+    if ! company_hiring_incidence[public_agency.name]
+      counting = find_hiring_count(public_agency)
+      company_hiring_incidence [public_agency.name] = counting
+    end
+
+  end
+
 end
