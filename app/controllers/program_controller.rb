@@ -52,9 +52,9 @@ class ProgramController < ApplicationController
   def create_nodes(program_id, program_related, field_entity, class_entity)
     #puts "#{program_related}"
     begin
-      name_entities = find_names(program_id, field_entity, class_entity)
-      #puts name_entities
-      name_entities.each do |agency|
+      name_value_entities = find_names(program_id, field_entity, class_entity)
+      #puts name_value_entities
+      name_value_entities.each do |agency|
         add_node(agency[0], program_related,class_entity.name)    
         add_edge(program_related,agency[1])
       end
@@ -66,22 +66,24 @@ class ProgramController < ApplicationController
   def find_names(program_id, field_entity, class_entity)
     entities = Expense.select('DISTINCT(' + field_entity + ')')
                .where(program_id: program_id)
-    name_entities = []
+    name_value_entities = []
 
     if !entities.nil? && !entities.empty?
-      add_names(program_id, entities, class_entity, field_entity, name_entities)
+      add_names_values(program_id, entities, class_entity, field_entity, name_value_entities)
     else
       fail "Entities not found! \n #{program_id} with field #{field_entity}"
     end
-    name_entities
+    name_value_entities
   end
 
-  def add_names(program_id, entities, class_entity, field_entity, name_entities)
+  def add_names_values(program_id, entities, class_entity, field_entity, name_value_entities)
     entities.each do |entity|
       entity_id = obtain_id(entity, class_entity)
-      value = obtain_value(program_id, field_entity, entity_id)
-     
-      name_entities << [class_entity.find(entity_id).name, value] unless entity_id.nil?
+      if !entity_id.nil?
+        value = obtain_value(program_id, field_entity, entity_id)
+        name = class_entity.find(entity_id).name
+        name_value_entities << [name,value]
+      end
       
     end
   end
@@ -112,6 +114,6 @@ class ProgramController < ApplicationController
     last_id = data_program[node].last['id']
     edge = 1
     value_currency = ActionController::Base.helpers.number_to_currency(value, unit: "R$", separator: ",", delimiter: ".")    
-    data_program[edge] << { 'from' => 1, 'to' => last_id ,'value' => value,'title'=> 'R$: '+ value_currency.to_s}
+    data_program[edge] << { 'from' => 1, 'to' => last_id ,'value' => value,'title'=> value_currency.to_s,'color'=> 'white'}
   end
 end
