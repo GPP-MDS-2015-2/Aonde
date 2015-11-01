@@ -39,7 +39,7 @@ class CompanyController < ApplicationController
   end
 
   def sort_by_expense(companies_expense)
-    companies_expense.sort_by { |_name, expense| expense }
+    companies_expense.sort_by { |name, expense| expense }
   end
 
   ######################################### View hiring incidence ######################
@@ -47,10 +47,27 @@ class CompanyController < ApplicationController
   def find
     expenses = Expense.where(company_id: params[:id])
     company_hiring_incidence = find_public_agencies(expenses)
+    company_hiring_incidence = get_30_first_nodes(company_hiring_incidence)
+    #puts "\n\n\n\n\n\n\n\n\n #{company_hiring_incidence} \n\n\n\n\n\n\n\n\n"
     company_name = get_name_company
     data_company = generate_company_node(company_name)
-    generate_public_agency_node(company_name, company_hiring_incidence, data_company)
+    @a = generate_public_agency_node(company_name, company_hiring_incidence, data_company)
+    @a.to_json
+    #puts "\n\n\n\n\n\n\n\n\n #{a[1]} \n\n\n\n\n\n\n\n\n"
+  end
+
+  def get_30_first_nodes(company_hiring_incidence)
+    i = 0
+    final_array = []
+    until i > 3
+      final_array.push(company_hiring_incidence[i])
+      i += 1
     end
+    a = final_array.length
+    #puts "\n\n\n\n\n\n\n\n\n #{a} \n\n\n\n\n\n\n\n\n"
+    return final_array
+  end
+
 
   def find_public_agencies(expenses)
     company_hiring_incidence = {}
@@ -58,7 +75,7 @@ class CompanyController < ApplicationController
       public_agency = PublicAgency.find(expense.public_agency_id)
       verify_insert(company_hiring_incidence, public_agency)
     end
-    company_hiring_incidence
+    company_hiring_incidence.sort_by { |name, expense| expense }
   end
 
   def find_hiring_count(public_agency)
