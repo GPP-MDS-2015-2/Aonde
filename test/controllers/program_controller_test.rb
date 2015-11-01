@@ -146,36 +146,37 @@ class ProgramControllerTest < ActionController::TestCase
     data_program = [[{"id" => 1,"label" => "Programa1"}] ,[]]
     company_add = "company"
     
-    @controller.add_node(company_add,data_program)
+    @controller.add_node(company_add,data_program,Company.name)
     
-    data_expected = [[{"id" => 1,"label" => "Programa1"},{"id" => 2,"label" => "company"}] ,[]]
+    data_expected = [[{"id" => 1,"label" => "Programa1"},{"id" => 2,"label" => "company","group"=>Company.name}] ,[]]
 
     assert_equal(data_expected,data_program)
   end
 
   test "add edge to array" do
     data_program = [ [{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>"Company1"}] ,[]]
-    @controller.add_edge(data_program)
+    value = 500
+    @controller.add_edge(data_program,value)
 
-    data_expected = [ [{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>"Company1"}] ,[{"from"=>1,"to" => 2}]]
+    data_expected = [ [{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>"Company1"}] ,[{"from"=>1,"to" => 2,"value"=>500,"title"=>"R$ 500,00"}]]
        
     assert_equal(data_expected,data_program)
   end
 
-  test "add names" do
+  test "add names and values" do
     generate_program_seed
     name_entities = []
-    data_expected = ["PublicAgency1"]
+    data_expected = [["PublicAgency1",12]]
     entities = [Expense.new(public_agency_id: 1)]
-    data = @controller.add_names(entities,PublicAgency,name_entities)
-    assert(data_expected,data)
+    @controller.add_names_values(1,entities,PublicAgency,'public_agency_id',name_entities)
+    assert_equal(data_expected,name_entities)
   end
   test"return valid public_agency_id" do
     entity = Expense.new(public_agency_id: 3)
     id = @controller.obtain_id(entity,PublicAgency)
     id_expected = 3
 
-    assert(id_expected,id)
+    assert_equal(id_expected,id)
   end
 
   test"return valid company_id" do
@@ -183,7 +184,7 @@ class ProgramControllerTest < ActionController::TestCase
     id = @controller.obtain_id(entity,Company)
     id_expected = 2
     
-    assert(id_expected,id)
+    assert_equal(id_expected,id)
   end
   
   test"return invalid" do
@@ -201,8 +202,14 @@ class ProgramControllerTest < ActionController::TestCase
 
     assert assigns(:data_program)
   end
-  test "route" do
-    assert_routing 'public_agency/1/company', { :controller => "company", :action => "show", :id => "1" }
+  test "route to program" do
+    assert_routing 'program/1', { :controller => "program", :action => "show_program", :id => "1" }
+  end
+  test "obtain_value" do
+    generate_program_seed
+    value_expected = 12
+    value = @controller.obtain_value(1,"public_agency_id",1)
+    assert_equal(value_expected,value)
   end
 
   private
