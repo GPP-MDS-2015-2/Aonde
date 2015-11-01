@@ -43,10 +43,10 @@ class ProgramController < ApplicationController
     program_id = params[:id]
     program_id = program_id.to_i
     program = Program.find(program_id)
-    program_related = [[{'id'=>program_id,'label'=>program.name}],[]]
+    program_related = [[{'id'=>1,'label'=>program.name,'group'=>Program.name}],[]]
     create_nodes(program_id, program_related, "public_agency_id",PublicAgency)
-    create_nodes(program_id, program_related, "public_agency_id",PublicAgency)
-    @data_program = program_related
+    create_nodes(program_id, program_related, "company_id",Company)
+    @data_program = program_related.to_json
   end
 
   def create_nodes(program_id, program_related, field_entity, class_entity)
@@ -55,7 +55,7 @@ class ProgramController < ApplicationController
       name_entities = find_names(program_id, field_entity, class_entity)
       name_entities.each do |agency|
 
-        add_node(agency, program_related)    
+        add_node(agency, program_related,class_entity.name)    
         add_edge(program_related)
       end
     rescue Exception => e
@@ -92,11 +92,11 @@ class ProgramController < ApplicationController
       id
     end
   end
-
-  def add_node(name, data_program)
+#Coloquei mais parametros esses dois ultimos
+  def add_node(name, data_program,name_entity)
     node = 0
     next_id = data_program[node].last['id'] + 1
-    data_program[node] << { 'id' => next_id, 'label' => name }
+    data_program[node] << { 'id' => next_id, 'label' => name ,'group'=> name_entity}
   end
 
   def add_edge(data_program)
