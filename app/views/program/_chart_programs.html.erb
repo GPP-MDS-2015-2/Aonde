@@ -1,7 +1,3 @@
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/funnel.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-
 <script>
 Array.prototype.clone = function() {
     return this.slice(0);
@@ -34,18 +30,18 @@ $(function () {
             if ( contentRemove === element[0] ){
                 if( removed.indexOf(element) == -1 ){
                     removed.push(element);
-                    inChart_1.remove(inChart_1.indexOf(element),1);
+                    inChart.remove(inChart.indexOf(element),1);
                     node.addClass("notInChart_1");
                     node.removeClass("inChart_1");
                 }else{
                     node.addClass("inChart_1");
                     node.removeClass("notInChart_1");
-                    inChart_1.push(element);
+                    inChart.push(element);
                     removed.remove(removed.indexOf(element),1);
                 }                
             }
         });
-        drawChart(inChart_1);
+        drawChart(inChart);
     });
     function drawChart(datas){
         console.log(datas);

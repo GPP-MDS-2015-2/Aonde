@@ -5,83 +5,79 @@ class ProgramControllerTest < ActionController::TestCase
     Program.create(name: "ProgramaValido", description: "Programa valido")
   end
 
-test "verify find_expenses" do
+  test "Not empty list to find_expenses" do
+    generate_program_seed
+    not_empty_list = @controller.find_expenses(1)
+    assert_not_empty(not_empty_list)
+  end
+  test "Size of list find_expenses" do
      generate_program_seed
-     not_empty_list = @controller.find_expenses(1)
-     assert_not not_empty_list.empty?
-
+     expenses_program = @controller.find_expenses(1)
      #the public_agency_id = 1 has 2 programs with expenses
+     
      size_expected = 2
-
-     assert_equal(size_expected, not_empty_list.size)
-
+     size_list = expenses_program.size
+     assert_equal(size_expected, size_list)
+  end
+  test "Not exist id of Public Agency" do
      PublicAgency.create(id: 2, name:"PublicAgency2",views_amount: 1)
      empty_list = @controller.find_expenses(2)
-     assert empty_list.empty?
-    end
+     assert_empty(empty_list)
+  end
 
   test "Verify method find_program" do
-
-       expenses = generate_program_seed
-       expense = @controller.find_program(expenses)
-       expense_expected = {"Programa1"=> 12, "Programa2"=>14}
-       assert_equal(expense_expected,expense)
-
-       a = []
-       expense_empty = @controller.find_program(a)
-       assert expense_empty.empty?
+    expenses = generate_program_seed
+    expense = @controller.find_program(expenses)
+    expense_expected = {"Programa1"=> 12, "Programa2"=>14}
+    assert_equal(expense_expected,expense)
   end
-
+  test "empty return to find_program" do
+    a = []
+    expense_empty = @controller.find_program(a)
+    assert_empty(expense_empty)
+  end
+  
   test "Verify the sum of method add_expense_program" do
-    create_programs_expense
-
-    program = Program.new(id: 1,name: "program test",description: "Program to make a test")
-    program2 = Program.new(id: 2, name: "program not test",description: "Program to make a test")
-    expense = Expense.new(document_number: "0000", payment_date: Date.new(2015,01,01),value: 100,program_id: 1)
-    expense2 = Expense.new(document_number: "0000", payment_date: Date.new(2015,01,01),value: 100,program_id: 2)
+    list_pair = pair_program_expense
 
     program_expense = {}
+    program = 0
+    expense = 1
 
-    @controller.add_expense_program(program, expense, program_expense)
-    @controller.add_expense_program(program2, expense2, program_expense)
-    expect_hash = {"program test" => 100,"program not test" => 100}
+    @controller.add_expense_program(list_pair[program], 
+                                    list_pair[expense], program_expense)
+    expect_hash = {"program test" => 100}
 
     assert_equal( expect_hash, program_expense)
-
-    sum_program_expense = {"program test" => 100}
-    @controller.add_expense_program(program,expense,sum_program_expense)
-    expect_hash_sum = {"program test" => 200}
-
-    assert_equal(expect_hash_sum,sum_program_expense)
-
-    not_sum_program_expense = {"program test" => 100}
-
-    program_not = Program.new(name: "program test not",description: "Program to make a test")
-
-    @controller.add_expense_program(program_not,expense,not_sum_program_expense)
-
-    not_expect_hash_sum = {"program test" => 200}
-
-    assert_not_equal(not_expect_hash_sum,not_sum_program_expense)
-
   end
 
-  test "Verify the result of sum_expense_program" do
-    program = Program.new(name: "program test",description: "Program to make a test")
-    program2 = Program.new(name: "program not test",description: "Program to make a test")
-    expense = Expense.new(document_number: "0000", payment_date: Date.new(2015,01,01),value: 100)
+  test "Add more one program expense to hash" do
+    list_pair = pair_program_expense
+    sum_program_expense = {"program test" => 100}
+    program = 0
+    expense = 1
+    @controller.add_expense_program(list_pair[program], 
+                                    list_pair[expense], sum_program_expense)
+    expect_hash_sum = {"program test" => 100}
+
+    assert_not_equal(expect_hash_sum,sum_program_expense)
+  end
+
+  test "Verify the empty result of sum_expense_program" do
+   
     program_expense = {}
+    expense = Expense.new(value: 100)
     @controller.sum_expense_program([],expense,program_expense)
 
-    assert program_expense.empty?
-    
-    @controller.sum_expense_program([program,program2],expense,program_expense)
+    assert_empty(program_expense)
+  end    
+  test "Verify the not empty result of sum_expense_program" do
 
-    assert program_expense.empty?
-
-    @controller.sum_expense_program([program],expense,program_expense)
-
-    assert_not program_expense.empty?
+    list_program = [Program.new(name: "Program")]
+    expense = Expense.new(value: 100)
+    program_expense = {}
+    @controller.sum_expense_program(list_program, expense, program_expense)
+    assert_not_empty(program_expense)
   end
 
   test "Verify method show" do
@@ -157,7 +153,7 @@ test "verify find_expenses" do
     assert_equal(data_expected,data_program)
   end
 
-  test "Add edge to array" do
+  test "add edge to array" do
     data_program = [ [{"id" => 1,"label" => "Programa1"},{"id"=>2,"label"=>"Company1"}] ,[]]
     @controller.add_edge(data_program)
 
@@ -165,8 +161,15 @@ test "verify find_expenses" do
        
     assert_equal(data_expected,data_program)
   end
-  
 
+  test "add names" do
+    generate_program_seed
+    name_entities = []
+    data_expected = ["PublicAgency1"]
+    entities = [Expense.new(public_agency_id: 1)]
+    data = @controller.add_names(entities,PublicAgency,name_entities)
+    assert(data_expected,data)
+  end
   test"return valid public_agency_id" do
     entity = Expense.new(public_agency_id: 3)
     id = @controller.obtain_id(entity,PublicAgency)
@@ -190,7 +193,7 @@ test "verify find_expenses" do
     assert_nil(id)
   end
   
-  test "Management of nodes" do
+  test "management of nodes" do
     generate_program_seed
     get :show_program, id: 1
    
@@ -198,10 +201,16 @@ test "verify find_expenses" do
 
     assert assigns(:data_program)
   end
-  
-  assert_routing 'public_agency/1/company', { :controller => "company", :action => "show", :id => "1" }
-  
+  test "route" do
+    assert_routing 'public_agency/1/company', { :controller => "company", :action => "show", :id => "1" }
+  end
+
   private
+    def pair_program_expense
+      program = Program.new(id: 1,name: "program test",description: "Program to make a test")
+      expense = Expense.new(document_number: "0000", payment_date: Date.new(2015,01,01),value: 100,program_id: 1)
+      return [program,expense]
+    end
     def generate_program_seed
      SuperiorPublicAgency.create(id:1,name: "SuperiorPublicAgency")
      PublicAgency.create(id: 1, name: "PublicAgency1",views_amount: 10,superior_public_agency_id: 1)
