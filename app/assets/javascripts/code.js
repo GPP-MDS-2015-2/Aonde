@@ -1,4 +1,15 @@
-$(function(){ // on dom ready
+  $(document).ready(function(){
+      var totalExpense = JSON.parse('<%= raw @a %>')
+      var nodes_a = totalExpense[0];
+      var edges_a = totalExpense[1];
+      console.log(totalExpense);
+      console.log(nodes_a);
+      console.log(edges_a);
+      //generate_nodes_edges(nodes, edges);
+    });
+
+function generate_nodes_edges(nodes_a, edges_a){ // on dom ready
+
 
 var cy = cytoscape({
   container: document.getElementById('cy'),
@@ -49,19 +60,9 @@ var cy = cytoscape({
   ],
 //Insert new elements
   elements: {
-    nodes: [
-      { "data": { id: 'Empresas' }, position: { x: 100, y: 80 } },
-      { "data": { id: 'Ministério2', parent: 'Órgãos Públicos' }, position: { x: 200, y: 80 } },
-      { "data": { id: 'qtde Contratações' } },
-      { "data": { id: '37', parent: 'qtde Contratações' }, position: { x: 350, y: 30 } },
-      { "data": { id: 'Órgãos Públicos' } },
-      { "data": { id: 'Ministério1', parent: 'Órgãos Públicos' }, position: { x: 200, y: 30 } },      
-    ],
-    edges: [
-      { data: { source: 'Ministério2', target: 'Empresas' } },
-      { data: { source: '37', target: 'Ministério1' } },
-      { data: { source: 'Ministério1', target: 'Empresas' } }   
-    ]
+    nodes: nodes_a
+    ,
+    edges: edges_a
   },
   
   layout: {
