@@ -3,6 +3,13 @@ require 'test_helper'
 class BudgetControllerTest < ActionController::TestCase
 =begin
   FIx that tests
+  test "Test of method subtract_expenses_on_budget" do
+    create_public_agency
+    id_public_agency = 2
+    array_expect = [5252423, 5251923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923]
+    array_return = @controller.subtract_expenses_on_budget(id_public_agency, 2015)
+    assert_equal(array_expect, array_return)
+  end
   test "Routes to method filter_chart_budget" do
     create_public_agency
     get :filter_chart_budget, id: 2, year: "2015"
@@ -10,13 +17,6 @@ class BudgetControllerTest < ActionController::TestCase
     assert assigns(:list_expense_month)
     assert assigns(:expense_find)
     assert assigns(:list_budget_month)
-  end
-  test "Test of method subtract_expenses_on_budget" do
-    create_public_agency
-    id_public_agency = 2
-    array_expect = [5252423, 5251923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923]
-    array_return = @controller.subtract_expenses_on_budget(id_public_agency, 2015)
-    assert_equal(array_expect, array_return)
   end
   test "Route to method show and the result of the request" do
     create_public_agency        
@@ -29,13 +29,13 @@ class BudgetControllerTest < ActionController::TestCase
     assert assigns(:expense_find)
     assert assigns(:list_budget_month)
   end
+=end
   test "Should return a valid period" do
     data = Date.new(2015,06,01)
     boolean = @controller.is_date_in_interval("Janeiro",2015,"Dezembro",2015,data)
     expect_return = true
     assert_equal(expect_return,boolean) 
   end
-
   test "Should return an invalid period" do
     data = Date.new(2014,06,01)
     boolean = @controller.is_date_in_interval("Janeiro",2015,"Dezembro",2015,data)
@@ -377,5 +377,5 @@ class BudgetControllerTest < ActionController::TestCase
       budget_hash = {"ano" => {"value" => "2011"},"somaProjetoLei" => {"value"=> "123456"}}
       return budget_hash
     end
-=end
+
 end

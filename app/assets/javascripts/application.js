@@ -14,6 +14,8 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
-
+//= require highcharts/highcharts
+//= require_tree ../../../vendor/assets/javascripts
+//= require visjs/vis
 //= require turbolinks
 //= require_tree .

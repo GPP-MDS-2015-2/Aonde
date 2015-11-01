@@ -38,7 +38,7 @@ class ProgramController < ApplicationController
     end
   end
 
-  # ##########################################################3
+  ###########################################################
   def show_program
     program_id = params[:id]
     program_id = program_id.to_i
@@ -76,7 +76,6 @@ class ProgramController < ApplicationController
     name_entities
   end
 
-##Need test##
   def add_names(entities, class_entity, name_entities)
     entities.each do |entity|
       entity_id = obtain_id(entity, class_entity)
