@@ -3,6 +3,8 @@
 <% end %>
 
 <div id="mynetwork"></div>
+<input type="button" onclick="clusterByGroup()" value="Agrupar entidades" style="width:200px;"> <br/>
+<!--<input type="button" onclick="unclusterByGroup()" value="Desagrupar" style="width:200px;"> <br/>-->
 
 <script type="text/javascript">
     var color = 'gray';
@@ -20,6 +22,7 @@
         edges: edges
     };
    var options = {
+          layout:{randomSeed:8},
         nodes:{
                 shape: 'icon',
                 icon: {
@@ -32,8 +35,7 @@
       "edges": {
         "smooth": {
           "type": "curvedCW",
-          "forceDirection": "none",
-          "color": "orange"
+          "forceDirection": "none"
           }
       },
         groups: {
@@ -72,8 +74,53 @@
     "maxVelocity": 27,
     "minVelocity": 0.75,
     "solver": "repulsion"
+  },
+};
+
+var network = new vis.Network(container, data, options);
+  network.on("selectNode", function(params) {
+      console.log(params);
+      if (params.nodes.length == 1) {
+          if (network.isCluster(params.nodes[0]) == true) {
+              network.openCluster(params.nodes[0]);
+          }
+      }
+  })
+  function unclusterByGroup(params){
+    network.openCluster(params.nodes[0]);      
   }
 
-    };
-    network = new vis.Network(container, data, options);
+  function clusterByGroup() {
+      network.setData(data);
+      var groups = ['PublicAgency','Company'];
+      var clusterOptionsByData;
+      for (var i = 0; i < groups.length; i++) {
+          var translate_group = translate_groups(group);
+          var group = groups[i];
+          clusterOptionsByData = {
+              joinCondition: function (childOptions) {
+                  return childOptions.group == group; // the group is fully defined in the node.
+              },
+              processProperties: function (clusterOptions, childNodes, childEdges) {
+                  var totalMass = 0;
+                  for (var i = 0; i < childNodes.length; i++) {
+                      totalMass += childNodes[i].mass;
+                  }
+                  clusterOptions.mass = totalMass;
+                  return clusterOptions;
+              },
+              clusterNodeProperties: {id: 'cluster:' + group, borderWidth: 3, shape: 'icon', group:group, label: translate_group}
+          }
+          network.cluster(clusterOptionsByData);
+      }
+  }
+  function translate_groups (name_groups) {
+    if (name_groups === 'PublicAgency'){
+      name_groups = 'Órgãos Publicos';
+    }
+    else{
+      name_groups = 'Empresas';  
+    }
+    return name_groups;
+  };
 </script>
