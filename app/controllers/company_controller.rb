@@ -17,10 +17,8 @@ class CompanyController < ApplicationController
 		companies_expense = {}
 
 		expenses_public_agency.each do |expense|
-
 			company = Company.where(id: expense.company_id)
 			test_add_expense(company,expense,companies_expense)
-
 		end
 	
 		return sort_by_expense(companies_expense)

@@ -13,6 +13,7 @@ inChart = dataController.clone();
 
 $(function () {
     function sortData(dataUnorder){
+        console.log(dataUnorder)
         dataOrder = []
         for (var typeExpenses in dataController){
           dataOrder.push([typeExpenses, dataController[typeExpenses].value,dataController[typeExpenses].name])

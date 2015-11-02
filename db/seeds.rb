@@ -12,6 +12,7 @@
 	nome_company = ["CIA","Comercial","Depósito","Mercado"]
 	complemento_company = ["das bebidas","Marabás","Bersan","do fluxo"]
 	views_amount = (0..9).to_a
+	funcao_gasto = ["Educação","Saúde","trabalho","Lazer","Moradia"]
 	
 	SuperiorPublicAgency.create(name:"Republica Federativa")
 	@superior_public_agency = SuperiorPublicAgency.first
@@ -19,7 +20,8 @@
 	10.times do
 		print("add the agency #{i}\n")
 		name = nomes.sample(1).join+" "+complementos.sample(1).join
-		PublicAgency.create(name: name, views_amount: views_amount.sample(3).join.to_i,superior_public_agency_id: @superior_public_agency.id)
+		PublicAgency.create(name: name, views_amount: views_amount.sample(3).join.to_i,
+							superior_public_agency_id: @superior_public_agency.id)
 		i+=1
 	end
 	day_month=(1..12).to_a
@@ -31,9 +33,11 @@
 			print("Add expense #{i} from public agency #{agency.id}\n")
 			date = Date.new(2015,day_month[rand(9)],day_month[rand(9)])
 			name_company = nome_company.sample(1).join+" "+complemento_company.sample(1).join
-			company = Company.create(name: name_company)
+			company = Company.create(name: name_company)			
 			3.times do
-				Expense.create(document_number: i,payment_date: date,public_agency_id: agency.id,value: day_month[(rand(9))],company_id: company.id)
+				function = Function.create(description: funcao_gasto.sample(1).join)
+				Expense.create(document_number: i,payment_date: date,public_agency_id: agency.id,
+					    value: day_month[(rand(9))],company_id: company.id,function_id: function.id)
 				i+=1
 			end
 		end
