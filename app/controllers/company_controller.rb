@@ -39,7 +39,7 @@ class CompanyController < ApplicationController
   end
 
   def sort_by_expense(companies_expense)
-    companies_expense.sort_by { |name, expense| expense }
+    companies_expense.sort_by { |_name, expense| expense }
   end
 
   ######################################### View hiring incidence ######################
@@ -47,37 +47,34 @@ class CompanyController < ApplicationController
   def find
     expenses = Expense.where(company_id: params[:id])
     company_hiring_incidence = find_public_agencies(expenses)
-    company_hiring_incidence = get_30_first_nodes(company_hiring_incidence)
-    #puts "\n\n\n\n\n\n\n\n\n #{company_hiring_incidence} \n\n\n\n\n\n\n\n\n"
-    company_name = get_name_company
+    company_hiring_incidence = limit_get_nodes(company_hiring_incidence)
+    company_name = Company.find(params[:id]).name
     data_company = generate_company_node(company_name)
     @a = generate_public_agency_node(company_name, company_hiring_incidence, data_company)
     @a.to_json
-    #puts "\n\n\n\n\n\n\n\n\n #{a[1]} \n\n\n\n\n\n\n\n\n"
   end
 
-  def get_30_first_nodes(company_hiring_incidence)
+#?
+  def limit_get_nodes(company_hiring_incidence)
     i = 0
     final_array = []
-    until i > 3
+    until i > 14
       final_array.push(company_hiring_incidence[i])
       i += 1
     end
-    a = final_array.length
-    #puts "\n\n\n\n\n\n\n\n\n #{a} \n\n\n\n\n\n\n\n\n"
-    return final_array
+    final_array
   end
-
-
+#?
   def find_public_agencies(expenses)
     company_hiring_incidence = {}
     expenses.each do |expense|
       public_agency = PublicAgency.find(expense.public_agency_id)
       verify_insert(company_hiring_incidence, public_agency)
     end
-    company_hiring_incidence.sort_by { |name, expense| expense }
+    company_hiring_incidence.sort_by { |_name, expense| expense }
   end
 
+#
   def find_hiring_count(public_agency)
     counting = Expense.where(public_agency_id: public_agency.id).count
   end
@@ -89,38 +86,44 @@ class CompanyController < ApplicationController
     end
   end
 
-  def get_name_company
-    company_name = Company.find(params[:id]).name
-  end
-
+#
   def generate_company_node(company_name)
     data_company = [
-      { 'data' => { 'id' => company_name }, 'position' => { 'x' => 100, 'y' => 80 } },
-      { 'data' => { 'id' => 'Órgãos Públicos' } }, { 'data' => { 'id' => 'qtde Contratações' } }
+      { 'data' => { 'id' => company_name }, 'position' => 
+      { 'x' => 100,'y' => 80 } },
+      { 'data' => { 'id' => 'Órgãos Públicos' } },
+      { 'data' => { 'id' => 'qtde Contratações' } }
     ]
   end
-
+#
   def generate_public_agency_node(company_name, company_hiring_incidence, data_company)
     count = 1
     array_general = []
     edges = []
     company_hiring_incidence.each do |public_agency_name, hiring|
       public_agency_name = public_agency_name.to_s
-      hash_public_agency = { 'data' => { 'id' => public_agency_name, 'parent' => 'Órgãos Públicos' }, 'position' => { 'x' => 200, 'y' => count * 50 } },
-                           hash_hiring = { 'data' => { 'id' => hiring, 'parent' => 'qtde Contratações' }, 'position' => { 'x' => 350, 'y' => count * 50 } }
+      hash_public_agency = { 'data' => { 'id' => public_agency_name,
+      'parent' => 'Órgãos Públicos' },
+      'position' => { 'x' => 200, 'y' => count * 50 } },
+      hash_hiring = { 'data' => { 'id' => hiring,
+      'parent' => 'qtde Contratações' },
+      'position' => { 'x' => 350, 'y' => count * 50 } }
 
       data_company << hash_public_agency
       data_company << hash_hiring
+
       count += 1
 
-      hash_edge_to_company = { 'data' => { 'source' => public_agency_name, 'target' => company_name } }
-      hash_edge_to_public_agency = { 'data' => { 'source' => hiring, 'target' => public_agency_name } }
+      hash_edge_to_company = { 'data' => { 'source' => public_agency_name,
+      'target' => company_name } }
+      hash_edge_to_public_agency = { 'data' => { 'source' => hiring,
+      'target' => public_agency_name } }
 
       edges << hash_edge_to_company
       edges << hash_edge_to_public_agency
     end
-
     array_general << data_company
+
     array_general << edges
   end
 end
