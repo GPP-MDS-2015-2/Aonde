@@ -71,6 +71,86 @@ class CompanyControllerTest < ActionController::TestCase
     assert_equal(company_empty, company_expected2)
   end
 
+##### NEW TESTS #####
+=begin
+#How can i test this?
+  test 'should return an array with a few nodes' do
+    hash = ['nome1' => 1, 'nome2' => 2, 'nome3' => 3,
+            'nome4' => 4, 'nome5' => 5, 'nome6' => 6, 
+            'nome7' => 7, 'nome8' => 8, 'nome9' => 9, 
+            'nome10' => 10, 'nome11' => 11, 'nom12' => 12, 
+            'nome13' => 13, 'nome14' => 14, 'nome15' => 15, 
+            'nome16' => 16, 'nome17' => 17, 'nome18' => 18,
+           ]
+    few_hash = ['nome1' => 1, 'nome2' => 2, 'nome3' => 3,
+                'nome4' => 4, 'nome5' => 5, 'nome6' => 6, 
+                'nome7' => 7, 'nome8' => 8, 'nome9' => 9,
+                'nome10' => 10, 'nome11' => 11, 'nom12' => 12,
+                'nome13' => 13, 'nome14' => 14, 'nome15' => 15,
+               ]
+    test_hash = @controller.limit_get_nodes(hash)
+
+    puts "\n\n #{test_hash} \n\n"
+
+    assert_equal(few_hash,test_hash)
+  end
+#How can i test this?
+  test 'should return an array with ordened public_agencies' do
+    few_hash = {'nome2' => 2, 'nome3' => 3, 'nome1' => 1,
+                'nome4' => 4, 'nome5' => 5, 'nome11' => 11, 
+                'nome7' => 7, 'nome8' => 8, 'nome15' => 15,
+                'nome10' => 10, 'nome6' => 6, 'nom12' => 12,
+                'nome13' => 13, 'nome14' => 14, 'nome9' => 9,
+               }
+    puts "\n\n #{few_hash}\n\n"
+    few_hash.sort_by { |_name, expense| expense }
+    puts "\n\n #{few_hash}\n\n"
+
+    x = @controller.limit_get_nodes(expenses)
+  end
+=end
+
+  test 'should return a node' do
+    node = [
+      { 'data' => { 'id' => 'empresa' }, 'position' => { 'x' => 100, 'y' => 80 } },
+      { 'data' => { 'id' => 'Órgãos Públicos' } }, { 'data' => { 'id' => 'qtde Contratações' } }
+    ]
+
+    node_test = @controller.generate_company_node('empresa')
+
+    assert_equal(node, node_test)
+  end
+
+  test 'should return a especific expense'  do
+    public_agency = PublicAgency.new(id: 1)
+    expense = Expense.where(public_agency_id: public_agency.id).count
+    
+    test_expense = @controller.find_hiring_count(public_agency)
+
+    assert_equal(expense, test_expense)
+  end
+
+  test 'should return a public_agency node' do
+    few_hash = {'nome2' => 2, 'nome3' => 3, 'nome1' => 1,
+                'nome4' => 4, 'nome5' => 5, 'nome11' => 11, 
+                'nome7' => 7, 'nome8' => 8, 'nome15' => 15,
+                'nome10' => 10, 'nome6' => 6, 'nom12' => 12,
+                'nome13' => 13, 'nome14' => 14, 'nome9' => 9,
+               }
+
+    company_node = [
+      { 'data' => { 'id' => 'empresa' }, 'position' => 
+      { 'x' => 100,'y' => 80 } },
+      { 'data' => { 'id' => 'Órgãos Públicos' } },
+      { 'data' => { 'id' => 'qtde Contratações' } }
+    ]
+
+    node = generate_generic_node('empresa', few_hash, company_node)
+    test_node = @controller.generate_public_agency_node('empresa', few_hash, company_node)
+
+    assert_equal(node, test_node)
+  end
+
   def generate_companies
     companies = []
     nome_company = %w(company1 company2 company3)
@@ -86,20 +166,52 @@ class CompanyControllerTest < ActionController::TestCase
 
   def generate_expense
     nome_company = %w(CIA Comercial)
-    b = []
+    array = []
 
     i = 1
     2.times do
       date = Date.new(2015, i, i)
       company = Company.create(name: nome_company[i - 1])
       2.times do
-        a = Expense.create(document_number: i, payment_date: date, value: i + 5, company_id: company.id)
-        b[i - 1] = a
+        expenses = Expense.create(document_number: i, payment_date: date, value: i + 5, company_id: company.id)
+        array[i - 1] = expenses
         i += 1
       end
       i -= 1
     end
 
-    return b
+    return array
   end
+#Need reafctor
+  def generate_generic_node(company_name, hash, company_node)
+    count = 1
+    array_general = []
+    edges = []
+    hash.each do |name, number|
+      name = name.to_s
+      hash_public_agency = { 'data' => { 'id' => name,
+                                         'parent' => 'Órgãos Públicos' },
+                             'position' => { 'x' => 200, 'y' => count * 50 } },
+                           hash_hiring = { 'data' => { 'id' => number,
+                                                       'parent' => 'qtde Contratações' },
+                                           'position' => { 'x' => 350, 'y' => count * 50 } }
+  
+      company_node << hash_public_agency
+      company_node << hash_hiring
+  
+      count += 1
+  
+      hash_edge_to_company = { 'data' => { 'source' => name,
+                                           'target' => company_name } }
+      hash_edge_to_public_agency = { 'data' => { 'source' => number,
+                                                 'target' => name } }
+  
+      edges << hash_edge_to_company
+      edges << hash_edge_to_public_agency
+    end
+    array_general << company_node
+
+    array_general << edges
+  # puts "\n\n\n #{array_general} \n\n\n"
+end
 end
