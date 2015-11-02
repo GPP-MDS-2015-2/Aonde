@@ -42,78 +42,98 @@ class ProgramController < ApplicationController
   def show_program
     program_id = params[:id]
     program_id = program_id.to_i
-    program = Program.find(program_id)
-    program_related = [[{'id'=>1,'label'=>program.name,'group'=>Program.name}],[]]
-    create_nodes(program_id, program_related, "public_agency_id",PublicAgency)
-    create_nodes(program_id, program_related, "company_id",Company)
+    @program = Program.find(program_id)
+    program_related = [[{ 'id' => 1, 'label' => @program.name,
+                          'group' => Program.name }], []]
+    create_nodes(program_id, program_related, PublicAgency)
+    create_nodes(program_id, program_related, Company)
     @data_program = program_related.to_json
   end
 
-  def create_nodes(program_id, program_related, field_entity, class_entity)
-    #puts "#{program_related}"
-    begin
-      name_value_entities = find_names(program_id, field_entity, class_entity)
-      #puts name_value_entities
-      name_value_entities.each do |agency|
-        add_node(agency[0], program_related,class_entity.name)    
-        add_edge(program_related,agency[1])
-      end
-    rescue Exception => e
-      puts "\n#{e}"
-    end
-  end
-
-  def find_names(program_id, field_entity, class_entity)
-    entities = Expense.select('DISTINCT(' + field_entity + ')')
+  def create_nodes(program_id, program_related, class_entity)
+    # puts "#{program_related}"
+    field_entity = define_field(class_entity)
+    expenses = Expense.select('DISTINCT ' + field_entity + ', program_id')
                .where(program_id: program_id)
-    name_value_entities = []
-
-    if !entities.nil? && !entities.empty?
-      add_names_values(program_id, entities, class_entity, field_entity, name_value_entities)
-    else
-      fail "Entities not found! \n #{program_id} with field #{field_entity}"
-    end
-    name_value_entities
-  end
-
-  def add_names_values(program_id, entities, class_entity, field_entity, name_value_entities)
-    entities.each do |entity|
-      entity_id = obtain_id(entity, class_entity)
-      if !entity_id.nil?
-        value = obtain_value(program_id, field_entity, entity_id)
-        name = class_entity.find(entity_id).name
-        name_value_entities << [name,value]
+    expenses.each do |expense|
+      entity_id = obtain_id(expense, class_entity)
+      unless entity_id.nil?
+        create_node(program_id, class_entity, entity_id, program_related)
       end
-      
     end
-  end
-  def obtain_value(program_id, field_entity, entity_id)
-    value = Expense.where(program_id: program_id, field_entity => entity_id).sum(:value)
-    return value
   end
 
-  def obtain_id(entity, class_entity)
-    id = nil
-    if class_entity == PublicAgency
-      id = entity.public_agency_id
-    elsif class_entity == Company
-      id = entity.company_id
-    else
-      id
-    end
+  def create_node(program_id, class_entity, entity_id, program_related)
+    name_value = obtain_name_value(program_id, class_entity, entity_id)
+
+    add_node(name_value[:name], program_related, class_entity.name)
+    add_edge(program_related, name_value[:value],class_entity)
+
+  rescue Exception => e
+    puts "\n\n\n#{e}\n\n"
   end
-#Coloquei mais parametros esses dois ultimos
-  def add_node(name, data_program,name_entity)
+
+  def obtain_name_value(program_id, class_entity, entity_id)
+    field_entity = define_field(class_entity)
+    name_value = {}
+    begin
+      value = Expense.where(program_id: program_id,
+                            field_entity => entity_id).sum(:value)
+      name = class_entity.find(entity_id).name
+      name_value = { name: name, value: value }
+    rescue Exception => error
+      raise "Fail to try obtain expense or name\n#{error}"
+    end
+    # puts name_value
+    name_value
+  end
+
+  def add_node(name, data_program, name_entity)
     node = 0
     next_id = data_program[node].last['id'] + 1
-    data_program[node] << { 'id' => next_id, 'label' => name ,'group'=> name_entity}
+    data_program[node] << { 'id' => next_id, 'label' => name,
+                            'group' => name_entity }
   end
 
-  def add_edge(data_program,value)
+  def add_edge(data_program, value,class_entity)
     node = 0
     last_id = data_program[node].last['id']
     edge = 1
-    value_currency = ActionController::Base.helpers.number_to_currency(value, unit: "R$", separator: ",", delimiter: ".")    
-    data_program[edge] << { 'from' => 1, 'to' => last_id ,'value' => value,'title'=> value_currency.to_s,'color'=> 'white'}
+    currency = ActionController::Base
+               .helpers.number_to_currency(
+                 value, unit: 'R$', separator: ',', delimiter: '.')
+    color = color_edge(class_entity)
+    data_program[edge] << { 'from' => 1, 'to' => last_id, 'value' => value,
+                            'title' => currency.to_s, 'color' => color}
+  end
+
+  def define_field(class_entity)
+    field_entity = nil
+    if class_entity.name == PublicAgency.name
+      field_entity = 'public_agency_id'
+    elsif class_entity.name == Company.name
+      field_entity = 'company_id'
+    else
+      field_entity
+    end
+  end
+  def color_edge(class_entity)
+    color = nil
+    if class_entity.name == PublicAgency.name
+      color = '#43BFC5'
+    elsif class_entity.name == Company.name
+      color = '#FFBC82'
+    else
+      color
+    end
+  end
+  def obtain_id(expense, class_entity)
+    id = nil
+    if class_entity.name == PublicAgency.name
+      id = expense.public_agency_id
+    elsif class_entity.name == Company.name
+      id = expense.company_id
+      # nothing
+    end
   end
 end
