@@ -4,8 +4,8 @@ class SearchController < ApplicationController
 		search = params[:search]
 		@entity = params[:entity]
 		@msg_error = 1
-		if search.length >= 4
-			search_entities
+		if search.tr(' ','').length >= 4
+			find_entities
 			@results = [1]			
 		else
 			flash[:error] = "A Pesquisa não pode ter menos que 4 caracteres"
@@ -14,7 +14,7 @@ class SearchController < ApplicationController
 		end
 	end
 
-	def search_entity(class_entity,name_field,keyword)
+	def search_entities(class_entity,name_field,keyword)
 
 		entities = class_entity.where("name LIKE ?", "%#{keyword}%")
 		total_expense_entity = {}
@@ -23,11 +23,11 @@ class SearchController < ApplicationController
 		end
 		return total_expense_entity.to_a 
 	end
-	def search_entities
+	def find_entities
 	 	keyword = params[:search]
-	 	@public_agencies = search_entity(PublicAgency,:public_agency_id,keyword)
-		@programs = search_entity(Program,:program_id,keyword)
-		@companies = search_entity(Company,:company_id,keyword)
+	 	@public_agencies = search_entities(PublicAgency,:public_agency_id,keyword)
+		@programs = search_entities(Program,:program_id,keyword)
+		@companies = search_entities(Company,:company_id,keyword)
 	end 
 
 	def expense_entities(name_field,entity_id)

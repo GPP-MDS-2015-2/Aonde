@@ -20,13 +20,24 @@ class SearchControllerTest < ActionController::TestCase
   test "Should return un especific entity" do
     
     entities_for_search
-    entity = @controller.search_entity(PublicAgency,:public_agency_id,"ministerio da educacao")
+    entity = @controller.search_entities(PublicAgency,:public_agency_id,"ministerio da educacao")
     entity_compare = PublicAgency.find(2)
     expected_result = [[entity_compare,0]]
     assert_equal(expected_result,entity)
 
   end
+  
+  test "Should return un array of public agencies" do
+     
+    entities_for_search
+    entity = @controller.search_entities(PublicAgency,:public_agency_id,"minis")
+    entity_compare_first = PublicAgency.find(1)
+    entity_compare_seccond = PublicAgency.find(2)
+    entity_compare_third = Company.find(3)
+    expected_result = [[entity_compare_first,0],[entity_compare_seccond,0]]
+    assert_equal(expected_result,entity)
 
+  end
 
   test "Should sum value expense of agency" do
     create_entities
@@ -35,7 +46,7 @@ class SearchControllerTest < ActionController::TestCase
     assert_equal(agency_expense, 400)
   end
 
-  test "Routes to method idex" do
+  test "Routes to method index" do
 
     create_entities
     
@@ -49,15 +60,14 @@ class SearchControllerTest < ActionController::TestCase
     assert assigns(:companies)
     assert assigns(:programs)
     assert assigns(:results)
-    
-    
+      
   end
 
   def entities_for_search
 
     PublicAgency.create(id: 1,views_amount: 0,name:"ministerio da saude")
     PublicAgency.create(id: 2,views_amount: 0,name:"ministerio da educacao")
-    PublicAgency.create(id: 3,views_amount: 0,name: "ministro John")
+    Company.create(id: 3,name: "ministro John")
     PublicAgency.create(id: 4,views_amount: 0,name: "agency")
 
   end
