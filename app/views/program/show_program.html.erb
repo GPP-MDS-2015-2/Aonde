@@ -67,13 +67,13 @@
           keyboard: true
         },
         "physics": {
-    "repulsion": {
-      "centralGravity": 1,
-      "nodeDistance": 1000
-    },
-    "maxVelocity": 27,
-    "minVelocity": 0.75,
-    "solver": "repulsion"
+          "repulsion": {
+          "centralGravity": 1,
+          "nodeDistance": 1000
+        },
+          "maxVelocity": 27,
+          "minVelocity": 0.75,
+          "solver": "repulsion"
   },
 };
 
@@ -86,10 +86,6 @@ var network = new vis.Network(container, data, options);
           }
       }
   })
-  function unclusterByGroup(params){
-    network.openCluster(params.nodes[0]);      
-  }
-
   function clusterByGroup() {
       network.setData(data);
       var groups = ['PublicAgency','Company'];
