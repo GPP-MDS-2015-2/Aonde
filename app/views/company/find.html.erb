@@ -1,1 +1,79 @@
-<div id="cy"></div>
+<script type="text/javascript"> 
+
+ $(document).ready(function(){
+      var totalExpense = '<%= raw @correct_datas %>';
+      b = JSON.parse(totalExpense);
+     // totalExpense.to_json;
+      var nodes_a = b[0];
+      var edges_a = b[1];
+      generate_nodes_edges(nodes_a, edges_a);
+ });
+
+  
+function generate_nodes_edges(nodes_a, edges_a){ // on dom ready
+
+
+var cy = cytoscape({
+  container: document.getElementById('cy'),
+  
+  boxSelectionEnabled: false,
+  autounselectify: true,
+  
+  style: [
+    {
+//Change style of node
+      selector: 'node',
+      css: {
+        'content': 'data(id)',
+        'text-valign': 'center',
+        'text-halign': 'center',
+        'background-color': 'darkorange'
+      }
+    },
+    {
+      selector: '$node > node',
+      css: {
+        'padding-top': '10px',
+        'padding-left': '10px',
+        'padding-bottom': '10px',
+        'padding-right': '10px',
+        'text-valign': 'top',
+        'text-halign': 'center',
+        'background-color': 'lightblue',
+      }
+    },
+    {
+      selector: 'edge',
+      css: {
+        'target-arrow-shape': 'triangle',
+        'line-color': 'orange'
+      }
+    },
+    {
+//Don't work this part of code
+      selector: ':selected',
+      css: {
+        'background-color': 'black',
+        'line-color': 'black',
+        'target-arrow-color': 'black',
+        'source-arrow-color': 'black'
+      }
+    }
+  ],
+//Insert new elements
+  elements: {
+    nodes: nodes_a,
+    edges: edges_a
+  },
+  
+  layout: {
+    name: 'preset',
+    padding: 5
+  }
+});
+
+}
+</script>
+
+
+<div id="cy" style="min-width: 600px; max-width: 700px; height: 500px; margin: 0 auto"></div>
