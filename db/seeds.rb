@@ -26,19 +26,22 @@
 	end
 	day_month=(1..12).to_a
 	
-	i=0
+	company = Company.create(name: "Empresa de teste")
+
+	i=1
 	public_agency = PublicAgency.all
 	public_agency.each do |agency|
-		10.times do
+		4.times do
 			print("Add expense #{i} from public agency #{agency.id}\n")
 			date = Date.new(2015,day_month[rand(9)],day_month[rand(9)])
-			name_company = nome_company.sample(1).join+" "+complemento_company.sample(1).join
-			company = Company.create(name: name_company)			
-			3.times do
+			#name_company = nome_company.sample(1).join+" "+complemento_company.sample(1).join
+						
+			i.times do
 				function = Function.create(description: funcao_gasto.sample(1).join)
 				Expense.create(document_number: i,payment_date: date,public_agency_id: agency.id,
 					    value: day_month[(rand(9))],company_id: company.id,function_id: function.id)
-				i+=1
+				
 			end
+			i+=1
 		end
 	end
