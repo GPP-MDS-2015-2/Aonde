@@ -136,28 +136,35 @@ class CompanyControllerTest < ActionController::TestCase
 
     assert_equal(node, test_node)
   end
-#=end
-  test 'should return a number' do
-    hash = { 'nome2' => 2, 'nome2' => 2, 'nome1' => 1,
-                 'nome4' => 4, 'nome5' => 5, 'nome11' => 11,
-                 'nome7' => 7, 'nome2' => 2, 'nome15' => 15,
-                 'nome10' => 10, 'nome6' => 6, 'nom12' => 12,
-                 'nome13' => 13, 'nome14' => 14, 'nome9' => 9
-            }
-    correct_hash = hash.sort_by { |name, expense| expense }
-    public_agency = PublicAgency.new(name: "name1", id: 1)
 
-    controller_hash = @controller.verify_insert(hash, public_agency)
+  test 'should find public agencies' do
+    generate_public_agency
+    expenses = Expense.all
+    expected_hash = [["orgao2",1],["orgao3",2]]
+    hash_returned = @controller.find_public_agencies(expenses)
 
-    puts "\n\n\n 1: #{controller_hash} \n\n\n"
-    puts "\n\n\n 2: #{correct_hash} \n\n\n"
+    assert_equal(expected_hash,hash_returned)
+  end
 
-    assert_equal(controller_hash, correct_hash)
+  test 'should find hiring count' do
+    generate_public_agency
+    public_agency = PublicAgency.first
+    counting = @controller.find_hiring_count(public_agency)
+    expected_counting = 2
+    
+    assert_equal(counting,expected_counting)
   end
 
   def generate_public_agency
     SuperiorPublicAgency.create(id: 1, name: 'valid SuperiorPublicAgency')
-    PublicAgency.create(id: 1, views_amount: 0, name: 'valid Agency', superior_public_agency_id: 1)
+    PublicAgency.create(id: 1, views_amount: 0, name: 'orgao3', superior_public_agency_id: 1)
+    PublicAgency.create(id: 2, views_amount: 0, name: 'orgao2', superior_public_agency_id: 1)
+    date = Date.new(2015, 1, 2)
+    public_agency_first = PublicAgency.first
+    public_agency_second = PublicAgency.second
+    Expense.create(document_number: 1, payment_date: date, value: 5, public_agency_id: 1)
+    Expense.create(document_number: 2, payment_date: date, value: 9, public_agency_id: 1)        
+    Expense.create(document_number: 3, payment_date: date, value: 13, public_agency_id: 2)           
   end
 
   def generate_companies
