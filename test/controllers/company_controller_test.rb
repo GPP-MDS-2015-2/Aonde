@@ -1,18 +1,14 @@
 require 'test_helper'
 
 class CompanyControllerTest < ActionController::TestCase
-
+	
+#=begin
   test 'Route to method show and the result of the request' do
     generate_public_agency
     assert_routing 'public_agency/1/company', controller: 'company', action: 'show', id: '1'
     get :show, id: 1
     assert_response :success
     assert assigns :array_company_expense
-  end
-
-  def generate_public_agency
-    SuperiorPublicAgency.create(id: 1, name: 'valid SuperiorPublicAgency')
-    PublicAgency.create(id: 1, views_amount: 0, name: 'valid Agency', superior_public_agency_id: 1)
   end
 
   test 'should return a ordered hash' do
@@ -71,55 +67,39 @@ class CompanyControllerTest < ActionController::TestCase
     assert_equal(company_empty, company_expected2)
   end
 
-
   test 'should return an array with a few nodes' do
-    hash = [{"nome1" => 1}, {"nome2" => 2}, {"nome3" => 3},
-            {"nome4" => 4}, {"nome5" => 5}, {"nome6" => 6}, 
-            {"nome7" => 7}, {"nome8" => 8}, {"nome9" => 9}, 
-            {"nome10" => 10}, {"nome11" => 11}, {"nome12" => 12}, 
-            {"nome13" => 13}, {"nome14" => 14}, {"nome15" => 15}, 
-            {"nome16" => 16}, {"nome17" => 17}, {"nome18" => 18},
+    hash = [{ 'nome1' => 1 }, { 'nome2' => 2 }, { 'nome3' => 3 },
+            { 'nome4' => 4 }, { 'nome5' => 5 }, { 'nome6' => 6 },
+            { 'nome7' => 7 }, { 'nome8' => 8 }, { 'nome9' => 9 },
+            { 'nome10' => 10 }, { 'nome11' => 11 }, { 'nome12' => 12 },
+            { 'nome13' => 13 }, { 'nome14' => 14 }, { 'nome15' => 15 },
+            { 'nome16' => 16 }, { 'nome17' => 17 }, { 'nome18' => 18 }
            ]
-    few_hash = [{"nome18"=>18}, {"nome17"=>17}, {"nome16"=>16},
-                {"nome15"=>15}, {"nome14"=>14}, {"nome13"=>13}, 
-                {"nome12"=>12}, {"nome11"=>11},{"nome10"=>10}, 
-                {"nome9"=>9}, {"nome8" => 8},{"nome7"=>7},
-                 {"nome6"=>6}, {"nome5"=>5},{"nome4"=>4}]
+    few_hash = [{ 'nome18' => 18 }, { 'nome17' => 17 }, { 'nome16' => 16 },
+                { 'nome15' => 15 }, { 'nome14' => 14 }, { 'nome13' => 13 },
+                { 'nome12' => 12 }, { 'nome11' => 11 }, { 'nome10' => 10 },
+                { 'nome9' => 9 }, { 'nome8' => 8 }, { 'nome7' => 7 },
+                { 'nome6' => 6 }, { 'nome5' => 5 }, { 'nome4' => 4 }]
     test_hash = @controller.get_15_first_nodes(hash)
 
-    assert_equal(few_hash,test_hash)
+    assert_equal(few_hash, test_hash)
   end
 
   test 'should return an array with 8 nodes but ordered by value' do
-    hash = [{"nome1" => 1}, {"nome2" => 2}, {"nome3" => 3},
-            {"nome4" => 4}, {"nome5" => 5}, {"nome6" => 6}, 
-            {"nome7" => 7}, {"nome8" => 8}]
-    few_hash = [{"nome8" => 8},{"nome7"=>7},{"nome6"=>6}, 
-                {"nome5"=>5},{"nome4"=>4},{"nome3"=>3},
-                 {"nome2"=>2},{"nome1"=>1}]
+    hash = [{ 'nome1' => 1 }, { 'nome2' => 2 }, { 'nome3' => 3 },
+            { 'nome4' => 4 }, { 'nome5' => 5 }, { 'nome6' => 6 },
+            { 'nome7' => 7 }, { 'nome8' => 8 }]
+    few_hash = [{ 'nome8' => 8 }, { 'nome7' => 7 }, { 'nome6' => 6 },
+                { 'nome5' => 5 }, { 'nome4' => 4 }, { 'nome3' => 3 },
+                { 'nome2' => 2 }, { 'nome1' => 1 }]
     test_hash = @controller.get_15_first_nodes(hash)
 
-    assert_equal(few_hash,test_hash)
+    assert_equal(few_hash, test_hash)
   end
-
-
-
-  test 'should return an array with ordened public_agencies' do
-    few_hash = {'nome2' => 2, 'nome3' => 3, 'nome1' => 1,
-                'nome4' => 4, 'nome5' => 5, 'nome11' => 11, 
-                'nome7' => 7, 'nome8' => 8, 'nome15' => 15,
-                'nome10' => 10, 'nome6' => 6, 'nom12' => 12,
-                'nome13' => 13, 'nome14' => 14, 'nome9' => 9,
-               }
-    few_hash.sort_by { |_name, expense| expense }
-
-    x = @controller.get_15_first_nodes(expenses)
-  end
-
 
   test 'should return a node' do
     node = [
-      { 'data' => { 'id' => 'empresa' }, 'position' => { 'x' => 100, 'y' => 80 } },
+      { 'data' => { 'id' => 'empresa' }, 'position' => { 'x' => 0, 'y' => 400 } },
       { 'data' => { 'id' => 'Órgãos Públicos' } }, { 'data' => { 'id' => 'qtde Contratações' } }
     ]
 
@@ -128,26 +108,26 @@ class CompanyControllerTest < ActionController::TestCase
     assert_equal(node, node_test)
   end
 
-  test 'should return a especific expense'  do
+  test 'should return a especific expense' do
     public_agency = PublicAgency.new(id: 1)
     expense = Expense.where(public_agency_id: public_agency.id).count
-    
+
     test_expense = @controller.find_hiring_count(public_agency)
 
     assert_equal(expense, test_expense)
   end
 
   test 'should return a public_agency node' do
-    few_hash = {'nome2' => 2, 'nome3' => 3, 'nome1' => 1,
-                'nome4' => 4, 'nome5' => 5, 'nome11' => 11, 
-                'nome7' => 7, 'nome8' => 8, 'nome15' => 15,
-                'nome10' => 10, 'nome6' => 6, 'nom12' => 12,
-                'nome13' => 13, 'nome14' => 14, 'nome9' => 9,
+    few_hash = { 'nome2' => 2, 'nome3' => 3, 'nome1' => 1,
+                 'nome4' => 4, 'nome5' => 5, 'nome11' => 11,
+                 'nome7' => 7, 'nome8' => 8, 'nome15' => 15,
+                 'nome10' => 10, 'nome6' => 6, 'nom12' => 12,
+                 'nome13' => 13, 'nome14' => 14, 'nome9' => 9
                }
 
     company_node = [
-      { 'data' => { 'id' => 'empresa' }, 'position' => 
-      { 'x' => 100,'y' => 80 } },
+      { 'data' => { 'id' => 'empresa' }, 'position' =>
+      { 'x' => 0, 'y' => 400 } },
       { 'data' => { 'id' => 'Órgãos Públicos' } },
       { 'data' => { 'id' => 'qtde Contratações' } }
     ]
@@ -156,6 +136,29 @@ class CompanyControllerTest < ActionController::TestCase
     test_node = @controller.generate_public_agency_node('empresa', few_hash, company_node)
 
     assert_equal(node, test_node)
+  end
+#=end
+  test 'should return a number' do
+    hash = { 'nome2' => 2, 'nome2' => 2, 'nome1' => 1,
+                 'nome4' => 4, 'nome5' => 5, 'nome11' => 11,
+                 'nome7' => 7, 'nome2' => 2, 'nome15' => 15,
+                 'nome10' => 10, 'nome6' => 6, 'nom12' => 12,
+                 'nome13' => 13, 'nome14' => 14, 'nome9' => 9
+            }
+    correct_hash = hash.sort_by { |name, expense| expense }
+    public_agency = PublicAgency.new(name: "name1", id: 1)
+
+    controller_hash = @controller.verify_insert(hash, public_agency)
+
+    puts "\n\n\n 1: #{controller_hash} \n\n\n"
+    puts "\n\n\n 2: #{correct_hash} \n\n\n"
+
+    assert_equal(controller_hash, correct_hash)
+  end
+
+  def generate_public_agency
+    SuperiorPublicAgency.create(id: 1, name: 'valid SuperiorPublicAgency')
+    PublicAgency.create(id: 1, views_amount: 0, name: 'valid Agency', superior_public_agency_id: 1)
   end
 
   def generate_companies
@@ -168,7 +171,7 @@ class CompanyControllerTest < ActionController::TestCase
       companies[i] = created_company
       i += 1
     end
-    return companies
+    companies
   end
 
   def generate_expense
@@ -187,9 +190,10 @@ class CompanyControllerTest < ActionController::TestCase
       i -= 1
     end
 
-    return array
+    array
   end
-#Need reafctor
+
+  # Need reafctor
   def generate_generic_node(company_name, hash, company_node)
     count = 1
     array_general = []
@@ -198,27 +202,27 @@ class CompanyControllerTest < ActionController::TestCase
       name = name.to_s
       hash_public_agency = { 'data' => { 'id' => name,
                                          'parent' => 'Órgãos Públicos' },
-                             'position' => { 'x' => 200, 'y' => count * 50 } },
+                             'position' => { 'x' => 400, 'y' => count * 50 } },
                            hash_hiring = { 'data' => { 'id' => number,
                                                        'parent' => 'qtde Contratações' },
-                                           'position' => { 'x' => 350, 'y' => count * 50 } }
-  
+                                           'position' => { 'x' => 700, 'y' => count * 50 } }
+
       company_node << hash_public_agency
       company_node << hash_hiring
-  
+
       count += 1
-  
+
       hash_edge_to_company = { 'data' => { 'source' => name,
                                            'target' => company_name } }
       hash_edge_to_public_agency = { 'data' => { 'source' => number,
                                                  'target' => name } }
-  
+
       edges << hash_edge_to_company
       edges << hash_edge_to_public_agency
     end
     array_general << company_node
 
     array_general << edges
-  # puts "\n\n\n #{array_general} \n\n\n"
-end
+    # puts "\n\n\n #{array_general} \n\n\n"
+  end
 end
