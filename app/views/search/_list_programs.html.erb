@@ -1,0 +1,30 @@
+<% if (@programs.empty?) %>
+  <strong><font color="red" size="12px">Nenhum Programa Encontrado</font></strong>
+<% else %>
+	<table id="tableData2" class="hover row-border">
+		<thead>
+			<tr>
+				<th>
+					<center><font color="BLACK"><strong>Nome do Programa</strong></font></center>
+				</th>
+				<th>
+					<center><font color="BLACK"><strong>Gasto Total no Programa (R$)</strong></font></center>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% entity = 0
+		   expense = 1
+		@programs.each do |program| %>
+		  	<tr>
+			  	<td>
+			  		<center><%= program[entity].name %></center>
+			  	</td>
+			  	<td>	
+			  		<center><%= program[expense] %></center>
+			  	</td>
+		  	</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% end %>

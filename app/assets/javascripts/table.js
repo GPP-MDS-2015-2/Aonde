@@ -12,3 +12,29 @@ $(document).ready( function(){
 		 }
 	});
 });
+$(document).ready( function(){
+	$('#tableData1').dataTable({
+		autoWidth: true,
+		pagingType: "full_numbers",
+		searching: false,
+		order: [1,'desc'],
+		//dom: "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+		 dom: "<'top'>t<'bottom'pi>",
+		 oLanguage:{
+		 	sUrl: '//cdn.datatables.net/plug-ins/1.10.9/i18n/Portuguese-Brasil.json'
+		 }
+	});
+});
+$(document).ready( function(){
+	$('#tableData2').dataTable({
+		autoWidth: true,
+		pagingType: "full_numbers",
+		searching: false,
+		order: [1,'desc'],
+		//dom: "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+		 dom: "<'top'>t<'bottom'pi>",
+		 oLanguage:{
+		 	sUrl: '//cdn.datatables.net/plug-ins/1.10.9/i18n/Portuguese-Brasil.json'
+		 }
+	});
+});

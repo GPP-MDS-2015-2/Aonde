@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'public_agency/:id/budgets', to: "budget#show", as: "budget"
   get "public_agency/:id/programs", to: "program#show", as: "programs"
   get "public_agency/:id/filter_budget",to: "budget#filter_chart_budget", as: "filter_budget"
+  get "search/list", to:"search#index", as: "search"
   #Routes of Programs
   get "/functions" => "function#show"
   get "/functions/filter" => "function#filter"
