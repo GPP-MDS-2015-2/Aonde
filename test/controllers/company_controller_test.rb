@@ -71,30 +71,39 @@ class CompanyControllerTest < ActionController::TestCase
     assert_equal(company_empty, company_expected2)
   end
 
-##### NEW TESTS #####
-=begin
-#How can i test this?
-  test 'should return an array with a few nodes' do
-    hash = ['nome1' => 1, 'nome2' => 2, 'nome3' => 3,
-            'nome4' => 4, 'nome5' => 5, 'nome6' => 6, 
-            'nome7' => 7, 'nome8' => 8, 'nome9' => 9, 
-            'nome10' => 10, 'nome11' => 11, 'nom12' => 12, 
-            'nome13' => 13, 'nome14' => 14, 'nome15' => 15, 
-            'nome16' => 16, 'nome17' => 17, 'nome18' => 18,
-           ]
-    few_hash = ['nome1' => 1, 'nome2' => 2, 'nome3' => 3,
-                'nome4' => 4, 'nome5' => 5, 'nome6' => 6, 
-                'nome7' => 7, 'nome8' => 8, 'nome9' => 9,
-                'nome10' => 10, 'nome11' => 11, 'nom12' => 12,
-                'nome13' => 13, 'nome14' => 14, 'nome15' => 15,
-               ]
-    test_hash = @controller.limit_get_nodes(hash)
 
-    puts "\n\n #{test_hash} \n\n"
+  test 'should return an array with a few nodes' do
+    hash = [{"nome1" => 1}, {"nome2" => 2}, {"nome3" => 3},
+            {"nome4" => 4}, {"nome5" => 5}, {"nome6" => 6}, 
+            {"nome7" => 7}, {"nome8" => 8}, {"nome9" => 9}, 
+            {"nome10" => 10}, {"nome11" => 11}, {"nome12" => 12}, 
+            {"nome13" => 13}, {"nome14" => 14}, {"nome15" => 15}, 
+            {"nome16" => 16}, {"nome17" => 17}, {"nome18" => 18},
+           ]
+    few_hash = [{"nome18"=>18}, {"nome17"=>17}, {"nome16"=>16},
+                {"nome15"=>15}, {"nome14"=>14}, {"nome13"=>13}, 
+                {"nome12"=>12}, {"nome11"=>11},{"nome10"=>10}, 
+                {"nome9"=>9}, {"nome8" => 8},{"nome7"=>7},
+                 {"nome6"=>6}, {"nome5"=>5},{"nome4"=>4}]
+    test_hash = @controller.get_15_first_nodes(hash)
 
     assert_equal(few_hash,test_hash)
   end
-#How can i test this?
+
+  test 'should return an array with 8 nodes but ordered by value' do
+    hash = [{"nome1" => 1}, {"nome2" => 2}, {"nome3" => 3},
+            {"nome4" => 4}, {"nome5" => 5}, {"nome6" => 6}, 
+            {"nome7" => 7}, {"nome8" => 8}]
+    few_hash = [{"nome8" => 8},{"nome7"=>7},{"nome6"=>6}, 
+                {"nome5"=>5},{"nome4"=>4},{"nome3"=>3},
+                 {"nome2"=>2},{"nome1"=>1}]
+    test_hash = @controller.get_15_first_nodes(hash)
+
+    assert_equal(few_hash,test_hash)
+  end
+
+
+
   test 'should return an array with ordened public_agencies' do
     few_hash = {'nome2' => 2, 'nome3' => 3, 'nome1' => 1,
                 'nome4' => 4, 'nome5' => 5, 'nome11' => 11, 
@@ -102,13 +111,11 @@ class CompanyControllerTest < ActionController::TestCase
                 'nome10' => 10, 'nome6' => 6, 'nom12' => 12,
                 'nome13' => 13, 'nome14' => 14, 'nome9' => 9,
                }
-    puts "\n\n #{few_hash}\n\n"
     few_hash.sort_by { |_name, expense| expense }
-    puts "\n\n #{few_hash}\n\n"
 
-    x = @controller.limit_get_nodes(expenses)
+    x = @controller.get_15_first_nodes(expenses)
   end
-=end
+
 
   test 'should return a node' do
     node = [

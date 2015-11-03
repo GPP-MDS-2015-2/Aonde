@@ -47,21 +47,33 @@ class CompanyController < ApplicationController
   def find
     expenses = Expense.where(company_id: params[:id])
     company_hiring_incidence = find_public_agencies(expenses)
-    company_hiring_incidence = get_30_first_nodes(company_hiring_incidence)
+    company_hiring_incidence = get_15_first_nodes(company_hiring_incidence)
     company_name = get_name_company
     data_company = generate_company_node(company_name)
     array = generate_public_agency_node(company_name, company_hiring_incidence, data_company)
     @correct_datas = array.to_json
   end
 
-  def get_30_first_nodes(company_hiring_incidence)
-    i = 0
+  def get_15_first_nodes(company_hiring_incidence)
     final_array = []
-    until i > 2
-      final_array.push(company_hiring_incidence[i])
-      i += 1
-    end
-    a = final_array.length
+    length = company_hiring_incidence.length
+    
+      if length < 15
+
+        length.times do
+        final_array.push(company_hiring_incidence[length-1])
+        length -= 1
+        end
+
+      else
+        
+        15.times do
+        final_array.push(company_hiring_incidence[length-1])
+        length -= 1
+      end
+
+    end      
+
     return final_array
   end
 
