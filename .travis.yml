@@ -5,6 +5,10 @@ before_script:
   - mysql -e "create database IF NOT EXISTS aonde_test;" -uroot
   - rake db:migrate RAILS_ENV=test
 
+addons:
+  code_climate:
+    repo_token: 300bb115981867e8f2c252ed70c128160866c46bf642e1b0e3dab8a9f11102d7
+
 script: rake test
 
 rvm:
