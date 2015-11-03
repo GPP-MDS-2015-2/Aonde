@@ -1,12 +1,5 @@
 <script>
 
-Array.prototype.clone = function() {
-    return this.slice(0);
-};
-Array.prototype.remove = function(start, end) {
-  this.splice(start, end);
-  return this;
-}
 var dataController = JSON.parse('<%= raw @all_programs%>');
 var removed=[],inChart = [];
 inChart = dataController.clone();
@@ -16,12 +9,12 @@ $(function () {
         console.log(dataUnorder)
         dataUnorder.sort(function(a, b) {return b[1] - a[1]})
         dataUnorder.forEach(function (obj){
-            $("#listChange ul").append("<li class='inChart'>"+obj[0]+"</li>");
+            $("#listChange_1 ul").append("<li class='inChart_1'>"+obj[0]+"</li>");
         });
     }
     createChart(dataController);
     drawChart(dataController);
-    $("#listChange ul li").click(function(){
+    $("#listChange_1 ul li").click(function(){
         contentRemove = $(this)[0].innerHTML;
 
         var node = $(this);
@@ -32,11 +25,11 @@ $(function () {
                 if( removed.indexOf(element) == -1 ){
                     removed.push(element);
                     inChart.remove(inChart.indexOf(element),1);
-                    node.addClass("notInChart");
-                    node.removeClass("inChart");
+                    node.addClass("notInChart_1");
+                    node.removeClass("inChart_1");
                 }else{
-                    node.addClass("inChart");
-                    node.removeClass("notInChart");
+                    node.addClass("inChart_1");
+                    node.removeClass("notInChart_1");
                     inChart.push(element);
                     removed.remove(removed.indexOf(element),1);
                 }                
@@ -114,7 +107,7 @@ $(document).ready(function(){
 <% end %>
 <div id="container" style="min-width: 410px; max-width: auto; height: 500px; margin: 0 auto"></div>
 <!--Table with list of prgrams-->
-<div id="listChange"><center>Selecione um ou mais programas para não serem visualizados no gráfico</center><ul></ul></div>
+<div id="listChange_1"><center>Selecione um ou mais programas para não serem visualizados no gráfico</center><ul></ul></div>
 
 <div id="table_list_programs">
     <table id="tableCompany" style="display"> 

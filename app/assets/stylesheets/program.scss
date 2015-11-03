@@ -9,26 +9,31 @@
 	margin-top:15px;
 	margin-bottom:15px;
 }
-#listChange{
+#listChange_1{
     width: 100%;
-    height: 170px;
+    height: auto;
     overflow: scroll;
     overflow-x: hidden;
 }
-.inChart{
+.inChart_1{
 	background:#277455;
-
 }
-.notInChart{
+.notInChart_1{
 	background: #AA3939;
 }
-#listChange ul{
+#listChange_1 ul{
 	list-style-type: none; 
 }
-#listChange ul li{
-	border: 1px solid;	
+#listChange_1 ul li{
+	border: 1px solid;
+	width: 100%;	
 }
-#listChange ul li:hover{
+#listChange_1 ul li:hover{
 	background: #0D9CCC;
 	border: 1px solid;	
+}
+#mynetwork {
+    width: auto;
+    height: 450px;
+    background: white;
 }
