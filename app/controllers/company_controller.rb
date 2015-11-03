@@ -77,12 +77,13 @@ class CompanyController < ApplicationController
     return final_array
   end
 
-
   def find_public_agencies(expenses)
     company_hiring_incidence = {}
     expenses.each do |expense|
-      public_agency = PublicAgency.find(expense.public_agency_id)
-      verify_insert(company_hiring_incidence, public_agency)
+      if !expense.public_agency_id.nil?
+        public_agency = PublicAgency.find(expense.public_agency_id)
+        verify_insert(company_hiring_incidence, public_agency)
+      end
     end
     company_hiring_incidence.sort_by { |name, expense| expense }
   end
