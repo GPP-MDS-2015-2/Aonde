@@ -1,129 +1,43 @@
 <h2>
 <%= @program.name %>
 </h2>
+<div id="page"></div>
 <div id="mynetwork"></div>
+
 <input type="button" onclick="clusterByGroup()" value="Agrupar entidades" style="width:200px;"> <br/>
 <input type="button" onclick="unclusterByGroup()" value="Desagrupar" style="width:200px;"> <br/>
 
 <script type="text/javascript">
-    var color = 'gray';
-    var len = undefined;
-    var data = JSON.parse('<%= raw @data_program %>');
-    console.log(data);
-
-    var nodes = data[0];
-    var edges = data[1];
-
-    // create a network
-    var container = document.getElementById('mynetwork');
-    var data = {
-        nodes: nodes,
-        edges: edges
-    };
-   var options = {
-          layout:{randomSeed:8},
-        nodes:{
-                shape: 'icon',
-                icon: {
-                    face: 'FontAwesome',
-                    code: '\uf015',
-                    size: 50,
-                    color: 'blue'
-                }
-            },
-      edges: {
-        smooth: {
-          type: 'curvedCW',
-          forceDirection: 'none'
-          }
-      },
-        groups: {
-            mints: {color:'rgb(0,150,140)'},
-            PublicAgency: {
-                shape: 'icon',
-                icon: {
-                    face: 'FontAwesome',
-                    code: '\uf19c',
-                    size: 50,
-                    color: 'black'
-                }
-            },
-            Company: {
-                shape: 'icon',
-                icon: {
-                    face: 'FontAwesome',
-                    code: '\uf1ad',
-                    size: 50,
-                    color: 'orange'
-                }
-            },
-            source: {
-                color:{border:'white'}
-            }
-        },
-        interaction:{
-          navigationButtons: true,
-          keyboard: true
-        },
-        physics: {
-          repulsion: {
-          centralGravity: 1,
-          nodeDistance: 1000
-        },
-          maxVelocity: 27,
-          minVelocity: 0.75,
-          solver: 'repulsion'
-  },
-};
-
-var network = new vis.Network(container, data, options);
+var dataProgram = '<%= raw @data_program %>';
+console.log(dataProgram);
+dataProgram = JSON.parse(dataProgram);
+var network = createGraph(dataProgram,'mynetwork');
+$(document).ready(function(){
+  console.log(dataProgram);
+  createPagesButton(dataProgram[2]);
   network.on("selectNode", function(params) {
-      console.log(params);
-      if (params.nodes.length == 1) {
-          if (network.isCluster(params.nodes[0]) == true) {
-              network.openCluster(params.nodes[0]);
-          }
-      }
-  })
+    console.log(params);
+    if (params.nodes.length == 1) {
+        if (network.isCluster(params.nodes[0]) == true) {
+            network.openCluster(params.nodes[0]);
+        }
+    }
+  });
+});
+  function changePage(page){
+    $(".selected").removeClass('selected');
+    $("#"+page).addClass('selected');
+
+    console.log(network.isCluster(['Company']));
+    makeChangePage(page,network);
+  }  
+  function clusterByGroup(){
+    cluster(network);
+  }
   function unclusterByGroup(){
-    if (network.isCluster(['PublicAgency'])){
-      network.openCluster(['PublicAgency']);
-    }
-    if (network.isCluster(['Company'])){
-      network.openCluster(['Company']);
-    }
+    uncluster(network,['PublicAgency','Company']);
   }
-  function clusterByGroup() {
-      network.setData(data);
-      var groups = ['PublicAgency','Company'];
-      var clusterOptionsByData;
-      for (var i = 0; i < groups.length; i++) {
-          var translate_group = translate_groups(group);
-          var group = groups[i];
-          clusterOptionsByData = {
-              joinCondition: function (childOptions) {
-                  return childOptions.group == group; // the group is fully defined in the node.
-              },
-              processProperties: function (clusterOptions, childNodes, childEdges) {
-                  var totalMass = 0;
-                  for (var i = 0; i < childNodes.length; i++) {
-                      totalMass += childNodes[i].mass;
-                  }
-                  clusterOptions.mass = totalMass;
-                  return clusterOptions;
-              },
-              clusterNodeProperties: {id: group, borderWidth: 3, shape: 'icon', group:group, label: translate_group}
-          }
-          network.cluster(clusterOptionsByData);
-      }
-  }
-  function translate_groups (name_groups) {
-    if (name_groups === 'PublicAgency'){
-      name_groups = 'Órgãos Publicos';
-    }
-    else{
-      name_groups = 'Empresas';  
-    }
-    return name_groups;
-  };
+
+
+
 </script>

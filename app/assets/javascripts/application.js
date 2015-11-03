@@ -19,3 +19,11 @@
 //= require visjs/vis
 //= require turbolinks
 //= require_tree .
+
+Array.prototype.clone = function() {
+    return this.slice(0);
+};
+Array.prototype.remove = function(start, end) {
+  this.splice(start, end);
+  return this;
+}

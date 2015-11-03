@@ -37,6 +37,12 @@ input{
   height: 35px;
   border-radius: 10px 10px 10px 10px;  
 }
+
+input.selected{
+	background: #036564;	
+	color: white;
+}
+
 input:hover{
   background:  #036564;
   color: white;

@@ -1,4 +1,5 @@
 module ProgramHelper
+=begin
 	def exibe_dados
 		a = []
 		Program.all.each do |p|
@@ -6,4 +7,5 @@ module ProgramHelper
 		end
 		return a
 	end
+=end
 end
