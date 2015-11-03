@@ -1,11 +1,5 @@
 <script>
-Array.prototype.clone = function() {
-    return this.slice(0);
-};
-Array.prototype.remove = function(start, end) {
-  this.splice(start, end);
-  return this;
-}
+
 var dataController = JSON.parse('<%= raw @data_type_expense%>');
 var removed=[],inChart = [];
 inChart = dataController.clone();
