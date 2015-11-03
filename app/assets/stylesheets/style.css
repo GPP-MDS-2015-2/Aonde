@@ -3,7 +3,8 @@ body {
 }
 
 #cy {
-  position: absolute;
+  position: relative;
+  background-color: white;
   height: 100%;
   width: 80%;
 }

@@ -47,8 +47,8 @@ class CompanyController < ApplicationController
   def find
     expenses = Expense.where(company_id: params[:id])
     company_hiring_incidence = find_public_agencies(expenses)
-    company_hiring_incidence = get_15_first_nodes(company_hiring_incidence)
-    company_name = get_name_company
+    #company_hiring_incidence = get_15_first_nodes(company_hiring_incidence)
+    company_name = company_name = Company.find(params[:id]).name
     data_company = generate_company_node(company_name)
     array = generate_public_agency_node(company_name, company_hiring_incidence, data_company)
     @correct_datas = array.to_json
@@ -98,13 +98,9 @@ class CompanyController < ApplicationController
     end
   end
 
-  def get_name_company
-    company_name = Company.find(params[:id]).name
-  end
-
   def generate_company_node(company_name)
     data_company = [
-      { 'data' => { 'id' => company_name }, 'position' => { 'x' => 100, 'y' => 80 } },
+      { 'data' => { 'id' => company_name }, 'position' => { 'x' => 0, 'y' => 400 } },
       { 'data' => { 'id' => 'Órgãos Públicos' } }, { 'data' => { 'id' => 'qtde Contratações' } }
     ]
   end
@@ -115,8 +111,8 @@ class CompanyController < ApplicationController
     edges = []
     company_hiring_incidence.each do |public_agency_name, hiring|
       public_agency_name = public_agency_name.to_s
-      hash_public_agency = { 'data' => { 'id' => public_agency_name, 'parent' => 'Órgãos Públicos' }, 'position' => { 'x' => 200, 'y' => count * 50 } }
-      hash_hiring = { 'data' => { 'id' => hiring, 'parent' => 'qtde Contratações' }, 'position' => { 'x' => 350, 'y' => count * 50 } }
+      hash_public_agency = { 'data' => { 'id' => public_agency_name, 'parent' => 'Órgãos Públicos' }, 'position' => { 'x' => 400, 'y' => count * 50 } }
+      hash_hiring = { 'data' => { 'id' => hiring, 'parent' => 'qtde Contratações' }, 'position' => { 'x' => 700, 'y' => count * 50 } }
 
       data_company << hash_public_agency
       data_company << hash_hiring
