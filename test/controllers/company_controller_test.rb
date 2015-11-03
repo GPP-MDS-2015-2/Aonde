@@ -2,7 +2,6 @@ require 'test_helper'
 
 class CompanyControllerTest < ActionController::TestCase
 	
-#=begin
   test 'Route to method show and the result of the request' do
     generate_public_agency
     assert_routing 'public_agency/1/company', controller: 'company', action: 'show', id: '1'
@@ -119,10 +118,6 @@ class CompanyControllerTest < ActionController::TestCase
 
   test 'should return a public_agency node' do
     few_hash = { 'nome2' => 2, 'nome3' => 3, 'nome1' => 1,
-                 'nome4' => 4, 'nome5' => 5, 'nome11' => 11,
-                 'nome7' => 7, 'nome8' => 8, 'nome15' => 15,
-                 'nome10' => 10, 'nome6' => 6, 'nom12' => 12,
-                 'nome13' => 13, 'nome14' => 14, 'nome9' => 9
                }
 
     company_node = [
@@ -132,7 +127,25 @@ class CompanyControllerTest < ActionController::TestCase
       { 'data' => { 'id' => 'qtde Contratações' } }
     ]
 
-    node = generate_generic_node('empresa', few_hash, company_node)
+    node = [[{"data"=>{"id"=>"empresa"}, "position"=>{"x"=>0, "y"=>400}
+    }, {"data"=>{"id"=>"Órgãos Públicos"}}, {"data"=>
+    {"id"=>"qtde Contratações"}}, {"data"=>
+    {"id"=>"nome2", "parent"=>"Órgãos Públicos"}, "position"=>
+    {"x"=>400, "y"=>50}}, {"data"=>{"id"=>2, "parent"=>"qtde Contratações"
+    }, "position"=>{"x"=>700, "y"=>50}}, {"data"=>
+    {"id"=>"nome3", "parent"=>"Órgãos Públicos"}, "position"=>
+    {"x"=>400, "y"=>100}}, {"data"=>{"id"=>3, "parent"=>"qtde Contratações"
+    }, "position"=>{"x"=>700, "y"=>100}}, {"data"=>
+    {"id"=>"nome1", "parent"=>"Órgãos Públicos"}, "position"=>
+    {"x"=>400, "y"=>150}}, {"data"=>{"id"=>1, "parent"=>"qtde Contratações"
+    }, "position"=>{"x"=>700, "y"=>150}}], [{"data"=>
+    {"source"=>"nome2", "target"=>"empresa"}}, {"data"=>
+    {"source"=>2, "target"=>"nome2"}}, {"data"=>
+    {"source"=>"nome3", "target"=>"empresa"}}, {"data"=>
+    {"source"=>3, "target"=>"nome3"}}, {"data"=>
+    {"source"=>"nome1", "target"=>"empresa"}}, {"data"=>
+    {"source"=>1, "target"=>"nome1"}}]]
+
     test_node = @controller.generate_public_agency_node('empresa', few_hash, company_node)
 
     assert_equal(node, test_node)
@@ -198,38 +211,5 @@ class CompanyControllerTest < ActionController::TestCase
     end
 
     array
-  end
-
-  # Need reafctor
-  def generate_generic_node(company_name, hash, company_node)
-    count = 1
-    array_general = []
-    edges = []
-    hash.each do |name, number|
-      name = name.to_s
-      hash_public_agency = { 'data' => { 'id' => name,
-                                         'parent' => 'Órgãos Públicos' },
-                             'position' => { 'x' => 400, 'y' => count * 50 } },
-                           hash_hiring = { 'data' => { 'id' => number,
-                                                       'parent' => 'qtde Contratações' },
-                                           'position' => { 'x' => 700, 'y' => count * 50 } }
-
-      company_node << hash_public_agency
-      company_node << hash_hiring
-
-      count += 1
-
-      hash_edge_to_company = { 'data' => { 'source' => name,
-                                           'target' => company_name } }
-      hash_edge_to_public_agency = { 'data' => { 'source' => number,
-                                                 'target' => name } }
-
-      edges << hash_edge_to_company
-      edges << hash_edge_to_public_agency
-    end
-    array_general << company_node
-
-    array_general << edges
-    # puts "\n\n\n #{array_general} \n\n\n"
   end
 end
