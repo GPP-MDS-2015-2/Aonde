@@ -18,7 +18,7 @@
 		@companies.each do |company| %>
 		  	<tr>
 			  	<td>
-			  		<center><%= company[entity].name %></center>
+			  		<center><%= link_to company[entity].name, company_path(company[entity].id) %></center>
 			  	</td>
 			  	<td>	
 			  		<center><%= company[expense] %></center>
