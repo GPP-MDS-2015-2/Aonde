@@ -1,0 +1,30 @@
+<% if (@public_agencies.empty?) %>
+  <strong><font color="red" size="12px">Nenhum Órgão Encontrado</font></strong>
+<% else %>
+	<table id="tableData" class="hover row-border">
+		<thead>
+			<tr>
+				<th>
+					<center><font color="BLACK"><strong>Nome do Órgão</strong></font></center>
+				</th>
+				<th>
+					<center><font color="BLACK"><strong>Gasto Total(R$)</strong></font></center>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% entity = 0
+		   expense = 1
+		@public_agencies.each do |agency| %>
+		  	<tr>
+			  	<td>
+			  		<center><%= link_to agency[entity].name,public_agency_path(agency[entity].id)%></center>
+			  	</td>
+			  	<td>	
+			  		<center><%= agency[expense] %></center>
+			  	</td>
+		  	</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% end %>

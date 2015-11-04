@@ -9,12 +9,12 @@
   <%= javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}" %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
-  <script src="http://code.highcharts.com/highcharts.js"></script>
-  <script src="http://code.highcharts.com/modules/heatmap.js"></script>
-  <script src="http://code.highcharts.com/modules/treemap.js"></script>
-  <script src="http://code.highcharts.com/modules/exporting.js"></script>
-  <script src="http://code.highcharts.com/highcharts-more.js"></script>
-  <script src="http://code.highcharts.com/modules/exporting.js"></script>
+  <%= javascript_include_tag "http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js" %>
+  <%= javascript_include_tag "http://code.highcharts.com/highcharts.js" %>
+  <%= javascript_include_tag "http://code.highcharts.com/modules/heatmap.js" %>
+  <%= javascript_include_tag "http://code.highcharts.com/modules/treemap.js" %>
+  <%= javascript_include_tag "http://code.highcharts.com/modules/exporting.js" %>
+  <%= javascript_include_tag "http://code.highcharts.com/highcharts-more.js" %>
   <%= yield :css %>
   <%= csrf_meta_tags %>
 </head>
@@ -44,13 +44,18 @@
         <li><%= link_to 'Gasto por Função', functions_path %></li>
         <div class="box">
           <div class="container-4">
-            <input type="search" id="search" placeholder="Pesquisa" />
-            <button class="icon"><i class="fa fa-search"></i></button>
+            <%= form_tag search_path, :method => 'get' do %>
+              <%= select_tag :entity, options_for_select([["Todos"], ["Órgãos Públicos"], ["Empresas"], ["Programas"]])%>
+              <%= text_field_tag :search, params[:search], placeholder: "Pesquisa (min 4 caracteres)"%> 
+              <button class="icon"><i class="fa fa-search"></i></button>          
+            <% end%>
           </div>
         </div>
       </ul>
     </div>
     <div class="content-container">
+     <!-- <button id="ha">
+      <div id="cy"> -->
       <%= yield %>
     </div>
 </div> 

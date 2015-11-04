@@ -6,5 +6,13 @@ class PublicAgency < ActiveRecord::Base
 #including validation.
   validates :name, presence: true
   validates :views_amount, numericality: {greater_than: -1}
-
+	
+	def self.search(search)
+  	if search
+  		where("name LIKE ?","%#{search}%")
+  	else
+  		all
+  	end 	
+  end
+  
 end

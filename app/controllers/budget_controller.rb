@@ -2,11 +2,17 @@ class BudgetController < ApplicationController
 
 	def show
   		find_public_agency
-  		@list_budget_month = subtract_expenses_on_budget(@public_agency.id, 2015)
-  		@list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", 2015, "Dezembro", 2015)
-  		@list_expense_month.to_json
-  		@list_budget_month.to_json
-  		@expense_find = 1
+        @list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", 2015, "Dezembro", 2015)
+        @expense_find = 1
+      begin
+        @list_budget_month = subtract_expenses_on_budget(@public_agency.id, 2015)
+      rescue Exception => error
+        flash[:error] = error
+        @list_budget_month = []
+        @expense_find = 0
+      end
+        @list_expense_month.to_json
+        @list_budget_month.to_json
   	end
 
   def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
@@ -86,18 +92,23 @@ class BudgetController < ApplicationController
 	def filter_chart_budget
 
 		find_public_agency
-		@list_budget_month = subtract_expenses_on_budget(@public_agency.id, params[:year]);
-		@list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", params[:year], "Dezembro", params[:year]);
-		@expense_find = 0
-		if not is_empty_filter(@list_expense_month)
-			@expense_find = 1
-			# Nothing to do
-		else
-			@list_expense_month = get_list_expenses_by_period(@public_agency.id)
-		end
+    @list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", params[:year], "Dezembro", params[:year]);
+    @expense_find = 0
+    if not is_empty_filter(@list_expense_month)
+      @expense_find = 1
+      # Nothing to do
+    else
+      @list_expense_month = get_list_expenses_by_period(@public_agency.id)
+    end
+		
+    begin
+      @list_budget_month = subtract_expenses_on_budget(@public_agency.id, params[:year]);
+    rescue Exception => error
+        flash[:error] = error
+        @expense_find = 0
+    end
 		@list_expense_month = @list_expense_month.to_json
 		@list_budget_month = @list_budget_month.to_json
-
 		render 'show'
 
 	end
@@ -116,9 +127,14 @@ class BudgetController < ApplicationController
 
 	def subtract_expenses_on_budget(id_public_agency,year)
 		expense = get_list_expenses_by_period(id_public_agency, "Janeiro", year, "Dezembro", year)
-		budgets = get_budget(id_public_agency, year)
-		budget_array = create_budget_array(expense ,budgets, year)
-		return budget_array
+		budget_array = []
+    begin
+      budgets = get_budget(id_public_agency, year)
+  		budget_array = create_budget_array(expense ,budgets, year)
+    rescue
+      raise "Não foi possível obter o orçamento do ano #{year} do Órgão Público desejado"
+		end
+    return budget_array
 	end
 	
   def create_budget_array(expenses, budgets, year)
@@ -172,6 +188,7 @@ class BudgetController < ApplicationController
     data_api = ""
     begin
       url_query = get_url(public_agency_id,year )
+      #puts "#{url_query}"
       uri_query = URI.parse(url_query)
       data_api = Net::HTTP.get(uri_query)
     rescue

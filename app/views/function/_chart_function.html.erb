@@ -2,28 +2,25 @@
 
     var data = ('<%= raw @correct_datas%>');
     var correct_data = JSON.parse(data);   
-    var array_keys = new Array();
-    var array_values = new Array();
-
     $(document).ready(function(){  
-    teste(correct_data);
-    drawChart(); 
-
+      $('#container').empty();
+      drawChart(correct_data); 
     });
     
-    function teste(correct_data){
-
+    function setData(correct_data,arrayKeys,arrayValues){
         for (var key in correct_data) {
-            array_keys.push(key);
-            array_values.push(correct_data[key]);
+            arrayKeys.push(key);
+            arrayValues.push(correct_data[key]);
         }
 
     }
 
 
-    function drawChart() {
+    function drawChart(correct_data) {
 
-
+        var arrayKeys = new Array();
+        var arrayValues = new Array();
+        setData(correct_data,arrayKeys,arrayValues)
         Highcharts.setOptions({
             lang: {
                 numericSymbols: ['Mil','Milhão','Bilhões','Trilhão']
@@ -47,7 +44,7 @@
         },
 
         xAxis: {
-            categories: array_keys,
+            categories: arrayKeys,
             tickmarkPlacement: 'on',
             lineWidth: 0
         },
@@ -60,7 +57,7 @@
 
         tooltip: {
             shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>R${point.y:,.0f}</b><br/>'
         },
 
         legend: {
@@ -72,7 +69,7 @@
 
         series: [{
             name: 'Gastos por tipo de função',
-            data: array_values,
+            data: arrayValues,
             pointPlacement: 'on'
         }]
 

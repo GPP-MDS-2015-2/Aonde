@@ -1,0 +1,56 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+    var is_less_4 = '<%= raw @msg_error %>';
+    
+    if( is_less_4 != 0 ){
+        $('.msg_error').remove();
+    }else{
+        setTimeout(function(){
+            $('.msg_error').remove();
+        }, 5000);
+    }
+ });
+</script>
+
+<center><h2> 
+  <strong><font color="white">Resultado da Pesquisa</font></strong>
+</h2></center>
+<%if @results.empty? %>
+<% flash.each do |name, msg| %>
+    <div class="msg_error">
+        <i class="fa fa-warning"></i>
+        <%= msg %>
+    </div>
+<% end %>
+<%else %>
+    <% if @entity == "Todos" %>
+        <div class = 'container-tabs'>
+         	<ul class="tabs">
+        		<li class="tab-link" data-tab="tab-1" current><%= "Órgãos Públicos" %></li>
+        		<li class="tab-link" data-tab="tab-2"><%= "Empresas" %></li>
+                <li class="tab-link" data-tab="tab-3"><%= "Programas" %></li>
+            </ul>
+            <div id="tab-1" class="tab-content current">
+        		<%= render 'list_agencies' %>
+         	</div>
+         	<div id="tab-2" class="tab-content">
+        		<%= render 'list_companies' %>
+         	</div>
+         	<div id="tab-3" class="tab-content">
+        		<%= render 'list_programs' %>
+         	</div>
+        </div>
+    <% elsif @entity == "Órgãos Públicos" %>
+        <div>
+            <%= render 'list_agencies' %>
+        </div>
+    <% elsif @entity == "Empresas" %>
+        <div>
+            <%= render 'list_companies' %>
+        </div>
+    <% elsif @entity == "Programas" %>
+        <div>
+            <%= render 'list_programs' %>
+        </div>
+    <% end%>
+<% end %>

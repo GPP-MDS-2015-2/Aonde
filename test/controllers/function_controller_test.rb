@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class FunctionControllerTest < ActionController::TestCase
-	
+
 	test "Should validate atributtes" do
 
 		@controller.insert_expenses_functions(2015,2015,1,12,1,31)
@@ -72,5 +72,6 @@ class FunctionControllerTest < ActionController::TestCase
 		assert_equal(expected_last_day,last_day)
 
 	end
+
 
 end

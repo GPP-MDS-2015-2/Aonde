@@ -3,6 +3,13 @@ require 'test_helper'
 class BudgetControllerTest < ActionController::TestCase
 =begin
   FIx that tests
+  test "Test of method subtract_expenses_on_budget" do
+    create_public_agency
+    id_public_agency = 2
+    array_expect = [5252423, 5251923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923]
+    array_return = @controller.subtract_expenses_on_budget(id_public_agency, 2015)
+    assert_equal(array_expect, array_return)
+  end
   test "Routes to method filter_chart_budget" do
     create_public_agency
     get :filter_chart_budget, id: 2, year: "2015"
@@ -10,13 +17,6 @@ class BudgetControllerTest < ActionController::TestCase
     assert assigns(:list_expense_month)
     assert assigns(:expense_find)
     assert assigns(:list_budget_month)
-  end
-  test "Test of method subtract_expenses_on_budget" do
-    create_public_agency
-    id_public_agency = 2
-    array_expect = [5252423, 5251923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923]
-    array_return = @controller.subtract_expenses_on_budget(id_public_agency, 2015)
-    assert_equal(array_expect, array_return)
   end
   test "Route to method show and the result of the request" do
     create_public_agency        
@@ -36,7 +36,6 @@ class BudgetControllerTest < ActionController::TestCase
     expect_return = true
     assert_equal(expect_return,boolean) 
   end
-
   test "Should return an invalid period" do
     data = Date.new(2014,06,01)
     boolean = @controller.is_date_in_interval("Janeiro",2015,"Dezembro",2015,data)
@@ -126,22 +125,22 @@ class BudgetControllerTest < ActionController::TestCase
   end
 
 
-	def create_public_agency
-		SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
+  def create_public_agency
+    SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
 
-		PublicAgency.create(id: 1, views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
-		PublicAgency.create(id: 2, views_amount: 0,name: "valid Agency 2",superior_public_agency_id: 1)
+    PublicAgency.create(id: 1, views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
+    PublicAgency.create(id: 2, views_amount: 0,name: "valid Agency 2",superior_public_agency_id: 1)
 
-		Expense.create(document_number: "0000",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 500)
-		Expense.create(document_number: "0001",payment_date: Date.new(2010,1,2),public_agency_id: 1,value: 500)
-		Expense.create(document_number: "0002",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 1000)
+    Expense.create(document_number: "0000",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 500)
+    Expense.create(document_number: "0001",payment_date: Date.new(2010,1,2),public_agency_id: 1,value: 500)
+    Expense.create(document_number: "0002",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 1000)
 
-		Expense.create(document_number: "0003",payment_date: Date.new(2015,1,1),public_agency_id: 2,value: 500)
-		Expense.create(document_number: "0004",payment_date: Date.new(2015,2,1),public_agency_id: 2,value: 500)
-		Expense.create(document_number: "0005",payment_date: Date.new(2015,3,1),public_agency_id: 2,value: 1000)
-		
-	end
-	
+    Expense.create(document_number: "0003",payment_date: Date.new(2015,1,1),public_agency_id: 2,value: 500)
+    Expense.create(document_number: "0004",payment_date: Date.new(2015,2,1),public_agency_id: 2,value: 500)
+    Expense.create(document_number: "0005",payment_date: Date.new(2015,3,1),public_agency_id: 2,value: 1000)
+    
+  end
+  
   test 'the budgets not null' do
     create_fake_web
     FakeWeb.allow_net_connect = false
@@ -378,4 +377,5 @@ class BudgetControllerTest < ActionController::TestCase
       budget_hash = {"ano" => {"value" => "2011"},"somaProjetoLei" => {"value"=> "123456"}}
       return budget_hash
     end
+
 end

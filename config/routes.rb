@@ -11,11 +11,16 @@ Rails.application.routes.draw do
   get "public_agency/:id/company", to: "company#show", as: "company"
   get 'public_agency/:id/budgets', to: "budget#show", as: "budget"
   get "public_agency/:id/programs", to: "program#show", as: "programs"
+  
+  get "/program/:id", to: "program#show_program", as: "program"
+
   get "public_agency/:id/filter_budget",to: "budget#filter_chart_budget", as: "filter_budget"
+  get "search/list", to:"search#index", as: "search"
   #Routes of Programs
   get "/functions" => "function#show"
   get "/functions/filter" => "function#filter"
-    
+  get "/companies_expenses" => "company#index"
+  get "/find/:id" => "company#find"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
