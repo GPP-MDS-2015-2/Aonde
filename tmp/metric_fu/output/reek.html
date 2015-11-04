@@ -516,7 +516,7 @@ table td.score {
 <p><a href="http://github.com/troessner/reek">Reek</a> detects common code smells in ruby code.</p>
 
 <div id="graph_container"></div>
-<script language="javascript" src="reek.js?1446427743" type="text/javascript"></script>
+<script language="javascript" src="reek.js?1446598977" type="text/javascript"></script>
 
 <table>
   <tr>
@@ -764,7 +764,7 @@ table td.score {
           BudgetController#filter_chart_budget
         </td>
         <td>
-          has approx 9 statements
+          has approx 12 statements
         </td>
         <td>
           TooManyStatements
@@ -1072,7 +1072,7 @@ table td.score {
           BudgetController#show
         </td>
         <td>
-          has approx 6 statements
+          has approx 10 statements
         </td>
         <td>
           TooManyStatements
@@ -1081,6 +1081,20 @@ table td.score {
       
     
       <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
+        <td>
+          BudgetController#subtract_expenses_on_budget
+        </td>
+        <td>
+          has approx 6 statements
+        </td>
+        <td>
+          TooManyStatements
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
           BudgetController#transform_hash_to_array
@@ -1094,7 +1108,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
           BudgetController#valid_data?
@@ -1108,7 +1122,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
           BudgetController#valid_data?
@@ -1122,7 +1136,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
           BudgetController#valid_data?
@@ -1138,7 +1152,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/models/company.rb'>app/models/company.rb</a></td>
         <td>
           Company
@@ -1154,7 +1168,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
         <td>
           CompanyController
@@ -1164,6 +1178,216 @@ table td.score {
         </td>
         <td>
           IrresponsibleModule
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#find
+        </td>
+        <td>
+          calls params[:id] 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#find
+        </td>
+        <td>
+          has approx 6 statements
+        </td>
+        <td>
+          TooManyStatements
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#find_hiring_count
+        </td>
+        <td>
+          doesn't depend on instance state
+        </td>
+        <td>
+          UtilityFunction
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#find_public_agencies
+        </td>
+        <td>
+          calls expense.public_agency_id 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#find_public_agencies
+        </td>
+        <td>
+          has approx 6 statements
+        </td>
+        <td>
+          TooManyStatements
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#find_public_agencies
+        </td>
+        <td>
+          performs a nil-check
+        </td>
+        <td>
+          NilCheck
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#find_public_agencies
+        </td>
+        <td>
+          refers to expense more than self
+        </td>
+        <td>
+          FeatureEnvy
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#generate_public_agency_node
+        </td>
+        <td>
+          calls count * 50 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#generate_public_agency_node
+        </td>
+        <td>
+          doesn't depend on instance state
+        </td>
+        <td>
+          UtilityFunction
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#generate_public_agency_node
+        </td>
+        <td>
+          has approx 16 statements
+        </td>
+        <td>
+          TooManyStatements
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#get_15_first_nodes
+        </td>
+        <td>
+          calls company_hiring_incidence[length - 1] 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#get_15_first_nodes
+        </td>
+        <td>
+          calls final_array.push(company_hiring_incidence[length - 1]) 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#get_15_first_nodes
+        </td>
+        <td>
+          calls length - 1 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#get_15_first_nodes
+        </td>
+        <td>
+          doesn't depend on instance state
+        </td>
+        <td>
+          UtilityFunction
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#get_15_first_nodes
+        </td>
+        <td>
+          has approx 9 statements
+        </td>
+        <td>
+          TooManyStatements
         </td>
       </tr>
       
@@ -1252,9 +1476,51 @@ table td.score {
       </tr>
       
     
-  
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#verify_insert
+        </td>
+        <td>
+          calls public_agency.name 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#verify_insert
+        </td>
+        <td>
+          refers to company_hiring_incidence more than self
+        </td>
+        <td>
+          FeatureEnvy
+        </td>
+      </tr>
+      
     
       <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#verify_insert
+        </td>
+        <td>
+          refers to public_agency more than self
+        </td>
+        <td>
+          FeatureEnvy
+        </td>
+      </tr>
+      
+    
+  
+    
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/models/expense.rb'>app/models/expense.rb</a></td>
         <td>
           Expense
@@ -1270,7 +1536,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/expense_controller.rb'>app/controllers/expense_controller.rb</a></td>
         <td>
           ExpenseController
@@ -1286,7 +1552,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/models/function.rb'>app/models/function.rb</a></td>
         <td>
           Function
@@ -1300,7 +1566,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/models/function.rb'>app/models/function.rb</a></td>
         <td>
           Function#get_expenses_by_function
@@ -1314,7 +1580,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/models/function.rb'>app/models/function.rb</a></td>
         <td>
           Function#get_expenses_by_function
@@ -1330,7 +1596,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController
@@ -1344,7 +1610,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#control_datas
@@ -1358,7 +1624,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#control_datas
@@ -1372,7 +1638,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#control_datas
@@ -1386,7 +1652,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#control_datas
@@ -1400,7 +1666,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#convert_to_a_hash
@@ -1414,7 +1680,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#filter_datas_in_expense
@@ -1428,7 +1694,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#find_month_limit
@@ -1442,7 +1708,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#find_month_limit
@@ -1456,7 +1722,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#insert_expenses_functions
@@ -1472,7 +1738,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/models/program.rb'>app/models/program.rb</a></td>
         <td>
           Program
@@ -1488,7 +1754,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
         <td>
           ProgramController
@@ -1498,6 +1764,76 @@ table td.score {
         </td>
         <td>
           IrresponsibleModule
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController
+        </td>
+        <td>
+          takes parameters [class_entity, program_id] to 3 methods
+        </td>
+        <td>
+          DataClump
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController
+        </td>
+        <td>
+          tests class_entity.name == Company.name at least 3 times
+        </td>
+        <td>
+          RepeatedConditional
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController
+        </td>
+        <td>
+          tests class_entity.name == PublicAgency.name at least 3 times
+        </td>
+        <td>
+          RepeatedConditional
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#add_edge
+        </td>
+        <td>
+          has approx 6 statements
+        </td>
+        <td>
+          TooManyStatements
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#add_edge
+        </td>
+        <td>
+          refers to data_program more than self
+        </td>
+        <td>
+          FeatureEnvy
         </td>
       </tr>
       
@@ -1561,6 +1897,188 @@ table td.score {
       <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
         <td>
+          ProgramController#add_node
+        </td>
+        <td>
+          calls data_program[node] 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#add_node
+        </td>
+        <td>
+          doesn't depend on instance state
+        </td>
+        <td>
+          UtilityFunction
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#color_edge
+        </td>
+        <td>
+          calls class_entity.name 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#color_edge
+        </td>
+        <td>
+          doesn't depend on instance state
+        </td>
+        <td>
+          UtilityFunction
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#create_node
+        </td>
+        <td>
+          has 4 parameters
+        </td>
+        <td>
+          LongParameterList
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#create_node
+        </td>
+        <td>
+          has the variable name 'e'
+        </td>
+        <td>
+          UncommunicativeVariableName
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#create_nodes
+        </td>
+        <td>
+          performs a nil-check
+        </td>
+        <td>
+          NilCheck
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#define_field
+        </td>
+        <td>
+          calls class_entity.name 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#define_field
+        </td>
+        <td>
+          doesn't depend on instance state
+        </td>
+        <td>
+          UtilityFunction
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#obtain_id
+        </td>
+        <td>
+          calls class_entity.name 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#obtain_id
+        </td>
+        <td>
+          doesn't depend on instance state
+        </td>
+        <td>
+          UtilityFunction
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#obtain_name_value
+        </td>
+        <td>
+          has approx 8 statements
+        </td>
+        <td>
+          TooManyStatements
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
+          ProgramController#show_program
+        </td>
+        <td>
+          has approx 9 statements
+        </td>
+        <td>
+          TooManyStatements
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
+        <td>
           ProgramController#sum_expense_program
         </td>
         <td>
@@ -1574,7 +2092,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/models/public_agency.rb'>app/models/public_agency.rb</a></td>
         <td>
           PublicAgency
@@ -1590,7 +2108,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController
@@ -1604,7 +2122,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#expenses_public_agency
@@ -1618,7 +2136,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#filter_chart
@@ -1632,7 +2150,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#filter_chart
@@ -1646,7 +2164,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#filter_chart
@@ -1660,7 +2178,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#filter_chart
@@ -1674,7 +2192,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#filter_chart
@@ -1688,7 +2206,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#filter_chart
@@ -1702,7 +2220,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#filter_chart
@@ -1716,7 +2234,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#get_expenses_agency
@@ -1730,7 +2248,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#get_expenses_agency
@@ -1744,7 +2262,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#get_expenses_agency
@@ -1758,7 +2276,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#get_expenses_agency
@@ -1772,7 +2290,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#get_expenses_agency
@@ -1786,7 +2304,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#get_list_expenses_by_period
@@ -1800,7 +2318,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#get_list_expenses_by_period
@@ -1814,7 +2332,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#index
@@ -1828,7 +2346,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#is_date_in_interval
@@ -1842,7 +2360,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#is_date_in_interval
@@ -1856,7 +2374,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#is_date_in_interval
@@ -1870,7 +2388,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#is_date_in_interval
@@ -1884,7 +2402,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#is_date_in_interval
@@ -1898,7 +2416,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#is_date_in_interval
@@ -1912,7 +2430,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#is_date_valid
@@ -1926,7 +2444,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#is_date_valid
@@ -1940,7 +2458,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#is_date_valid
@@ -1954,7 +2472,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
           PublicAgencyController#message_invalid_input
@@ -1970,7 +2488,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/helpers/public_agency_helper.rb'>app/helpers/public_agency_helper.rb</a></td>
         <td>
           PublicAgencyHelper#facebook_share_amount
@@ -1984,7 +2502,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/helpers/public_agency_helper.rb'>app/helpers/public_agency_helper.rb</a></td>
         <td>
           PublicAgencyHelper#facebook_share_amount
@@ -1998,7 +2516,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/helpers/public_agency_helper.rb'>app/helpers/public_agency_helper.rb</a></td>
         <td>
           PublicAgencyHelper#facebook_share_amount
@@ -2014,7 +2532,65 @@ table td.score {
     
   
     
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/search_controller.rb'>app/controllers/search_controller.rb</a></td>
+        <td>
+          SearchController
+        </td>
+        <td>
+          has no descriptive comment
+        </td>
+        <td>
+          IrresponsibleModule
+        </td>
+      </tr>
+      
+    
       <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/search_controller.rb'>app/controllers/search_controller.rb</a></td>
+        <td>
+          SearchController#expense_entities
+        </td>
+        <td>
+          doesn't depend on instance state
+        </td>
+        <td>
+          UtilityFunction
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/search_controller.rb'>app/controllers/search_controller.rb</a></td>
+        <td>
+          SearchController#index
+        </td>
+        <td>
+          has approx 8 statements
+        </td>
+        <td>
+          TooManyStatements
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///home/john/Git/Aonde/app/controllers/search_controller.rb'>app/controllers/search_controller.rb</a></td>
+        <td>
+          SearchController#search_entities
+        </td>
+        <td>
+          refers to total_expense_entity more than self
+        </td>
+        <td>
+          FeatureEnvy
+        </td>
+      </tr>
+      
+    
+  
+    
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/models/superior_public_agency.rb'>app/models/superior_public_agency.rb</a></td>
         <td>
           SuperiorPublicAgency
@@ -2030,7 +2606,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/superior_public_agency_controller.rb'>app/controllers/superior_public_agency_controller.rb</a></td>
         <td>
           SuperiorPublicAgencyController
@@ -2046,7 +2622,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/models/type_expense.rb'>app/models/type_expense.rb</a></td>
         <td>
           TypeExpense
@@ -2062,7 +2638,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
           TypeExpenseController
@@ -2076,7 +2652,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
           TypeExpenseController#create_dictionary
@@ -2090,7 +2666,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
           TypeExpenseController#define_color
@@ -2104,7 +2680,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
           TypeExpenseController#filter_chart
@@ -2118,7 +2694,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
           TypeExpenseController#filter_chart
@@ -2132,7 +2708,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
           TypeExpenseController#find_expenses
@@ -2146,7 +2722,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
           TypeExpenseController#get_expense_by_type
@@ -2160,7 +2736,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
           TypeExpenseController#is_date_select
@@ -2174,7 +2750,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
           TypeExpenseController#is_date_select
@@ -2188,7 +2764,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
           TypeExpenseController#is_date_select
@@ -2204,7 +2780,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///home/john/Git/Aonde/app/controllers/welcome_controller.rb'>app/controllers/welcome_controller.rb</a></td>
         <td>
           WelcomeController
@@ -2222,7 +2798,7 @@ table td.score {
 
 </table>
 
-<p>Generated on 2015-11-01 23:29:03 -0200</p>
+<p>Generated on 2015-11-03 23:02:57 -0200</p>
 
     </div>
 

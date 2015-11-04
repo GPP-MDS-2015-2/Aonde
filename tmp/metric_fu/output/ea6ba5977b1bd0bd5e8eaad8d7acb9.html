@@ -322,12 +322,16 @@
         <tr>
           <td valign='top'>
            
-              &nbsp;
+             <ul>
+               
+                 <li>remove trailing whitespace &raquo; rails_best_practices</li>
+               
+            </ul>
           
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>                  &lt;tr&gt;
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>                  &lt;tr onclick=<span class="string"><span class="delimiter">&quot;</span><span class="content">location.href = '&lt;%=public_agency_path(agency.id)%&gt;';</span><span class="delimiter">&quot;</span></span> style=<span class="string"><span class="delimiter">&quot;</span><span class="content">cursor: hand;</span><span class="delimiter">&quot;</span></span>&gt;  
 </pre></div>
 </div>
 
@@ -359,7 +363,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>                          &lt;center&gt;&lt;<span class="string"><span class="delimiter">%=</span><span class="content"> link_to agency.name,public_agency_path(agency.id)%&gt;&lt;/center&gt;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>                          &lt;center&gt;&lt;<span class="string"><span class="delimiter">%=</span><span class="content"> agency.name%&gt;&lt;/center&gt;</span></span>
 <span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="string"><span class="content"></span></span></pre></div>
 </div>
 

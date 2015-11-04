@@ -35,55 +35,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>&lt;script src=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://code.highcharts.com/highcharts.js</span><span class="delimiter">&quot;</span></span>&gt;&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">script&gt;</span></span>
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span><span class="regexp"><span class="content"></span></span></pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>&lt;script src=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://code.highcharts.com/modules/exporting.js</span><span class="delimiter">&quot;</span></span>&gt;&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">script&gt;</span></span>
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span><span class="regexp"><span class="content"></span></span></pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>&lt;script&gt;
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>&lt;script&gt;
 </pre></div>
 </div>
 
@@ -103,7 +55,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>dataExpense = <span class="constant">JSON</span>.parse(<span class="string"><span class="delimiter">'</span><span class="content">&lt;%= raw @list_expense_month%&gt;</span><span class="delimiter">'</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>dataExpense = <span class="constant">JSON</span>.parse(<span class="string"><span class="delimiter">'</span><span class="content">&lt;%= raw @list_expense_month%&gt;</span><span class="delimiter">'</span></span>)
 </pre></div>
 </div>
 
@@ -123,7 +75,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>dataBudget = <span class="constant">JSON</span>.parse(<span class="string"><span class="delimiter">'</span><span class="content"> &lt;%= raw @list_budget_month%&gt;</span><span class="delimiter">'</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>dataBudget = <span class="constant">JSON</span>.parse(<span class="string"><span class="delimiter">'</span><span class="content"> &lt;%= raw @list_budget_month%&gt;</span><span class="delimiter">'</span></span>)
 </pre></div>
 </div>
 
@@ -139,7 +91,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>
 </pre></div>
 </div>
 
@@ -155,7 +107,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span><span class="error">$</span>(function () {
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span><span class="error">$</span>(function () {
 </pre></div>
 </div>
 
@@ -171,7 +123,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span class="error">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#container</span><span class="delimiter">'</span></span>).highcharts({
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>    <span class="error">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#container</span><span class="delimiter">'</span></span>).highcharts({
 </pre></div>
 </div>
 
@@ -187,7 +139,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="key">chart</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>        <span class="key">chart</span>: {
 </pre></div>
 </div>
 
@@ -203,7 +155,55 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="key">zoomType</span>: <span class="string"><span class="delimiter">'</span><span class="content">xy</span><span class="delimiter">'</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>            <span class="key">zoomType</span>: <span class="string"><span class="delimiter">'</span><span class="content">xy</span><span class="delimiter">'</span></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        },
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="key">title</span>: {
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="key">text</span>: <span class="string"><span class="delimiter">'</span><span class="content">Comparao do oramento com os gastos dos rgos</span><span class="delimiter">'</span></span>
 </pre></div>
 </div>
 
@@ -235,7 +235,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="key">title</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="key">xAxis</span>: [{
 </pre></div>
 </div>
 
@@ -251,7 +251,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="key">text</span>: <span class="string"><span class="delimiter">'</span><span class="content">Comparao do oramento com os gastos dos rgos</span><span class="delimiter">'</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="key">categories</span>: [<span class="string"><span class="delimiter">'</span><span class="content">Janeiro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Fevereiro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Maro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Abril</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Maio</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Junho</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Julho</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Agosto</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Setembro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Outubro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Novembro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Dezembro</span><span class="delimiter">'</span></span>],
 </pre></div>
 </div>
 
@@ -267,7 +267,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>        },
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>            <span class="key">crosshair</span>: <span class="predefined-constant">true</span>
 </pre></div>
 </div>
 
@@ -283,7 +283,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>        <span class="key">xAxis</span>: [{
+  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>        }],
 </pre></div>
 </div>
 
@@ -299,7 +299,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="key">categories</span>: [<span class="string"><span class="delimiter">'</span><span class="content">Janeiro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Fevereiro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Maro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Abril</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Maio</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Junho</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Julho</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Agosto</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Setembro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Outubro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Novembro</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Dezembro</span><span class="delimiter">'</span></span>],
+  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="key">yAxis</span>: [{ <span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span> <span class="constant">Primary</span> yAxis
 </pre></div>
 </div>
 
@@ -315,7 +315,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>            <span class="key">crosshair</span>: <span class="predefined-constant">true</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>            <span class="key">labels</span>: {
 </pre></div>
 </div>
 
@@ -331,7 +331,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>        }],
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>                <span class="key">format</span>: <span class="string"><span class="delimiter">'</span><span class="content">R$ {value}</span><span class="delimiter">'</span></span>,
 </pre></div>
 </div>
 
@@ -347,7 +347,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        <span class="key">yAxis</span>: [{ <span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span> <span class="constant">Primary</span> yAxis
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                <span class="key">style</span>: {
 </pre></div>
 </div>
 
@@ -363,7 +363,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>            <span class="key">labels</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>                    <span class="key">color</span>: <span class="constant">Highcharts</span>.getOptions().colors[<span class="integer">1</span>]
 </pre></div>
 </div>
 
@@ -379,7 +379,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>                <span class="key">format</span>: <span class="string"><span class="delimiter">'</span><span class="content">R$ {value}</span><span class="delimiter">'</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>                }
 </pre></div>
 </div>
 
@@ -395,7 +395,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>                <span class="key">style</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>            },
 </pre></div>
 </div>
 
@@ -411,7 +411,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>                    <span class="key">color</span>: <span class="constant">Highcharts</span>.getOptions().colors[<span class="integer">1</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>            <span class="key">title</span>: {
 </pre></div>
 </div>
 
@@ -427,7 +427,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>                }
+  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>                <span class="key">text</span>: <span class="string"><span class="delimiter">'</span><span class="content">Oramento</span><span class="delimiter">'</span></span>,
 </pre></div>
 </div>
 
@@ -443,7 +443,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>            },
+  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>                <span class="key">style</span>: {
 </pre></div>
 </div>
 
@@ -459,7 +459,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>            <span class="key">title</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>                    <span class="key">color</span>: <span class="constant">Highcharts</span>.getOptions().colors[<span class="integer">1</span>]
 </pre></div>
 </div>
 
@@ -475,7 +475,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>                <span class="key">text</span>: <span class="string"><span class="delimiter">'</span><span class="content">Oramento</span><span class="delimiter">'</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>                }
 </pre></div>
 </div>
 
@@ -491,7 +491,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>                <span class="key">style</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>            }
 </pre></div>
 </div>
 
@@ -507,7 +507,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                    <span class="key">color</span>: <span class="constant">Highcharts</span>.getOptions().colors[<span class="integer">1</span>]
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        },{ <span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span> <span class="constant">Secondary</span> yAxis
 </pre></div>
 </div>
 
@@ -523,7 +523,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span>                }
+  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span>            <span class="key">labels</span>: {
 </pre></div>
 </div>
 
@@ -539,7 +539,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>            }
+  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>                <span class="key">format</span>: <span class="string"><span class="delimiter">'</span><span class="content">R$ {value}</span><span class="delimiter">'</span></span>,
 </pre></div>
 </div>
 
@@ -555,7 +555,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>        },{ <span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span> <span class="constant">Secondary</span> yAxis
+  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>                <span class="key">style</span>: {
 </pre></div>
 </div>
 
@@ -571,7 +571,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>            <span class="key">labels</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    <span class="key">color</span>: <span class="constant">Highcharts</span>.getOptions().colors[<span class="integer">0</span>]
 </pre></div>
 </div>
 
@@ -587,7 +587,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>                <span class="key">format</span>: <span class="string"><span class="delimiter">'</span><span class="content">R$ {value}</span><span class="delimiter">'</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>                }
 </pre></div>
 </div>
 
@@ -603,7 +603,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>                <span class="key">style</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>            },
 </pre></div>
 </div>
 
@@ -619,7 +619,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>                    <span class="key">color</span>: <span class="constant">Highcharts</span>.getOptions().colors[<span class="integer">0</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>            <span class="key">title</span>: {
 </pre></div>
 </div>
 
@@ -635,7 +635,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span>                }
+  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span>                <span class="key">text</span>: <span class="string"><span class="delimiter">'</span><span class="content">Gastos</span><span class="delimiter">'</span></span>,
 </pre></div>
 </div>
 
@@ -651,7 +651,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>            },
+  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>                <span class="key">style</span>: {
 </pre></div>
 </div>
 
@@ -667,7 +667,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>            <span class="key">title</span>: {
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                    <span class="key">color</span>: <span class="constant">Highcharts</span>.getOptions().colors[<span class="integer">0</span>]
 </pre></div>
 </div>
 
@@ -683,7 +683,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span>                <span class="key">text</span>: <span class="string"><span class="delimiter">'</span><span class="content">Gastos</span><span class="delimiter">'</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span>                }
 </pre></div>
 </div>
 
@@ -699,7 +699,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n42" name="n42">42</a></span>                <span class="key">style</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n42" name="n42">42</a></span>            },
 </pre></div>
 </div>
 
@@ -715,7 +715,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n43" name="n43">43</a></span>                    <span class="key">color</span>: <span class="constant">Highcharts</span>.getOptions().colors[<span class="integer">0</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n43" name="n43">43</a></span>            <span class="key">opposite</span>: <span class="predefined-constant">true</span>
 </pre></div>
 </div>
 
@@ -731,7 +731,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n44" name="n44">44</a></span>                }
+  <div class="code"><pre><span class="line-numbers"><a href="#n44" name="n44">44</a></span>        }],
 </pre></div>
 </div>
 
@@ -747,7 +747,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n45" name="n45">45</a></span>            },
+  <div class="code"><pre><span class="line-numbers"><a href="#n45" name="n45">45</a></span>        <span class="key">tooltip</span>: {
 </pre></div>
 </div>
 
@@ -763,7 +763,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n46" name="n46">46</a></span>            <span class="key">opposite</span>: <span class="predefined-constant">true</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n46" name="n46">46</a></span>            <span class="key">shared</span>: <span class="predefined-constant">true</span>
 </pre></div>
 </div>
 
@@ -779,7 +779,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n47" name="n47">47</a></span>        }],
+  <div class="code"><pre><span class="line-numbers"><a href="#n47" name="n47">47</a></span>        },
 </pre></div>
 </div>
 
@@ -795,7 +795,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n48" name="n48">48</a></span>        <span class="key">tooltip</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n48" name="n48">48</a></span>        <span class="key">series</span>: [{
 </pre></div>
 </div>
 
@@ -811,7 +811,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n49" name="n49">49</a></span>            <span class="key">shared</span>: <span class="predefined-constant">true</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n49" name="n49">49</a></span>            <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Gastos</span><span class="delimiter">'</span></span>,
 </pre></div>
 </div>
 
@@ -827,7 +827,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>        },
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>            <span class="key">type</span>: <span class="string"><span class="delimiter">'</span><span class="content">column</span><span class="delimiter">'</span></span>,
 </pre></div>
 </div>
 
@@ -843,7 +843,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n51" name="n51">51</a></span>        <span class="key">series</span>: [{
+  <div class="code"><pre><span class="line-numbers"><a href="#n51" name="n51">51</a></span>            <span class="key">yAxis</span>: <span class="integer">1</span>,
 </pre></div>
 </div>
 
@@ -859,7 +859,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n52" name="n52">52</a></span>            <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Gastos</span><span class="delimiter">'</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n52" name="n52">52</a></span>            <span class="key">data</span>: dataExpense,
 </pre></div>
 </div>
 
@@ -875,7 +875,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n53" name="n53">53</a></span>            <span class="key">type</span>: <span class="string"><span class="delimiter">'</span><span class="content">column</span><span class="delimiter">'</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n53" name="n53">53</a></span>            <span class="key">tooltip</span>: {
 </pre></div>
 </div>
 
@@ -891,7 +891,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n54" name="n54">54</a></span>            <span class="key">yAxis</span>: <span class="integer">1</span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n54" name="n54">54</a></span>                <span class="key">valuePrefix</span>: <span class="string"><span class="delimiter">'</span><span class="content">R$ </span><span class="delimiter">'</span></span>
 </pre></div>
 </div>
 
@@ -907,7 +907,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n55" name="n55">55</a></span>            <span class="key">data</span>: dataExpense,
+  <div class="code"><pre><span class="line-numbers"><a href="#n55" name="n55">55</a></span>            }
 </pre></div>
 </div>
 
@@ -923,7 +923,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n56" name="n56">56</a></span>            <span class="key">tooltip</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n56" name="n56">56</a></span>
 </pre></div>
 </div>
 
@@ -939,7 +939,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n57" name="n57">57</a></span>                <span class="key">valuePrefix</span>: <span class="string"><span class="delimiter">'</span><span class="content">R$ </span><span class="delimiter">'</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n57" name="n57">57</a></span>        }, {
 </pre></div>
 </div>
 
@@ -955,7 +955,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n58" name="n58">58</a></span>            }
+  <div class="code"><pre><span class="line-numbers"><a href="#n58" name="n58">58</a></span>            <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Oramento</span><span class="delimiter">'</span></span>,
 </pre></div>
 </div>
 
@@ -971,7 +971,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n59" name="n59">59</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n59" name="n59">59</a></span>            <span class="key">type</span>: <span class="string"><span class="delimiter">'</span><span class="content">line</span><span class="delimiter">'</span></span>,
 </pre></div>
 </div>
 
@@ -987,7 +987,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>        }, {
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>            <span class="key">data</span>: dataBudget,
 </pre></div>
 </div>
 
@@ -1003,7 +1003,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n61" name="n61">61</a></span>            <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Oramento</span><span class="delimiter">'</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n61" name="n61">61</a></span>            <span class="key">tooltip</span>: {
 </pre></div>
 </div>
 
@@ -1019,7 +1019,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n62" name="n62">62</a></span>            <span class="key">type</span>: <span class="string"><span class="delimiter">'</span><span class="content">line</span><span class="delimiter">'</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n62" name="n62">62</a></span>                <span class="key">valuePrefix</span>: <span class="string"><span class="delimiter">'</span><span class="content">R$ </span><span class="delimiter">'</span></span>
 </pre></div>
 </div>
 
@@ -1035,7 +1035,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n63" name="n63">63</a></span>            <span class="key">data</span>: dataBudget,
+  <div class="code"><pre><span class="line-numbers"><a href="#n63" name="n63">63</a></span>            }
 </pre></div>
 </div>
 
@@ -1051,7 +1051,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n64" name="n64">64</a></span>            <span class="key">tooltip</span>: {
+  <div class="code"><pre><span class="line-numbers"><a href="#n64" name="n64">64</a></span>        }]
 </pre></div>
 </div>
 
@@ -1067,7 +1067,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n65" name="n65">65</a></span>                <span class="key">valuePrefix</span>: <span class="string"><span class="delimiter">'</span><span class="content">R$ </span><span class="delimiter">'</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n65" name="n65">65</a></span>    });
 </pre></div>
 </div>
 
@@ -1083,7 +1083,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n66" name="n66">66</a></span>            }
+  <div class="code"><pre><span class="line-numbers"><a href="#n66" name="n66">66</a></span>});
 </pre></div>
 </div>
 
@@ -1099,7 +1099,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n67" name="n67">67</a></span>        }]
+  <div class="code"><pre><span class="line-numbers"><a href="#n67" name="n67">67</a></span>
 </pre></div>
 </div>
 
@@ -1115,55 +1115,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n68" name="n68">68</a></span>    });
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n69" name="n69">69</a></span>});
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n70" name="n70">70</a></strong></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n71" name="n71">71</a></span><span class="error">$</span>(document).ready(function(){
+  <div class="code"><pre><span class="line-numbers"><a href="#n68" name="n68">68</a></span><span class="error">$</span>(document).ready(function(){
 </pre></div>
 </div>
 
@@ -1183,27 +1135,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n72" name="n72">72</a></span>    var real_expense = <span class="string"><span class="delimiter">'</span><span class="content">&lt;%= raw @expense_find %&gt;</span><span class="delimiter">'</span></span>;
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-             <ul>
-               
-                 <li>remove trailing whitespace &raquo; rails_best_practices</li>
-               
-            </ul>
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n73" name="n73">73</a></span>    
+  <div class="code"><pre><span class="line-numbers"><a href="#n69" name="n69">69</a></span>    var real_expense = <span class="string"><span class="delimiter">'</span><span class="content">&lt;%= raw @expense_find %&gt;</span><span class="delimiter">'</span></span>;
 </pre></div>
 </div>
 
@@ -1219,7 +1151,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n74" name="n74">74</a></span>    <span class="keyword">if</span>( real_expense != <span class="integer">0</span> ){
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n70" name="n70">70</a></strong></span>    console.log(real_expense);
 </pre></div>
 </div>
 
@@ -1235,7 +1167,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n75" name="n75">75</a></span>        <span class="error">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">.msg_error</span><span class="delimiter">'</span></span>).remove();
+  <div class="code"><pre><span class="line-numbers"><a href="#n71" name="n71">71</a></span>    <span class="keyword">if</span>( real_expense != <span class="integer">0</span> ){
 </pre></div>
 </div>
 
@@ -1251,7 +1183,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n76" name="n76">76</a></span>    }<span class="keyword">else</span>{
+  <div class="code"><pre><span class="line-numbers"><a href="#n72" name="n72">72</a></span>        <span class="error">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">.msg_error</span><span class="delimiter">'</span></span>).remove();
 </pre></div>
 </div>
 
@@ -1267,7 +1199,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n77" name="n77">77</a></span>        setTimeout(function(){
+  <div class="code"><pre><span class="line-numbers"><a href="#n73" name="n73">73</a></span>    }<span class="keyword">else</span>{
 </pre></div>
 </div>
 
@@ -1283,7 +1215,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n78" name="n78">78</a></span>            <span class="error">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">.msg_error</span><span class="delimiter">'</span></span>).remove();
+  <div class="code"><pre><span class="line-numbers"><a href="#n74" name="n74">74</a></span>        setTimeout(function(){
 </pre></div>
 </div>
 
@@ -1299,7 +1231,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n79" name="n79">79</a></span>        }, <span class="integer">5000</span>);
+  <div class="code"><pre><span class="line-numbers"><a href="#n75" name="n75">75</a></span>            <span class="error">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">.msg_error</span><span class="delimiter">'</span></span>).remove();
 </pre></div>
 </div>
 
@@ -1315,7 +1247,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n80" name="n80">80</a></strong></span>    }
+  <div class="code"><pre><span class="line-numbers"><a href="#n76" name="n76">76</a></span>        }, <span class="integer">5000</span>);
 </pre></div>
 </div>
 
@@ -1331,7 +1263,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n81" name="n81">81</a></span> });
+  <div class="code"><pre><span class="line-numbers"><a href="#n77" name="n77">77</a></span>    }
 </pre></div>
 </div>
 
@@ -1347,7 +1279,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n82" name="n82">82</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n78" name="n78">78</a></span> });
 </pre></div>
 </div>
 
@@ -1363,7 +1295,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n83" name="n83">83</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n79" name="n79">79</a></span>
 </pre></div>
 </div>
 
@@ -1379,7 +1311,71 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n84" name="n84">84</a></span>&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">script&gt;</span></span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n80" name="n80">80</a></strong></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n81" name="n81">81</a></span>&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">script&gt;</span></span>
+<span class="line-numbers"><a href="#n82" name="n82">82</a></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n82" name="n82">82</a></span>&lt;<span class="string"><span class="delimiter">% </span><span class="content">flash.each</span><span class="delimiter"> </span></span><span class="keyword">do</span> |name, msg| <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n83" name="n83">83</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n83" name="n83">83</a></span>    &lt;div <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">msg_error</span><span class="delimiter">&quot;</span></span>&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n84" name="n84">84</a></span>        &lt;i <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fa fa-warning</span><span class="delimiter">&quot;</span></span>&gt;&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">i&gt;</span></span>
 <span class="line-numbers"><a href="#n85" name="n85">85</a></span><span class="regexp"><span class="content"></span></span></pre></div>
 </div>
 
@@ -1395,7 +1391,39 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n85" name="n85">85</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n85" name="n85">85</a></span>        &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> msg %&gt;</span></span>
+<span class="line-numbers"><a href="#n86" name="n86">86</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n86" name="n86">86</a></span>    &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span>
+<span class="line-numbers"><a href="#n87" name="n87">87</a></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n87" name="n87">87</a></span>&lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;
 </pre></div>
 </div>
 
@@ -1411,23 +1439,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n86" name="n86">86</a></span>&lt;<span class="string"><span class="delimiter">% </span><span class="content">flash.each</span><span class="delimiter"> </span></span><span class="keyword">do</span> |name, msg| <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
-<span class="line-numbers"><a href="#n87" name="n87">87</a></span><span class="string"><span class="content"></span></span></pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n87" name="n87">87</a></span>    &lt;div <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">msg_error</span><span class="delimiter">&quot;</span></span>&gt;
+  <div class="code"><pre><span class="line-numbers"><a href="#n88" name="n88">88</a></span>&lt;div id=<span class="string"><span class="delimiter">&quot;</span><span class="content">combobox</span><span class="delimiter">&quot;</span></span>&gt;
 </pre></div>
 </div>
 
@@ -1443,55 +1455,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n88" name="n88">88</a></span>        &lt;i <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fa fa-warning</span><span class="delimiter">&quot;</span></span>&gt;&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">i&gt;</span></span>
-<span class="line-numbers"><a href="#n89" name="n89">89</a></span><span class="regexp"><span class="content"></span></span></pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n89" name="n89">89</a></span>        &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> msg %&gt;</span></span>
-<span class="line-numbers"><strong><a href="#n90" name="n90">90</a></strong></span><span class="string"><span class="content"></span></span></pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n90" name="n90">90</a></strong></span>    &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span>
-<span class="line-numbers"><a href="#n91" name="n91">91</a></span><span class="regexp"><span class="content"></span></span></pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n91" name="n91">91</a></span>&lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;
+  <div class="code"><pre><span class="line-numbers"><a href="#n89" name="n89">89</a></span>&lt;div id=<span class="string"><span class="delimiter">&quot;</span><span class="content">select_box</span><span class="delimiter">&quot;</span></span>&gt;
 </pre></div>
 </div>
 
@@ -1507,8 +1471,8 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n92" name="n92">92</a></span>&lt;div id=<span class="string"><span class="delimiter">&quot;</span><span class="content">combobox</span><span class="delimiter">&quot;</span></span>&gt;
-</pre></div>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n90" name="n90">90</a></strong></span>&lt;<span class="string"><span class="delimiter">%=</span><span class="content"> form_tag  filter_budget_path , method: 'get' do %&gt;</span></span>
+<span class="line-numbers"><a href="#n91" name="n91">91</a></span><span class="string"><span class="content"></span></span></pre></div>
 </div>
 
           </td>
@@ -1523,40 +1487,8 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n93" name="n93">93</a></span>&lt;div id=<span class="string"><span class="delimiter">&quot;</span><span class="content">select_box</span><span class="delimiter">&quot;</span></span>&gt;
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n94" name="n94">94</a></span>&lt;<span class="string"><span class="delimiter">%=</span><span class="content"> form_tag  filter_budget_path , method: 'get' do %&gt;</span></span>
-<span class="line-numbers"><a href="#n95" name="n95">95</a></span><span class="string"><span class="content"></span></span></pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n95" name="n95">95</a></span>    &lt;!-- &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> hidden_field_tag :id, params[:id]%&gt; --&gt;</span></span>
-<span class="line-numbers"><a href="#n96" name="n96">96</a></span><span class="string"><span class="content"></span></span></pre></div>
+  <div class="code"><pre><span class="line-numbers"><a href="#n91" name="n91">91</a></span>    &lt;!-- &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> hidden_field_tag :id, params[:id]%&gt; --&gt;</span></span>
+<span class="line-numbers"><a href="#n92" name="n92">92</a></span><span class="string"><span class="content"></span></span></pre></div>
 </div>
 
           </td>
@@ -1575,8 +1507,8 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n96" name="n96">96</a></span>    &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> select_tag :year, options_for_select([[&quot;2015&quot;],[&quot;2014&quot;],[&quot;2013&quot;],[&quot;2012&quot;],[&quot;2011&quot;]]) %&gt;</span></span>
-<span class="line-numbers"><a href="#n97" name="n97">97</a></span><span class="string"><span class="content"></span></span></pre></div>
+  <div class="code"><pre><span class="line-numbers"><a href="#n92" name="n92">92</a></span>    &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> select_tag :year, options_for_select([[&quot;2015&quot;],[&quot;2014&quot;],[&quot;2013&quot;],[&quot;2012&quot;],[&quot;2011&quot;]]) %&gt;</span></span>
+<span class="line-numbers"><a href="#n93" name="n93">93</a></span><span class="string"><span class="content"></span></span></pre></div>
 </div>
 
           </td>
@@ -1591,8 +1523,8 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n97" name="n97">97</a></span>    &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> submit_tag 'Filtrar' %&gt;</span></span>
-<span class="line-numbers"><a href="#n98" name="n98">98</a></span><span class="string"><span class="content"></span></span></pre></div>
+  <div class="code"><pre><span class="line-numbers"><a href="#n93" name="n93">93</a></span>    &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> submit_tag 'Filtrar' %&gt;</span></span>
+<span class="line-numbers"><a href="#n94" name="n94">94</a></span><span class="string"><span class="content"></span></span></pre></div>
 </div>
 
           </td>
@@ -1607,7 +1539,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n98" name="n98">98</a></span>&lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;
+  <div class="code"><pre><span class="line-numbers"><a href="#n94" name="n94">94</a></span>&lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;
 </pre></div>
 </div>
 
@@ -1623,7 +1555,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n99" name="n99">99</a></span>&lt;div id=<span class="string"><span class="delimiter">&quot;</span><span class="content">container</span><span class="delimiter">&quot;</span></span> style=<span class="string"><span class="delimiter">&quot;</span><span class="content">min-width: 310px; height: 400px; margin: 0 auto</span><span class="delimiter">&quot;</span></span>&gt;&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span></pre></div>
+  <div class="code"><pre><span class="line-numbers"><a href="#n95" name="n95">95</a></span>&lt;div id=<span class="string"><span class="delimiter">&quot;</span><span class="content">container</span><span class="delimiter">&quot;</span></span> style=<span class="string"><span class="delimiter">&quot;</span><span class="content">min-width: 310px; height: 400px; margin: 0 auto</span><span class="delimiter">&quot;</span></span>&gt;&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span></pre></div>
 </div>
 
           </td>
