@@ -1,6 +1,7 @@
 class SuperiorPublicAgencyController < ApplicationController
 	def show
 		@superior_agency = SuperiorPublicAgency.find(params[:id])
+		@data_superior_agency = ""
 	end
 
 	def find_public_agencies(superior_id)

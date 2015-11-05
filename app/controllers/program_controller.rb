@@ -63,19 +63,11 @@ class ProgramController < ApplicationController
     expenses.each do |expense|
       entity_id = obtain_id(expense, class_entity)
       unless entity_id.nil?
-        create_node(program_id, class_entity, entity_id, program_related)
+        name_value = obtain_name_value(program_id,class_entity,entity_id)
+        Graph.create_node( class_entity, entity_id, program_related,
+          name_value)
       end
     end
-  end
-
-  def create_node(program_id, class_entity, entity_id, program_related)
-    name_value = obtain_name_value(program_id, class_entity, entity_id)
-
-    add_node(name_value[:name], program_related, class_entity.name)
-    add_edge(program_related, name_value[:value],class_entity)
-
-    rescue Exception => e
-      puts "\n\n\n#{e}\n\n"
   end
 
   def obtain_name_value(program_id, class_entity, entity_id)
@@ -93,24 +85,7 @@ class ProgramController < ApplicationController
     name_value
   end
 
-  def add_node(name, data_program, name_entity)
-    node = 0
-    next_id = data_program[node].last['id'] + 1
-    data_program[node] << { 'id' => next_id, 'label' => name,
-                            'group' => name_entity }
-  end
-
-  def add_edge(data_program, value,class_entity)
-    node = 0
-    last_id = data_program[node].last['id']
-    edge = 1
-    currency = ActionController::Base
-               .helpers.number_to_currency(
-                 value, unit: 'R$', separator: ',', delimiter: '.')
-    color = color_edge(class_entity)
-    data_program[edge] << { 'from' => 1, 'to' => last_id, 'value' => value,
-                            'title' => currency.to_s, 'color' => color}
-  end
+  
 
   def define_field(class_entity)
     field_entity = nil
@@ -123,16 +98,6 @@ class ProgramController < ApplicationController
     end
   end
 
-  def color_edge(class_entity)
-    color = nil
-    if class_entity.name == PublicAgency.name
-      color = '#43BFC5'
-    elsif class_entity.name == Company.name
-      color = '#FFBC82'
-    else
-      color
-    end
-  end
   
   def obtain_id(expense, class_entity)
     id = nil
