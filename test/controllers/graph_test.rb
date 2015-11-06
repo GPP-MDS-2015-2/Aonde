@@ -1,71 +1,64 @@
 require 'test_helper'
-class GraphGenerator
-end
 
 class GraphGeneratorTest < ActiveSupport::TestCase
-
-
   test 'return color to PublicAgency' do
-    color_agency = Graph.send(:color_edge,PublicAgency)
+    color_agency = Graph.send(:color_edge, PublicAgency)
     color_expected = '#43BFC5'
 
-    assert_equal(color_expected,color_agency)
+    assert_equal(color_expected, color_agency)
   end
   test 'return color to Company' do
-    
-    color_company = Graph.send(:color_edge,Company)
+    color_company = Graph.send(:color_edge, Company)
     color_expected = '#FFBC82'
 
-    assert_equal(color_expected,color_company)
+    assert_equal(color_expected, color_company)
   end
-  
+
   test 'null result of entity is not Agency or Company' do
-    assert_nil(Graph.send(:color_edge,Program))
+    assert_nil(Graph.send(:color_edge, Program))
   end
-  
-end
-=begin
-###############################################################################
-Para realizar testes! 
-###############################################################################
-test 'add edge to array' do
-    data_program = [[{ 'id' => 1, 'label' => 'Programa1' },
-                     { 'id' => 2, 'label' => 'Company1' }], []]
-    value = 500
-    @controller.add_edge(data_program, value,PublicAgency)
+
+  test 'add edge to array' do
+    data_graph = [[{ 'id' => 1, 'label' => 'Programa1' },
+                   { 'id' => 2, 'label' => 'Company1' }], []]
+    Graph.add_edge(data_graph, PublicAgency)
 
     data_expected = [[{ 'id' => 1, 'label' => 'Programa1' },
                       { 'id' => 2, 'label' => 'Company1' }],
-                     [{ 'from' => 1, 'to' => 2, 'value' => 500,
-                        'title' => 'R$ 500,00', 'color' => '#43BFC5' }]]
+                     [{ 'from' => 1, 'to' => 2, 'color' => '#43BFC5' }]]
 
-    assert_equal(data_expected, data_program)
+    assert_equal(data_expected, data_graph)
   end
-  test 'addition of one node' do
-    generate_program_seed
-    program_related = [[{ 'id' => 1 }], []]
 
-    @controller.create_node(1, PublicAgency, 1, program_related)
-    assert_not_empty(program_related[0])
-    assert_not_empty(program_related[1])
-  end
   test 'empty return to invalid id' do
-    program_related = [[], []]
-    @controller.create_node(1, PublicAgency, 1, program_related)
-    assert_empty(program_related[0])
-    assert_empty(program_related[1])
+    data_graph = [[], []]
+    name_value = { name: 'valid name' }
+    Graph.create_node(PublicAgency, data_graph, name_value)
+    assert_empty(data_graph[0])
+    assert_empty(data_graph[1])
   end
-    test 'Add node to array' do
-    data_program = [[{ 'id' => 1, 'label' => 'Programa1' }], []]
-    company_add = 'company'
 
-    @controller.add_node(company_add, data_program, Company.name)
-
+  test 'Addition of one node without value' do
+    data_graph = [[{ 'id' => 1, 'label' => 'Programa1' }], []]
+    name_value = { name: 'valid name' }
+    Graph.create_node(PublicAgency, data_graph, name_value)
     data_expected = [[{ 'id' => 1, 'label' => 'Programa1' },
-                      { 'id' => 2, 'label' => 'company',
-                        'group' => Company.name }], []]
+                      { 'id' => 2, 'label' => 'valid name',
+                        'group' => PublicAgency.name }],
+                     [{ 'from' => 1, 'to' => 2, 'color' => '#43BFC5' }]]
 
-    assert_equal(data_expected, data_program)
+    assert_equal(data_expected, data_graph)
   end
-  
-=end
+  test 'Addition of one node with value' do
+    data_graph = [[{ 'id' => 1, 'label' => 'Programa1' }], []]
+    name_value = { name: 'valid name', value: 500 }
+    Graph.create_node(PublicAgency, data_graph, name_value)
+    data_expected = [[{ 'id' => 1, 'label' => 'Programa1' },
+                      { 'id' => 2, 'label' => 'valid name',
+                        'group' => PublicAgency.name }],
+                     [{ 'from' => 1, 'to' => 2, 'color' => '#43BFC5',
+                        'title' => 'R$ 500,00', 'value' => 500 }]]
+
+    assert_equal(data_expected, data_graph)
+  end
+end
