@@ -1,9 +1,9 @@
-<div id="agencynetwork">
+<div id="agencynetwork" style="height: 600px;">
 </div>
 <script type="text/javascript">
 	var dataAgency = '<%= raw @data_superior_agency %>';
 	dataAgency = JSON.parse(dataAgency); 
 	console.log(dataAgency);
-	var options = {}
-	var network = createGraph(dataAgency, "agencynetwork", options);
+	dataInitialized = initializeDataSuperior(dataAgency);
+	var network = createGraph(dataInitialized, "agencynetwork");
 </script>
