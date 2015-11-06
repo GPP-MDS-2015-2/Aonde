@@ -1,4 +1,5 @@
 class ProgramController < ApplicationController
+    
   def show
     find_agencies(params[:id])
     @all_programs = find_expenses(@public_agency.id)
@@ -64,8 +65,7 @@ class ProgramController < ApplicationController
       entity_id = obtain_id(expense, class_entity)
       unless entity_id.nil?
         name_value = obtain_name_value(program_id,class_entity,entity_id)
-        Graph.create_node( class_entity, entity_id, program_related,
-          name_value)
+        Graph.create_node( class_entity, program_related, name_value)
       end
     end
   end

@@ -1,7 +1,15 @@
 module Graph
 
+def self.create_nodes_superior(superio_agency, agencies)
+    graph_data = [[{'id'=>1,'name'=> superio_agency.name}],[]]
+    agencies.each do |agency|
+      name_value = {name: agency.name}
+      create_node(PublicAgency, graph_data, name_value)
+    end
+    return graph_data
+  end
 
-  def self.create_node(class_entity, entity_id, data_graph, name_value)  
+  def self.create_node(class_entity, data_graph, name_value)  
     add_node(name_value[:name], data_graph, class_entity.name)
     add_edge(data_graph, class_entity)
     if(name_value[:value])
