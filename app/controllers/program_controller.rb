@@ -32,13 +32,23 @@ class ProgramController < ApplicationController
   end
 
   def add_expense_program(program, expense, programs_expense)
-    if !programs_expense [program.name]
-      programs_expense [program.name] = expense.value
+    name = define_name(program)  
+    if !programs_expense [name]
+      programs_expense [name] = expense.value
     else
-      programs_expense [program.name] += expense.value
+      programs_expense [name] += expense.value
     end
   end
 
+  def define_name(entity)
+    name = ''
+    if entity.name == Program.name
+      name = program.name
+    else
+      name = entity.class.name+' '+entity.name
+    end
+    return name
+  end
   ###########################################################
   def show_program
     program_id = params[:id].to_i
@@ -57,6 +67,7 @@ class ProgramController < ApplicationController
 
   def create_nodes(program_id, program_related, class_entity)
     # puts "#{program_related}"
+=begin
     field_entity = define_field(class_entity)
     expenses = Expense.select('DISTINCT ' + field_entity + ', program_id')
                .where(program_id: program_id)
@@ -68,43 +79,18 @@ class ProgramController < ApplicationController
         Graph.create_node( class_entity, program_related, name_value)
       end
     end
-  end
-
-  def obtain_name_value(program_id, class_entity, entity_id)
-    field_entity = define_field(class_entity)
-    name_value = {}
-    begin
-      value = Expense.where(program_id: program_id,
-                            field_entity => entity_id).sum(:value)
-      name = class_entity.find(entity_id).name.strip
-      name_value = { name: name, value: value }
-    rescue Exception => error
-      raise "Fail to try obtain expense or name\n#{error}"
-    end
-    # puts name_value
-    name_value
-  end
-
-
-  def define_field(class_entity)
-    field_entity = nil
-    if class_entity.name == PublicAgency.name
-      field_entity = 'public_agency_id'
-    elsif class_entity.name == Company.name
-      field_entity = 'company_id'
-    else
-      field_entity
+=end
+    expenses_program = Expense.where(program_id: program_id)
+    agency_company ={agency: {},company:{}}
+    expenses_program.each do |expense|
+      add_name_value(expense)
     end
   end
-
+  def add_name_value(expense,data_program)
+    agency = PublicAgency.find(expense.public_agency_id)
+    company = Company.find(expense.public_agency_id)
+    add_expense_program(agency,expense,data_program[:agency])
+    add_expense_program(company,expense,data_program[:company])
+  end
   
-  def obtain_id(expense, class_entity)
-    id = nil
-    if class_entity.name == PublicAgency.name
-      id = expense.public_agency_id
-    elsif class_entity.name == Company.name
-      id = expense.company_id
-      # nothing
-    end
-  end
 end
