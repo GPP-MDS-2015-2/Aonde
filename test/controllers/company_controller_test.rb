@@ -4,7 +4,7 @@ class CompanyControllerTest < ActionController::TestCase
 	
   test 'Route to method show and the result of the request' do
     generate_public_agency
-    assert_routing 'public_agency/1/company', controller: 'company', action: 'show', id: '1'
+    assert_routing 'public_agency/1/companies', controller: 'company', action: 'show', id: '1'
     get :show, id: 1
     assert_response :success
     assert assigns :array_company_expense

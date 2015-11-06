@@ -1,5 +1,5 @@
 class ProgramController < ApplicationController
-    
+
   def show
     find_agencies(params[:id])
     @all_programs = find_expenses(@public_agency.id)
@@ -85,7 +85,6 @@ class ProgramController < ApplicationController
     name_value
   end
 
-  
 
   def define_field(class_entity)
     field_entity = nil
