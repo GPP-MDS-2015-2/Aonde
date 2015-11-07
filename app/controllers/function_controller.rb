@@ -5,8 +5,9 @@ class FunctionController < ApplicationController
 		datas = insert_expenses_functions(2015,2015,1,12,1,31)
 		ordered_data = datas.sort_by {|description,sumValue| -sumValue}
 		@correct_datas = datas.to_json	
-		@top_10_data = filter_top_n(ordered_data, 10).sort_by {|description,sumValue| description}
-
+		@top_10_data = filter_top_n(ordered_data, 10).
+		sort_by {|description,sumValue| description}.to_h.to_json
+		puts @top_10_data
 	end
 
 	def filter
