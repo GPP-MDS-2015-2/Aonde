@@ -15,36 +15,48 @@
       spiderChart = $('#spiderChart').highcharts();
       console.log(spiderChart);
       var name = '';
-      if ( element[0].innerHTML.match('<title>')){
+      if ( element[0].innerHTML.match('<tspan>')){
         name = element[0].lastChild.innerHTML;
+        console.log("if");
       }else{
         name = element[0].innerHTML;
+        console.log("else");
       }
       var index;
       for (index=0; index < spiderChart.series[0].data.length; index++){
+        console.log(index);
         if (spiderChart.series[0].data[index].category === name){
           console.log(index);
           break;
         }
       }
 
-      var newArrayKeys = arrayKeys.remove(index,1);
-      var newArrayValues = arrayValues.remove(index,1);
+      arrayKeys = arrayKeys.remove(index,1);
+      arrayValues = arrayValues.remove(index,1);
       var newHash = {};
-      for(var i = 0, l = newArrayKeys.length; i < l; i++) {
-          newHash[newArrayKeys[i]] = newArrayValues[i];
+      console.log(index);
+      for(var i = 0, l = arrayKeys.length; i < l; i++) {
+          newHash[arrayKeys[i]] = arrayValues[i];
       }
-      console.log(newArrayKeys);
-      console.log(newArrayValues);
+      console.log(arrayKeys);
+      console.log(arrayValues);
       console.log(newHash);
       drawChart(newHash);
     }
     $(document).ready(function(){  
       drawChart(correct_data); 
-      $(".highcharts-xaxis-labels text").click(function(){
-        remover($(this));
-      });
+      
     });
+
+    function sort_ten_most_expense(correct_data){
+      setData(correct_data,arrayKeys,arrayValues);
+      var topTenData = {};
+      for(var i = arrayKeys.length, l = arrayKeys.length - 10; i > l; i--) {
+          topTenData[arrayKeys[i]] = arrayValues[i];
+      }
+      console.log(topTenData);
+    }
+
     function setData(correct_data,arrayKeys,arrayValues){
         arrayKeys.clear();
         arrayValues.clear();
@@ -98,7 +110,11 @@
         }]
 
     });
+    $(".highcharts-xaxis-labels text").click(function(){
+        remover($(this));
+    });
 }
+
 
 Highcharts.theme = {
    colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
