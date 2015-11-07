@@ -15,6 +15,7 @@ class FunctionControllerTest < ActionController::TestCase
 		get :show
 
 		assert_response :success
+
 	end
 
 	test "Should convert to a hash" do
@@ -54,7 +55,7 @@ class FunctionControllerTest < ActionController::TestCase
 
 	end
 
-	test "should return the last day of month,second case" do
+	test "Should return the last day of month,second case" do
 
 		month_number = 4
 		last_day = @controller.find_month_limit(month_number)
@@ -63,8 +64,33 @@ class FunctionControllerTest < ActionController::TestCase
 
 	end
 
+	test "Should return the n first elements of a hash" do
+		hash_with_11 = {a: 1,b: 2,c: 3,d: 4,e: 5,f: 6,g: 7,h: 8,i: 9,j: 10,i: 11}
+		
+		hash_result = @controller.filter_top_n(hash_with_11,4)
+		hash_with_4 = {a: 1,b: 2,c: 3,d: 4}
+		assert_equal(hash_result,hash_with_4)
 
-	test "should return the last day of month,third case" do
+	end
+
+	test "Should return the hash if its length < n" do
+		hash_with_2 = {a: 1,b: 2}
+		
+		hash_result = @controller.filter_top_n(hash_with_2,900)
+		assert_equal(hash_result,hash_with_2)
+
+	end 
+	
+	test "Should return empty hash" do 
+
+		hash_empty = {}
+
+		hash_result = @controller.filter_top_n(hash_empty,4)
+		assert_equal(hash_result,hash_empty)
+
+	end
+
+	test "Should return the last day of month,third case" do
 
 		month_number = 2
 		last_day = @controller.find_month_limit(month_number)
@@ -72,6 +98,8 @@ class FunctionControllerTest < ActionController::TestCase
 		assert_equal(expected_last_day,last_day)
 
 	end
+
+
 
 
 end

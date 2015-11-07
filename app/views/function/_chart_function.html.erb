@@ -1,11 +1,16 @@
 <script type="text/javascript">  
 
     var data = ('<%= raw @correct_datas%>');
+    // console.log(data)
     var correct_data = JSON.parse(data);
+    // console.log(correct_data)
+    
     var arrayKeys = new Array();
     var arrayValues = new Array();
     var remove = [];
+
     var spiderChart;
+
     function remover(element){
       spiderChart = $('#spiderChart').highcharts();
       console.log(spiderChart);
@@ -15,16 +20,16 @@
       }else{
         name = element[0].innerHTML;
       }
-      var i;
-      for (i=0; i < spiderChart.series[0].data.length; i++){
-        if (spiderChart.series[0].data[i].category === name){
-          console.log(i);
+      var index;
+      for (index=0; index < spiderChart.series[0].data.length; index++){
+        if (spiderChart.series[0].data[index].category === name){
+          console.log(index);
           break;
         }
       }
-      var newArrayKeys = arrayKeys.remove(i,1);
-      var newArrayValues = arrayValues.remove(i,1);
-      console.log(element);
+
+      var newArrayKeys = arrayKeys.remove(index,1);
+      var newArrayValues = arrayValues.remove(index,1);
       var newHash = {};
       for(var i = 0, l = newArrayKeys.length; i < l; i++) {
           newHash[newArrayKeys[i]] = newArrayValues[i];
