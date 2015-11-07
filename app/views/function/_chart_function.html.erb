@@ -8,10 +8,26 @@
     var arrayKeys = new Array();
     var arrayValues = new Array();
     var remove = [];
+    var arrayRemovedValues = [];
+    var arrayRemovedKeys = [];
+
 
     var spiderChart;
 
-    function remover(element){
+    function transform_arrays_in_hash(arrayKeys, arrayValues){
+      var newHash = {};
+      for(var i = 0, l = arrayKeys.length; i < l; i++) {
+          newHash[arrayKeys[i]] = arrayValues[i];
+      }
+      return newHash;
+    }
+
+    function get_list_removed_point(arrayKeys, arrayValues, index){
+      arrayRemovedKeys.push(arrayKeys[index]);
+      arrayRemovedValues.push(arrayValues[index]);
+    }
+
+    function remove_point(element){
       spiderChart = $('#spiderChart').highcharts();
       console.log(spiderChart);
       var name = '';
@@ -31,13 +47,18 @@
         }
       }
 
+      get_list_removed_point(arrayKeys,arrayValues, index);
+      new_element = "<li class=\"remove_element\">"+arrayKeys[index]+"</li>"
+
+      $('#removed_chart_elements').append(new_element);
+
       arrayKeys = arrayKeys.remove(index,1);
       arrayValues = arrayValues.remove(index,1);
-      var newHash = {};
       console.log(index);
-      for(var i = 0, l = arrayKeys.length; i < l; i++) {
-          newHash[arrayKeys[i]] = arrayValues[i];
-      }
+
+      var newHash = {};
+      newHash = transform_arrays_in_hash(arrayKeys, arrayValues);
+
       console.log(arrayKeys);
       console.log(arrayValues);
       console.log(newHash);
@@ -48,15 +69,6 @@
       
     });
 
-    function sort_ten_most_expense(correct_data){
-      setData(correct_data,arrayKeys,arrayValues);
-      var topTenData = {};
-      for(var i = arrayKeys.length, l = arrayKeys.length - 10; i > l; i--) {
-          topTenData[arrayKeys[i]] = arrayValues[i];
-      }
-      console.log(topTenData);
-    }
-
     function setData(correct_data,arrayKeys,arrayValues){
         arrayKeys.clear();
         arrayValues.clear();
@@ -64,9 +76,7 @@
             arrayKeys.push(key);
             arrayValues.push(correct_data[key]);
         }
-
     }
-
 
     function drawChart(correct_data) {
         setData(correct_data,arrayKeys,arrayValues)
@@ -111,7 +121,7 @@
 
     });
     $(".highcharts-xaxis-labels text").click(function(){
-        remover($(this));
+        remove_point($(this));
     });
 }
 
