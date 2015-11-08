@@ -1,11 +1,13 @@
 class FunctionController < ApplicationController
 
 	def show
-
-		@correct_datas = []	
+	
 		datas = insert_expenses_functions(2015,2015,1,12,1,31)
-		@correct_datas = datas.to_json
-
+		ordered_data = datas.sort_by {|description,sumValue| -sumValue}
+		@correct_datas = datas.to_json	
+		@top_10_data = filter_top_n(ordered_data, 10).
+		sort_by {|description,sumValue| description}.to_h.to_json
+		puts @top_10_data
 	end
 
 	def filter
@@ -15,6 +17,20 @@ class FunctionController < ApplicationController
 		@correct_datas = datas.to_json
 		render 'show'
 
+	end
+
+	def filter_top_n(hash,n)
+		
+		new_hash = {}
+
+		hash.each_with_index do |(description,sumValue),index| 
+
+			if (index >= n)
+				break
+			end
+			new_hash[description] = sumValue
+		end 
+		return new_hash
 	end
 
 	def control_datas(year = "Todos",month = "Todos")

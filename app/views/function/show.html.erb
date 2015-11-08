@@ -1,10 +1,26 @@
+<div id="select_box">
+<%= form_tag functions_filter_path , method: 'get' do %>
+     <!-- <%= hidden_field_tag :id, params[:id]%> -->
+     <%= select_tag :year, options_for_select([["Até hoje!"],["2015"],["2014"],["2013"],["2012"],["2011"]]) %>
+     <%= select_tag :month, options_for_select([["Todos"],["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]])%> 
+    <%= submit_tag 'Filtrar' %>
 
-<div id="container" style="min-width: 400px; max-width: 900px; height: 600px; margin: 0 auto"></div>
-
+<% end %>
+</div>
+<input type= "button" id ="top_10" value="Top10" onclick="select_top_10()">  </input>
+<input type= "button" id ="Default" value="Padrão" onclick="select_default()">  </input>
+<%= render 'chart_function' %>
 <p>
-<div id="tab-1" class="tab-content current">
-        <%= render 'chart_function' %>
+
+<div id = 'removed_chart_elements_container'>
+<center>
+<h4>
+	<ul id="removed_chart_elements">
+	</ul>
+</h4>
+</center>
 </div>
 
 
-<%= @correct_datas %>
+
+
