@@ -5,7 +5,7 @@
   <title> 
     <%= full_title(yield(:title)) %>
   </title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}" %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
@@ -18,24 +18,6 @@
   <%= yield :css %>
   <%= csrf_meta_tags %>
 </head>
- <div id="upper_link">
-  <div class="util_link">
-    <ul>
-      <li>Links Úteis:  </li>
-      <li><a href="https://fga.unb.br/" class="util_link">Portal FGA</a></li>
-      <li>  |  </li>
-      <li><a href="http://lappis.unb.br/redm/projects/grupo-5-portal-da-transparencia/wiki" class="util_link">Wiki</a></li>
-      <li>  |  </li>
-      <li><a href="https://github.com/GPP-MDS-2015-2/Aonde" class="util_link">GitHub</a></li>
-      <li>  |  </li>
-      <li><a href="http://transparencia.gov.br/" class="util_link">Portal da Transparência</a></li>
-    </ul> 
-  </div>
-</div>
-<body>
-<div id="headLogo">
-  <div id="logo">
-</div>
 <div class="container">
     <div id="cssmenu">
       <ul>
@@ -54,8 +36,6 @@
       </ul>
     </div>
     <div class="content-container">
-     <!-- <button id="ha">
-      <div id="cy"> -->
       <%= yield %>
     </div>
 </div> 
