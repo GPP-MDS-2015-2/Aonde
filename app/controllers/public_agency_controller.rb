@@ -4,7 +4,7 @@ class PublicAgencyController < ApplicationController
   
   # list of all public agencies in DB
   def index
-    @public_agencies = PublicAgency.search(params[:search])
+    @public_agencies = PublicAgency.all
     @total_expense_agency = {}
     @public_agencies.each do |agency|
       @total_expense_agency[agency.id] = expenses_public_agency(agency.id)
@@ -28,14 +28,14 @@ class PublicAgencyController < ApplicationController
     # find the same thing then the show
     find_agencies(params[:id])
     begin
-      list_expense_month = create_list_expense(params, @public_agency)
+      @list_expense_month = create_list_expense(params, @public_agency)
     rescue Exception => error
       flash[:error] = "#{error}\n Veja o gráfico com todos gastos"
-      list_expense_month = get_expenses_agency(public_agency.id)
+      @list_expense_month = get_expenses_agency(public_agency.id)
     end
 
     # Insert the head in the list
-    list_expense_month.unshift(%w(Data Gasto))
+    @list_expense_month.unshift(%w(Data Gasto))
     render 'show'
   end
 
@@ -44,7 +44,7 @@ class PublicAgencyController < ApplicationController
                         date[:from_month], date[:end_month])
 
     list_expense_month = []
-    if date_valid?(dates[:begin], dates[:end])
+    if HelperController.date_valid?(dates[:begin], dates[:end])
       list_expense_month = get_expenses_agency(public_agency.id,
                                                dates[:begin], dates[:end])
     end
@@ -76,21 +76,8 @@ class PublicAgencyController < ApplicationController
     @public_agency.update(views_amount: views_amount)
   end
 
-  def date_valid?(begin_date, end_date)
-    valid = true
-
-    if (begin_date.year == end_date.year)
-      valid = false if begin_date.month > end_date.month
-    elsif begin_date.year > end_date.year
-      valid = false
-    else
-      valid = true
-    end
-    valid
-  end
-
   # methods that's need to be private
-  private :increment_views_amount, :date_valid?,
+  private :increment_views_amount,
    :get_expenses_agency, :create_list_expense, :expenses_public_agency
   # private :increment_views_amount, :month_to_int
 end

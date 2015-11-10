@@ -21,6 +21,19 @@ module HelperController
     return date
   end
 
+  def self.date_valid?(begin_date, end_date)
+    valid = true
+
+    if (begin_date.year == end_date.year)
+      valid = false if begin_date.month > end_date.month
+    elsif begin_date.year > end_date.year
+      valid = false
+    else
+      valid = true
+    end
+    valid
+  end
+
   def self.last_day_date(date)
     month = date.month
 

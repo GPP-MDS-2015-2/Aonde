@@ -82,4 +82,20 @@ class HelperControllerTest < ActiveSupport::TestCase
     assert_equal(expect_dates,date)
   end
 
+  test 'valid input date' do
+    begin_date = Date.new(2014,2,2)
+    end_date = Date.new(2015,2,2)
+    assert(HelperController.date_valid?(begin_date,end_date))
+  end
+  test 'invalid date with month differentes' do
+    begin_date = Date.new(2015,3,2)
+    end_date = Date.new(2015,2,2)
+    assert_not(HelperController.date_valid?(begin_date,end_date))
+  end
+  test 'invalid date with year differentes' do
+    begin_date = Date.new(2015,3,2)
+    end_date = Date.new(2014,2,2)
+    assert_not(HelperController.date_valid?(begin_date,end_date))
+  end
+
  end
