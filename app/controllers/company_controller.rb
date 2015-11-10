@@ -1,3 +1,6 @@
+# company_controller.rb
+# Process the expenses of companies to create chart related to a public agency
+# or a graph with all public agencies make hires
 class CompanyController < ApplicationController
   def show
     find_public_agency
@@ -25,18 +28,11 @@ class CompanyController < ApplicationController
   # assert that company array is not empty
   def test_add_expense(company, expense, companies_expense)
     if !company.empty? && company.length == 1
-      testing_companies(company, expense, companies_expense)
+      name = company[0].name
+      HelperController.sum_expense(name, expense, companies_expense)
     end
   end
 
-  def testing_companies(company, expense, companies_expense)
-    company = company[0]
-    if !companies_expense [company.name]
-      companies_expense [company.name] = expense.value
-    else
-      companies_expense[company.name] += expense.value
-     end
-  end
 
   def sort_by_expense(companies_expense)
     companies_expense.sort_by { |name, expense| expense }
