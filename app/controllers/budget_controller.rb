@@ -4,14 +4,14 @@ class BudgetController < ApplicationController
   		find_public_agency
         @list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", 2015, "Dezembro", 2015)
         @expense_find = 1
-      #begin
+      begin
         @list_budget_month = subtract_expenses_on_budget(@public_agency.id, 2015)
-      #rescue Exception => error
-        puts "aqui"
+      rescue Exception => error
+      #  puts "aqui"
         flash[:error] = error
         @list_budget_month = []
         @expense_find = 0
-      #end
+      end
         @list_expense_month = @list_expense_month.to_json
         @list_budget_month = @list_budget_month.to_json
   	end

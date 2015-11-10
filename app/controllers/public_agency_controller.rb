@@ -1,7 +1,6 @@
 # public_agency.rb
 # Create a class to handle the data related with public agencies
 class PublicAgencyController < ApplicationController
-  
   # list of all public agencies in DB
   def index
     @public_agencies = PublicAgency.all
@@ -14,8 +13,10 @@ class PublicAgencyController < ApplicationController
   # Find the data of one public agency to show in the view with chart
   def show
     find_agencies(params[:id])
-    increment_views_amount
-    @list_expense_month = get_expenses_agency(@public_agency.id)
+    increment_views_amount(@public_agency)
+    expenses_public_agency = get_expenses_agency(@public_agency.id)
+    @list_expense_month = expenses_public_agency[:total_date]
+    @total_expense = expenses_public_agency[:total]
     @list_expense_month.unshift(%w(Data gasto))
   end
 
@@ -27,57 +28,62 @@ class PublicAgencyController < ApplicationController
   def filter_chart
     # find the same thing then the show
     find_agencies(params[:id])
+    expenses_agency = nil
     begin
-      @list_expense_month = create_list_expense(params, @public_agency)
-    rescue Exception => error
-      flash[:error] = "#{error}\n Veja o gráfico com todos gastos"
-      @list_expense_month = get_expenses_agency(public_agency.id)
+      expenses_agency = create_list_expense(params, @public_agency)
+    rescue Exception => erro
+      flash[:error] = "#{erro}\n Veja o gráfico com todos gastos"
+      expenses_agency = get_expenses_agency(@public_agency.id)
     end
-
+    @list_expense_month = expenses_agency[:total_date]
+    @total_expense = expenses_agency[:total]
     # Insert the head in the list
     @list_expense_month.unshift(%w(Data Gasto))
     render 'show'
   end
 
   def create_list_expense(date, public_agency)
-    dates = create_date(date[:from_year], date[:end_year],
-                        date[:from_month], date[:end_month])
+    dates = HelperController.create_date(date)
 
-    list_expense_month = []
+    expenses_agency = { total_date: {} }
     if HelperController.date_valid?(dates[:begin], dates[:end])
-      list_expense_month = get_expenses_agency(public_agency.id,
-                                               dates[:begin], dates[:end])
+      expenses_agency = get_expenses_agency(public_agency.id,
+                                            dates[:begin], dates[:end])
     end
-    fail 'Não encontrou nenhum gasto no periodo' if list_expense_month.empty?
-
-    list_expense_month
+    # puts expenses_agency
+    if expenses_agency[:total_date].empty?
+      fail 'Não encontrou nenhum gasto no periodo'
+    end
+    expenses_agency
   end
 
   def get_expenses_agency(id_public_agency,
-    _begin_date = '2009-01-01', _end_date = '2020-12-31')
-
-    # Takes all programs and return a list
-    # First date of interval
+    begin_date = '2009-01-01', end_date = '2020-12-31')
 
     expenses = Expense.where(public_agency_id: id_public_agency,
-                             payment_date: _begin_date.._end_date)
+                             payment_date: begin_date..end_date)
 
-    total_expense_per_date = {}
+    expenses_agency = { total: 0, total_date: {} }
     expenses.each do |expense|
+      expenses_agency[:total] += expense.value
       date = Date.new(expense.payment_date.year, expense.payment_date.month, 1)
-      HelperController.sum_expense(l(date), expense, total_expense_per_date)
+      HelperController.sum_expense(l(date), expense,
+                                   expenses_agency[:total_date])
     end
-    total_expense_per_date.sort_by{ |date,value| value}
+
+    expenses_agency[:total_date] = expenses_agency[:total_date]
+                                   .sort_by { |date, _value| Date.parse(date) }
+    return expenses_agency
   end
 
-  def increment_views_amount
-    views_amount = @public_agency.views_amount
+  def increment_views_amount(public_agency)
+    views_amount = public_agency.views_amount
     views_amount += 1
-    @public_agency.update(views_amount: views_amount)
+    public_agency.update(views_amount: views_amount)
   end
 
   # methods that's need to be private
   private :increment_views_amount,
-   :get_expenses_agency, :create_list_expense, :expenses_public_agency
+          :get_expenses_agency, :create_list_expense, :expenses_public_agency
   # private :increment_views_amount, :month_to_int
 end

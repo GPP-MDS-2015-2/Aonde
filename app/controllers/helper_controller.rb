@@ -1,6 +1,8 @@
 # helper_controller.rb
 # Contain some method to helper the process of data in controllers
 module HelperController
+  MONTHNAMES_BR = [nil] + %w(Janeiro Fevereiro Março Abril Maio Junho
+                             Julho Agosto Setembro Outubro Novembro Dezembro)
   def self.sum_expense(key, expense, sum_expeses)
     if !sum_expeses[key]
       sum_expeses[key] = expense.value
@@ -9,16 +11,22 @@ module HelperController
     end
   end
 
-  def self.create_date(first_year = 2009, last_year = 2016,
-   first_month = 01, last_month = 12)
-    
-    first_date = Date.new(first_year, first_month, 1)
-    last_date = Date.new(last_year, last_month, 1)
+  def self.create_date(date ={from_month: 'Janeiro',end_month: 'Dezembro',
+    from_year: 2009,end_year: 2020})
+    #puts date
+    first_month = month_to_int(date[:from_month])
+    last_month = month_to_int(date[:end_month])
+    first_date = Date.new(date[:from_year].to_i, first_month, 1)
+    last_date = Date.new(date[:end_year].to_i, last_month, 1)
 
     last_date = last_day_date(last_date)
-    date = {:begin => first_date, :end => last_date}
-    #puts date
-    return date
+    date = { begin: first_date, end: last_date }
+    # puts date
+    date
+  end
+
+  def self.month_to_int(month)
+    MONTHNAMES_BR.index(month)
   end
 
   def self.date_valid?(begin_date, end_date)
@@ -56,6 +64,6 @@ module HelperController
     else
       day = 28
     end
-    return day
+    day
   end
 end

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class BudgetAPITest < ActiveSupport::TestCase
-test 'the budgets not null' do
+  test 'the budgets not null' do
     create_fake_web
     FakeWeb.allow_net_connect = false
     budgets_not_nil = BudgetAPI.get_budget(20000)
@@ -57,6 +57,13 @@ test 'the budgets not null' do
     assert_not(BudgetAPI.send(:valid_data?,budgets_data))
   end
 
+  test 'error to obtain value of data' do
+    url = create_url_all_years    
+    FakeWeb.register_uri(:get, url, body: '{"results":{"binding":[]}}')
+    assert_raise(Exception){
+      BudgetAPI.send(:get_budget,20000)
+    }
+  end
 
   test 'the size grow of budget by year' do
     budget_hash = { 'results' => { 'bindings' =>[create_budget,create_budget]}}

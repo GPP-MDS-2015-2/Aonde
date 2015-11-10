@@ -41,10 +41,8 @@ class FunctionController < ApplicationController
       if month == 'Todos'
         dates = HelperController.create_date(year_filter, year_filter)
       else
-        month_filter = month_to_int(month)
         dates = HelperController
-                .create_date(year_filter, year_filter, month_filter,
-                             month_filter)
+                .create_date(year_filter, year_filter, month,month)
       end
     end
     #puts dates

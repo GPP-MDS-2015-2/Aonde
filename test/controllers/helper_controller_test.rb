@@ -67,18 +67,15 @@ class HelperControllerTest < ActiveSupport::TestCase
   end
 
   test 'create the dates hash with begin and end months' do
-    first_year = 2014
-    last_year = 2015
-    first_month = 01
-    last_month = 11
-    date = HelperController.create_date(first_year,last_year,
-      first_month,last_month)
+    param_date ={from_month: 'Janeiro',end_month: 'Novembro',
+    from_year: 2014,end_year: 2015}
+    date = HelperController.create_date(param_date)
     expect_dates = {:begin => Date.new(2014,01,01), :end => Date.new(2015,11,30)}
     assert_equal(expect_dates,date)
   end
   test 'create the dates hash without params' do
     date = HelperController.create_date
-    expect_dates = {:begin => Date.new(2009,01,01), :end => Date.new(2016,12,31)}
+    expect_dates = {:begin => Date.new(2009,01,01), :end => Date.new(2020,12,31)}
     assert_equal(expect_dates,date)
   end
 
