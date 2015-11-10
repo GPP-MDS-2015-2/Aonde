@@ -3,20 +3,22 @@
 class FunctionController < ApplicationController
   def show
     dates = HelperController.create_date
-    datas = insert_expenses_functions(dates[:begin],dates[:end])
-    ordered_data = datas.sort_by { |description, sumValue| -sumValue }
+    datas = insert_expenses_functions(dates[:begin], dates[:end])
+    ordered_data = datas.sort_by { |_description, sumValue| -sumValue }
     @correct_datas = datas.to_json
     @top_10_data = filter_top_n(ordered_data, 10)
-                   .sort_by { |description, _sumValue| description }.to_h.to_json
-    #puts @top_10_data
+                   .sort_by { |description, _sumValue| description }
+                   .to_h.to_json
+    # puts @top_10_data
   end
 
   def filter
     datas = control_datas(params[:year], params[:month])
     @correct_datas = datas.to_json
-    ordered_data = datas.sort_by { |description, sumValue| -sumValue }
+    ordered_data = datas.sort_by { |_description, sumValue| -sumValue }
     @top_10_data = filter_top_n(ordered_data, 10)
-                   .sort_by { |description, _sumValue| description }.to_h.to_json
+                   .sort_by { |description, _sumValue| description }
+                   .to_h.to_json
     render 'show'
   end
 
@@ -34,32 +36,38 @@ class FunctionController < ApplicationController
     dates = {}
     if year == 'Até hoje!'
       dates = HelperController.create_date
-    elsif month == 'Todos'
-      year_filter = year.to_i
-      dates = HelperController.create_date(year_filter, year_filter)  
     else
       year_filter = year.to_i
-      month_filter = month_to_int(month)
-      dates = HelperController.create_date(year_filter,year_filter,month_filter,month_filter)
+      if month == 'Todos'
+        dates = HelperController.create_date(year_filter, year_filter)
+      else
+        month_filter = month_to_int(month)
+        dates = HelperController
+                .create_date(year_filter, year_filter, month_filter,
+                             month_filter)
+      end
     end
-    puts dates
-    expenses = insert_expenses_functions(dates[:begin],dates[:end])
-puts expenses
+    #puts dates
+    expenses = insert_expenses_functions(dates[:begin], dates[:end])
+    #puts expenses
     expenses
   end
 
-  def insert_expenses_functions(begin_date,end_date)
-
-    expenses = get_expenses_by_function(begin_date,end_date)
+  def insert_expenses_functions(begin_date, end_date)
+    expenses = get_expenses_by_function(begin_date, end_date)
     expense_hash = convert_to_a_hash(expenses)
     correct_datas = filter_datas_in_expense(expense_hash)
-    return correct_datas
+    correct_datas
   end
 
-  def get_expenses_by_function(begin_date,end_date)
-    result = Function.joins(:expense).where('DATE(payment_date) BETWEEN ? AND ?', begin_date, end_date).select("YEAR(payment_date) as date_test, sum(expenses.value) as sumValue,functions.description").group('YEAR(payment_date),functions.description').to_json
-    puts result
-    return result
+  def get_expenses_by_function(begin_date, end_date)
+    result = Function.joins(:expense)
+             .where('DATE(payment_date) BETWEEN ? AND ?', begin_date, end_date)
+             .select('YEAR(payment_date) as date_test, sum(expenses.value) as'\
+    ' sumValue,functions.description')
+             .group('YEAR(payment_date),functions.description').to_json
+    # puts result
+    result
   end
 
   def convert_to_a_hash(expenses)
@@ -74,6 +82,4 @@ puts expenses
     end
     correct_hash
   end
-
-  
 end

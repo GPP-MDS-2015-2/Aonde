@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
 
   def find_agencies(id=0)
     @public_agency = PublicAgency.find(id)
-    @superior_public_agency = SuperiorPublicAgency.find(@public_agency.superior_public_agency_id)
+    @superior_public_agency = SuperiorPublicAgency
+    .find(@public_agency.superior_public_agency_id)
   end
 end
