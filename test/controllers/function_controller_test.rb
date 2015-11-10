@@ -2,13 +2,15 @@ require 'test_helper'
 
 class FunctionControllerTest < ActionController::TestCase
 
-	test "Should validate atributtes" do
 
-		@controller.insert_expenses_functions(2015,2015,1,12,1,31)
-		assert_nil(@function)
+	test "Empty return of method to insert expenses" do
+		begin_date = Date.new(2015,1,12)
+		end_date = Date.new(2015,1,31)
+		expenses_function = @controller
+		.insert_expenses_functions(begin_date,end_date)
+		assert_empty(expenses_function)
 		
 	end
-
 	test "Route to method show" do
 
 		assert_routing '/functions', { :controller => "function", :action => "show" }	
@@ -46,26 +48,11 @@ class FunctionControllerTest < ActionController::TestCase
 
 	end
 
-	test "Should return the last day of month,first case" do
+	
 
-		month_number = 1
-		last_day = @controller.find_month_limit(month_number)
-		expected_last_day = 31
-		assert_equal(expected_last_day,last_day)
-
-	end
-
-	test "Should return the last day of month,second case" do
-
-		month_number = 4
-		last_day = @controller.find_month_limit(month_number)
-		expected_last_day = 30
-		assert_equal(expected_last_day,last_day)
-
-	end
 
 	test "Should return the n first elements of a hash" do
-		hash_with_11 = {a: 1,b: 2,c: 3,d: 4,e: 5,f: 6,g: 7,h: 8,i: 9,j: 10,i: 11}
+		hash_with_11 = {a: 1,b: 2,c: 3,d: 4,e: 5,f: 6,g: 7,h: 8,i: 9,j: 10,k: 11}
 		
 		hash_result = @controller.filter_top_n(hash_with_11,4)
 		hash_with_4 = {a: 1,b: 2,c: 3,d: 4}
@@ -90,14 +77,7 @@ class FunctionControllerTest < ActionController::TestCase
 
 	end
 
-	test "Should return the last day of month,third case" do
-
-		month_number = 2
-		last_day = @controller.find_month_limit(month_number)
-		expected_last_day = 28
-		assert_equal(expected_last_day,last_day)
-
-	end
+	
 
 
 
