@@ -47,47 +47,10 @@ class ProgramControllerTest < ActionController::TestCase
     assert_empty(expense_empty)
   end
 
-  test 'Verify the sum of method add_expense_program' do
-    list_pair = pair_program_expense
+  
+ 
 
-    program_expense = {}
-    program = 0
-    expense = 1
-
-    @controller.add_expense_program(list_pair[program],
-                                    list_pair[expense], program_expense)
-    expect_hash = { 'program test' => 100 }
-
-    assert_equal(expect_hash, program_expense)
-  end
-
-  test 'Add more one program expense to hash' do
-    list_pair = pair_program_expense
-    sum_program_expense = { 'program test' => 100 }
-    program = 0
-    expense = 1
-    @controller.add_expense_program(list_pair[program],
-                                    list_pair[expense], sum_program_expense)
-    expect_hash_sum = { 'program test' => 100 }
-
-    assert_not_equal(expect_hash_sum, sum_program_expense)
-  end
-
-  test 'Verify the empty result of sum_expense_program' do
-    program_expense = {}
-    expense = Expense.new(value: 100)
-    @controller.sum_expense_program([], expense, program_expense)
-
-    assert_empty(program_expense)
-  end
-  test 'Verify the not empty result of sum_expense_program' do
-    list_program = [Program.new(name: 'Program')]
-    expense = Expense.new(value: 100)
-    program_expense = {}
-    @controller.sum_expense_program(list_program, expense, program_expense)
-    assert_not_empty(program_expense)
-  end
-
+  
   test 'Verify method show' do
     generate_program_seed
 
@@ -172,14 +135,7 @@ class ProgramControllerTest < ActionController::TestCase
     process_data = @controller.create_data_program(3,'public_agency_id',PublicAgency)
     assert_empty(process_data)
   end
-  def pair_program_expense
-    program = Program.new(id: 1, name: 'program test',
-                          description: 'Program to make a test')
-    expense = Expense.new(document_number: '0000',
-                          payment_date: Date.new(2015, 01, 01), value: 100,
-                          program_id: 1)
-    [program, expense]
-  end
+  
 
   def generate_program_seed
     SuperiorPublicAgency.create(id: 1, name: 'SuperiorPublicAgency')
@@ -202,5 +158,5 @@ class ProgramControllerTest < ActionController::TestCase
                    public_agency_id: 1)
   end
 
-  private :pair_program_expense, :generate_program_seed
+  private :generate_program_seed
 end
