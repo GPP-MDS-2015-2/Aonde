@@ -1,0 +1,192 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" type="text/css" href="css/style.css"/>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+    $('.modal-trigger').leanModal();
+  	$('.button-collapse').sideNav();
+    $('select').material_select();
+    $('.tooltipped').tooltip({delay: 50});
+    
+  	});
+    </script>
+    </head>
+  <div id="menu">
+    <ul id="slide-out" class="side-nav">
+    <li><img src="img/CorujaAonde.png"></li>
+    <li><a href="orgao.html">Orgao publico</a></li>
+    <li><a href="programas.html">Programas</a></li>
+    <li><a href="empresas.html">Empresas</a></li>
+    <li><a href="funcao.html">Gastos por Federacao</a></li>
+    <li class="no-padding">
+    </li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu" style="font-size:50px; color:#000"></i></a>
+  </div>
+  
+    <body>
+  
+    <!--Barra de pesquisa-->
+  <nav style="width:1100px; margin-left:auto; margin-right:auto; margin-bottom:20px; background:#23AFB5;">
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+      </div>
+  </nav>
+
+  <header class="codrops-header">
+		<h1>Orgao Superior<span>Orgao publico</span></h1>
+	</header>
+
+
+    <div id="orgao"><img src="img/public_agency.png">
+<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:980px; margin-top:20px;">Filtragem</a></center>
+    </div>
+  	   
+       
+    <!--<center><button data-target="modal1" class="btn modal-trigger" style="width:980x;">Modal</button></center>-->
+  		<div id="contencao_outros">
+        <ul class="collapsible popout" data-collapsible="accordion">
+    		<li>
+      			<div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">assessment</i>Programas</div>
+      			<div class="collapsible-body"><img src="img/program.png">
+              <center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
+            </div>
+    		</li>
+            <p></p>
+    		<li>
+      			<div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">business</i>Empresas</div>
+      			<div class="collapsible-body"><img src="img/company.png">
+                	<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
+    			</div>
+    		</li>
+            <p></p>
+    		<li>
+      			<div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">assignment_late</i>Gastos por tipo</div>
+      			<div class="collapsible-body"><img src="img/treemap.png">	
+                	<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
+    			</div>
+        </li>
+        <p></p>
+        <li>
+            <div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">assignment_late</i>Orcamento</div>
+            <div class="collapsible-body"><img src="img/orcamento.png"> 
+                  <center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
+          </div>
+        </li>
+  		</ul>
+       </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content" style="background:#4db6ac;">
+      <h4>Filtro</h4>
+      <!--Parte da combobox-->
+    <div id="imagem"  style=" width:auto; height:100px;background:white;">
+  <div class="input-field col s1" style="float:left;">
+    <select>
+      <option value="" disabled selected>Escolha ano</option>
+      <option value="1">2015</option>
+      <option value="2">2014</option>
+      <option value="3">2013</option>
+      <option value="1">2012</option>
+      <option value="2">2011</option>
+    </select>
+    <label>Comeca no Ano</label>
+  </div>
+  <div class="input-field col s1" style="float:left; margin-left:50px;">
+    <select>
+      <option value="" disabled selected>Escolha Mes</option>
+      <option value="1">Janeiro</option>
+      <option value="2">Fevereiro</option>
+      <option value="3">Marco</option>
+      <option value="1">Abril</option>
+      <option value="2">Maio</option>
+      <option value="3">Junho</option>
+      <option value="1">Julho</option>
+      <option value="2">Agosto</option>
+      <option value="3">Setembro</option>
+      <option value="1">Outrubro</option>
+      <option value="2">Novembro</option>
+      <option value="3">Dezembro</option>    </select>
+    <label>Comeca no Mes</label>
+  </div>
+   <div class="input-field col s1" style="float:left; margin-left:50px;">
+    <select>
+      <option value="" disabled selected>Escolha Ano</option>
+      <option value="1">2015</option>
+      <option value="2">2014</option>
+      <option value="3">2013</option>
+      <option value="1">2012</option>
+      <option value="2">2011</option>    
+    </select>
+    <label>Termina no Ano</label>
+  </div>
+   <div class="input-field col s1" style="float:left; margin-left:50px;">
+    <select>
+      <option value="" disabled selected>Escolha Mes</option>
+      <option value="1">Janeiro</option>
+      <option value="2">Fevereiro</option>
+      <option value="3">Marco</option>
+      <option value="1">Abril</option>
+      <option value="2">Maio</option>
+      <option value="3">Junho</option>
+      <option value="1">Julho</option>
+      <option value="2">Agosto</option>
+      <option value="3">Setembro</option>
+      <option value="1">Outrubro</option>
+      <option value="2">Novembro</option>
+      <option value="3">Dezembro</option>
+    </select>
+    <label>Termina no Mes</label>
+  </div>
+  </div>
+  <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Filtrar</a>
+    </div>
+    </div>
+  </div>
+
+     <!--Esse é o rodape-->
+       <footer class="page-footer" style="background:#23AFB5;">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Ola como vai voce?</h5>
+                <p class="grey-text text-lighten-4">Acesse os links ao lado para saber mais sobre nossa aplicacao </p>
+              </div>
+              <div class="col l4 offset-6 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://fga.unb.br/">Portal FGA</a></li>
+                  <li><a class="grey-text text-lighten-3" href="http://lappis.unb.br/redm/projects/grupo-5-portal-da-transparencia/wiki">Wiki</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/GPP-MDS-2015-2/Aonde" class="util_link">GitHub</a></li>
+                  <li><a class="grey-text text-lighten-3" href="http://transparencia.gov.br/">Portal Transparencia</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+              AondE
+            </div>
+          </div>
+        </footer>
+    </body>
+  </html>

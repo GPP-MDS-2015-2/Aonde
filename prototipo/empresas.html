@@ -1,0 +1,95 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" type="text/css" href="css/style.css"/>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+      $('.modal-trigger').leanModal();
+  	  $('.button-collapse').sideNav();
+  	});
+    </script>
+    </head>
+  <!--Menu lateral-->
+  <div id="menu_empresas">
+    <ul id="slide-out" class="side-nav">
+    <li><img src="img/CorujaAonde.png"></li>
+    <li><a href="orgao.html">Orgao publico</a></li>
+    <li><a href="programas.html">Programas</a></li>
+    <li><a href="empresas.html">Empresas</a></li>
+    <li><a href="funcao.html">Gastos por Federacao</a></li>
+    <li class="no-padding">
+    </li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu" style="font-size:50px; color:#000"></i></a>
+        </div>
+    
+    <body>
+  <!--Barra de pesquisa-->
+  <nav style="width:1100px; margin-left:auto; margin-right:auto; margin-bottom:20px; background:#FF8F2F;">
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+      </div>
+  </nav>
+
+   <header class="codrops-header">
+		<h1>Empresas<span>Alguma coisa relacionada a empresa</span></h1>
+	</header> 
+
+    <div id="program" style="width:1155px; height:664px; margin-left:auto; margin-right:auto;">
+      <img src="img/company_busca.png">
+      <center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1150px;">Filtragem</a></center>
+    </div>     
+  <!-- Esse são os modais -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content" style="background:#4db6ac;">
+      <h5>Escolha a empresa que o senhor(a) deseja retirar:</h5>
+      <div id="imagem"  style=" width:1140px; height:200px;"><img src="img/filter.png"></div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Filtrar</a>
+    </div>
+  </div>
+
+      <!--Esse é o rodape-->
+       <footer class="page-footer" style="background: #4db6ac;">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Ola como vai voce?</h5>
+                <p class="grey-text text-lighten-4">Acesse os links ao lado para saber mais sobre nossa aplicacao </p>
+              </div>
+              <div class="col l4 offset-6 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://fga.unb.br/">Portal FGA</a></li>
+                  <li><a class="grey-text text-lighten-3" href="http://lappis.unb.br/redm/projects/grupo-5-portal-da-transparencia/wiki">Wiki</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/GPP-MDS-2015-2/Aonde" class="util_link">GitHub</a></li>
+                  <li><a class="grey-text text-lighten-3" href="http://transparencia.gov.br/">Portal Transparencia</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+              AondE
+            </div>
+          </div>
+        </footer>
+    </body>
+  </html>
