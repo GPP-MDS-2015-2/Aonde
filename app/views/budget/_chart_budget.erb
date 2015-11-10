@@ -1,6 +1,6 @@
 <script>
-dataExpense = JSON.parse('<%= raw @list_expense_month%>')
-dataBudget = JSON.parse(' <%= raw @list_budget_month%>')
+var dataExpense = JSON.parse('<%= raw @list_expense_month%>');
+var dataBudget = JSON.parse(' <%= raw @list_budget_month%>');
 
 $(function () {
     $('#container').highcharts({
@@ -63,8 +63,14 @@ $(function () {
             }
         }]
     });
+ a = $('#container').highcharts();
+ var max = Math.max(a.yAxis[0].dataMax,a.yAxis[1].dataMax);
+ var min = Math.max(a.yAxis[0].dataMin,a.yAxis[1].dataMin);
+ console.log(max+""+min);
+ a.yAxis[0].setExtremes(0,max);
+ a.yAxis[1].setExtremes(0,max);
 });
-
+var a;
 $(document).ready(function(){
     var real_expense = '<%= raw @expense_find %>';
     console.log(real_expense);

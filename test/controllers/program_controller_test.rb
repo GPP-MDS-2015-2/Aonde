@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class ProgramControllerTest < ActionController::TestCase
+  
   def create_programs_expense
     Program.create(name: 'ProgramaValido', description: 'Programa valido')
   end
@@ -46,47 +47,10 @@ class ProgramControllerTest < ActionController::TestCase
     assert_empty(expense_empty)
   end
 
-  test 'Verify the sum of method add_expense_program' do
-    list_pair = pair_program_expense
+  
+ 
 
-    program_expense = {}
-    program = 0
-    expense = 1
-
-    @controller.add_expense_program(list_pair[program],
-                                    list_pair[expense], program_expense)
-    expect_hash = { 'program test' => 100 }
-
-    assert_equal(expect_hash, program_expense)
-  end
-
-  test 'Add more one program expense to hash' do
-    list_pair = pair_program_expense
-    sum_program_expense = { 'program test' => 100 }
-    program = 0
-    expense = 1
-    @controller.add_expense_program(list_pair[program],
-                                    list_pair[expense], sum_program_expense)
-    expect_hash_sum = { 'program test' => 100 }
-
-    assert_not_equal(expect_hash_sum, sum_program_expense)
-  end
-
-  test 'Verify the empty result of sum_expense_program' do
-    program_expense = {}
-    expense = Expense.new(value: 100)
-    @controller.sum_expense_program([], expense, program_expense)
-
-    assert_empty(program_expense)
-  end
-  test 'Verify the not empty result of sum_expense_program' do
-    list_program = [Program.new(name: 'Program')]
-    expense = Expense.new(value: 100)
-    program_expense = {}
-    @controller.sum_expense_program(list_program, expense, program_expense)
-    assert_not_empty(program_expense)
-  end
-
+  
   test 'Verify method show' do
     generate_program_seed
 
@@ -102,97 +66,24 @@ class ProgramControllerTest < ActionController::TestCase
 
   test 'create related entities of programs' do
     generate_program_seed
-    program_related = [[{ 'id' => 1, 'label' => 'Programa1' }], []]
-
-    @controller.create_nodes(1, program_related, PublicAgency)
+    
+    program = Program.new(name:'Programa1',id: 1 )
+    graph_nodes = @controller.create_graph_nodes(program, 'public_agency_id',PublicAgency, 1)
     expected_sizes = [2, 1]
-    # puts program_related
-    find_sizes = [program_related[0].size, program_related[1].size]
+
+    find_sizes = [graph_nodes[0].size, graph_nodes[1].size]
 
     assert_equal(expected_sizes, find_sizes)
   end
 
   test 'not include entitie in the association' do
     generate_program_seed
-    program_related = [[{ 'id' => 1, 'label' => 'Programa1' }], []]
 
-    expected_related = program_related.clone
-
-    @controller.create_nodes(1, program_related, Company)
+    expected_related = [[{ 'id' => 1, 'label' => 'Programa1' }], []]
+    program = Program.new(name: 'Programa1',id: 1)
+    program_related = @controller.create_graph_nodes(program, 'company_id', Company,1)
 
     assert_equal(expected_related, program_related)
-  end
-
-  test 'Add node to array' do
-    data_program = [[{ 'id' => 1, 'label' => 'Programa1' }], []]
-    company_add = 'company'
-
-    @controller.add_node(company_add, data_program, Company.name)
-
-    data_expected = [[{ 'id' => 1, 'label' => 'Programa1' },
-                      { 'id' => 2, 'label' => 'company',
-                        'group' => Company.name }], []]
-
-    assert_equal(data_expected, data_program)
-  end
-
-  test 'add edge to array' do
-    data_program = [[{ 'id' => 1, 'label' => 'Programa1' },
-                     { 'id' => 2, 'label' => 'Company1' }], []]
-    value = 500
-    @controller.add_edge(data_program, value,PublicAgency)
-
-    data_expected = [[{ 'id' => 1, 'label' => 'Programa1' },
-                      { 'id' => 2, 'label' => 'Company1' }],
-                     [{ 'from' => 1, 'to' => 2, 'value' => 500,
-                        'title' => 'R$ 500,00', 'color' => '#43BFC5' }]]
-
-    assert_equal(data_expected, data_program)
-  end
-  test 'addition of one node' do
-    generate_program_seed
-    program_related = [[{ 'id' => 1 }], []]
-
-    @controller.create_node(1, PublicAgency, 1, program_related)
-    assert_not_empty(program_related[0])
-    assert_not_empty(program_related[1])
-  end
-  test 'empty return to invalid id' do
-    program_related = [[], []]
-    @controller.create_node(1, PublicAgency, 1, program_related)
-    assert_empty(program_related[0])
-    assert_empty(program_related[1])
-  end
-
-  test 'add names and values' do
-    generate_program_seed
-    data_expected = { name: 'PublicAgency1', value: 12 }
-    name_entities = @controller.obtain_name_value(1, PublicAgency, 1)
-    assert_equal(data_expected, name_entities)
-  end
-
-  test 'raise erro to no exist agency' do
-    assert_raise(Exception) do
-      @controller.obtain_name_value(1, PublicAgency, 1)
-    end
-  end
-  
-  test 'return color to PublicAgency' do
-    
-    color_agency = @controller.color_edge(PublicAgency)
-    color_expected = '#43BFC5'
-
-    assert_equal(color_expected,color_agency)
-  end
-  test 'return color to Company' do
-    
-    color_company = @controller.color_edge(Company)
-    color_expected = '#FFBC82'
-
-    assert_equal(color_expected,color_company)
-  end
-  test 'null result of entity is not Agency or Company' do
-    assert_nil(@controller.color_edge(Program))
   end
   
   test 'return valid public_agency_id' do
@@ -228,36 +119,23 @@ class ProgramControllerTest < ActionController::TestCase
     assert assigns(:program)
   end
 
-  test 'field of PublicAgency' do
-    field_public_agency = 'public_agency_id'
-    field_receive = @controller.define_field(PublicAgency)
-    assert_equal(field_public_agency, field_receive)
-  end
-  test 'field of Company' do
-    field_company = 'company_id'
-    field_receive = @controller.define_field(Company)
-    assert_equal(field_company, field_receive)
-  end
-  test 'null name of other entity' do
-    field_receive = @controller.define_field(Program)
-    assert_nil(field_receive)
-  end
-
   test 'route to program' do
     assert_routing 'program/1', controller: 'program', action: 'show_program',
                                 id: '1'
   end
 
-  private
-
-  def pair_program_expense
-    program = Program.new(id: 1, name: 'program test',
-                          description: 'Program to make a test')
-    expense = Expense.new(document_number: '0000',
-                          payment_date: Date.new(2015, 01, 01), value: 100,
-                          program_id: 1)
-    [program, expense]
+  test 'Create data program to public agencies' do 
+    generate_program_seed
+    process_data = @controller.create_data_program(2,'public_agency_id',PublicAgency)
+    expected_data = [['PublicAgency1',14,PublicAgency.name]]
+    assert_equal(expected_data,process_data)
   end
+  test 'Empty array to not create id of program' do 
+    generate_program_seed
+    process_data = @controller.create_data_program(3,'public_agency_id',PublicAgency)
+    assert_empty(process_data)
+  end
+  
 
   def generate_program_seed
     SuperiorPublicAgency.create(id: 1, name: 'SuperiorPublicAgency')
@@ -279,4 +157,6 @@ class ProgramControllerTest < ActionController::TestCase
                    payment_date: Date.new(2015, 1, 1), value: 0, program_id: 1,
                    public_agency_id: 1)
   end
+
+  private :generate_program_seed
 end

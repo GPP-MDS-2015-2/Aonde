@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "public_agency/:id/list_chart" ,to: "public_agency#filter_chart", as: "filter"
   get "public_agency/:id/type_expense",to: "type_expense#show", as: "type_expense"
   get "public_agency/:id/filter_type_expense",to: "type_expense#filter_chart", as: "filter_type_expense"
-  get "public_agency/:id/company", to: "company#show", as: "company"
+  get "public_agency/:id/companies", to: "company#show", as: "companies"
   get 'public_agency/:id/budgets', to: "budget#show", as: "budget"
   get "public_agency/:id/programs", to: "program#show", as: "programs"
   
@@ -17,10 +17,13 @@ Rails.application.routes.draw do
   get "public_agency/:id/filter_budget",to: "budget#filter_chart_budget", as: "filter_budget"
   get "search/list", to:"search#index", as: "search"
   #Routes of Programs
-  get "/functions" => "function#show"
-  get "/functions/filter" => "function#filter"
+  get "/functions", to: "function#show", as: "functions"
+  get "/functions/filter", to: "function#filter", as: "functions_filter"
   get "/companies_expenses" => "company#index"
-  get "/find/:id" => "company#find"
+  get "/company/:id", to: "company#find", as: "company"
+
+  #Superior Public Agencies
+  get "/superior_agency/:id", to: "superior_public_agency#show", as: "superior" 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

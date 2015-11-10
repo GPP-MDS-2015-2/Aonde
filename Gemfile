@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 # Code coverage from CodeClimate
 gem "codeclimate-test-reporter", group: :test, require: nil
 
-gem 'database_cleaner'
+gem "factory_girl"
+
 # Internationalization and localization
 gem 'rails-i18n'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -19,6 +20,19 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'
+
+#Gem for materialize
+gem 'materialize-sass'
+
+# Tests with cucumber
+gem 'capybara', '2.4.4'
+gem 'cucumber'	
+
+group :test do
+gem "factory_girl_rails"
+	gem 'database_cleaner'
+    gem 'cucumber-rails', require: false
+end
 
 #Gem for bootstrap
 gem 'bootstrap-sass', '3.2.0.2'

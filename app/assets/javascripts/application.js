@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require materialize-sprockets
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
@@ -26,4 +27,11 @@ Array.prototype.clone = function() {
 Array.prototype.remove = function(start, end) {
   this.splice(start, end);
   return this;
+}
+
+Array.prototype.clear = function() {
+  	while(this.length){
+  		this.pop();
+  	}
+  	return this;
 }
