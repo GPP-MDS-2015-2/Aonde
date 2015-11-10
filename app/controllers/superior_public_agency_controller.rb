@@ -1,5 +1,6 @@
-# superior_public_agency_controller.rb Process the requests of users and the 
-# data related with superior public agencies
+# superior_public_agency_controller.rb 
+# Process the requests of users and the data related with superior public 
+# agencies
 class SuperiorPublicAgencyController < ApplicationController
   def show
     @superior_agency = SuperiorPublicAgency.find(params[:id])
