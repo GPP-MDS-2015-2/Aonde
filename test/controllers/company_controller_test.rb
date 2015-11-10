@@ -4,7 +4,7 @@ class CompanyControllerTest < ActionController::TestCase
 	
   test 'Route to method show and the result of the request' do
     generate_public_agency
-    assert_routing 'public_agency/1/company', controller: 'company', action: 'show', id: '1'
+    assert_routing 'public_agency/1/companies', controller: 'company', action: 'show', id: '1'
     get :show, id: 1
     assert_response :success
     assert assigns :array_company_expense
@@ -48,23 +48,7 @@ class CompanyControllerTest < ActionController::TestCase
     a = []
     expense_empty = @controller.find_company(a)
     assert expense_empty.empty?
-  end
-
-  test 'should return a array with key company name and value expense value' do
-    company_expenses = { 'company1' => 1, 'company2' => 2, 'company3' => 3 }
-    company_empty = {}
-    company = generate_companies
-
-    expense = Expense.create(id: 2, value: 5)
-
-    company_expected = { 'company1' => 6, 'company2' => 2, 'company3' => 3 }
-    @controller.testing_companies(company, expense, company_expenses)
-    assert_equal(company_expenses, company_expected)
-
-    company_expected2 = { 'company1' => 5 }
-    @controller.testing_companies(company, expense, company_empty)
-    assert_equal(company_empty, company_expected2)
-  end
+  end  
 
   test 'should return an array with a few nodes' do
     hash = [{ 'nome1' => 1 }, { 'nome2' => 2 }, { 'nome3' => 3 },

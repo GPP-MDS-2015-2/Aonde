@@ -8,7 +8,7 @@ function createGraph(dataProgram,idGraph){
 	
 	var container = document.getElementById(idGraph);
     
-    var data = initializeData(dataProgram[0],dataProgram[1],dataProgram[2],dataProgram[3]);
+    var data = dataProgram;
     console.log(data);
     var options = {
           layout:{improvedLayout:false},
@@ -66,14 +66,20 @@ function createGraph(dataProgram,idGraph){
     }
   };
     
+  console.log(data);
   var network = new vis.Network(container, data, options);
   return network;
 }
 
-function initializeData(agencyNodes,edgeAgencies,companiesNodes,edgeCompanies){
-	companies = companiesNodes;
+function initializeDataProgram(dataProgram){
+
+  var nodesAgencies = dataProgram[0];
+  var edgeAgencies = dataProgram[1];
+  var nodesCompanies = dataProgram[2];
+  var edgeCompanies = dataProgram[3];
+	companies = nodesCompanies;
 	actualNodes = companies.slice(0,COMPANIESPERPAGE);
-	nodes.add(agencyNodes);
+	nodes.add(nodesAgencies);
 	nodes.add(actualNodes);
 	edges.add(edgeAgencies);
 	edges.add(edgeCompanies);
@@ -81,6 +87,19 @@ function initializeData(agencyNodes,edgeAgencies,companiesNodes,edgeCompanies){
 	data = {
         nodes: nodes,
         edges: edges
+    };
+    return data;
+}
+
+function initializeDataSuperior(dataSuperior){
+  console.log("\ninitializeDataSuperior");
+  console.log(dataSuperior);
+  console.log("\n\n");
+  var nodesAgencies = dataSuperior[0];
+  var edgeAgencies = dataSuperior[1];
+  data = {
+        nodes: nodesAgencies,
+        edges: edgeAgencies
     };
     return data;
 }

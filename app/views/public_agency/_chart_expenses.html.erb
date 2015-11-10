@@ -112,9 +112,9 @@ $(document).ready(function(){
 <%= form_tag  filter_path , method: 'get' do %>
 	 <!-- <%= hidden_field_tag :id, params[:id]%> -->
 	 <%= select_tag :from_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Começa no Ano..." %>
-	 <%= select_tag :from_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"]																								,["Novembro"],["Dezembro"]]), prompt: "Começa no mês..." %>
-	 <%= select_tag :ends_in_the_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
- 	 <%= select_tag :ends_in_the_months, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
+	 <%= select_tag :from_month, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"]																								,["Novembro"],["Dezembro"]]), prompt: "Começa no mês..." %>
+	 <%= select_tag :end_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
+ 	 <%= select_tag :end_month, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
     <%= submit_tag 'Filtrar' %>
 </div>
 </div>

@@ -11,7 +11,8 @@
 var dataProgram = '<%= raw @data_program %>';
 console.log(dataProgram);
 dataProgram = JSON.parse(dataProgram);
-var network = createGraph(dataProgram,'mynetwork');
+dataInitialized = initializeDataProgram(dataProgram);
+var network = createGraph(dataInitialized,'mynetwork');
 $(document).ready(function(){
   console.log(dataProgram);
   createPagesButton(dataProgram[2]);
