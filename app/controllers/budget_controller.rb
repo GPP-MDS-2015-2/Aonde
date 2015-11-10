@@ -152,6 +152,4 @@ class BudgetController < ApplicationController
 		#puts budget_array
 		return budget_array
 	end
-
-
 end

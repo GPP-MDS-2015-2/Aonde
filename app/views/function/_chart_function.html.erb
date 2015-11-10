@@ -25,6 +25,8 @@
 
     function select_top_10() {
       var data = ('<%= raw @top_10_data%>');
+      console.log("\n\ndata of top 10\n");
+      console.log(data);
       var correct_data = JSON.parse(data);
       drawChart(correct_data);
       remove_all_elements_list();
