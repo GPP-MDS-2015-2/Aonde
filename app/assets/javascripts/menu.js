@@ -107,3 +107,9 @@ $(document).ready(function() {
   });
 });
 })(jQuery);
+
+(function($){
+  $(document).ready(function(){
+    $('.parallax').parallax();
+  });
+})(jQuery);
