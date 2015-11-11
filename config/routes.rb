@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
   get "public_agency/:id", to: "public_agency#show", as: 'public_agency'
   get "public_agency/:id/list_chart" ,to: "public_agency#filter_chart", as: "filter"
-  get "public_agency/:id/type_expense",to: "type_expense#show", as: "type_expense"
+  get "public_agency/:id/type_expense",to: "type_expense#show", as: "type_expense", format: :json
   get "public_agency/:id/filter_type_expense",to: "type_expense#filter_chart", as: "filter_type_expense"
   get "public_agency/:id/companies", to: "company#show", as: "companies"
   get 'public_agency/:id/budgets', to: "budget#show", as: "budget"
