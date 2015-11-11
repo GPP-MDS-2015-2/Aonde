@@ -5,7 +5,7 @@
 	<h1><%= @superior_public_agency.name.downcase.capitalize %><span><%= @public_agency.name.downcase.capitalize %></span></h1>
 </header>
 
-<!-- create the tabs and render the informations of the public agency -->
+<!-- create the tabs and render the informations of the public agency 
 <div class = 'container-tabs'>
  	<ul class="tabs">
 		<li class="tab-link" data-tab="tab-1" current><%= link_to "Gastos do Órgão",public_agency_path%></li>
@@ -13,12 +13,46 @@
         <li class="tab-link" data-tab="tab-3"><%= link_to "Programas", programs_path %></li>
 		<li class="tab-link" data-tab="tab-4"><%= link_to "Tipos de Despesas", type_expense_path %></li>
 		<li class="tab-link" data-tab="tab-5"><%= link_to "Orçamento", budget_path %></li>
-	</ul>
+	</ul>-->
 
- 	<div id="tab-1" class="tab-content current">
-		<%= render 'chart_expenses' %>
- 	</div>
-	<!-- <div id="tab-2" class="tab-content">
-		huhuasaushuah
-	</div>  -->
- </div>
+<div id="public_agency_chart" style="width:980px; height:auto; margin-right:auto;  margin-left:auto;">	
+	<div class="z-depth-3" style="width:auto; margin-right:auto;  margin-left:auto;">
+  		<%= render 'chart_expenses' %>
+	</div>
+	<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:980px; margin-top:20px;">Filtragem</a></center>
+</div>
+  	      
+    <!--<center><button data-target="modal1" class="btn modal-trigger" style="width:980x;">Modal</button></center>-->
+	<div id="contencao_outros">
+
+        <ul class="collapsible popout" data-collapsible="accordion">
+    		<li>
+      			<div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">assessment</i>Programas</div>
+      			<div class="collapsible-body"><div id="program_chart"></div>
+              		<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
+            	</div>
+    		</li>
+            <p></p>
+    		<li>
+      			<div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">business</i>Empresas</div>
+      			<div class="collapsible-body"><div id="company_chart"></div>
+                	<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
+    			</div>
+    		</li>
+            <p></p>
+    		<li>
+      			<div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">assignment_late</i>Gastos por tipo</div>
+      			<div class="collapsible-body"><div id="treemap_chart"></div>	
+                	<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
+    			</div>
+        </li>
+        <p></p>
+        <li>
+            <div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">assignment_late</i>Orcamento</div>
+            <div class="collapsible-body"><div id="budget_chart"></div>
+                  <center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
+          </div>
+        </li>
+  		</ul>
+
+    </div>

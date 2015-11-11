@@ -106,23 +106,32 @@ $(document).ready(function(){
 	  	<%= msg %>
   	</div>
 <% end %>
-<!-- just create the form to the filter -->
-<div id="combobox">
-<div id="select_box">
-<%= form_tag  filter_path , method: 'get' do %>
-	 <!-- <%= hidden_field_tag :id, params[:id]%> -->
-	 <%= select_tag :from_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Começa no Ano..." %>
-	 <%= select_tag :from_month, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"]																								,["Novembro"],["Dezembro"]]), prompt: "Começa no mês..." %>
-	 <%= select_tag :end_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
- 	 <%= select_tag :end_month, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
-    <%= submit_tag 'Filtrar' %>
-</div>
-</div>
-<% end %>
-<div id="chart_div"></div>
-<div id="cont_share"> 
-<a href="https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook">
 
-<i class="fa fa-facebook"></i>acebook</a> Compartilhamentos: <%= facebook_share_amount("http://aondebrasil.com"+ public_agency_path(@public_agency.id) ) %>
-</div>
+<!--Chart div-->
+<div id="chart_div"></div>
+
+<!--Modal where make filter-->
+<div id="modal1" class="modal">
+  <div class="modal-content">	
+	<!-- just create the form to the filter -->
+	<div id="combobox_filter" style="background:blue; width:300px; leight: 300px;">
+		<div id="select_box">
+		<%= form_tag  filter_path , method: 'get' do %>
+			<!-- <%= hidden_field_tag :id, params[:id]%> -->
+	 		<%= select_tag :from_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Começa no Ano..." %>
+	 		<%= select_tag :from_month, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"]																								,["Novembro"],["Dezembro"]]), prompt: "Começa no mês..." %>
+	 		<%= select_tag :end_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
+ 	 		<%= select_tag :end_month, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
+    		<%= submit_tag 'Filtrar' %>
+    		<% end %>
+		</div>
+		<div id="cont_share"> 
+			<a href="https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook">
+			<i class="fa fa-facebook"></i>acebook</a> Compartilhamentos: <%= facebook_share_amount("http://aondebrasil.com"+ public_agency_path(@public_agency.id) ) %>
+		</div>
+	</div>	
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
 </div>
