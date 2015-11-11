@@ -2,10 +2,44 @@
 	<h1>Gastos da Federação por função</h1>
 </header>
 
-<div class="z-depth-4" style="width:960px; margin-right:auto;  margin-left:auto;">
-  	<%= render 'chart_function' %>
+<div class="container">  
+	<div class="z-depth-4" style="margin-right:auto;  margin-left:auto; margin-bottom:15px;">
+  		<%= render 'chart_function' %>
+	</div>
 </div>
 
+<div class="container">
+	<div class="row">
+      <div class="col s6 m5">
+        <div class="card-panel orange">      		
+          <span class="white-text">
+		  <b>Descrição do gráfico</b></p>
+          I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+          </span>
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="card-panel orange">
+          <span class="white-text">
+        <b>Filtragem do gráfico</b>
+        <p>     
+		<p></p>
+		<button class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Filtre para o Top10 dos gastos da federação" type="submit" name="action id ="top_10" "value="Top10" onclick="select_top_10()">Top 10
+    	<i class="material-icons right">send</i>
+		</button>
+		
+		<button class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Visualize o gráfico em sua forma padrão" type="submit" name="action" id="Default" value="Padrão" onclick="select_default()">Padrão<i class="material-icons right">send</i>
+		</button>
+		
+		<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Filtre por ano</a>
+		<p></p>
+		
+          </span>
+         </div>
+      </div>
+    </div>
+</div>
 
 <div id = 'removed_chart_elements_container'>
 	<center>
@@ -15,7 +49,7 @@
 	</center>
 </div>
 
-  <!-- Modal Structure -->
+<!-- Modal Structure -->
 <div id="modal1" class="modal">
   <div class="modal-content">	
 	<div id="combobox_function" style="width:960px;  margin-right:auto;  margin-left:auto;">
@@ -30,19 +64,7 @@
 		<% end %>
 	</div>
   </div>
-    <div class="modal-footer">
+	<div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
 </div>
-      
-<div class="z-depth-4" style="width:960px; margin-right:auto; margin-left:auto; margin-bottom:50px;">
-<button class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Filtre o Top10 dos gastos da federação" type="submit" name="action id ="top_10" "value="Top10" onclick="select_top_10()">Top 10
-    <i class="material-icons right">send</i>
-</button>
-
-<button class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Visualize o gráfico em sua forma padrão" type="submit" name="action" id="Default" value="Padrão" onclick="select_default()">Padrão<i class="material-icons right">send</i>
-</button>
-
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
-</div>   

@@ -13,13 +13,15 @@
         <li class="tab-link" data-tab="tab-3"><%= link_to "Programas", programs_path %></li>
 		<li class="tab-link" data-tab="tab-4"><%= link_to "Tipos de Despesas", type_expense_path %></li>
 		<li class="tab-link" data-tab="tab-5"><%= link_to "Orçamento", budget_path %></li>
-	</ul>-->
-
-<div id="public_agency_chart" style="width:980px; height:auto; margin-right:auto;  margin-left:auto;">	
+	</ul>
+</div>-->
+<div class="container">
+<div id="public_agency_chart" style="height:auto; margin-right:auto;  margin-left:auto;">	
 	<div class="z-depth-3" style="width:auto; margin-right:auto;  margin-left:auto;">
   		<%= render 'chart_expenses' %>
 	</div>
 	<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:980px; margin-top:20px;">Filtragem</a></center>
+</div>
 </div>
   	      
     <!--<center><button data-target="modal1" class="btn modal-trigger" style="width:980x;">Modal</button></center>-->
