@@ -1,7 +1,9 @@
 <%= provide(:title, "Orgaos Publicos") %>
-<center><h2> 
-  <strong><font color="white">Lista de Órgãos públicos </font></strong>
-</h2></center>
+
+<header class="codrops-header">
+		<h4>Lista de Órgãos públicos</h4>
+</header>
+
 <% if (@public_agencies.empty?) %>
   <strong>Não foi encontrado nenhum órgão</strong>
 <% else %>

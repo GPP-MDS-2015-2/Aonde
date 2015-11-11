@@ -1,8 +1,10 @@
 <%= provide(:title, "Orgao Publico") %>
 <p>
 
-<center><font color="white"><h4><%= link_to @superior_public_agency.name, superior_path(@superior_public_agency.id) %></h4></font></center>
-<center><font color="white"><h3><%= @public_agency.name %></h3></font></center>
+<header class="codrops-header">
+	<h1><%= @superior_public_agency.name.downcase.capitalize %><span><%= @public_agency.name.downcase.capitalize %></span></h1>
+</header>
+
 <!-- create the tabs and render the informations of the public agency -->
 <div class = 'container-tabs'>
  	<ul class="tabs">

@@ -16,40 +16,19 @@
   <%= yield :css %>
   <%= csrf_meta_tags %>
 </head>
-<<<<<<< HEAD
 
 <!--NavBar-->
-<div id="menu">
-  <ul id="slide-out" class="side-nav">
-        <li><%= link_to 'Home', root_path %></li>
-        <li class='active'><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
-        <li><%= link_to 'Gasto por Função', functions_path %></li><li class="no-padding">
+<ul id="slide-out" class="side-nav">
+    <li><%= link_to 'Home', root_path %></li>
+      <li class='active'><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
+      <li><%= link_to 'Gasto por Função', functions_path %></li><li class="no-padding">
     </li>
   </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu" style="font-size:50px; color:#000"></i></a>
-=======
- <div id="upper_link">
-  <div class="util_link">
-    <ul>
-      <li>Links Úteis:  </li>
-      <li><a href="https://fga.unb.br/" class="util_link">Portal FGA</a></li>
-      <li>  |  </li>
-      <li><a href="http://lappis.unb.br/redm/projects/grupo-5-portal-da-transparencia/wiki" class="util_link">Wiki</a></li>
-      <li>  |  </li>
-      <li><a href="https://github.com/GPP-MDS-2015-2/Aonde" class="util_link">GitHub</a></li>
-      <li>  |  </li>
-      <li><a href="http://transparencia.gov.br/" class="util_link">Portal da Transparência</a></li>
-    </ul> 
-  </div>
-</div>
-<body>
-<div id="headLogo">
-  <div id="logo"></div>
->>>>>>> view_superior_public_agency
-</div>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="btn-floating btn-large red small mdi-navigation-menu" style="float:left; top:10px; left:20px;"></i></a>
+  
 
 <!--Search field-->
-  <nav  style="width:1200px; margin-left:auto; margin-right:auto; background:#FF8F2F;">
+ <!-- <nav  style="width:1200px; margin-left:auto; margin-right:auto; background:#FF8F2F;">
     <div class="nav-wrapper">
       <form>
         <div class="input-field">
@@ -60,7 +39,9 @@
       </form>
     </div>
   </nav>
+  -->
 <!--Combobox -->
+<!--
 <div id="contetion_combobox_search">                
   <div class="input-field">
     <%= form_tag search_path, :method => 'get' do %>
@@ -68,7 +49,7 @@
     <% end%>
   </div>
 </div>
-
+-->
 <!--Conteiner da tabela esta ainda com o bootstrap -->
 <!-- <div class="container" style="margin-bottom:50px;"> -->    
     
