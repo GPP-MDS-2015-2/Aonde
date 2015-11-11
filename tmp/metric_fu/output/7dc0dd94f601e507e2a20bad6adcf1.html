@@ -99,7 +99,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>  
 </pre></div>
 </div>
 
@@ -115,7 +115,23 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>  <span class="comment">#create a hash to convert a name of month to int</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>  <span class="comment">#create a hash to convert a name of month to int</span>
 </pre></div>
 </div>
 
@@ -128,11 +144,11 @@
            
              <ul>
                
-                 <li>Score of 14.56 &raquo; flog</li>
-               
                  <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
                
                  <li>TooManyStatements - has approx 15 statements &raquo; reek</li>
+               
+                 <li>Score of 14.56 &raquo; flog</li>
                
                  <li>Complexity 1 &raquo; saikuro</li>
                
@@ -141,7 +157,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>          <span class="keyword">def</span> <span class="function">month_to_int</span>(month)
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>  <span class="keyword">def</span> <span class="function">month_to_int</span>(month)
 </pre></div>
 </div>
 
@@ -157,7 +173,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>        
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>  
 </pre></div>
 </div>
 
@@ -173,7 +189,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                conversion_data = {}
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    conversion_data = {}
 </pre></div>
 </div>
 
@@ -189,7 +205,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Janeiro</span><span class="delimiter">'</span></span>] = <span class="integer">1</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Janeiro</span><span class="delimiter">'</span></span>] = <span class="integer">1</span>
 </pre></div>
 </div>
 
@@ -205,7 +221,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Fevereiro</span><span class="delimiter">'</span></span>] = <span class="integer">2</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Fevereiro</span><span class="delimiter">'</span></span>] = <span class="integer">2</span>
 </pre></div>
 </div>
 
@@ -221,7 +237,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Maro</span><span class="delimiter">'</span></span>] = <span class="integer">3</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Maro</span><span class="delimiter">'</span></span>] = <span class="integer">3</span>
 </pre></div>
 </div>
 
@@ -237,7 +253,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Abril</span><span class="delimiter">'</span></span>] = <span class="integer">4</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Abril</span><span class="delimiter">'</span></span>] = <span class="integer">4</span>
 </pre></div>
 </div>
 
@@ -253,7 +269,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Maio</span><span class="delimiter">'</span></span>] = <span class="integer">5</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Maio</span><span class="delimiter">'</span></span>] = <span class="integer">5</span>
 </pre></div>
 </div>
 
@@ -269,7 +285,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Junho</span><span class="delimiter">'</span></span>] = <span class="integer">6</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Junho</span><span class="delimiter">'</span></span>] = <span class="integer">6</span>
 </pre></div>
 </div>
 
@@ -285,7 +301,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Julho</span><span class="delimiter">'</span></span>] = <span class="integer">7</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Julho</span><span class="delimiter">'</span></span>] = <span class="integer">7</span>
 </pre></div>
 </div>
 
@@ -301,7 +317,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Agosto</span><span class="delimiter">'</span></span>] = <span class="integer">8</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Agosto</span><span class="delimiter">'</span></span>] = <span class="integer">8</span>
 </pre></div>
 </div>
 
@@ -317,7 +333,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Setembro</span><span class="delimiter">'</span></span>] = <span class="integer">9</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Setembro</span><span class="delimiter">'</span></span>] = <span class="integer">9</span>
 </pre></div>
 </div>
 
@@ -333,7 +349,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Outubro</span><span class="delimiter">'</span></span>] = <span class="integer">10</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Outubro</span><span class="delimiter">'</span></span>] = <span class="integer">10</span>
 </pre></div>
 </div>
 
@@ -349,7 +365,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Novembro</span><span class="delimiter">'</span></span>] = <span class="integer">11</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Novembro</span><span class="delimiter">'</span></span>] = <span class="integer">11</span>
 </pre></div>
 </div>
 
@@ -365,7 +381,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Dezembro</span><span class="delimiter">'</span></span>] = <span class="integer">12</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Dezembro</span><span class="delimiter">'</span></span>] = <span class="integer">12</span>
 </pre></div>
 </div>
 
@@ -381,7 +397,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>                conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Todos</span><span class="delimiter">'</span></span>] = <span class="integer">0</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>    conversion_data[<span class="string"><span class="delimiter">'</span><span class="content">Todos</span><span class="delimiter">'</span></span>] = <span class="integer">0</span>
 </pre></div>
 </div>
 
@@ -397,7 +413,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>
 </pre></div>
 </div>
 
@@ -413,7 +429,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>                <span class="keyword">return</span> conversion_data[month]
+  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>    <span class="keyword">return</span> conversion_data[month]
 </pre></div>
 </div>
 
@@ -429,7 +445,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -445,7 +461,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>
 </pre></div>
 </div>
 
@@ -467,7 +483,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>        <span class="keyword">def</span> <span class="function">find_agencies</span>(id=<span class="integer">0</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>  <span class="keyword">def</span> <span class="function">find_agencies</span>(id=<span class="integer">0</span>)
 </pre></div>
 </div>
 
@@ -483,7 +499,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>                <span class="instance-variable">@public_agency</span> = <span class="constant">PublicAgency</span>.find(id)
+  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>    <span class="instance-variable">@public_agency</span> = <span class="constant">PublicAgency</span>.find(id)
 </pre></div>
 </div>
 
@@ -499,7 +515,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>                <span class="instance-variable">@superior_public_agency</span> = <span class="constant">SuperiorPublicAgency</span>.find(<span class="instance-variable">@public_agency</span>.superior_public_agency_id)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    <span class="instance-variable">@superior_public_agency</span> = <span class="constant">SuperiorPublicAgency</span>
 </pre></div>
 </div>
 
@@ -515,7 +531,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span>    .find(<span class="instance-variable">@public_agency</span>.superior_public_agency_id)
 </pre></div>
 </div>
 
@@ -531,7 +547,23 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span><span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>  <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span><span class="keyword">end</span>
 </pre></div>
 </div>
 

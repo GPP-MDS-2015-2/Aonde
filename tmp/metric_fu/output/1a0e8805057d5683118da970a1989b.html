@@ -64,13 +64,13 @@
            
              <ul>
                
-                 <li>Score of 10.44 &raquo; flog</li>
-               
                  <li>DuplicateMethodCall - calls data[url_shared] 2 times &raquo; reek</li>
                
                  <li>DuplicateMethodCall - calls data[url_shared]["shares"] 2 times &raquo; reek</li>
                
-                 <li>FeatureEnvy - refers to data more than self &raquo; reek</li>
+                 <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
+               
+                 <li>Score of 9.47 &raquo; flog</li>
                
                  <li>Complexity 2 &raquo; saikuro</li>
                
@@ -143,7 +143,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>            print(<span class="string"><span class="delimiter">&quot;</span><span class="char">\n</span><span class="char">\n</span><span class="char">\n</span><span class="content"> </span><span class="inline"><span class="inline-delimiter">#{</span>data<span class="inline-delimiter">}</span></span><span class="content"> </span><span class="char">\n</span><span class="char">\n</span><span class="char">\n</span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>            <span class="comment">#print(&quot;\n\n\n #{data} \n\n\n&quot;)</span>
 </pre></div>
 </div>
 

@@ -35,7 +35,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="keyword">class</span> <span class="class">TypeExpenseController</span> &lt; <span class="constant">ApplicationController</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="comment"># type_expense_controller.rb</span>
 </pre></div>
 </div>
 
@@ -51,7 +51,55 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>        
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span><span class="comment"># Obtain and process the data of expenses associate to type expense</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span><span class="comment"># of a public agency</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span><span class="keyword">class</span> <span class="class">TypeExpenseController</span> &lt; <span class="constant">ApplicationController</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>  
 </pre></div>
 </div>
 
@@ -73,7 +121,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>        <span class="keyword">def</span> <span class="function">show</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>  <span class="keyword">def</span> <span class="function">show</span>
 </pre></div>
 </div>
 
@@ -89,7 +137,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>
 </pre></div>
 </div>
 
@@ -105,7 +153,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>                find_agencies(params[<span class="symbol">:id</span>])
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>    find_agencies(params[<span class="symbol">:id</span>])
 </pre></div>
 </div>
 
@@ -121,7 +169,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>                <span class="instance-variable">@data_type_expense</span> = get_expense_by_type(<span class="instance-variable">@public_agency</span>.id).to_json
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span class="instance-variable">@data_type_expense</span> = get_expense_by_type(<span class="instance-variable">@public_agency</span>.id).to_json
 </pre></div>
 </div>
 
@@ -137,7 +185,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>                <span class="instance-variable">@expense_type_find</span> = <span class="integer">1</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    <span class="instance-variable">@expense_type_find</span> = <span class="integer">1</span>
 </pre></div>
 </div>
 
@@ -153,7 +201,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>
 </pre></div>
 </div>
 
@@ -169,7 +217,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -185,7 +233,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>
 </pre></div>
 </div>
 
@@ -197,13 +245,13 @@
           <td valign='top'>
            
              <ul>
-               
-                 <li>Score of 18.64 &raquo; flog</li>
                
                  <li>DuplicateMethodCall - calls @public_agency.id 2 times &raquo; reek</li>
                
                  <li>TooManyStatements - has approx 7 statements &raquo; reek</li>
                
+                 <li>Score of 18.64 &raquo; flog</li>
+               
                  <li>Complexity 2 &raquo; saikuro</li>
                
             </ul>
@@ -211,7 +259,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">def</span> <span class="function">filter_chart</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>  <span class="keyword">def</span> <span class="function">filter_chart</span>
 </pre></div>
 </div>
 
@@ -227,7 +275,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>
 </pre></div>
 </div>
 
@@ -243,7 +291,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>                find_agencies(params[<span class="symbol">:id</span>])
+  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>    find_agencies(params[<span class="symbol">:id</span>])
 </pre></div>
 </div>
 
@@ -259,7 +307,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>                <span class="instance-variable">@data_type_expense</span> = get_expense_by_type(<span class="instance-variable">@public_agency</span>.id,params[<span class="symbol">:year</span>],params[<span class="symbol">:month</span>])
+  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>    <span class="instance-variable">@data_type_expense</span> = get_expense_by_type(<span class="instance-variable">@public_agency</span>.id,params[<span class="symbol">:year</span>],params[<span class="symbol">:month</span>])
 </pre></div>
 </div>
 
@@ -275,7 +323,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>                
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>    
 </pre></div>
 </div>
 
@@ -291,7 +339,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>                <span class="comment">#puts &quot;#{@data_type_expense.empty?} #{params[:year]} #{params[:month]}&quot;</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>    <span class="comment">#puts &quot;#{@data_type_expense.empty?} #{params[:year]} #{params[:month]}&quot;</span>
 </pre></div>
 </div>
 
@@ -307,7 +355,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>                
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    
 </pre></div>
 </div>
 
@@ -323,7 +371,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="instance-variable">@expense_type_find</span> = <span class="integer">0</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>    <span class="instance-variable">@expense_type_find</span> = <span class="integer">0</span>
 </pre></div>
 </div>
 
@@ -339,7 +387,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>                <span class="keyword">if</span> <span class="keyword">not</span> is_empty_filter(<span class="instance-variable">@data_type_expense</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>    <span class="keyword">if</span> <span class="keyword">not</span> is_empty_filter(<span class="instance-variable">@data_type_expense</span>)
 </pre></div>
 </div>
 
@@ -355,7 +403,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                        <span class="instance-variable">@expense_type_find</span> = <span class="integer">1</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>      <span class="instance-variable">@expense_type_find</span> = <span class="integer">1</span>
 </pre></div>
 </div>
 
@@ -371,7 +419,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>                        <span class="comment"># Nothing to do</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>      <span class="comment"># Nothing to do</span>
 </pre></div>
 </div>
 
@@ -387,7 +435,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>                <span class="keyword">else</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>    <span class="keyword">else</span>
 </pre></div>
 </div>
 
@@ -403,7 +451,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>                        <span class="instance-variable">@data_type_expense</span> = get_expense_by_type(<span class="instance-variable">@public_agency</span>.id)
+  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>      <span class="instance-variable">@data_type_expense</span> = get_expense_by_type(<span class="instance-variable">@public_agency</span>.id)
 </pre></div>
 </div>
 
@@ -419,7 +467,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>                <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -435,7 +483,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>
 </pre></div>
 </div>
 
@@ -451,7 +499,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>                <span class="instance-variable">@data_type_expense</span> = <span class="instance-variable">@data_type_expense</span>.to_json
+  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>    <span class="instance-variable">@data_type_expense</span> = <span class="instance-variable">@data_type_expense</span>.to_json
 </pre></div>
 </div>
 
@@ -467,7 +515,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>
 </pre></div>
 </div>
 
@@ -483,7 +531,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>                render <span class="string"><span class="delimiter">'</span><span class="content">show</span><span class="delimiter">'</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span>    render <span class="string"><span class="delimiter">'</span><span class="content">show</span><span class="delimiter">'</span></span>
 </pre></div>
 </div>
 
@@ -499,7 +547,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>
 </pre></div>
 </div>
 
@@ -515,7 +563,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -531,7 +579,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span>        
+  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>  
 </pre></div>
 </div>
 
@@ -543,11 +591,11 @@
           <td valign='top'>
            
              <ul>
-               
-                 <li>Score of 15.20 &raquo; flog</li>
                
                  <li>TooManyStatements - has approx 10 statements &raquo; reek</li>
                
+                 <li>Score of 15.20 &raquo; flog</li>
+               
                  <li>Complexity 3 &raquo; saikuro</li>
                
             </ul>
@@ -555,7 +603,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>        <span class="keyword">def</span> <span class="function">get_expense_by_type</span>(id_public_agency, year = <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>, month = <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>  <span class="keyword">def</span> <span class="function">get_expense_by_type</span>(id_public_agency, year = <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>, month = <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>)
 </pre></div>
 </div>
 
@@ -571,7 +619,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>                list_type_expenses = []                        
+  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>    list_type_expenses = []     
 </pre></div>
 </div>
 
@@ -587,7 +635,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>                types_expense = <span class="constant">TypeExpense</span>.all
+  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>    types_expense = <span class="constant">TypeExpense</span>.all
 </pre></div>
 </div>
 
@@ -603,7 +651,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>                total_expense = <span class="integer">0</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span>    total_expense = <span class="integer">0</span>
 </pre></div>
 </div>
 
@@ -619,7 +667,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>                types_expense.each <span class="keyword">do</span> |type|
+  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>    types_expense.each <span class="keyword">do</span> |type|
 </pre></div>
 </div>
 
@@ -635,7 +683,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>                        total_expense_by_type = find_expenses(id_public_agency,type.id,year,month)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>      total_expense_by_type = find_expenses(id_public_agency,type.id,year,month)
 </pre></div>
 </div>
 
@@ -651,7 +699,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span>                        dictionary_expense = create_dictionary(total_expense_by_type,type)
+  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span>      dictionary_expense = create_dictionary(total_expense_by_type,type)
 </pre></div>
 </div>
 
@@ -667,7 +715,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>                        <span class="keyword">if</span> <span class="keyword">not</span> dictionary_expense.empty?
+  <div class="code"><pre><span class="line-numbers"><a href="#n42" name="n42">42</a></span>      <span class="keyword">if</span> <span class="keyword">not</span> dictionary_expense.empty?
 </pre></div>
 </div>
 
@@ -683,7 +731,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                                total_expense += total_expense_by_type
+  <div class="code"><pre><span class="line-numbers"><a href="#n43" name="n43">43</a></span>        total_expense += total_expense_by_type
 </pre></div>
 </div>
 
@@ -699,7 +747,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span>                                list_type_expenses &lt;&lt; dictionary_expense
+  <div class="code"><pre><span class="line-numbers"><a href="#n44" name="n44">44</a></span>        list_type_expenses &lt;&lt; dictionary_expense
 </pre></div>
 </div>
 
@@ -715,7 +763,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n42" name="n42">42</a></span>                        <span class="keyword">else</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n45" name="n45">45</a></span>      <span class="keyword">else</span>
 </pre></div>
 </div>
 
@@ -731,7 +779,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n43" name="n43">43</a></span>                                <span class="comment"># Do nothing</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n46" name="n46">46</a></span>        <span class="comment"># Do nothing</span>
 </pre></div>
 </div>
 
@@ -747,7 +795,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n44" name="n44">44</a></span>                        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n47" name="n47">47</a></span>      <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -763,7 +811,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n45" name="n45">45</a></span>                <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n48" name="n48">48</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -779,7 +827,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n46" name="n46">46</a></span>                define_color(total_expense,list_type_expenses)
+  <div class="code"><pre><span class="line-numbers"><a href="#n49" name="n49">49</a></span>    define_color(total_expense,list_type_expenses)
 </pre></div>
 </div>
 
@@ -795,7 +843,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n47" name="n47">47</a></span>                <span class="keyword">return</span> list_type_expenses
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>    <span class="keyword">return</span> list_type_expenses
 </pre></div>
 </div>
 
@@ -811,7 +859,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n48" name="n48">48</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n51" name="n51">51</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -827,7 +875,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n49" name="n49">49</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n52" name="n52">52</a></span>
 </pre></div>
 </div>
 
@@ -839,11 +887,11 @@
           <td valign='top'>
            
              <ul>
-               
-                 <li>Score of 9.42 &raquo; flog</li>
                
                  <li>LongParameterList - has 4 parameters &raquo; reek</li>
                
+                 <li>Score of 9.42 &raquo; flog</li>
+               
                  <li>Complexity 3 &raquo; saikuro</li>
                
             </ul>
@@ -851,7 +899,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>        <span class="keyword">def</span> <span class="function">find_expenses</span>(id_public_agency = <span class="integer">-1</span>, id_type_expense = <span class="integer">-1</span>,year = <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>,month=<span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n53" name="n53">53</a></span>  <span class="keyword">def</span> <span class="function">find_expenses</span>(id_public_agency = <span class="integer">-1</span>, id_type_expense = <span class="integer">-1</span>,year = <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>,month=<span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>)
 </pre></div>
 </div>
 
@@ -867,7 +915,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n51" name="n51">51</a></span>                 expenses_find = <span class="constant">Expense</span>.where(<span class="key">public_agency_id</span>: id_public_agency,
+  <div class="code"><pre><span class="line-numbers"><a href="#n54" name="n54">54</a></span>    expenses_find = <span class="constant">Expense</span>.where(<span class="key">public_agency_id</span>: id_public_agency,
 </pre></div>
 </div>
 
@@ -883,7 +931,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n52" name="n52">52</a></span>                                                                                    <span class="key">type_expense_id</span>: id_type_expense)
+  <div class="code"><pre><span class="line-numbers"><a href="#n55" name="n55">55</a></span>                       <span class="key">type_expense_id</span>: id_type_expense)
 </pre></div>
 </div>
 
@@ -899,7 +947,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n53" name="n53">53</a></span>                 expense_value = <span class="integer">0</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n56" name="n56">56</a></span>    expense_value = <span class="integer">0</span>
 </pre></div>
 </div>
 
@@ -915,7 +963,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n54" name="n54">54</a></span>                 expenses_find.each <span class="keyword">do</span> |expense|
+  <div class="code"><pre><span class="line-numbers"><a href="#n57" name="n57">57</a></span>    expenses_find.each <span class="keyword">do</span> |expense|
 </pre></div>
 </div>
 
@@ -931,7 +979,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n55" name="n55">55</a></span>                         <span class="comment">#puts &quot;#{year} #{month} == #{&quot;Todos&quot;} #{&quot;Todos&quot; == month} #{expense.payment_date} &quot;</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n58" name="n58">58</a></span>      <span class="comment">#puts &quot;#{year} #{month} == #{&quot;Todos&quot;} #{&quot;Todos&quot; == month} #{expense.payment_date} &quot;</span>
 </pre></div>
 </div>
 
@@ -947,7 +995,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n56" name="n56">56</a></span>                         <span class="keyword">if</span> is_date_select(year,month,expense)
+  <div class="code"><pre><span class="line-numbers"><a href="#n59" name="n59">59</a></span>      <span class="keyword">if</span> is_date_select(year,month,expense)
 </pre></div>
 </div>
 
@@ -963,7 +1011,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n57" name="n57">57</a></span>                                 expense_value += expense.value
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>        expense_value += expense.value
 </pre></div>
 </div>
 
@@ -979,7 +1027,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n58" name="n58">58</a></span>                         <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n61" name="n61">61</a></span>      <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -995,7 +1043,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n59" name="n59">59</a></span>                 <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n62" name="n62">62</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1011,7 +1059,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>                 <span class="keyword">return</span> expense_value
+  <div class="code"><pre><span class="line-numbers"><a href="#n63" name="n63">63</a></span>    <span class="keyword">return</span> expense_value
 </pre></div>
 </div>
 
@@ -1027,7 +1075,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n61" name="n61">61</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n64" name="n64">64</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1043,7 +1091,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n62" name="n62">62</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n65" name="n65">65</a></span>
 </pre></div>
 </div>
 
@@ -1056,9 +1104,9 @@
            
              <ul>
                
-                 <li>Score of 3.13 &raquo; flog</li>
-               
                  <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
+               
+                 <li>Score of 3.13 &raquo; flog</li>
                
                  <li>Complexity 2 &raquo; saikuro</li>
                
@@ -1067,7 +1115,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n63" name="n63">63</a></span>        <span class="keyword">def</span> <span class="function">create_dictionary</span>(value_expense, type_expense)
+  <div class="code"><pre><span class="line-numbers"><a href="#n66" name="n66">66</a></span>  <span class="keyword">def</span> <span class="function">create_dictionary</span>(value_expense, type_expense)
 </pre></div>
 </div>
 
@@ -1083,7 +1131,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n64" name="n64">64</a></span>                expense_dictionary = {}
+  <div class="code"><pre><span class="line-numbers"><a href="#n67" name="n67">67</a></span>    expense_dictionary = {}
 </pre></div>
 </div>
 
@@ -1099,7 +1147,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n65" name="n65">65</a></span>                <span class="keyword">if</span> value_expense &gt; <span class="integer">0</span> 
+  <div class="code"><pre><span class="line-numbers"><a href="#n68" name="n68">68</a></span>    <span class="keyword">if</span> value_expense &gt; <span class="integer">0</span> 
 </pre></div>
 </div>
 
@@ -1115,7 +1163,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n66" name="n66">66</a></span>                        expense_dictionary = {<span class="key">name</span>: type_expense.description,
+  <div class="code"><pre><span class="line-numbers"><a href="#n69" name="n69">69</a></span>      expense_dictionary = {<span class="key">name</span>: type_expense.description,
 </pre></div>
 </div>
 
@@ -1131,7 +1179,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n67" name="n67">67</a></span>                                                                <span class="key">value</span>: value_expense,<span class="key">colorValue</span>: <span class="integer">0</span>}
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n70" name="n70">70</a></strong></span>                <span class="key">value</span>: value_expense,<span class="key">colorValue</span>: <span class="integer">0</span>}
 </pre></div>
 </div>
 
@@ -1147,7 +1195,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n68" name="n68">68</a></span>                <span class="keyword">else</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n71" name="n71">71</a></span>    <span class="keyword">else</span>
 </pre></div>
 </div>
 
@@ -1163,7 +1211,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n69" name="n69">69</a></span>                        <span class="comment"># Do nothing</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n72" name="n72">72</a></span>      <span class="comment"># Do nothing</span>
 </pre></div>
 </div>
 
@@ -1179,7 +1227,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n70" name="n70">70</a></strong></span>                <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n73" name="n73">73</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1195,7 +1243,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n71" name="n71">71</a></span>                <span class="keyword">return</span> expense_dictionary
+  <div class="code"><pre><span class="line-numbers"><a href="#n74" name="n74">74</a></span>    <span class="keyword">return</span> expense_dictionary
 </pre></div>
 </div>
 
@@ -1211,7 +1259,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n72" name="n72">72</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n75" name="n75">75</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1227,7 +1275,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n73" name="n73">73</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n76" name="n76">76</a></span>
 </pre></div>
 </div>
 
@@ -1239,8 +1287,6 @@
           <td valign='top'>
            
              <ul>
-               
-                 <li>Score of 15.48 &raquo; flog</li>
                
                  <li>DuplicateMethodCall - calls expense.payment_date 2 times &raquo; reek</li>
                
@@ -1248,6 +1294,8 @@
                
                  <li>FeatureEnvy - refers to year more than self &raquo; reek</li>
                
+                 <li>Score of 15.48 &raquo; flog</li>
+               
                  <li>Complexity 3 &raquo; saikuro</li>
                
             </ul>
@@ -1255,7 +1303,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n74" name="n74">74</a></span>        <span class="keyword">def</span> <span class="function">is_date_select</span>(year = <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>, month = <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>, expense = <span class="predefined-constant">nil</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n77" name="n77">77</a></span>  <span class="keyword">def</span> <span class="function">is_date_select</span>(year = <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>, month = <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>, expense = <span class="predefined-constant">nil</span>)
 </pre></div>
 </div>
 
@@ -1271,7 +1319,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n75" name="n75">75</a></span>                
+  <div class="code"><pre><span class="line-numbers"><a href="#n78" name="n78">78</a></span>    
 </pre></div>
 </div>
 
@@ -1287,7 +1335,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n76" name="n76">76</a></span>                date_select = <span class="predefined-constant">true</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n79" name="n79">79</a></span>    date_select = <span class="predefined-constant">true</span>
 </pre></div>
 </div>
 
@@ -1303,7 +1351,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n77" name="n77">77</a></span>                
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n80" name="n80">80</a></strong></span>    
 </pre></div>
 </div>
 
@@ -1319,7 +1367,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n78" name="n78">78</a></span>                <span class="keyword">if</span> year != <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n81" name="n81">81</a></span>    <span class="keyword">if</span> year != <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -1335,7 +1383,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n79" name="n79">79</a></span>                        <span class="keyword">if</span> ( month_to_int(month) == expense.payment_date.month <span class="keyword">or</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n82" name="n82">82</a></span>      <span class="keyword">if</span> ( month_to_int(month) == expense.payment_date.month <span class="keyword">or</span>
 </pre></div>
 </div>
 
@@ -1351,7 +1399,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n80" name="n80">80</a></strong></span>                         month == <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>) <span class="keyword">and</span> year.to_i == expense.payment_date.year 
+  <div class="code"><pre><span class="line-numbers"><a href="#n83" name="n83">83</a></span>       month == <span class="string"><span class="delimiter">&quot;</span><span class="content">Todos</span><span class="delimiter">&quot;</span></span>) <span class="keyword">and</span> year.to_i == expense.payment_date.year 
 </pre></div>
 </div>
 
@@ -1367,7 +1415,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n81" name="n81">81</a></span>                                <span class="comment"># date select is true</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n84" name="n84">84</a></span>        <span class="comment"># date select is true</span>
 </pre></div>
 </div>
 
@@ -1383,7 +1431,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n82" name="n82">82</a></span>                        <span class="keyword">else</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n85" name="n85">85</a></span>      <span class="keyword">else</span>
 </pre></div>
 </div>
 
@@ -1399,7 +1447,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n83" name="n83">83</a></span>                                date_select = <span class="predefined-constant">false</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n86" name="n86">86</a></span>        date_select = <span class="predefined-constant">false</span>
 </pre></div>
 </div>
 
@@ -1415,7 +1463,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n84" name="n84">84</a></span>                        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n87" name="n87">87</a></span>      <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1431,7 +1479,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n85" name="n85">85</a></span>                <span class="keyword">else</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n88" name="n88">88</a></span>    <span class="keyword">else</span>
 </pre></div>
 </div>
 
@@ -1447,7 +1495,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n86" name="n86">86</a></span>                        <span class="comment"># date_select true Will permit sum all expenses</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n89" name="n89">89</a></span>      <span class="comment"># date_select true Will permit sum all expenses</span>
 </pre></div>
 </div>
 
@@ -1463,55 +1511,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n87" name="n87">87</a></span>                <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n88" name="n88">88</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n89" name="n89">89</a></span>                <span class="keyword">return</span> date_select
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n90" name="n90">90</a></strong></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n90" name="n90">90</a></strong></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1538,18 +1538,12 @@
         <tr>
           <td valign='top'>
            
-             <ul>
-               
-                 <li>Score of 4.50 &raquo; flog</li>
-               
-                 <li>Complexity 2 &raquo; saikuro</li>
-               
-            </ul>
+              &nbsp;
           
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n92" name="n92">92</a></span>        <span class="keyword">def</span> <span class="function">is_empty_filter</span>(list_type_expenses=[])
+  <div class="code"><pre><span class="line-numbers"><a href="#n92" name="n92">92</a></span>    <span class="keyword">return</span> date_select
 </pre></div>
 </div>
 
@@ -1565,7 +1559,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n93" name="n93">93</a></span>                
+  <div class="code"><pre><span class="line-numbers"><a href="#n93" name="n93">93</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1581,151 +1575,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n94" name="n94">94</a></span>                empty_filter = list_type_expenses.empty?
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n95" name="n95">95</a></span>                
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n96" name="n96">96</a></span>                <span class="keyword">if</span> <span class="keyword">not</span> empty_filter
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n97" name="n97">97</a></span>                        <span class="comment"># Do nothing</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n98" name="n98">98</a></span>                <span class="keyword">else</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n99" name="n99">99</a></span>                        flash[<span class="symbol">:error</span>] = <span class="string"><span class="delimiter">&quot;</span><span class="content">Nenhuma despesa encontrada no periodo desejado! Veja o grfico total:</span><span class="delimiter">&quot;</span></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n100" name="n100">100</a></strong></span>                <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n101" name="n101">101</a></span>                <span class="keyword">return</span> empty_filter
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n102" name="n102">102</a></span>        <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n103" name="n103">103</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n94" name="n94">94</a></span>
 </pre></div>
 </div>
 
@@ -1738,10 +1588,208 @@
            
              <ul>
                
-                 <li>Score of 7.28 &raquo; flog</li>
+                 <li>Score of 4.50 &raquo; flog</li>
+               
+                 <li>Complexity 2 &raquo; saikuro</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n95" name="n95">95</a></span>  <span class="keyword">def</span> <span class="function">is_empty_filter</span>(list_type_expenses=[])
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n96" name="n96">96</a></span>    
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n97" name="n97">97</a></span>    empty_filter = list_type_expenses.empty?
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n98" name="n98">98</a></span>    
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n99" name="n99">99</a></span>    <span class="keyword">if</span> <span class="keyword">not</span> empty_filter
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n100" name="n100">100</a></strong></span>      <span class="comment"># Do nothing</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n101" name="n101">101</a></span>    <span class="keyword">else</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n102" name="n102">102</a></span>      flash[<span class="symbol">:error</span>] = <span class="string"><span class="delimiter">&quot;</span><span class="content">Nenhuma despesa encontrada no periodo desejado! Veja o grfico total:</span><span class="delimiter">&quot;</span></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n103" name="n103">103</a></span>    <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n104" name="n104">104</a></span>    <span class="keyword">return</span> empty_filter
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n105" name="n105">105</a></span>  <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n106" name="n106">106</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
                
                  <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
                
+                 <li>Score of 7.28 &raquo; flog</li>
+               
                  <li>Complexity 2 &raquo; saikuro</li>
                
             </ul>
@@ -1749,7 +1797,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n104" name="n104">104</a></span>        <span class="keyword">def</span> <span class="function">define_color</span>(total_expense,list_type_expenses)        
+  <div class="code"><pre><span class="line-numbers"><a href="#n107" name="n107">107</a></span>  <span class="keyword">def</span> <span class="function">define_color</span>(total_expense,list_type_expenses)  
 </pre></div>
 </div>
 
@@ -1765,7 +1813,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n105" name="n105">105</a></span>                
+  <div class="code"><pre><span class="line-numbers"><a href="#n108" name="n108">108</a></span>    
 </pre></div>
 </div>
 
@@ -1781,7 +1829,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n106" name="n106">106</a></span>                list_type_expenses.each <span class="keyword">do</span> |expense|
+  <div class="code"><pre><span class="line-numbers"><a href="#n109" name="n109">109</a></span>    list_type_expenses.each <span class="keyword">do</span> |expense|
 </pre></div>
 </div>
 
@@ -1797,7 +1845,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n107" name="n107">107</a></span>                        expense_per_cent = expense[<span class="symbol">:value</span>]*<span class="integer">100</span>/total_expense
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n110" name="n110">110</a></strong></span>      expense_per_cent = expense[<span class="symbol">:value</span>]*<span class="integer">100</span>/total_expense
 </pre></div>
 </div>
 
@@ -1813,7 +1861,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n108" name="n108">108</a></span>                        expense[<span class="symbol">:colorValue</span>] = expense_per_cent.to_i
+  <div class="code"><pre><span class="line-numbers"><a href="#n111" name="n111">111</a></span>      expense[<span class="symbol">:colorValue</span>] = expense_per_cent.to_i
 </pre></div>
 </div>
 
@@ -1829,7 +1877,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n109" name="n109">109</a></span>                <span class="keyword">end</span>                
+  <div class="code"><pre><span class="line-numbers"><a href="#n112" name="n112">112</a></span>    <span class="keyword">end</span>   
 </pre></div>
 </div>
 
@@ -1845,7 +1893,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n110" name="n110">110</a></strong></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n113" name="n113">113</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1861,7 +1909,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n111" name="n111">111</a></span><span class="keyword">end</span>        </pre></div>
+  <div class="code"><pre><span class="line-numbers"><a href="#n114" name="n114">114</a></span><span class="keyword">end</span> </pre></div>
 </div>
 
           </td>

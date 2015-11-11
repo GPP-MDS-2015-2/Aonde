@@ -35,7 +35,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="keyword">class</span> <span class="class">SearchController</span> &lt; <span class="constant">ApplicationController</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="comment"># search_controller.rb</span>
 </pre></div>
 </div>
 
@@ -51,7 +51,55 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>        
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span><span class="comment"># Process the request of search for a key word for public agency,</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span><span class="comment"># programs or companies</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span><span class="keyword">class</span> <span class="class">SearchController</span> &lt; <span class="constant">ApplicationController</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>  
 </pre></div>
 </div>
 
@@ -63,11 +111,11 @@
           <td valign='top'>
            
              <ul>
-               
-                 <li>Score of 13.73 &raquo; flog</li>
                
                  <li>TooManyStatements - has approx 8 statements &raquo; reek</li>
                
+                 <li>Score of 13.73 &raquo; flog</li>
+               
                  <li>Complexity 2 &raquo; saikuro</li>
                
             </ul>
@@ -75,7 +123,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>        <span class="keyword">def</span> <span class="function">index</span> 
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>  <span class="keyword">def</span> <span class="function">index</span> 
 </pre></div>
 </div>
 
@@ -91,7 +139,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>                search = params[<span class="symbol">:search</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>    search = params[<span class="symbol">:search</span>]
 </pre></div>
 </div>
 
@@ -107,7 +155,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>                <span class="instance-variable">@entity</span> = params[<span class="symbol">:entity</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>    <span class="instance-variable">@entity</span> = params[<span class="symbol">:entity</span>]
 </pre></div>
 </div>
 
@@ -123,7 +171,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>                <span class="instance-variable">@msg_error</span> = <span class="integer">1</span>
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span class="instance-variable">@msg_error</span> = <span class="integer">1</span>
 </pre></div>
 </div>
 
@@ -139,7 +187,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>                <span class="keyword">if</span> search.tr(<span class="string"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>,<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>).length &gt;= <span class="integer">4</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    <span class="keyword">if</span> search.tr(<span class="string"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>,<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>).length &gt;= <span class="integer">4</span>
 </pre></div>
 </div>
 
@@ -155,7 +203,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>                        find_entities
+  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>      find_entities
 </pre></div>
 </div>
 
@@ -171,7 +219,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                        <span class="instance-variable">@results</span> = [<span class="integer">1</span>]                        
+  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>      <span class="instance-variable">@results</span> = [<span class="integer">1</span>]      
 </pre></div>
 </div>
 
@@ -187,7 +235,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                <span class="keyword">else</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>    <span class="keyword">else</span>
 </pre></div>
 </div>
 
@@ -203,7 +251,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>                        flash[<span class="symbol">:error</span>] = <span class="string"><span class="delimiter">&quot;</span><span class="content">A Pesquisa no pode ter menos que 4 caracteres</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>      flash[<span class="symbol">:error</span>] = <span class="string"><span class="delimiter">&quot;</span><span class="content">A Pesquisa no pode ter menos que 4 caracteres</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -219,7 +267,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>                        <span class="instance-variable">@msg_error</span> = <span class="integer">0</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>      <span class="instance-variable">@msg_error</span> = <span class="integer">0</span>
 </pre></div>
 </div>
 
@@ -235,7 +283,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>                        <span class="instance-variable">@results</span> = []        
+  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>      <span class="instance-variable">@results</span> = [] 
 </pre></div>
 </div>
 
@@ -251,7 +299,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>                <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -267,7 +315,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -283,7 +331,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>
 </pre></div>
 </div>
 
@@ -296,9 +344,9 @@
            
              <ul>
                
-                 <li>Score of 6.31 &raquo; flog</li>
-               
                  <li>FeatureEnvy - refers to total_expense_entity more than self &raquo; reek</li>
+               
+                 <li>Score of 6.31 &raquo; flog</li>
                
                  <li>Complexity 2 &raquo; saikuro</li>
                
@@ -307,7 +355,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">def</span> <span class="function">search_entities</span>(class_entity,name_field,keyword)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>  <span class="keyword">def</span> <span class="function">search_entities</span>(class_entity,name_field,keyword)
 </pre></div>
 </div>
 
@@ -323,7 +371,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>
 </pre></div>
 </div>
 
@@ -339,7 +387,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>                entities = class_entity.where(<span class="string"><span class="delimiter">&quot;</span><span class="content">name LIKE ?</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">%</span><span class="inline"><span class="inline-delimiter">#{</span>keyword<span class="inline-delimiter">}</span></span><span class="content">%</span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>    entities = class_entity.where(<span class="string"><span class="delimiter">&quot;</span><span class="content">name LIKE ?</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">%</span><span class="inline"><span class="inline-delimiter">#{</span>keyword<span class="inline-delimiter">}</span></span><span class="content">%</span><span class="delimiter">&quot;</span></span>)
 </pre></div>
 </div>
 
@@ -355,7 +403,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                total_expense_entity = {}
+  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>    total_expense_entity = {}
 </pre></div>
 </div>
 
@@ -371,7 +419,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>                entities.each <span class="keyword">do</span> |entity|
+  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>    entities.each <span class="keyword">do</span> |entity|
 </pre></div>
 </div>
 
@@ -387,7 +435,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>                        total_expense_entity[entity] = expense_entities(name_field,entity.id)
+  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>      total_expense_entity[entity] = expense_entities(name_field,entity.id)
 </pre></div>
 </div>
 
@@ -403,7 +451,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>                <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -419,7 +467,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>                <span class="keyword">return</span> total_expense_entity.to_a 
+  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>    <span class="keyword">return</span> total_expense_entity.to_a 
 </pre></div>
 </div>
 
@@ -435,7 +483,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -457,7 +505,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>        <span class="keyword">def</span> <span class="function">find_entities</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>  <span class="keyword">def</span> <span class="function">find_entities</span>
 </pre></div>
 </div>
 
@@ -473,7 +521,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>                 keyword = params[<span class="symbol">:search</span>]
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    keyword = params[<span class="symbol">:search</span>]
 </pre></div>
 </div>
 
@@ -489,7 +537,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>                 <span class="instance-variable">@public_agencies</span> = search_entities(<span class="constant">PublicAgency</span>,<span class="symbol">:public_agency_id</span>,keyword)
+  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span>    <span class="instance-variable">@public_agencies</span> = search_entities(<span class="constant">PublicAgency</span>,<span class="symbol">:public_agency_id</span>,keyword)
 </pre></div>
 </div>
 
@@ -505,7 +553,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>                <span class="instance-variable">@programs</span> = search_entities(<span class="constant">Program</span>,<span class="symbol">:program_id</span>,keyword)
+  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>    <span class="instance-variable">@programs</span> = search_entities(<span class="constant">Program</span>,<span class="symbol">:program_id</span>,keyword)
 </pre></div>
 </div>
 
@@ -521,7 +569,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                <span class="instance-variable">@companies</span> = search_entities(<span class="constant">Company</span>,<span class="symbol">:company_id</span>,keyword)
+  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>    <span class="instance-variable">@companies</span> = search_entities(<span class="constant">Company</span>,<span class="symbol">:company_id</span>,keyword)
 </pre></div>
 </div>
 
@@ -537,7 +585,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span>        <span class="keyword">end</span> 
+  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>  <span class="keyword">end</span> 
 </pre></div>
 </div>
 
@@ -553,7 +601,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>
 </pre></div>
 </div>
 
@@ -566,9 +614,9 @@
            
              <ul>
                
-                 <li>Score of 2.42 &raquo; flog</li>
-               
                  <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
+               
+                 <li>Score of 2.42 &raquo; flog</li>
                
                  <li>Complexity 1 &raquo; saikuro</li>
                
@@ -577,7 +625,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>        <span class="keyword">def</span> <span class="function">expense_entities</span>(name_field,entity_id)
+  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>  <span class="keyword">def</span> <span class="function">expense_entities</span>(name_field,entity_id)
 </pre></div>
 </div>
 
@@ -593,7 +641,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>                total_expense = <span class="constant">Expense</span>.where(name_field=&gt; entity_id).sum(<span class="symbol">:value</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>    total_expense = <span class="constant">Expense</span>.where(name_field=&gt; entity_id).sum(<span class="symbol">:value</span>)
 </pre></div>
 </div>
 
@@ -609,7 +657,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>                  <span class="keyword">return</span> total_expense
+  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span>      <span class="keyword">return</span> total_expense
 </pre></div>
 </div>
 
@@ -625,7 +673,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -641,7 +689,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>
 </pre></div>
 </div>
 
@@ -657,7 +705,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span><span class="keyword">end</span></pre></div>
+  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span><span class="keyword">end</span></pre></div>
 </div>
 
           </td>

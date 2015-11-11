@@ -94,24 +94,12 @@
         <tr>
           <td valign='top'>
            
-             <ul>
-               
-                 <li>Method name "get_expenses_by_function" has 6 parameters.  It should have 5 or less. &raquo; roodi</li>
-               
-                 <li>Score of 9.22 &raquo; flog</li>
-               
-                 <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
-               
-                 <li>LongParameterList - has 6 parameters &raquo; reek</li>
-               
-                 <li>Complexity 1 &raquo; saikuro</li>
-               
-            </ul>
+              &nbsp;
           
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>        <span class="keyword">def</span> <span class="function">get_expenses_by_function</span>(first_year,last_year,first_month,last_month,first_day,last_day)
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>
 </pre></div>
 </div>
 
@@ -127,135 +115,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>                start = <span class="constant">Date</span>.new(first_year,first_month,first_day)
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>                end_of = <span class="constant">Date</span>.new(last_year,last_month,last_day)
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                  <span class="constant">Function</span>.joins(<span class="symbol">:expense</span>).where(<span class="string"><span class="delimiter">&quot;</span><span class="content">DATE(payment_date) BETWEEN ? AND ?</span><span class="delimiter">&quot;</span></span>, start, end_of).select(<span class="string"><span class="delimiter">&quot;</span><span class="content">YEAR(payment_date) as date_test,sum(expenses.value) as sumValue,functions.description</span><span class="delimiter">&quot;</span></span>).group(<span class="string"><span class="delimiter">&quot;</span><span class="content">YEAR(payment_date),functions.description</span><span class="delimiter">&quot;</span></span>).to_json
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span><span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span><span class="keyword">end</span>
 </pre></div>
 </div>
 

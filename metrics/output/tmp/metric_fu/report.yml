@@ -1,0 +1,32 @@
+---
+:cane:
+  :total_violations: 1
+  :violations:
+    :documentation:
+    - :description: No README found
+:stats:
+  :codeLOC: 0
+  :testLOC: 0
+  :code_to_test_ratio: 0.0
+  :lines: []
+:reek:
+  :matches: []
+:flay:
+  :total_score: '0'
+  :matches: []
+:roodi:
+  :total:
+  - Found 0 errors.
+  :problems: []
+:flog:
+  :total: 0
+  :average: 0
+  :method_containers: []
+:saikuro:
+  :files: []
+  :classes: []
+  :methods: []
+:hotspots:
+  files: []
+  classes: []
+  methods: []
