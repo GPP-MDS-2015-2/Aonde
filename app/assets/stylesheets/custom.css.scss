@@ -62,7 +62,7 @@ textarea{
 #CompanyTable{
   text-align: center;
 }
-#Exibir {
+#Display {
   background: #F38000;
   text-align: center;
   cursor: pointer;
@@ -70,7 +70,7 @@ textarea{
   height: 30px;
   border-radius: 10px 10px 10px 10px;  
 }
-a.exibir {
+a.display {
   text-align: center;
   color: white;
   font-size: 18px;
@@ -78,7 +78,7 @@ a.exibir {
   list-style-type: none;
   text-align: center;
 }
-a.exibir:hover {
+a.display:hover {
   text-decoration: underline;
   color: #036564;
 }
@@ -159,7 +159,7 @@ a.exibir:hover {
   margin-left:auto; 
   margin-right:auto; 
   margin-bottom:155px; 
-  margin-top:30px;
+  margin-top:60px;
 }
 #contencao_outros{
   width:1160px;
