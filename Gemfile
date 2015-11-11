@@ -34,8 +34,6 @@ gem "factory_girl_rails"
     gem 'cucumber-rails', require: false
 end
 
-#Gem for bootstrap
-gem 'bootstrap-sass', '3.2.0.2'
 #Gem for test the connection with fake page web
 gem "fakeweb", "~> 1.3"
 

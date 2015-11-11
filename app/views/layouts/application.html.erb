@@ -24,7 +24,7 @@
       <li><%= link_to 'Gasto por Função', functions_path %></li><li class="no-padding">
     </li>
   </ul>
-<a href="#" data-activates="slide-out" class="button-collapse"><i class="btn-floating btn-large red small mdi-navigation-menu" style="float:left; top:10px; left:20px;"></i></a>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="btn-floating btn-large red small mdi-navigation-menu" style="float:left; left:20px;"></i></a>
   
 
 <!--Search field-->
@@ -50,15 +50,10 @@
   </div>
 </div>
 -->
-<!--Conteiner da tabela esta ainda com o bootstrap -->
-<!-- <div class="container" style="margin-bottom:50px;"> -->    
-    
-    <!--<div class="content-container">-->
-      <div class="content_table">
-        <%= yield %>
-      </div>
-    <!--</div>-->
-<!-- </div> -->
+
+<div class="container_render">     
+    <%= yield %>
+</div> 
 
       <!--Esse é o rodape-->
        <footer class="page-footer" style="background:#23AFB5; margin-top:0;">
