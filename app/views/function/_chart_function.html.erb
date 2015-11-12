@@ -26,14 +26,14 @@
     function select_top_10() {
       var data = ('<%= raw @top_10_data%>');
       var correct_data = JSON.parse(data);
-      drawChart(correct_data);
+      drawnChartFunction(correct_data);
       remove_all_elements_list();
     }
 
     function select_default() {
       var data = ('<%= raw @correct_datas%>');
       var correct_data = JSON.parse(data);
-      drawChart(correct_data);
+      drawnChartFunction(correct_data);
       remove_all_elements_list(); 
     }
     
@@ -70,7 +70,7 @@
       $("#"+name_element_id).click(function(){
         readd_element(name_element);
         correct_datas = transform_arrays_in_hash(arrayKeys,arrayValues);
-        drawChart(correct_datas);
+        drawnChartFunction(correct_datas);
         $(this).remove();
       });
     }
@@ -109,10 +109,10 @@
       console.log(arrayKeys);
       console.log(arrayValues);
       console.log(newHash);
-      drawChart(newHash);
+      drawnChartFunction(newHash);
     }
     $(document).ready(function(){  
-      drawChart(correct_data); 
+      drawnChartFunction(correct_data); 
       
     });
 
@@ -125,7 +125,7 @@
         }
     }
 
-    function drawChart(correct_data) {
+    function drawnChartFunction(correct_data) {
         setData(correct_data,arrayKeys,arrayValues)
         Highcharts.setOptions({
             lang: {

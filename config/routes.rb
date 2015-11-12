@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   get "public_agency/:id/filter_type_expense",to: "type_expense#filter_chart", as: "filter_type_expense"
   get "public_agency/:id/companies", to: "company#show", as: "companies"
   get 'public_agency/:id/budgets', to: "budget#show", as: "budget"
-  get "public_agency/:id/programs", to: "program#show", as: "programs"
+  get "public_agency/:id/programs", to: "program#show_programs", as: "programs", format: :json
   
-  get "/program/:id", to: "program#show_program", as: "program"
+  get "/program/:id", to: "program#show", as: "program"
 
   get "public_agency/:id/filter_budget",to: "budget#filter_chart_budget", as: "filter_budget"
   get "search/list", to:"search#index", as: "search"

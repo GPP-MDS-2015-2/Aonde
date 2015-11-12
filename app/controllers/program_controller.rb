@@ -1,10 +1,13 @@
 # program_controller.rb Process de data necessary to respond the requisitions
 # of user in the view
 class ProgramController < ApplicationController
-  def show
+  def show_programs
     find_agencies(params[:id])
     @all_programs = find_expenses(@public_agency.id)
-    @all_programs.to_json
+    respond_to do |format|
+      format.json { render json: @all_programs}
+    end
+
   end
 
   def find_expenses(public_agency_id)
@@ -29,7 +32,7 @@ class ProgramController < ApplicationController
   end
 
  ###########################################################
-  def show_program
+  def show
     program_id = params[:id].to_i
     @program = Program.find(program_id)
 

@@ -2,7 +2,7 @@
 <p>
 
 <header class="codrops-header">
-	<h1><%= @superior_public_agency.name.downcase.capitalize %><span><%= @public_agency.name.downcase.capitalize %></span></h1>
+	<h1><%= link_to @superior_public_agency.name.downcase.split.map(&:capitalize).join(' '), superior_path(@superior_public_agency) %><span><%= @public_agency.name.downcase.capitalize %></span></h1>
 </header>
 
 <!-- create the tabs and render the informations of the public agency 
@@ -29,7 +29,7 @@
 
         <ul class="collapsible popout" data-collapsible="accordion">
     		<li>
-      			<div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">assessment</i>Programas</div>
+      			<div class="collapsible-header" style="background:#FF8F2F;"onclick='createPyramidChart("<%= programs_path %>","program_chart")'><i class="material-icons">assessment</i>Programas</div>
       			<div class="collapsible-body"><div id="program_chart"></div>
               		<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
             	</div>
@@ -43,7 +43,7 @@
     		</li>
             <p></p>
     		<li>
-      			<div class="collapsible-header" style="background:#FF8F2F;" onclick='setChart("<%= type_expense_path %>")'>
+      			<div class="collapsible-header" style="background:#FF8F2F;" onclick='createListAndChart("<%= type_expense_path %>", "treemap_chart")'>
                 <i class="material-icons">assignment_late</i>Gastos por tipo
             </div>
       			<div class="collapsible-body">

@@ -38,12 +38,17 @@
 			company = Company.create(name: "Empresa de teste"+i.to_s)
 			function = Function.create(description: "Function"+i.to_s)
 			type = TypeExpense.create(description: "TypeExpense"+i.to_s)
+			program = Program.create(name: "Program"+i.to_s,description: "Description"+i.to_s)
 			4.times do
 				Expense.create(document_number: i,payment_date: date,public_agency_id: agency.id,
 					    value: day_month[(rand(9))],company_id: company.id,function_id: function.id,
-					    type_expense_id: type.id)
+					    type_expense_id: type.id,program_id: program.id)
 				
 			end
 			i+=1
 		end
 	end
+#rake db:drop
+#rake db:create
+#rake db:migrate
+#rake db:seed
