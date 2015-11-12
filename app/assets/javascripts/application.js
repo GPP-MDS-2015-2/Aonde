@@ -35,3 +35,27 @@ Array.prototype.clear = function() {
   	}
   	return this;
 }
+
+function setChart(path,idChart,functions){
+    console.log(path);
+    var hasChart = $('#'+idChart).highcharts();
+    if (!hasChart){
+        obtainData(path,functions);
+
+    }else{
+        console.log("The chart is already draw");
+    }   
+}
+
+function obtainData(path,functions){
+  $.ajax({
+      url: path,
+      format: 'json',
+      error: function(){
+          console.log("Error to try connect with server");
+      },
+      success: function(data){
+        functions(data);
+      }
+  });
+}

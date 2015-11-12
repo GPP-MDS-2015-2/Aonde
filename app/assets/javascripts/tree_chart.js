@@ -1,44 +1,27 @@
 //Var with data incoming from controller
-var dataController = [];
+var dataTypeExpense = [];
 
 var removed = [],inChart = [];
 
-function setChart(path){
-    var hasChart = $('#treemap_chart').highcharts();
-    if (!hasChart){
-        typeExpense(path);
+function processData(data){
+    console.log(data);
+    dataTypeExpense = data;
+    if(dataTypeExpense.length){
+        createList(dataTypeExpense);
+        drawChart(dataTypeExpense);        
     }else{
-        console.log("Já tem o gráfico renderizado no local");
+        console.log("Deu merda");
     }
 }
 
-function typeExpense(pathTypeExpense){
-    console.log(pathTypeExpense);
-    
-    $.ajax({
-        url: pathTypeExpense,
-        format: 'json',
-        error: function(){
-            console.log("Error to try connect with server");
-        },
-        success: function(data){
-            console.log("Receive the data from server of type expense");
-            console.log(data);
-            dataController = data;
-            createListAndChart(dataController);
-        }
-    });
-}
-
-function createListAndChart(data){
-    createList(data);
-    drawChart(data);
+function createListAndChart(path,idChart){    
+    setChart(path,idChart,processData);    
 }
 function sortData(dataUnorder){
     console.log(dataUnorder);
     dataOrder = [];
-    for (var typeExpenses in dataController){
-        dataOrder.push([typeExpenses, dataController[typeExpenses].value,dataController[typeExpenses].name])
+    for (var typeExpenses in dataTypeExpense){
+        dataOrder.push([typeExpenses, dataTypeExpense[typeExpenses].value,dataTypeExpense[typeExpenses].name])
     }
     dataOrder.sort(function(a, b) {return b[1] - a[1]});
     return dataOrder;
@@ -53,7 +36,7 @@ function createList(dataUnorder){
 $("#listChange ul li").click(function(){
     contentRemove = $(this)[0].innerHTML;
     var node = $(this);
-    dataController.forEach(function(element){
+    dataTypeExpense.forEach(function(element){
         console.log(removed.indexOf(element) == -1);              
         if ( contentRemove === element.name ){
             if( removed.indexOf(element) == -1 ){
