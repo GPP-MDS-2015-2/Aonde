@@ -3,7 +3,42 @@ require 'test_helper'
 class FunctionControllerTest < ActionController::TestCase
 
 
+  test "Should sort by sumValue" do
+
+    hash = {"C terceira"=>3,"B segunda"=>2,"A primeira"=>1}
+    hash = @controller.sort_by_description(hash)
+    expected_hash = [["A primeira", 1], ["B segunda", 2], ["C terceira", 3]]
+    assert_equal(expected_hash,hash)
+
+  end
+
+  test "Should find all dates until today" do
+
+    first_date = Date.new(2009,1,1)
+    last_date = Date.new(2020,12,31)
+    expected_date = { begin: first_date, end: last_date }
+    dates = @controller.find_dates(year = 'Até hoje!', month = 'Todos')
+    assert_equal(dates,expected_date)
+
+  end
+
+
+  def self.create_date(date ={from_month: 'Janeiro',end_month: 'Dezembro',
+    from_year: 2009,end_year: 2020})
+    #puts date
+    first_month = month_to_int(date[:from_month])
+    last_month = month_to_int(date[:end_month])
+    first_date = Date.new(date[:from_year].to_i, first_month, 1)
+    last_date = Date.new(date[:end_year].to_i, last_month, 1)
+
+    last_date = last_day_date(last_date)
+    date = { begin: first_date, end: last_date }
+    # puts date
+    date
+  end
+
   test "Empty return of method to insert expenses" do
+  
     begin_date = Date.new(2015,1,12)
     end_date = Date.new(2015,1,31)
     expenses_function = @controller
@@ -11,12 +46,14 @@ class FunctionControllerTest < ActionController::TestCase
     assert_empty(expenses_function)
     
   end
+
   test "Route to method show" do
 
     assert_routing '/functions', { :controller => "function", :action => "show" } 
     get :show
 
     assert_response :success
+
   end
 
 
