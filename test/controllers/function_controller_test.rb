@@ -17,11 +17,30 @@ class FunctionControllerTest < ActionController::TestCase
     first_date = Date.new(2009,1,1)
     last_date = Date.new(2020,12,31)
     expected_date = { begin: first_date, end: last_date }
-    dates = @controller.find_dates(year = 'Até hoje!', month = 'Todos')
+    dates = @controller.find_dates
     assert_equal(dates,expected_date)
 
   end
 
+  test "Should find dates in a year" do
+
+    first_date = Date.new(2015,1,1)
+    last_date = Date.new(2015,12,31)
+    expected_date = { begin: first_date, end: last_date }
+    dates = @controller.find_dates("2015")
+    assert_equal(dates,expected_date)
+
+  end
+
+  test "Should find dates in a month" do
+
+    first_date = Date.new(2015,12,1)
+    last_date = Date.new(2015,12,31)
+    expected_date = { begin: first_date, end: last_date }
+    dates = @controller.find_dates(year ='2015',month = 'Dezembro')
+    assert_equal(dates,expected_date)
+
+  end
 
   def self.create_date(date ={from_month: 'Janeiro',end_month: 'Dezembro',
     from_year: 2009,end_year: 2020})

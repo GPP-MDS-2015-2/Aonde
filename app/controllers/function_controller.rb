@@ -59,12 +59,14 @@ class FunctionController < ApplicationController
     else
       year_filter = year.to_i
       if month == 'Todos'
-        dates = HelperController.create_date(year_filter, year_filter)
+        date_hash = {from_month: 'Janeiro',end_month: 'Dezembro',from_year: year_filter,end_year: year_filter}
+        dates = HelperController.create_date(date_hash)
       else
-        dates = HelperController
-                .create_date(year_filter, year_filter, month,month)
+        date_hash = {from_month: month,end_month: month,from_year: year_filter,end_year: year_filter}
+        dates = HelperController.create_date(date_hash)
       end
     end
+    dates
   end
 
   def get_expenses(dates)
