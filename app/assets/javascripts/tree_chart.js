@@ -3,20 +3,6 @@ var dataTypeExpense = [];
 
 var removed = [],inChart = [];
 
-function processData(data){
-    console.log(data);
-    dataTypeExpense = data;
-    if(dataTypeExpense.length){
-        createList(dataTypeExpense);
-        drawChart(dataTypeExpense);        
-    }else{
-        console.log("Deu merda");
-    }
-}
-
-function createListAndChart(path,idChart){    
-    setChart(path,idChart,processData);    
-}
 function sortData(dataUnorder){
     console.log(dataUnorder);
     dataOrder = [];
@@ -53,9 +39,14 @@ $("#listChange ul li").click(function(){
         }
     });
 });
-function drawChart(datas){
-    console.log(datas);
-    $('#treemap_chart').highcharts({
+
+
+/** Draw the chart in respective id with the options for type expenses
+* @param dataTypeExpenses Matrix (nx2) with all expenses by type with [type,value]
+*/
+function drawTypeExpense(dataTypeExpenses){
+    console.debug(dataTypeExpenses);
+    $('#'+TYPECHART).highcharts({
         colorAxis: {
             minColor: '#FFFFFF',
             maxColor: '#FF7600'//Highcharts.getOptions().colors[0]
@@ -63,10 +54,10 @@ function drawChart(datas){
         series: [{
             type: "treemap",
             layoutAlgorithm: 'squarified',
-            data: datas
+            data: dataTypeExpenses
         }],
         title: {
-            text: 'Gastos por federação'
+            text: 'Gastos por tipo'
         }
     });
 }

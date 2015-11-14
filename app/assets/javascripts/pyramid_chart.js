@@ -2,20 +2,6 @@
 var dataProgram;
 var removedProgram=[],inChartProgram = [];
 
-function processDataP(data){
-    console.log(data);
-    dataProgram = data;
-    if(dataProgram.length){
-        drawChartP(dataProgram);        
-    }else{
-        console.log("Deu merda");
-    }
-}
-
-function createPyramidChart(path,idChart){    
-    setChart(path,idChart,processDataP);    
-}
-
 $("#listChange_1 ul li").click(function(){
     contentRemove = $(this)[0].innerHTML;
 
@@ -39,11 +25,16 @@ $("#listChange_1 ul li").click(function(){
     });
     drawChart(inChartProgram);
 });
-function drawChartP(datas){
-    console.log(datas);
-    datas.sort(function(a, b) {return b[1] - a[1]})
 
-    $('#program_chart').highcharts({
+
+/** Draw the chart in respective id with the options for type expenses
+* @param dataProgram Matrix (nx2) with all expenses by type with [name,value]
+*/
+function drawProgram(dataProgram){
+    console.log(dataProgram);
+    dataProgram.sort(function(a, b) {return b[1] - a[1]})
+
+    $('#'+PROGRAMCHART).highcharts({
         chart: {
             type: 'pyramid',
             marginRight: 400
@@ -67,7 +58,7 @@ function drawChartP(datas){
         },
         series: [{
             name: 'Gastos R$ ',
-            data:  datas
+            data:  dataProgram
         }]
     });
 }

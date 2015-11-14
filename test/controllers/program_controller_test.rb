@@ -51,17 +51,11 @@ class ProgramControllerTest < ActionController::TestCase
  
 
   
-  test 'Verify method show' do
+  test 'Verify method show programs' do
     generate_program_seed
 
     assert_routing '/public_agency/1/programs', controller: 'program',
-                                                action: 'show', id: '1'
-    get :show, id: 1
-
-    assert_response :success
-
-    assert assigns(:public_agency)
-    assert assigns(:all_programs)
+                                                action: 'show_programs', id: '1'
   end
 
   test 'create related entities of programs' do
@@ -109,9 +103,9 @@ class ProgramControllerTest < ActionController::TestCase
     assert_nil(id)
   end
 
-  test 'management of nodes' do
+  test 'show a program' do
     generate_program_seed
-    get :show_program, id: 1
+    get :show, id: 1
 
     assert_response :success
 
@@ -120,7 +114,7 @@ class ProgramControllerTest < ActionController::TestCase
   end
 
   test 'route to program' do
-    assert_routing 'program/1', controller: 'program', action: 'show_program',
+    assert_routing 'program/1', controller: 'program', action: 'show',
                                 id: '1'
   end
 

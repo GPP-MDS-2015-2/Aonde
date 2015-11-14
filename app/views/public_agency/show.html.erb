@@ -29,7 +29,7 @@
 
         <ul class="collapsible popout" data-collapsible="accordion">
     		<li>
-      			<div class="collapsible-header" style="background:#FF8F2F;"onclick='createPyramidChart("<%= programs_path %>","program_chart")'><i class="material-icons">assessment</i>Programas</div>
+      			<div class="collapsible-header" style="background:#FF8F2F;"onclick='setChart("<%= programs_path %>",PROGRAMCHART,drawProgram)'><i class="material-icons">assessment</i>Programas</div>
       			<div class="collapsible-body"><div id="program_chart"></div>
               		<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
             	</div>
@@ -43,11 +43,11 @@
     		</li>
             <p></p>
     		<li>
-      			<div class="collapsible-header" style="background:#FF8F2F;" onclick='createListAndChart("<%= type_expense_path %>", "treemap_chart")'>
+      			<div class="collapsible-header" style="background:#FF8F2F;" onclick='setChart("<%= type_expense_path %>",TYPECHART,drawTypeExpense)'>
                 <i class="material-icons">assignment_late</i>Gastos por tipo
             </div>
       			<div class="collapsible-body">
-              <div id="treemap_chart"></div>
+              <div id="type_expense_chart"></div>
               <center>
                 <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a>
               </center>
