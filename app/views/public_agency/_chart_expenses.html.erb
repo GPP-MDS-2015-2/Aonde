@@ -1,86 +1,178 @@
 <script type="text/javascript">
-//The expenses of public agency
-var data = {
-            '2014': {
-                'Janeiro': '75.50',
-                'Fevereiro': '56.30'
-            },
-            '2013': {
-                'Janeiro': '75.50',
-                'Fevereiro': '56.30' 
-            },
-            '2015': {
-                'Janeiro': '75.50',
-                'Fevereiro': '56.30' 
-            }
-        };
-/** Method which process the data to draw the chart
-* @params data The expenses of public agency (Object)
-* @return points The expense processed for chart(Array)
-*/
-function process_data(data){
-    //Year of expenses
-    var year;
-    //The expense processed for chart
-    var points = [];
-    //Counter of year
-    var yearCount = 0;
-    console.info("Processing data to draw chart");
-    // Loop which create the points of each year
-    console.debug(data);
-    for (year in data) {
-        console.debug(year);
-        //Check if data has year
-        if (data.hasOwnProperty(year)) {
-            //Pointer for each year
-            var yearSquare = {
-                id: 'id_' + yearCount,
-                name: year,
-                color: Highcharts.getOptions().colors[yearCount],
+    //The expenses of public agency
+    
+    var data = {
+                '2014': {
+                    'Janeiro': '75.50',
+                    'Fevereiro': '56.30'
+                },
+                '2013': {
+                    'Janeiro': '75.50',
+                    'Fevereiro': '56.30' 
+                },
+                '2015': {
+                    'Janeiro': '75.50',
+                    'Fevereiro': '56.30' 
+                }
             };
-            //The Value of a determined year
-            var yearValue = 0;
-            create_point_for_months(data[year], yearValue, yearSquare, points)
-            yearSquare.value = Math.round(yearValue)
-            points.push(yearSquare);
-            yearCount = yearCount + 1;
-        }
-        else{
-            console.warn('data not have year');
-        }
-    }
-    return points
-}
 
-/** Method which create points of months for a determined year
-* @params data[year] The data for a determined year(Object)
-* @params value The value of expenses for a determined year(Integer)
-* @params square The point of determined year(Object)
-* @params The expense processed for chart(Array)
-*/
-function create_point_for_months(data[year], value, square, points) {
-    //Month of expense
-    var month;
-    //Counter of month
-    var monthCount = 0;
-    console.info("Creating the month points for each year");
-    //Loop which create the points of months
-    for(month in data[year]) {
-        //Check if data has month
-        if(data[year].hasOwnProperty(month)) {
-            //Pointer for each month
-            var monthSuare = {
-                id: square.id + '_' + monthCount,
-                name: month,
-                parent: square.id,
-                value: Math.round(+data[year][month])
-            };
-            value += monthSuare.value;
-            points.push(monthSuare);
-            monthCount = monthCount + 1
+    $(document).ready(function(){
+        //The data for draw the chart
+        var squares = processData(data);
+        drawAgency(squares); 
+    });
+    /** Method which process the data to draw the chart
+    * @params data The expenses of public agency (Object)
+    * @return points The expense processed for chart(Array)
+    */
+    function processData(data) {
+        //Year of expenses
+        var year;
+        //The expense processed for chart
+        var points = [];
+        //Counter of year
+        var yearCount = 0;
+        console.info("Processing data to draw chart");
+        // Loop which create the points of each year
+        console.debug(data);
+        for (year in data) {
+            console.debug(year);
+            //Check if data has year
+            if (data.hasOwnProperty(year)) {
+                //Pointer for each year
+                var yearSquare = {
+                    id: 'id_' + yearCount,
+                    name: year,
+                    color: Highcharts.getOptions().colors[yearCount]
+                };
+                // The sum value of all months of a year
+                var yearValue = createPointForMonths(data[year], yearSquare, points);
+                yearSquare.value = Math.round(yearValue);
+                points.push(yearSquare);
+                yearCount = yearCount + 1;
+            }
+            else{
+                console.warn('data not have year');
+            }
         }
-        else{
-            console.warn('data not have month');
-        }
+        return points;
     }
-}
+
+    /** Method which create points of months for a determined year
+    * @params data[year] The data for a determined year(Object)
+    * @params value The value of expenses for a determined year(Integer)
+    * @params square The point of determined year(Object)
+    * @params The expense processed for chart(Array)
+    */
+    function createPointForMonths(data, square, points) {
+        //Month of expense
+        var month;
+        //Counter of month
+        var monthCount = 0;
+        console.info("Creating the month points for each year");
+        // The sum value of all months of a year
+        var yearValue = 0;
+        //Loop which create the points of months
+        for(month in data) {
+            //Check if data has month
+            if(data.hasOwnProperty(month)) {
+                //Pointer for each month
+                var monthSuare = {
+                    id: square.id + '_' + monthCount,
+                    name: month,
+                    parent: square.id,
+                    value: Math.round(+data[month])
+                };
+                yearValue += monthSuare.value;
+                points.push(monthSuare);
+                monthCount = monthCount + 1;
+            }
+            else{
+                console.warn('data not have month');
+            }
+        }
+        return yearValue;
+    }
+    /** Method which draw the chart of public agency
+    * @params points The expense processed for chart(Array)
+    */
+    function drawAgency(points) {
+        console.debug(points);  
+        $('#container').highcharts({
+            series: [{
+                type: 'treemap',
+                layoutAlgorithm: 'squarified',
+                allowDrillToNode: true,
+                dataLabels: {
+                    enabled: false
+                },
+                levelIsConstant: false,
+                levels: [{
+                    level: 1,
+                    dataLabels: {
+                        enabled: true
+                    },
+                    borderWidth: 3
+                }],
+                data: points
+            }],
+            subtitle: {
+                text: 'Clique nos anos para ver os gastos por mês'
+            },
+            title: {
+                text: 'Gastos dos Órgãos Publicos'
+            }
+        });
+        console.log("hahah")
+    }
+
+    $(document).ready(function(){
+        var real_expense = '<%= raw @true_total_expense%>';
+        //alert(real_expense);
+        if( real_expense!=0 ){
+            $('.msg_error').remove();
+        }else{
+            setTimeout(function(){
+                $('.msg_error').remove();
+            }, 5000);
+        }
+     })
+
+</script>
+
+<!--Message that's show every messages of erro.-->
+<% flash.each do |name, msg| %>
+    <div class="msg_error">
+        <i class="fa fa-warning"></i>
+        <%= msg %>
+    </div>
+<% end %>
+
+<!--Chart div-->
+<div id="container" style="min-width: 410px; max-width: auto; height: 500px; margin: 0 auto"></div>
+
+<!--Modal where make filter-->
+<div id="modal1" class="modal">
+  <div class="modal-content">   
+    <!-- just create the form to the filter -->
+    <div id="combobox_filter" style="background:blue; width:300px; leight: 300px;">
+        <div id="select_box">
+        <%= form_tag  filter_path , method: 'get' do %>
+            <!-- <%= hidden_field_tag :id, params[:id]%> -->
+            <%= select_tag :from_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Começa no Ano..." %>
+            <%= select_tag :from_month, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"]                                                                                              ,["Novembro"],["Dezembro"]]), prompt: "Começa no mês..." %>
+            <%= select_tag :end_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
+            <%= select_tag :end_month, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
+            <%= submit_tag 'Filtrar' %>
+            <% end %>
+        </div>
+        <div id="cont_share"> 
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook">
+            <i class="fa fa-facebook"></i>acebook</a> Compartilhamentos: <%= facebook_share_amount("http://aondebrasil.com"+ public_agency_path(@public_agency.id) ) %>
+        </div>
+    </div>  
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
