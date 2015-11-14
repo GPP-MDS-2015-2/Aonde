@@ -38,9 +38,10 @@ function process_data(data){
                 name: year,
                 color: Highcharts.getOptions().colors[yearCount],
             };
-            //The Value of a determinate year
+            //The Value of a determined year
             var yearValue = 0;
-            yearSquare.value = Math.round(yearVal)
+            create_point_for_months(data[year], yearValue, yearSquare, points)
+            yearSquare.value = Math.round(yearValue)
             points.push(yearSquare);
             yearCount = yearCount + 1;
         }
@@ -49,4 +50,37 @@ function process_data(data){
         }
     }
     return points
+}
+
+/** Method which create points of months for a determined year
+* @params data[year] The data for a determined year(Object)
+* @params value The value of expenses for a determined year(Integer)
+* @params square The point of determined year(Object)
+* @params The expense processed for chart(Array)
+*/
+function create_point_for_months(data[year], value, square, points) {
+    //Month of expense
+    var month;
+    //Counter of month
+    var monthCount = 0;
+    console.info("Creating the month points for each year");
+    //Loop which create the points of months
+    for(month in data[year]) {
+        //Check if data has month
+        if(data[year].hasOwnProperty(month)) {
+            //Pointer for each month
+            var monthSuare = {
+                id: square.id + '_' + monthCount,
+                name: month,
+                parent: square.id,
+                value: Math.round(+data[year][month])
+            };
+            value += monthSuare.value;
+            points.push(monthSuare);
+            monthCount = monthCount + 1
+        }
+        else{
+            console.warn('data not have month');
+        }
+    }
 }
