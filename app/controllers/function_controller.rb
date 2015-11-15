@@ -62,7 +62,6 @@ class FunctionController < ApplicationController
   def get_expenses(dates)
 
     expenses = insert_expenses_functions(dates[:begin], dates[:end]) 
-    #puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#{dates}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
       
   end
 

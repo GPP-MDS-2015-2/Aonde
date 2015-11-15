@@ -1,17 +1,18 @@
 require 'test_helper'
+require 'database_cleaner'
 
 class BudgetControllerTest < ActionController::TestCase
 
 =begin
   test "Test of method subtract_expenses_on_budget" do
-    create_public_agency
+    #create_public_agency
     id_public_agency = 2
     array_expect = [5252423, 5251923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923]
     array_return = @controller.subtract_expenses_on_budget(id_public_agency, 2015)
     assert_equal(array_expect, array_return)
   end
   test "Routes to method filter_chart_budget" do
-    create_public_agency
+    #create_public_agency
     get :filter_chart_budget, id: 2, year: "2015"
     assert_response :success
     assert assigns(:list_expense_month)
@@ -19,7 +20,7 @@ class BudgetControllerTest < ActionController::TestCase
     assert assigns(:list_budget_month)
   end
   test "Route to method show and the result of the request" do
-    create_public_agency  
+    #create_public_agency  
     FakeWeb.allow_net_connect = false
     url = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query=PREFIX'\
             '%20rdf:%20%3Chttp://www.w3.org/1999/02/22-rdf-syntax-ns%23%3E%20PR'\
@@ -50,12 +51,54 @@ class BudgetControllerTest < ActionController::TestCase
 
 =end
 
+  def setup
+
+    SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
+
+    PublicAgency.create(id: 1, views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
+    PublicAgency.create(id: 2, views_amount: 0,name: "valid Agency 2",superior_public_agency_id: 1)
+
+    Expense.create(document_number: "0000",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 500)
+    Expense.create(document_number: "0001",payment_date: Date.new(2010,1,2),public_agency_id: 1,value: 500)
+    Expense.create(document_number: "0002",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 1000)
+
+    Expense.create(document_number: "0003",payment_date: Date.new(2015,1,1),public_agency_id: 2,value: 500)
+    Expense.create(document_number: "0004",payment_date: Date.new(2015,2,1),public_agency_id: 2,value: 500)
+    Expense.create(document_number: "0005",payment_date: Date.new(2015,3,1),public_agency_id: 2,value: 1000)
+    
+  end
+  
+  def teardown
+
+    DatabaseCleaner.clean
+
+  end
+
+  test "Route to method show" do
+    assert_routing 'public_agency/1/budgets', controller: 'budget', action: 'show', id: '1'
+    get :show, id: 1
+    assert_response :success  
+  end
+
+  test "Route to method filter chart budget" do
+    assert_routing 'public_agency/1/filter_budget', controller: 'budget', action: 'filter_chart_budget', id: '1'
+    get :filter_chart_budget, id: 1
+    assert_response :success  
+  end
+  
+  test "Should find something in interval" do
+    assert_routing 'public_agency/1/filter_budget', controller: 'budget', action: 'filter_chart_budget', id: '1'
+    get :filter_chart_budget, id: 1,year: 2015
+    assert_response :success  
+  end
+
   test "Should return a valid period" do
     data = Date.new(2015,06,01)
     boolean = @controller.is_date_in_interval("Janeiro",2015,"Dezembro",2015,data)
     expect_return = true
     assert_equal(expect_return,boolean) 
   end
+
   test "Should return an invalid period" do
     data = Date.new(2014,06,01)
     boolean = @controller.is_date_in_interval("Janeiro",2015,"Dezembro",2015,data)
@@ -106,27 +149,22 @@ class BudgetControllerTest < ActionController::TestCase
 
 
   test "Should return a hash with expenses" do
-    id_public_agency = 1
+    id_public_agency = 40
     public_agency_default = @controller.get_expenses_agency(id_public_agency)
     expense_value_init = {}
     assert_equal(expense_value_init,public_agency_default)
-    
-    create_public_agency
     
     id_public_agency = 1
     expected_data = {Date.new(2010,1,1)=>2000}
     public_agency = @controller.get_expenses_agency(id_public_agency)
     assert_equal(public_agency,expected_data)
 
-
     id_public_agency = 3
     public_agency_false = @controller.get_expenses_agency(id_public_agency)
     assert_equal(public_agency_false,{})        
-
   end
 
   test "Should return a ordenate array with expenses" do
-    create_public_agency
     id_public_agency = 1
     data = @controller.get_list_expenses_by_period(id_public_agency)
     assert_not data.empty?
@@ -142,25 +180,6 @@ class BudgetControllerTest < ActionController::TestCase
     array_expect = [2000, 1900, 1900, 1900, 1900, 1900, 1900, 1900, 1900, 1900, 1900, 1900]
     array_return = @controller.create_budget_array(expenses, budget, 2015)
     assert_equal(array_expect, array_return)
-  end
-
-
-  def create_public_agency
-    SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
-
-    PublicAgency.create(id: 1, views_amount: 0,name: "valid Agency",superior_public_agency_id: 1)
-    PublicAgency.create(id: 2, views_amount: 0,name: "valid Agency 2",superior_public_agency_id: 1)
-
-    Expense.create(document_number: "0000",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 500)
-    Expense.create(document_number: "0001",payment_date: Date.new(2010,1,2),public_agency_id: 1,value: 500)
-    Expense.create(document_number: "0002",payment_date: Date.new(2010,1,1),public_agency_id: 1,value: 1000)
-
-    Expense.create(document_number: "0003",payment_date: Date.new(2015,1,1),public_agency_id: 2,value: 500)
-    Expense.create(document_number: "0004",payment_date: Date.new(2015,2,1),public_agency_id: 2,value: 500)
-    Expense.create(document_number: "0005",payment_date: Date.new(2015,3,1),public_agency_id: 2,value: 1000)
-    
-  end
-  
-  
+  end  
 
 end

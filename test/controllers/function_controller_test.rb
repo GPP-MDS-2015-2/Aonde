@@ -3,6 +3,10 @@ require 'database_cleaner'
 
 class FunctionControllerTest < ActionController::TestCase
 
+  def teardown
+    DatabaseCleaner.clean
+  end
+
   test "Should sort by sumValue" do
 
     hash = {"C terceira"=>3,"B segunda"=>2,"A primeira"=>1}
@@ -56,21 +60,9 @@ class FunctionControllerTest < ActionController::TestCase
 
     assert_routing '/functions', { :controller => "function", :action => "show" } 
     get :show
-
     assert_response :success
 
   end
-=begin
-
-  test "Should return functions whith expenses" do
-
-    #dates = {:begin=>Thu, 01 Jan 2015, :end=>Thu, 31 Dec 2015}
-    #expenses = @controller.get_expenses(dates)
-    #puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#{expenses}\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-
-  end
-=end
-
 
   test "Route to method filter" do
 
