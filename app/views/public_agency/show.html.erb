@@ -36,7 +36,7 @@
     		</li>
             <p></p>
     		<li>
-      			<div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">business</i>Empresas</div>
+      			<div class="collapsible-header" style="background:#FF8F2F;" onclick="setChart('<%= companies_path%>',COMPANYCHART,drawCompany)"><i class="material-icons">business</i>Empresas</div>
       			<div class="collapsible-body"><div id="company_chart"></div>
                 	<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
     			</div>
@@ -55,7 +55,7 @@
         </li>
         <p></p>
         <li>
-            <div class="collapsible-header" style="background:#FF8F2F;"><i class="material-icons">assignment_late</i>Orcamento</div>
+            <div class="collapsible-header" style="background:#FF8F2F;" onclick='setChart("<%= budget_path %>",BUDGETCHART,drawBudget)'><i class="material-icons">assignment_late</i>Orcamento</div>
             <div class="collapsible-body"><div id="budget_chart"></div>
                   <center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a></center>
           </div>

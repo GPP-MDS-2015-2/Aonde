@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get "public_agency/:id/list_chart" ,to: "public_agency#filter_chart", as: "filter"
   get "public_agency/:id/type_expense",to: "type_expense#show", as: "type_expense", format: :json
   get "public_agency/:id/filter_type_expense",to: "type_expense#filter_chart", as: "filter_type_expense"
-  get "public_agency/:id/companies", to: "company#show", as: "companies"
-  get 'public_agency/:id/budgets', to: "budget#show", as: "budget"
+  get "public_agency/:id/companies", to: "company#show", as: "companies", format: :json
+  get 'public_agency/:id/budgets', to: "budget#show", as: "budget", format: :json
   get "public_agency/:id/programs", to: "program#show_programs", as: "programs", format: :json
   
   get "/program/:id", to: "program#show", as: "program"
