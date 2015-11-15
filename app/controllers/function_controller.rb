@@ -10,21 +10,11 @@ class FunctionController < ApplicationController
     @top_10_data = get_top_10_data(ordered_data).to_h.to_json
   end
 
-=begin
-  def filter
-    datas = control_datas(params[:year], params[:month])
-    @correct_datas = datas.to_json
-    ordered_data = datas.sort_by { |_description, sumValue| -sumValue }
-    @top_10_data = get_top_10_data(ordered_data).to_h.to_json
-    render 'show'
-  end          
-=end
-
   def filter
     dates = find_dates(params[:year], params[:month])
     expenses = get_expenses(dates)
     @correct_datas = expenses.to_json
-    ordered_data = datas.sort_by { |_description, sumValue| -sumValue }
+    ordered_data = expenses.sort_by { |_description, sumValue| -sumValue }
     @top_10_data = get_top_10_data(ordered_data).to_h.to_json
     render 'show'
   end    
@@ -72,7 +62,8 @@ class FunctionController < ApplicationController
   def get_expenses(dates)
 
     expenses = insert_expenses_functions(dates[:begin], dates[:end]) 
-
+    #puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#{dates}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+      
   end
 
   def insert_expenses_functions(begin_date, end_date)

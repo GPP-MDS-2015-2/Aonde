@@ -63,6 +63,13 @@ class SearchControllerTest < ActionController::TestCase
       
   end
 
+  test "Should not search" do
+
+    create_entities    
+    get :index, id: 1, search: "Nv", entity: "Todos"
+
+  end
+
   def entities_for_search
 
     PublicAgency.create(id: 1,views_amount: 0,name:"ministerio da saude")

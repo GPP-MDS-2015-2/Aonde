@@ -1,7 +1,7 @@
 require 'test_helper'
+require 'database_cleaner'
 
 class FunctionControllerTest < ActionController::TestCase
-
 
   test "Should sort by sumValue" do
 
@@ -42,20 +42,6 @@ class FunctionControllerTest < ActionController::TestCase
 
   end
 
-  def self.create_date(date ={from_month: 'Janeiro',end_month: 'Dezembro',
-    from_year: 2009,end_year: 2020})
-    #puts date
-    first_month = month_to_int(date[:from_month])
-    last_month = month_to_int(date[:end_month])
-    first_date = Date.new(date[:from_year].to_i, first_month, 1)
-    last_date = Date.new(date[:end_year].to_i, last_month, 1)
-
-    last_date = last_day_date(last_date)
-    date = { begin: first_date, end: last_date }
-    # puts date
-    date
-  end
-
   test "Empty return of method to insert expenses" do
   
     begin_date = Date.new(2015,1,12)
@@ -74,7 +60,24 @@ class FunctionControllerTest < ActionController::TestCase
     assert_response :success
 
   end
+=begin
 
+  test "Should return functions whith expenses" do
+
+    #dates = {:begin=>Thu, 01 Jan 2015, :end=>Thu, 31 Dec 2015}
+    #expenses = @controller.get_expenses(dates)
+    #puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#{expenses}\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+
+  end
+=end
+
+
+  test "Route to method filter" do
+
+    get :filter, year: "2015", month: "Todos"
+    assert_response :success
+
+  end
 
   test "Should convert to a hash" do
 

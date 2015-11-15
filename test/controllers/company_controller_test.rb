@@ -10,6 +10,13 @@ class CompanyControllerTest < ActionController::TestCase
     assert assigns :array_company_expense
   end
 
+  test 'Route to method find and the result of the request' do
+    generate_public_agency
+    assert_routing '/company/1', controller: 'company', action: 'find', id: '1'
+    get :find, id: 1
+    assert_response :success
+  end
+
   test 'should return a ordered hash' do
     hash = { 'key1' => 12, 'key2' => 8, 'key3' => 10 }
     hash = @controller.sort_by_expense(hash)
