@@ -17,7 +17,7 @@
 
 	<tbody>
 	<% @public_agencies.each do |agency| %>
-	  	<tr onclick="location.href = '<%=public_agency_path(agency.id)%>';" style="cursor: hand;">  
+	  	<tr onclick="location.href = '<%=public_agency_path(agency.id)%>';" style="cursor: pointer;">  
 		  	<td>
 		  	<center><%= agency.name%></center>
 		  	</td>
