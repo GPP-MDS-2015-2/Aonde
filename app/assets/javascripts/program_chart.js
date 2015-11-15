@@ -43,15 +43,23 @@ function drawProgram(dataProgram){
             text: 'Programas',
             x: -50
         },
-        plotOptions: {
+        plotOptions: {            
             series: {
                 dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b> ({point.y:,.0f})',
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
-                    softConnector: true
+                enabled: true,
+                format: '<b>{point.name}</b> ({point.y:,.0f})',
+                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+                softConnector: true
+            },
+                cursor: 'pointer',
+                point: {
+                    events: {                        
+                        click: function(){
+                            removePointToList(this,PROGRAMLIST,PROGRAMCHART);
+                        }
+                    }
                 }
-            }
+            }            
         },
         legend: {
             enabled: false

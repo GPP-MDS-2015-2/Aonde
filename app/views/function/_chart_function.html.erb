@@ -60,8 +60,8 @@
     function generate_list(name_element) {
       name_element_id = name_element.replace(/\s/g,"_");
 
-      new_element = "<li class=\"remove_element\" id=\""+name_element_id+"\">"+
-                    name_element+"</li>"
+      new_element = "<a class=\"collection-item\" id=\""+name_element_id+"\">"+
+                    name_element+"</a>"
       $('#removed_chart_elements').append(new_element);
 
       console.log("#"+name_element_id);

@@ -23,11 +23,11 @@ var count =0;
     $('#haha').addClass(WAVES[count%7]);
   }
 </script>
+
 <div class="container">
   <button id='haha' class='btn waves-effect' onclick="haha()" style='background: white; color:black;'>Click Me</button>
 </div>
   
-  <!--<center><button data-target="modal1" class="btn modal-trigger" style="width:980x;">Modal</button></center>-->
 <div id="contencao_outros">
     <ul class="collapsible popout" data-collapsible="accordion">
       <li>
@@ -49,6 +49,7 @@ var count =0;
         <div class="collapsible-body"><div id="program_chart"></div>
             <center>
               <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a>
+              <div class="collection" id='program_list'></div>  
             </center>
         </div>
       </li>
@@ -59,6 +60,7 @@ var count =0;
             <div id="company_chart"></div>
             <center>
               <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a>
+              <div class="collection" id='company_list'></div>
             </center>
           </div>
       </li>
@@ -71,6 +73,7 @@ var count =0;
             <div id="type_expense_chart"></div>
             <center>
               <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a>
+              <div class="collection" id='type_list'></div>
             </center>
           </div>
       </li>

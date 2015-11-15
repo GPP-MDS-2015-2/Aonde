@@ -58,6 +58,17 @@ function drawTypeExpense(dataTypeExpenses){
         }],
         title: {
             text: 'Gastos por tipo'
+        },
+        plotOptions:{
+            series:{
+                point:{
+                    events:{
+                        click: function(){
+                            removePointToList(this,TYPELIST,TYPECHART);
+                        }
+                    }
+                }
+            }
         }
     });
 }

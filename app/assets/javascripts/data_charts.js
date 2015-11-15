@@ -9,13 +9,18 @@ var COMPANY = 'company';
 var PROGRAM = 'program';
 
 // Contain all type of expenses of requisitions (Hash)
-var dataExpenses = {type: null, budget: null, company: null, program: null};
+var dataExpenses = {type: null, budget: null, company: null, program: null, agency: null};
 
 // Define constants of id for drawn charts (String)
 var PROGRAMCHART = 'program_chart';
 var COMPANYCHART = 'company_chart';
 var TYPECHART = 'type_expense_chart';
 var BUDGETCHART = 'budget_chart';
+
+// Define constants of id for list
+var PROGRAMLIST = 'program_list';
+var COMPANYLIST = 'company_list';
+var TYPELIST = 'type_list';
 
 /** Verify if the chart is drawn and if the data has the interval of data need
 * @param path The route to controller (String)
@@ -84,6 +89,19 @@ function isValidData(data){
     }
     return validData;
 }
+/** Remove one point from a chart
+* @param idListRemoved add again in list chart (String)
+* @param idChart add again in list chart (String)
+*/
+var removedPoints = {};
+function removePointToList(point,idListRemoved,idChart){
+  console.debug(point);
+  // Use name for id
+  
+  removedPoints[point.options.name] = point.options;
+  generateList(idListRemoved,point.options.name,idChart);
+  point.remove();
+}
 
 /** Verify if the id of chart is correct
 * @param idChart The id of field to drawn the chart (String)
@@ -123,4 +141,32 @@ function loadinScreen(idChart){
   '</div></div></div> </center>'
   $('#'+idChart).empty();
   $('#'+idChart).append(node);
+}
+/** Generate list and show list of elements in chart
+* @param idList add again in list chart (String)
+* @param nameElement name of element in list (String)
+* @param idChart add again in list chart (String)
+*/
+function generateList(idList,nameElement,idChart) {
+      name = nameElement.replace(/[^\w]/gi,'_');
+      // Build element to add in the list (String)
+      newElement = "<a class='collection-item' id='"+name+"'>"+
+                    nameElement+"</a>";
+      console.info("Insert element "+ nameElement +"/"+name+" in the list " + idList);
+      $('#'+ idList).append(newElement);
+
+      $("#"+name).click(function(){
+        addElementChart(nameElement,idChart);
+        this.remove();
+        console.info("Remove the element from list");
+      });
+}
+/** Add element back to the list 
+* @param nameElement name of element in list (String)
+* @param idChart add again in list chart (String)
+*/
+function addElementChart(nameElement,idChart){
+  // Add point again in the list 
+  chart = $('#'+idChart).highcharts(); 
+  chart.series[0].addPoint(removedPoints[nameElement]);
 }

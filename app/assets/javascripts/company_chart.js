@@ -36,6 +36,15 @@ function drawCompany(dataCompany){
           startAngle: -90,
           endAngle: 90,
           center: ['35%', '65%']
+      },
+      series: {
+        point: {
+          events: {
+            click: function(){
+              removePointToList(this,COMPANYLIST,COMPANYCHART);
+            }
+          }
+        }
       }
   },
   series: [{
