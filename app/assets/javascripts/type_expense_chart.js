@@ -61,6 +61,7 @@ function drawTypeExpense(dataTypeExpenses){
         },
         plotOptions:{
             series:{
+                cursor: 'crosshair',
                 point:{
                     events:{
                         click: function(){

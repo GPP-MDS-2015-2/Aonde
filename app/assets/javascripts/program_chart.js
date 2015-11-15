@@ -51,7 +51,7 @@ function drawProgram(dataProgram){
                 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
                 softConnector: true
             },
-                cursor: 'pointer',
+                cursor: 'crosshair',
                 point: {
                     events: {                        
                         click: function(){

@@ -7,16 +7,16 @@ function drawCompany(dataCompany){
       height: 580
   },
   title: {
-      text: 'TOP 5',
+      text: 'Empresas',
       align: 'center',
       verticalAlign: 'middle',
       y: 150,
-      x: -160,
+      x: 0,
       style: {
           color: 'black',
           fontWeight: 'bold',
           fontFamily: 'Times New Roman',
-          fontSize: '120px'
+          fontSize: '60px'
       }
   },
   tooltip: {
@@ -33,11 +33,12 @@ function drawCompany(dataCompany){
                   fontSize: '12px'
               }
           },
-          startAngle: -90,
-          endAngle: 90,
-          center: ['35%', '65%']
+          startAngle: -100,
+          endAngle: 100,
+          center: ['50%', '65%']
       },
       series: {
+        cursor: 'crosshair',
         point: {
           events: {
             click: function(){

@@ -150,7 +150,7 @@ function loadinScreen(idChart){
 function generateList(idList,nameElement,idChart) {
       name = nameElement.replace(/[^\w]/gi,'_');
       // Build element to add in the list (String)
-      newElement = "<a class='collection-item' id='"+name+"'>"+
+      newElement = "<a class='collection-item' id='"+name+"' style='cursor:n-resize'>"+
                     nameElement+"</a>";
       console.info("Insert element "+ nameElement +"/"+name+" in the list " + idList);
       $('#'+ idList).append(newElement);
