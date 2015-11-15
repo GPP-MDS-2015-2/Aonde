@@ -41,7 +41,7 @@ function setChart(path,idChart,drawFunction){
 * @param drawnFunction Function drawn the chart
 */
 function obtainData(path,idChart,drawFunction){
-  
+  loadinScreen(idChart);
   $.ajax({
       url: path,
       format: 'json',
@@ -51,6 +51,7 @@ function obtainData(path,idChart,drawFunction){
       success: function(data){
         if(isValidData(data) && isValidId(idChart)){
           console.info("Process of data received from controller");
+          $('#'+idChart).empty();
           drawFunction(data);
         }else{ 
           console.warn("Data received from controller or id of chart"
@@ -108,4 +109,18 @@ function isValidId(idChart){
       validId = false;
     }
     return validId;
+}
+
+function loadinScreen(idChart){
+  node = '<center><div class="preloader-wrapper big active">'+
+  '<div class="spinner-layer spinner-blue-only">'+
+  '<div class="circle-clipper left">'+
+  '<div class="circle"></div>'+
+  '</div><div class="gap-patch">'+
+  '<div class="circle"></div>'+
+  '</div><div class="circle-clipper right">'+
+  '<div class="circle"></div>'+
+  '</div></div></div> </center>'
+  $('#'+idChart).empty();
+  $('#'+idChart).append(node);
 }
