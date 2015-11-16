@@ -130,18 +130,21 @@ class BudgetController < ApplicationController
 		expense = get_list_expenses_by_period(id_public_agency, "Janeiro", year, "Dezembro", year)
 		budget_array = []
 	    begin
-	      budgets = BudgetAPI.get_budget(id_public_agency, year)
-	    #  puts budgets
-	  		budget_array = create_budget_array(expense ,budgets, year)
-	    rescue
-	      raise "Não foi possível obter o orçamento do ano #{year} do Órgão Público desejado"
+	     	budgets = BudgetAPI.get_budget(id_public_agency, year)
+	     	#puts budgets
+	     	if !expense.empty?
+  				budget_array = create_budget_array(expense ,budgets, year)
+  			end
+	    rescue 
+	    	raise "Não foi possível obter o orçamento do ano #{year} do Órgão Público desejado"
 		end
-    budget_array
+    	budget_array
 	end
 	
     def create_budget_array(expenses, budgets, year)
 		budget_array = []
 		budget = budgets[0]
+		#puts "\n#{expenses}\n"
 		if (budget['year']+1) == year
 			for i in 0..11	
 				value = expenses[i][1]

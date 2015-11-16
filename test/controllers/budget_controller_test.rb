@@ -74,6 +74,27 @@ class BudgetControllerTest < ActionController::TestCase
 
   end
 
+  test 'the subtract expense of expenses with budget' do
+    FakeWeb.allow_net_connect = false
+    url = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query='\
+            'PREFIX%20rdf:%20%3Chttp://www.w3.org/1999/02/22-rdf-syntax-ns'\
+            '%23%3E%20PREFIX%20loa:%20%3Chttp://vocab.e.gov.br/2013/09/loa'\
+            '%23%3ESELECT%20?ano,%20(SUM(?valorProjetoLei)%20AS%20?somaProje'\
+            'toLei)%20WHERE%20%7B?itemBlankNode%20loa:temExercicio%20?exercic'\
+            'ioURI%20.%20?exercicioURI%20loa:identificador%202014%20'\
+            '.%20?exercicioURI%20loa:identificador%20?ano%20.%20?itemBlankNod'\
+            'e%20loa:temUnidadeOrcamentaria%20?uoURI%20.%20?uoURI%20loa:codig'\
+            'o%20%222%22%20.%20?itemBlankNode%20loa:valorProjetoLei%20?va'\
+            'lorProjetoLei%20.%20%7D&debug=on&timeout=&format=application%2Fs'\
+            'parql-results%2Bjson&save=display&fname='
+    FakeWeb.register_uri(:get,url,body: '{"results":{"bindings":['\
+          '{"ano": {"value": "2014"},"somaProjetoLei":{"value":"42000"}}]}}')
+    expense_controller = @controller.subtract_expenses_on_budget(2,2015)
+    expected_array = [41500, 41000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000]
+    assert_equal(expected_array, expense_controller )
+    FakeWeb.clean_registry
+    FakeWeb.allow_net_connect = true
+  end
   test "Route to method show" do
     assert_routing 'public_agency/1/budgets', controller: 'budget', action: 'show', id: '1'
     get :show, id: 1
