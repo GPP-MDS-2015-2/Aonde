@@ -30,15 +30,28 @@
 <!--Search field-->
  <nav  style="width:75%;margin-left:auto; margin-right:auto; background:#FF8F2F; margin-top:10px;">
     <div class="nav-wrapper">
-      <form>
+      <form id='search_bar' name='search' onsubmit="return validSearch()" action="<%= search_path %>">
         <div class="input-field" style="height:70px;">
-          <input id="search" type="search" required<%= text_field_tag :search, params[:search], placeholder: "Pesquisa (min 4 caracteres)"%>>
+          <input name="search" type="text" autocomplete="off" required<%= text_field_tag :search, params[:search], placeholder: "Pesquisa órgão públic, empresa, programa"%>>
           <label for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
         </div>
       </form>
     </div>
   </nav>
+
+<!--Modal where make error message to search-->
+<a id='error_search_link' href="#error_search" class="modal-trigger"></a>
+
+<div id="error_search" class="modal">
+  <div class="modal-content">   
+    <!-- just create the form to the filter -->
+    Por favor, digite uma palavra chave maior
+  </div>
+  <div class="modal-footer">
+    <a id='error_search_close' href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
 
 <!--Combobox -->
 <!--
@@ -50,7 +63,6 @@
   </div>
 </div>
 -->
-
 <div class="container_render">     
     <%= yield %>
 </div> 

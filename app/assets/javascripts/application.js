@@ -82,4 +82,23 @@ Array.prototype.clear = function() {
   	}
   	return this;
 }
-
+/** Valid the entry off user
+* @return validText The result of verification
+*/
+function validSearch(){
+  // The value in the field of search 
+  keySearch = $('input[name="search"').val();
+  console.debug(keySearch);
+  // Remove the spaces and speciail characters from key of search
+  onlyWords = keySearch.replace(/[^\wà-úÀ-Ú] | [\d]/g,'')
+  // Valid size of string bigger then 4
+  validSize = false;
+  if (onlyWords.length > 4){
+    validSize = true;
+  }else{
+    $('input[name="search"').val('');
+    console.info("Invalid input of user");
+    $('#error_search_link').click();
+  }
+  return validSize;
+}

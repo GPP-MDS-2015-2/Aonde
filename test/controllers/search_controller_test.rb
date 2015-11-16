@@ -56,9 +56,6 @@ class SearchControllerTest < ActionController::TestCase
 
     assert assigns(:entity)
     assert assigns(:msg_error)
-    assert assigns(:public_agencies)
-    assert assigns(:companies)
-    assert assigns(:programs)
     assert assigns(:results)
       
   end

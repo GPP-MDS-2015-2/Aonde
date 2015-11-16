@@ -2,7 +2,7 @@
 <p>
 
 <header class="codrops-header">
-  <h1><%= link_to @superior_public_agency.name.downcase.split.map(&:capitalize).join(' '), superior_path(@superior_public_agency) %><span><%= @public_agency.name.downcase.capitalize %></span></h1>
+  <h1 style="padding-top: 30px;"><%= link_to @superior_public_agency.name.downcase.split.map(&:capitalize).join(' '), superior_path(@superior_public_agency) %><span><%= @public_agency.name.downcase.capitalize %></span></h1>
 </header>
 
 <!-- create the tabs and render the informations of the public agency 
