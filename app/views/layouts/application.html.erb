@@ -32,9 +32,8 @@
     <div class="nav-wrapper">
       <form id='search_bar' name='search' onsubmit="return validSearch()" action="<%= search_path %>">
         <div class="input-field" style="height:70px;">
-          <input name="search" type="text" autocomplete="off" required<%= text_field_tag :search, params[:search], placeholder: "Pesquisa órgão públic, empresa, programa"%>>
+          <input name="search" type="text" autocomplete="off" required<%= text_field_tag :search, params[:search], placeholder: "Pesquisa órgão públic, empresa, programa"%>
           <label for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
         </div>
       </form>
     </div>
@@ -49,7 +48,7 @@
     Por favor, digite uma palavra chave maior
   </div>
   <div class="modal-footer">
-    <a id='error_search_close' href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    <a id='error_search_close' href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
   </div>
 </div>
 

@@ -2,7 +2,7 @@
 <p>
 
 <header class="codrops-header">
-  <h1 style="padding-top: 30px;"><%= link_to @superior_public_agency.name.downcase.split.map(&:capitalize).join(' '), superior_path(@superior_public_agency) %><span><%= @public_agency.name.downcase.capitalize %></span></h1>
+  <h1 style="padding-top: 30px;"><%= link_to @superior_public_agency.name.downcase.split.map(&:capitalize).join(' '), superior_path(@superior_public_agency) %><span id="surprise"><%= @public_agency.name.downcase.capitalize %></span></h1>
 </header>
 
 <!-- create the tabs and render the informations of the public agency 
@@ -17,7 +17,13 @@
 </div>-->
 <script type="text/javascript">
 var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-green','waves-teal']
-var count =0;
+  $('#surprise').dblclick(function(){
+      $('#haha').show();
+      setTimeout(function(){
+        $('#haha').hide();
+      },6000);
+  });
+  var count =0;
   function haha(){    
     $('#haha').removeClass(WAVES[count++%7]);
     $('#haha').addClass(WAVES[count%7]);
@@ -25,7 +31,7 @@ var count =0;
 </script>
 
 <div class="container">
-  <button id='haha' class='btn waves-effect' onclick="haha()" style='background: white; color:black;'>Click Me</button>
+  <button id='haha' class='btn waves-effect' onclick="haha()" style='background: white; color:black; width:200px; height: 50px; display: none;'>Surpreenda-me</button>
 </div>
   
 <div id="contencao_outros">
@@ -55,8 +61,7 @@ var count =0;
             <div class="card-panel orange" style="margin:10px;">         
                 <span class="white-text">
                   <b>Descrição do gráfico:</b>
-                  I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                  Eu sou a descrição do gráfico do programa!
                 </span>
               </div>
            </div>
@@ -76,8 +81,7 @@ var count =0;
             <div class="card-panel orange" style="margin:10px;">         
                 <span class="white-text">
                   <b>Descrição do gráfico:</b>
-                  I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                  Sou a descrição do gráfico
                 </span>
               </div>
            </div>
@@ -99,8 +103,7 @@ var count =0;
             <div class="card-panel orange" style="margin:10px;">         
                 <span class="white-text">
                   <b>Descrição do gráfico:</b>
-                  I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                  Eu sou outra descrição de gráfico
                 </span>
               </div>
            </div>
