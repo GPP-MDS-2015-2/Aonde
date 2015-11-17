@@ -2,56 +2,11 @@ require 'test_helper'
 require 'database_cleaner'
 
 class BudgetControllerTest < ActionController::TestCase
-
-=begin
-  test "Test of method subtract_expenses_on_budget" do
-    #create_public_agency
-    id_public_agency = 2
-    array_expect = [5252423, 5251923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923, 5250923]
-    array_return = @controller.subtract_expenses_on_budget(id_public_agency, 2015)
-    assert_equal(array_expect, array_return)
-  end
-  test "Routes to method filter_chart_budget" do
-    #create_public_agency
-    get :filter_chart_budget, id: 2, year: "2015"
-    assert_response :success
-    assert assigns(:list_expense_month)
-    assert assigns(:expense_find)
-    assert assigns(:list_budget_month)
-  end
-  test "Route to method show and the result of the request" do
-    #create_public_agency  
-    FakeWeb.allow_net_connect = false
-    url = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query=PREFIX'\
-            '%20rdf:%20%3Chttp://www.w3.org/1999/02/22-rdf-syntax-ns%23%3E%20PR'\
-            'EFIX%20loa:%20%3Chttp://vocab.e.gov.br/2013/09/loa%23%3ESELECT%20?'\
-            'ano,%20(SUM(?valorProjetoLei)%20AS%20?somaProjetoLei)%20WHERE%20%7'\
-            'B?itemBlankNode%20loa:temExercicio%20?exercicioURI%20.%20?exercici'\
-            'oURI%20loa:identificador%20?ano%20.%20?itemBlankNode%20loa:temUnid'\
-            'adeOrcamentaria%20?uoURI%20.%20?uoURI%20loa:codigo%20%221%22%2'\
-            '0.%20?itemBlankNode%20loa:valorProjetoLei%20?valorProjetoLei%20.%2'\
-            '0%7D&debug=on&timeout=&format=application%2Fsparql-results%2Bjson&'\
-            'save=display&fname='
-    FakeWeb.register_uri(:get, url, body: '{"results":{"bindings":['\
-          '{"ano": {"value": "2014"},"somaProjetoLei":{"value":"2000"}}]}}')
-    
-    
-    assert_routing '/public_agency/1/budgets', { :controller => "budget", :action => "show", :id => "1" } 
-    
-    get :show, id: 2
-
-    assert_response :success
-
-    assert assigns(:list_expense_month)
-    assert assigns(:expense_find)
-    assert assigns(:list_budget_month)
-    FakeWeb.clean_registry
-    FakeWeb.allow_net_connect = true
-  end
-
-=end
-
+  
   def setup
+    FakeWeb.allow_net_connect = false
+
+  
 
     SuperiorPublicAgency.create(id: 1,name: "valid SuperiorPublicAgency")
 
@@ -70,47 +25,56 @@ class BudgetControllerTest < ActionController::TestCase
   
   def teardown
 
+    FakeWeb.allow_net_connect = true
     DatabaseCleaner.clean
 
   end
 
-  test 'the subtract expense of expenses with budget' do
-    FakeWeb.allow_net_connect = false
-    url = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query='\
-            'PREFIX%20rdf:%20%3Chttp://www.w3.org/1999/02/22-rdf-syntax-ns'\
-            '%23%3E%20PREFIX%20loa:%20%3Chttp://vocab.e.gov.br/2013/09/loa'\
-            '%23%3ESELECT%20?ano,%20(SUM(?valorProjetoLei)%20AS%20?somaProje'\
-            'toLei)%20WHERE%20%7B?itemBlankNode%20loa:temExercicio%20?exercic'\
-            'ioURI%20.%20?exercicioURI%20loa:identificador%202014%20'\
-            '.%20?exercicioURI%20loa:identificador%20?ano%20.%20?itemBlankNod'\
-            'e%20loa:temUnidadeOrcamentaria%20?uoURI%20.%20?uoURI%20loa:codig'\
-            'o%20%222%22%20.%20?itemBlankNode%20loa:valorProjetoLei%20?va'\
-            'lorProjetoLei%20.%20%7D&debug=on&timeout=&format=application%2Fs'\
-            'parql-results%2Bjson&save=display&fname='
-    FakeWeb.register_uri(:get,url,body: '{"results":{"bindings":['\
-          '{"ano": {"value": "2014"},"somaProjetoLei":{"value":"42000"}}]}}')
-    expense_controller = @controller.subtract_expenses_on_budget(2,2015)
-    expected_array = [41500, 41000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000]
-    assert_equal(expected_array, expense_controller )
-    FakeWeb.clean_registry
-    FakeWeb.allow_net_connect = true
-  end
   test "Route to method show" do
-    assert_routing 'public_agency/1/budgets', controller: 'budget', action: 'show', id: '1'
-    get :show, id: 1
-    assert_response :success  
+    create_fake_budget
+    assert_routing 'public_agency/2/budgets', controller: 'budget', action: 'show', id: '2'
+    get :show, id: 2
+    assert_response :success
+    assert assigns(:list_budget_month)  
+    assert assigns(:list_expense_month)
+    assert assigns(:expense_find)
+  end
+
+  test "Dont route to method show" do
+    create_fake_budget_error
+    assert_routing 'public_agency/2/budgets', controller: 'budget', action: 'show', id: '2'
+    get :show, id: 2
+    assert_response :success
+    assert assigns(:list_budget_month)  
+    assert assigns(:list_expense_month)
+    assert assigns(:expense_find)
   end
 
   test "Route to method filter chart budget" do
-    assert_routing 'public_agency/1/filter', controller: 'budget', action: 'filter', id: '1'
-    get :filter, id: 1
+    create_fake_budget
+    assert_routing 'public_agency/2/filter', controller: 'budget', action: 'filter', id: '2'
+    get :filter, id: 2
     assert_response :success  
+    assert assigns(:list_budget_month)  
+    assert assigns(:list_expense_month)
+    assert assigns(:expense_find)
   end
   
   test "Should find something in interval" do
-    assert_routing 'public_agency/1/filter', controller: 'budget', action: 'filter', id: '1'
-    get :filter, id: 1,year: 2015
+    create_fake_budget
+    assert_routing 'public_agency/2/filter', controller: 'budget', action: 'filter', id: '2'
+    get :filter, id: 2,year: 2015
     assert_response :success  
+    assert assigns(:list_budget_month)  
+    assert assigns(:list_expense_month)
+    assert assigns(:expense_find)
+  end
+
+  test 'the subtract expense of expenses with budget' do
+    create_fake_budget
+    expense_controller = @controller.subtract_expenses_on_budget(2,2015)
+    expected_array = [41500, 41000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000]
+    assert_equal(expected_array, expense_controller )
   end
 
   test "Not find expenses in a interval" do
@@ -220,5 +184,46 @@ class BudgetControllerTest < ActionController::TestCase
     array_return = @controller.create_budget_array(expenses, budget, 2015)
     assert_equal(array_expect, array_return)
   end  
+
+  def create_fake_budget
+    url = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query='\
+          'PREFIX%20rdf:%20%3Chttp://www.w3.org/1999/02/22-rdf-syntax-ns'\
+          '%23%3E%20PREFIX%20loa:%20%3Chttp://vocab.e.gov.br/2013/09/loa'\
+          '%23%3ESELECT%20?ano,%20(SUM(?valorProjetoLei)%20AS%20?somaProje'\
+          'toLei)%20WHERE%20%7B?itemBlankNode%20loa:temExercicio%20?exercic'\
+          'ioURI%20.%20?exercicioURI%20loa:identificador%202014%20'\
+          '.%20?exercicioURI%20loa:identificador%20?ano%20.%20?itemBlankNod'\
+          'e%20loa:temUnidadeOrcamentaria%20?uoURI%20.%20?uoURI%20loa:codig'\
+          'o%20%222%22%20.%20?itemBlankNode%20loa:valorProjetoLei%20?va'\
+          'lorProjetoLei%20.%20%7D&debug=on&timeout=&format=application%2Fs'\
+          'parql-results%2Bjson&save=display&fname='
+    url_all = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query=PREFIX'\
+          '%20rdf:%20%3Chttp://www.w3.org/1999/02/22-rdf-syntax-ns%23%3E%20PR'\
+          'EFIX%20loa:%20%3Chttp://vocab.e.gov.br/2013/09/loa%23%3ESELECT%20?'\
+          'ano,%20(SUM(?valorProjetoLei)%20AS%20?somaProjetoLei)%20WHERE%20%7'\
+          'B?itemBlankNode%20loa:temExercicio%20?exercicioURI%20.%20?exercici'\
+          'oURI%20loa:identificador%20?ano%20.%20?itemBlankNode%20loa:temUnid'\
+          'adeOrcamentaria%20?uoURI%20.%20?uoURI%20loa:codigo%20%222%22%2'\
+          '0.%20?itemBlankNode%20loa:valorProjetoLei%20?valorProjetoLei%20.%2'\
+          '0%7D&debug=on&timeout=&format=application%2Fsparql-results%2Bjson&'\
+          'save=display&fname='
+    content_body = '{"results":{"bindings":['\
+          '{"ano": {"value": "2014"},"somaProjetoLei":{"value":"42000"}}]}}'
+    FakeWeb.register_uri(:get, url, body: content_body)
+    FakeWeb.register_uri(:get,url_all, body: content_body)
+  end
+  def create_fake_budget_error
+    url_error = 'http://aondebrasil.com:8890/sparql?default-graph-uri=&query=PREFIX'\
+          '%20rdf:%20%3Chttp://www.w3.org/1999/02/22-rdf-syntax-ns%23%3E%20PR'\
+          'EFIX%20loa:%20%3Chttp://vocab.e.gov.br/2013/09/loa%23%3ESELECT%20?'\
+          'ano,%20(SUM(?valorProjetoLei)%20AS%20?somaProjetoLei)%20WHERE%20%7'\
+          'B?itemBlankNode%20loa:temExercicio%20?exercicioURI%20.%20?exercici'\
+          'oURI%20loa:identificador%20?ano%20.%20?itemBlankNode%20loa:temUnid'\
+          'adeOrcamentaria%20?uoURI%20.%20?uoURI%20loa:codigo%20%222%22%2'\
+          '0.%20?itemBlankNode%20loa:valorProjetoLei%20?valorProjetoLei%20.%2'\
+          '0%7D&debug=on&timeout=&format=application%2Fsparql-results%2Bjson&'\
+          'save=display&fname='
+    FakeWeb.register_uri(:get, url_error,body: "{'results: {}'}")
+  end
 
 end

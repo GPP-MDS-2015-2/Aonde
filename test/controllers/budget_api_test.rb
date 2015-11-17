@@ -1,24 +1,27 @@
 require 'test_helper'
 
 class BudgetAPITest < ActiveSupport::TestCase
-  test 'the budgets not null' do
-    create_fake_web
+  def setup
     FakeWeb.allow_net_connect = false
-    budgets_not_nil = BudgetAPI.get_budget(20000)
-    assert_not_nil(budgets_not_nil)
+  end
+  def teardown
     FakeWeb.clean_registry
     FakeWeb.allow_net_connect = true
+  end
+  test 'the budgets not null' do
+    create_fake_web
+    budgets_not_nil = BudgetAPI.get_budget(20000)
+    assert_not_nil(budgets_not_nil)
   end
   
   test 'the empty return result of budgets' do
     create_fake_web
-    FakeWeb.allow_net_connect = false
+   
     not_exist_id = -1
     assert_raises(Exception) do
       budget_epmty = BudgetAPI.get_budget(not_exist_id)
     end
-    FakeWeb.clean_registry
-    FakeWeb.allow_net_connect = true
+   
   end
 
   test 'create the query of an year' do
@@ -164,27 +167,24 @@ class BudgetAPITest < ActiveSupport::TestCase
 
   test 'the get to API of budget' do
     create_fake_web
-    FakeWeb.allow_net_connect = false
+    
     public_agency_id = 20000
     year = 2013
     data_api = BudgetAPI.send(:obtain_api_data,public_agency_id, year)
     # puts "#{data_api}"
-    FakeWeb.clean_registry
-    FakeWeb.allow_net_connect = true
     assert_not_empty data_api
   end
 
   test 'the fail connection with API of budget' do
     create_fake_web
     assert_raise(Exception) do
-      FakeWeb.allow_net_connect = false
+      
       year = 1000
       public_agency_id = 20000
       data_api = BudgetAPI.send(:obtain_api_data,public_agency_id, year)
      # puts "#{data_api}"
     end
-    FakeWeb.clean_registry
-    FakeWeb.allow_net_connect = true
+    
   end
 
   private

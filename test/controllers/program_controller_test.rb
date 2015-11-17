@@ -31,14 +31,12 @@ class ProgramControllerTest < ActionController::TestCase
 
   end
 
-=begin
   test "Exception on create graph nodes" do 
 
     program = Program.new
     @controller.create_graph_nodes(program, nil,nil, nil)
 
   end
-=end
 
 
   test 'Not empty list to find_expenses' do

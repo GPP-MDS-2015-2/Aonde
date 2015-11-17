@@ -34,7 +34,7 @@ module Graph
       begin
       add_value(name_value[:value], data_graph) 
       rescue Exception => error
-        puts "Negative value #{error}"
+        #puts "Negative value #{error}"
       end
     end
   end

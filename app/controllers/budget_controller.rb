@@ -5,9 +5,9 @@ class BudgetController < ApplicationController
         @list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", 2015, "Dezembro", 2015)
         @expense_find = 1
       begin
-        @list_budget_month = subtract_expenses_on_budget(@public_agency.id, 2015)
+       	budget_month = subtract_expenses_on_budget(@public_agency.id, 2015)
+        @list_budget_month
       rescue Exception => error
-      #  puts "aqui"
         flash[:error] = error
         @list_budget_month = []
         @expense_find = 0
@@ -15,6 +15,18 @@ class BudgetController < ApplicationController
         @list_expense_month = @list_expense_month.to_json
         @list_budget_month = @list_budget_month.to_json
   	end
+
+	def filter
+
+    	find_public_agency
+	   	@list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", params[:year], "Dezembro", params[:year])
+		get_list_expense_month(@list_expense_month)
+		get_list_budget
+		@list_expense_month = @list_expense_month.to_json
+		@list_budget_month = @list_budget_month.to_json	
+		render 'show'
+	   
+    end
 
 =begin
  def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
@@ -146,18 +158,6 @@ def filter_chart_budget
 
 	end
 =end
-
-	def filter
-
-    	find_public_agency
-	   	@list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", params[:year], "Dezembro", params[:year])
-		get_list_expense_month(@list_expense_month)
-		get_list_budget
-		@list_expense_month = @list_expense_month.to_json
-		@list_budget_month = @list_budget_month.to_json	
-		render 'show'
-	   
-    end
 
     def get_list_expense_month(list_expense_month)
     	

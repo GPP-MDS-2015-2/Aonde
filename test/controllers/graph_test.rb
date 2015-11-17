@@ -54,6 +54,18 @@ class GraphGeneratorTest < ActiveSupport::TestCase
     assert_equal(data_expected, data_graph)
   end
   
+  test 'Rescue for a negative value' do
+    data_graph = [[{ 'id' => 1, 'label' => 'Programa1' }], []]
+    name_value = { name: 'valid name', value: -500,class_entity: PublicAgency.name }
+    Graph.create_node(data_graph, name_value)
+    data_expected = [[{ 'id' => 1, 'label' => 'Programa1' },
+                      { 'id' => 2, 'label' => 'valid name',
+                        'group' => PublicAgency.name }],
+                     [{ 'from' => 1, 'to' => 2, 'color' => '#43BFC5' }]]
+
+    assert_equal(data_expected, data_graph)
+  end
+
   test 'Obtain name of program entities' do
     data = ['Company1',100,Company.name]
     name_value = Graph.obtain_name_value(Program.name,data)
