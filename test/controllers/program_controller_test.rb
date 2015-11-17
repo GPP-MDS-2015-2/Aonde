@@ -73,7 +73,7 @@ class ProgramControllerTest < ActionController::TestCase
   test 'not include entitie in the association' do
     generate_program_seed
 
-    expected_related = [[{ 'id' => 1, 'label' => 'Programa1' }], []]
+    expected_related = [[{ 'id' => '1_', 'label' => 'Programa1' }], []]
     program = Program.new(name: 'Programa1',id: 1)
     program_related = @controller.create_graph_nodes(program, 'company_id', Company,1)
 
@@ -121,7 +121,7 @@ class ProgramControllerTest < ActionController::TestCase
   test 'Create data program to public agencies' do 
     generate_program_seed
     process_data = @controller.create_data_program(2,'public_agency_id',PublicAgency)
-    expected_data = [['PublicAgency1',14,PublicAgency.name]]
+    expected_data = [['PublicAgency1',14,PublicAgency.name,1]]
     assert_equal(expected_data,process_data)
   end
   test 'Empty array to not create id of program' do 

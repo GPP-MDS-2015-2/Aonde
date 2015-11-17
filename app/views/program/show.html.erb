@@ -12,8 +12,7 @@
         <div class="card-panel orange">         
           <span class="white-text">
       <b>Descrição do gráfico</b></p>
-          I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+          Eu sou um cartao de descrição
           </span>
         </div>
       </div>
@@ -37,34 +36,44 @@
       </div>
     </div>
 </div>
-
-
-
 <script type="text/javascript">
+
 var dataProgram = '<%= raw @data_program %>';
-console.log(dataProgram);
+console.debug(dataProgram);
+
 dataProgram = JSON.parse(dataProgram);
 dataInitialized = initializeDataProgram(dataProgram);
+
 var network = createGraph(dataInitialized,'mynetwork');
 $(document).ready(function(){
-  console.log(dataProgram);
+  console.debug(dataProgram);
   createPagesButton(dataProgram[2]);
   network.on("selectNode", function(params) {
-    console.log(params);
-    if (params.nodes.length == 1) {
-        if (network.isCluster(params.nodes[0]) == true) {
-            network.openCluster(params.nodes[0]);
-        }
+    console.debug(params);
+    if (network.isCluster(params.nodes[0]) == true) {
+      network.openCluster(params.nodes[0]);
+    }else if( params.nodes[0] != '1_'){
+      linkByGroup(params.nodes[0])
     }
   });
 });
-  function changePage(page){
-    $(".selected").removeClass('selected');
-    $("#"+page).addClass('selected');
+function linkByGroup(node){
+  
+  nodeOrigin = dataInitialized.nodes['_data'][node];
+  nodeId = node.split('_')[1]
 
-    console.log(network.isCluster(['Company']));
-    makeChangePage(page,network);
-  }  
+  if (nodeOrigin.group == "PublicAgency"){
+    location.href = '/public_agency/'+nodeId;
+  }else{
+    location.href = '/company/'+nodeId;
+  }
+}
+function changePage(page){
+   $(".selected").removeClass('selected');
+   $("#"+page).addClass('selected');
+   console.log(network.isCluster(['Company']));
+   makeChangePage(page,network);
+}  
   function clusterByGroup(){
     cluster(network);
   }

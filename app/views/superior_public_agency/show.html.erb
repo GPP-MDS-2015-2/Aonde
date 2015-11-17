@@ -13,8 +13,7 @@
         <div class="card-panel orange">         
           <span class="white-text">
       <b>Descrição do gráfico</b></p>
-          I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+          Eu sou um simples gráfico!
           </span>
         </div>
       </div>
@@ -28,4 +27,10 @@
 	console.log(dataAgency);
 	dataInitialized = initializeDataSuperior(dataAgency);
 	var network = createGraph(dataInitialized, "agencynetwork");
+  network.on("selectNode", function (params) {
+    if (params.nodes[0] != '1_'){
+      id = params.nodes[0].split('_')[1]
+      location.href = '/public_agency/'+id
+    }
+  });
 </script>
