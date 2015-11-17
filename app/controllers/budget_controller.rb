@@ -16,7 +16,8 @@ class BudgetController < ApplicationController
         @list_budget_month = @list_budget_month.to_json
   	end
 
-    def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
+=begin
+ def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
 
 		@total_expense = 0		
 		new_total_expense_per_date = {}
@@ -37,6 +38,36 @@ class BudgetController < ApplicationController
 	  	expense_by_month = transform_hash_to_array(new_total_expense_per_date)
 	  	expense_by_month.sort_by! {|expense_month| Date.parse(expense_month[0])}
 	  	return expense_by_month
+	end
+=end
+
+	def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
+
+		get_total_expense(id_public_agency,first_month,first_year,last_month,last_year)
+		#return the hash with expenses like a array
+	  	expense_by_month = transform_hash_to_array(@new_total_expense_per_date)
+	  	expense_by_month.sort_by! {|expense_month| Date.parse(expense_month[0])}
+	  	return expense_by_month
+
+	end	
+
+	def get_total_expense(id_public_agency,first_month,first_year,last_month,last_year)
+		
+		@total_expense = 0		
+		@new_total_expense_per_date = {}
+
+		temporary_expenses_agency = get_expenses_agency(id_public_agency)
+
+		temporary_expenses_agency.each do |date,value|
+		#see if the date are in the hash and add in the new
+			if is_date_in_interval(first_month,first_year,last_month,last_year, date)
+	        	if @new_total_expense_per_date[date.year] == nil
+	        		@new_total_expense_per_date[date.year] = initialize_hash(date.year)
+	        	end	        	
+        		@new_total_expense_per_date [date.year][l(date)] = value
+        		@total_expense += value
+		  	end
+		end	
 	end
 
 	def transform_hash_to_array(expense_by_year)
@@ -123,7 +154,7 @@ def filter_chart_budget
 		get_list_expense_month(@list_expense_month)
 		get_list_budget
 		@list_expense_month = @list_expense_month.to_json
-		@list_budget_month = @list_budget_month.to_json
+		@list_budget_month = @list_budget_month.to_json	
 		render 'show'
 	   
     end
