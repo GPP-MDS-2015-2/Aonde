@@ -90,7 +90,8 @@ class BudgetController < ApplicationController
 		return expenses_months
 	end
 
-	def filter_chart_budget
+=begin
+def filter_chart_budget
 
 		find_public_agency
 	   	@list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", params[:year], "Dezembro", params[:year])
@@ -113,6 +114,42 @@ class BudgetController < ApplicationController
 			render 'show'
 
 	end
+=end
+
+	def filter
+
+    	find_public_agency
+	   	@list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", params[:year], "Dezembro", params[:year])
+		get_list_expense_month(@list_expense_month)
+		get_list_budget
+		@list_expense_month = @list_expense_month.to_json
+		@list_budget_month = @list_budget_month.to_json
+		render 'show'
+	   
+    end
+
+    def get_list_expense_month(list_expense_month)
+    	
+    	@expense_find = 0
+	    if not is_empty_filter(list_expense_month)
+	      @expense_find = 1
+	      # Nothing to do
+	    else
+	      @list_expense_month = get_list_expenses_by_period(@public_agency.id)
+	    end
+
+    end
+
+    def get_list_budget
+    	
+    	begin
+	      @list_budget_month = subtract_expenses_on_budget(@public_agency.id, params[:year]);
+	    rescue Exception => error
+	        flash[:error] = error
+	        @expense_find = 0
+	    end
+
+    end
 
 	def is_empty_filter(list_expenses = [])
 		

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   
   get "/program/:id", to: "program#show_program", as: "program"
 
-  get "public_agency/:id/filter_budget",to: "budget#filter_chart_budget", as: "filter_budget"
+  get "public_agency/:id/filter",to: "budget#filter", as: "filter_budget"
   get "search/list", to:"search#index", as: "search"
   #Routes of Programs
   get "/functions", to: "function#show", as: "functions"

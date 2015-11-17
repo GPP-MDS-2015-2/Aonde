@@ -102,15 +102,24 @@ class BudgetControllerTest < ActionController::TestCase
   end
 
   test "Route to method filter chart budget" do
-    assert_routing 'public_agency/1/filter_budget', controller: 'budget', action: 'filter_chart_budget', id: '1'
-    get :filter_chart_budget, id: 1
+    assert_routing 'public_agency/1/filter', controller: 'budget', action: 'filter', id: '1'
+    get :filter, id: 1
     assert_response :success  
   end
   
   test "Should find something in interval" do
-    assert_routing 'public_agency/1/filter_budget', controller: 'budget', action: 'filter_chart_budget', id: '1'
-    get :filter_chart_budget, id: 1,year: 2015
+    assert_routing 'public_agency/1/filter', controller: 'budget', action: 'filter', id: '1'
+    get :filter, id: 1,year: 2015
     assert_response :success  
+  end
+
+  test "Not find expenses in a interval" do
+
+    date = Date.new(2015,1,8)
+    expected_bool = false
+    bool = @controller.is_date_in_interval("Fevereiro",2015,"Maio",2015, date)
+    assert_equal(expected_bool,bool)
+
   end
 
   test "Should return a valid period" do
@@ -127,6 +136,15 @@ class BudgetControllerTest < ActionController::TestCase
     assert_equal(expect_return,boolean) 
   end
 
+  test "List expense month is not empty" do
+
+    list_expense_month = @controller.get_list_expenses_by_period(2, "Janeiro", 2015, "Dezembro", 2015)
+    expense_find = @controller.get_list_expense_month(list_expense_month)
+    expected_value = 1
+    assert_equal(expense_find,expected_value)
+
+  end
+ 
   test "Should return a not empty filter" do
     
     list_type_expenses = [1, 2, 3, 4, 5, 6]
