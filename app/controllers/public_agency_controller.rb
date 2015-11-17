@@ -15,9 +15,18 @@ class PublicAgencyController < ApplicationController
     find_agencies(params[:id])
     increment_views_amount(@public_agency)
     expenses_public_agency = get_expenses_agency(@public_agency.id)
-    @list_expense_month = expenses_public_agency[:total_date]
-    @total_expense = expenses_public_agency[:total]
-    @list_expense_month.unshift(%w(Data gasto))
+    @list_expenses = expenses_public_agency[:total_date]
+
+    change_type_list_expenses
+  end
+
+  def change_type_list_expenses
+    puts "\n\n #{@list_expenses} \n\n"
+    aux = @list_expenses
+    HelperController.int_to_month(aux)
+    @list_expenses = aux
+    temporary_expense = { '2015'=> @list_expenses.to_h }
+    @list_expenses = temporary_expense.to_json
   end
 
   def expenses_public_agency(id_pub_agency)
@@ -35,10 +44,9 @@ class PublicAgencyController < ApplicationController
       flash[:error] = "#{erro}\n Veja o gráfico com todos gastos"
       expenses_agency = get_expenses_agency(@public_agency.id)
     end
-    @list_expense_month = expenses_agency[:total_date]
+    @list_expenses = expenses_agency[:total_date]
     @total_expense = expenses_agency[:total]
-    # Insert the head in the list
-    @list_expense_month.unshift(%w(Data Gasto))
+    change_type_list_expenses
     render 'show'
   end
 
@@ -57,15 +65,25 @@ class PublicAgencyController < ApplicationController
     expenses_agency
   end
 
-  def get_expenses_agency(id_public_agency,
-    begin_date = '2009-01-01', end_date = '2020-12-31')
+  # def  break_filter_years(begin_date, end_date)
+  #     begin_year = begin_date.year
+  #     end_year = end_date.year
+  #     aux_year = 2011
 
+  #     while begin_year != end_year
+  #       increment year
+  #       begin_year += 1 
+  #     end
+  # end
+
+  def get_expenses_agency(id_public_agency,
+    begin_date = '2014-01-01', end_date = '2015-12-31')
+  
     expenses = Expense.where(public_agency_id: id_public_agency,
                              payment_date: begin_date..end_date)
 
-    expenses_agency = { total: 0, total_date: {} }
+    expenses_agency = {total_date: {}}
     expenses.each do |expense|
-      expenses_agency[:total] += expense.value
       date = Date.new(expense.payment_date.year, expense.payment_date.month, 1)
       HelperController.sum_expense(l(date), expense,
                                    expenses_agency[:total_date])

@@ -1,20 +1,11 @@
 <script type="text/javascript">
+    // Data incoming from controller
+    var controllerData = '<%= raw @list_expenses %>'
+    console.debug(controllerData);
     //The expenses of public agency
-    
-    var data = {
-                '2014': {
-                    'Janeiro': '75.50',
-                    'Fevereiro': '56.30'
-                },
-                '2013': {
-                    'Janeiro': '75.50',
-                    'Fevereiro': '56.30' 
-                },
-                '2015': {
-                    'Janeiro': '75.50',
-                    'Fevereiro': '56.30' 
-                }
-            };
+    var totalExpense = JSON.parse(controllerData);
+    console.debug(totalExpense);
+    var data = totalExpense;
 
     $(document).ready(function(){
         //The data for draw the chart
@@ -149,7 +140,8 @@
 <% end %>
 
 <!--Chart div-->
-<div id="container" style="min-width: 410px; max-width: auto; height: 500px; margin: 0 auto"></div>
+<div id="container" style="min-width: 410px; max-width: auto; height: 500px; margin: 0 auto"></div> 
+
 
 <!--Modal where make filter-->
 <div id="modal1" class="modal">
