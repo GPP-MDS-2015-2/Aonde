@@ -52,7 +52,7 @@ class ProgramController < ApplicationController
                                            class_entity)
       Graph.create_nodes(program, program_agency, entity_related)
     rescue Exception => error
-      puts "\n#{error}"
+      #puts "\n#{error}"
     end
     entity_related
   end

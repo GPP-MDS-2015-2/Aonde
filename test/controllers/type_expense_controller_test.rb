@@ -25,6 +25,16 @@ class TypeExpenseControllerTest < ActionController::TestCase
 		assert assigns(:data_type_expense)
 		assert assigns(:expense_type_find)
 		
+	end
+
+	test "Should find expenses" do
+
+		create_entities
+		
+		get :filter_chart, id: 1, year: "2013", month: "Janeiro"
+
+		assert_response :success
+ 	
 
 	end
 
