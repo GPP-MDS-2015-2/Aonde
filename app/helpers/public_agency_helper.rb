@@ -4,14 +4,15 @@ module PublicAgencyHelper
 		url = URI.parse("http://graph.facebook.com/?ids=#{URI.escape(url_shared)}")
 		#puts url
 		data = Net::HTTP.get(url)
+		#data = Net::HTTP.get(URI.parse("http://graph.facebook.com/?ids=#{URI.escape(url_shared)}"))
 	    #data = {'url_shared' => "asdf", 'shares' => 1}
-	    data = JSON.parse(data)	
+	    #data = JSON.parse(data)	
 	    #print("\n\n\n #{data} \n\n\n")
-    	if data[url_shared]['shares']
-    		return data[url_shared]['shares']
+    	#if data[url_shared]['shares']
+    	#	return data[url_shared]['shares']
     	# 	return data['shares']
-    	else
+    	#else
     		return 0
-    	end
+    	#end
 	end
 end	

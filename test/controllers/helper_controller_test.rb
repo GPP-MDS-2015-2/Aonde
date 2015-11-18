@@ -53,48 +53,58 @@ class HelperControllerTest < ActiveSupport::TestCase
 
     end
 
-  test 'add of a sum expense with not exist key' do
-    sum_expense = {}
-    expense = Expense.new(value: 100)
-    HelperController.sum_expense(:name, expense, sum_expense)
-    assert_not_empty(sum_expense)
-  end
+    test 'add of a sum expense with not exist key' do
+        sum_expense = {}
+        expense = Expense.new(value: 100)
+        HelperController.sum_expense(:name, expense, sum_expense)
+        assert_not_empty(sum_expense)
+    end
 
-  test 'add of a sum expense with exist key' do
-    sum_expense = {:name => 100}
-    expense = Expense.new(value: 100)
-    HelperController.sum_expense(:name, expense, sum_expense)
-    expect_sum = {:name => 200}
-    assert_equal(expect_sum,sum_expense)
-  end
+    test 'add of a sum expense with exist key' do
+        sum_expense = {:name => 100}
+        expense = Expense.new(value: 100)
+        HelperController.sum_expense(:name, expense, sum_expense)
+        expect_sum = {:name => 200}
+        assert_equal(expect_sum,sum_expense)
+    end
 
-  test 'create the dates hash with begin and end months' do
-    param_date ={from_month: 'Janeiro',end_month: 'Novembro',
-    from_year: 2014,end_year: 2015}
-    date = HelperController.create_date(param_date)
-    expect_dates = {:begin => Date.new(2014,01,01), :end => Date.new(2015,11,30)}
-    assert_equal(expect_dates,date)
-  end
-  test 'create the dates hash without params' do
-    date = HelperController.create_date
-    expect_dates = {:begin => Date.new(2009,01,01), :end => Date.new(2020,12,31)}
-    assert_equal(expect_dates,date)
-  end
+    test 'create the dates hash with begin and end months' do
+        param_date ={from_month: 'Janeiro',end_month: 'Novembro',
+        from_year: 2014,end_year: 2015}
+        date = HelperController.create_date(param_date)
+        expect_dates = {:begin => Date.new(2014,01,01), :end => Date.new(2015,11,30)}
+        assert_equal(expect_dates,date)
+    end
 
-  test 'valid input date' do
-    begin_date = Date.new(2014,2,2)
-    end_date = Date.new(2015,2,2)
-    assert(HelperController.date_valid?(begin_date,end_date))
-  end
-  test 'invalid date with month differentes' do
-    begin_date = Date.new(2015,3,2)
-    end_date = Date.new(2015,2,2)
-    assert_not(HelperController.date_valid?(begin_date,end_date))
-  end
-  test 'invalid date with year differentes' do
-    begin_date = Date.new(2015,3,2)
-    end_date = Date.new(2014,2,2)
-    assert_not(HelperController.date_valid?(begin_date,end_date))
-  end
+    test 'create the dates hash without params' do
+        date = HelperController.create_date
+        expect_dates = {:begin => Date.new(2009,01,01), :end => Date.new(2020,12,31)}
+        assert_equal(expect_dates,date)
+    end
+
+    test 'valid input date' do
+        begin_date = Date.new(2014,2,2)
+        end_date = Date.new(2015,2,2)
+        assert(HelperController.date_valid?(begin_date,end_date))
+    end
+
+    test 'invalid date with month differentes' do
+        begin_date = Date.new(2015,3,2)
+        end_date = Date.new(2015,2,2)
+        assert_not(HelperController.date_valid?(begin_date,end_date))
+    end
+
+    test 'invalid date with year differentes' do
+        begin_date = Date.new(2015,3,2)
+        end_date = Date.new(2014,2,2)
+        assert_not(HelperController.date_valid?(begin_date,end_date))
+    end
+
+    test 'Change int to name of month' do
+        array = [["01/2015", 100], ["03/2015", 100], ["04/2015", 100], ["10/2015", 100]]
+        array_expect = [["Janeiro", 100],["Março", 100],["Abril", 100],["Outubro", 100]]
+        array_month = HelperController.int_to_month(array)
+        assert_equal(array_expect, array_month)
+    end
 
  end
