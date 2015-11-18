@@ -10,7 +10,6 @@ module HelperController
       array[i][0] = MONTHNAMES_BR[array_date.month]
       i += 1
     end
-    #puts "\n\n\n\n\n\n\n\n#{array}\n\n\n\n"
     return array
   end
 

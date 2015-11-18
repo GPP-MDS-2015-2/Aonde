@@ -98,7 +98,7 @@ class HelperControllerTest < ActiveSupport::TestCase
         assert_not(HelperController.date_valid?(begin_date,end_date))
     end
 
-    test '' do
+    test 'Change int to name of month' do
         array = [["01/2015", 100], ["03/2015", 100], ["04/2015", 100], ["10/2015", 100]]
         array_expect = [["Janeiro", 100],["Março", 100],["Abril", 100],["Outubro", 100]]
         array_month = HelperController.int_to_month(array)

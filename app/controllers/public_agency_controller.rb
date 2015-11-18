@@ -11,22 +11,20 @@ class PublicAgencyController < ApplicationController
   end
 
   # Find the data of one public agency to show in the view with chart
-  def show
+def show
     find_agencies(params[:id])
     increment_views_amount(@public_agency)
     expenses_public_agency = get_expenses_agency(@public_agency.id)
-    @list_expenses = expenses_public_agency[:total_date]
+    expenses_month = expenses_public_agency[:total_date]
 
-    change_type_list_expenses
+    @list_expenses = change_type_list_expenses(expenses_month)
   end
 
-  def change_type_list_expenses
-    puts "\n\n #{@list_expenses} \n\n"
-    aux = @list_expenses
-    HelperController.int_to_month(aux)
-    @list_expenses = aux
-    temporary_expense = { '2015'=> @list_expenses.to_h }
-    @list_expenses = temporary_expense.to_json
+  def change_type_list_expenses(expenses_month)
+    HelperController.int_to_month(expenses_month)
+    temporary_expense = { '2015'=> expenses_month.to_h }
+    expenses_month = temporary_expense.to_json
+    expenses_month
   end
 
   def expenses_public_agency(id_pub_agency)
@@ -44,9 +42,8 @@ class PublicAgencyController < ApplicationController
       flash[:error] = "#{erro}\n Veja o gráfico com todos gastos"
       expenses_agency = get_expenses_agency(@public_agency.id)
     end
-    @list_expenses = expenses_agency[:total_date]
-    @total_expense = expenses_agency[:total]
-    change_type_list_expenses
+    expenses_month = expenses_agency[:total_date]
+    @list_expenses = change_type_list_expenses(expenses_month)
     render 'show'
   end
 
@@ -58,23 +55,11 @@ class PublicAgencyController < ApplicationController
       expenses_agency = get_expenses_agency(public_agency.id,
                                             dates[:begin], dates[:end])
     end
-    # puts expenses_agency
     if expenses_agency[:total_date].empty?
       fail 'Não encontrou nenhum gasto no periodo'
     end
     expenses_agency
   end
-
-  # def  break_filter_years(begin_date, end_date)
-  #     begin_year = begin_date.year
-  #     end_year = end_date.year
-  #     aux_year = 2011
-
-  #     while begin_year != end_year
-  #       increment year
-  #       begin_year += 1 
-  #     end
-  # end
 
   def get_expenses_agency(id_public_agency,
     begin_date = '2014-01-01', end_date = '2015-12-31')
