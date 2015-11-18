@@ -77,16 +77,11 @@ class ProgramControllerTest < ActionController::TestCase
     assert_empty(expense_empty)
   end
   
+
   test 'Verify method show' do
 
     assert_routing '/public_agency/1/programs', controller: 'program',
-                                                action: 'show', id: '1'
-    get :show, id: 1
-
-    assert_response :success
-
-    assert assigns(:public_agency)
-    assert assigns(:all_programs)
+                                                action: 'show_programs', id: '1'
   end
 
   test 'create related entities of programs' do
@@ -101,7 +96,9 @@ class ProgramControllerTest < ActionController::TestCase
   end
 
   test 'not include entitie in the association' do
-    expected_related = [[{ 'id' => 1, 'label' => 'Programa1' }], []]
+
+    expected_related = [[{ 'id' => "1_", 'label' => 'Programa1' }], []]
+
     program = Program.new(name: 'Programa1',id: 1)
     program_related = @controller.create_graph_nodes(program, 'company_id', Company,1)
 
@@ -132,7 +129,8 @@ class ProgramControllerTest < ActionController::TestCase
   end
 
   test 'management of nodes' do
-    get :show_program, id: 1
+    get :show, id: 1
+
 
     assert_response :success
 
@@ -141,13 +139,13 @@ class ProgramControllerTest < ActionController::TestCase
   end
 
   test 'route to program' do
-    assert_routing 'program/1', controller: 'program', action: 'show_program',
+    assert_routing 'program/1', controller: 'program', action: 'show',
                                 id: '1'
   end
 
   test 'Create data program to public agencies' do 
     process_data = @controller.create_data_program(2,'public_agency_id',PublicAgency)
-    expected_data = [['PublicAgency1',14,PublicAgency.name]]
+    expected_data = [['PublicAgency1',14,PublicAgency.name,1]]
     assert_equal(expected_data,process_data)
   end
   test 'Empty array to not create id of program' do 

@@ -26,14 +26,14 @@
     function select_top_10() {
       var data = ('<%= raw @top_10_data%>');
       var correct_data = JSON.parse(data);
-      drawChart(correct_data);
+      drawnChartFunction(correct_data);
       remove_all_elements_list();
     }
 
     function select_default() {
       var data = ('<%= raw @correct_datas%>');
       var correct_data = JSON.parse(data);
-      drawChart(correct_data);
+      drawnChartFunction(correct_data);
       remove_all_elements_list(); 
     }
     
@@ -60,8 +60,8 @@
     function generate_list(name_element) {
       name_element_id = name_element.replace(/\s/g,"_");
 
-      new_element = "<li class=\"remove_element\" id=\""+name_element_id+"\">"+
-                    name_element+"</li>"
+      new_element = "<a class=\"collection-item\" id=\""+name_element_id+"\">"+
+                    name_element+"</a>"
       $('#removed_chart_elements').append(new_element);
 
       console.log("#"+name_element_id);
@@ -70,7 +70,7 @@
       $("#"+name_element_id).click(function(){
         readd_element(name_element);
         correct_datas = transform_arrays_in_hash(arrayKeys,arrayValues);
-        drawChart(correct_datas);
+        drawnChartFunction(correct_datas);
         $(this).remove();
       });
     }
@@ -109,10 +109,10 @@
       console.log(arrayKeys);
       console.log(arrayValues);
       console.log(newHash);
-      drawChart(newHash);
+      drawnChartFunction(newHash);
     }
     $(document).ready(function(){  
-      drawChart(correct_data); 
+      drawnChartFunction(correct_data); 
       
     });
 
@@ -125,7 +125,7 @@
         }
     }
 
-    function drawChart(correct_data) {
+    function drawnChartFunction(correct_data) {
         setData(correct_data,arrayKeys,arrayValues)
         Highcharts.setOptions({
             lang: {
@@ -140,7 +140,7 @@
             type: 'line'
         },
         title: {
-            text: 'Gasto da federação por função',
+            text: '',
             x: -80
         },
         pane: {
@@ -171,93 +171,9 @@
         remove_point($(this));
     });
 }
-
-
-Highcharts.theme = {
-   colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
-      "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
-   chart: {
-      backgroundColor: {
-         linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-         stops: [
-            [0, '#2a2a2b'],
-            [1, '#3e3e40']
-         ]
-      }
-   },
-   title: {
-      style: {
-         color: '#E0E0E3',
-         textTransform: 'uppercase',
-         fontSize: '20px'
-      }
-   },
-   xAxis: {
-      gridLineColor: '#707073',
-      labels: {
-         style: {
-            color: '#E0E0E3'
-         }
-      }
-   },
-   yAxis: {
-      gridLineColor: '#707073',
-      labels: {
-         style: {
-            color: '#E0E0E3'
-         }
-      }
-     
-   },
-   plotOptions: {
-      series: {
-         dataLabels: {
-            color: '#B0B0B3'
-         },
-         marker: {
-            lineColor: '#333'
-         }
-      },
-      boxplot: {
-         fillColor: '#505053'
-      },
-      candlestick: {
-         lineColor: 'white'
-      }
-   },
-   legend: {
-      itemStyle: {
-         color: '#E0E0E3'
-      },
-      itemHoverStyle: {
-         color: '#FFF'
-      },
-      itemHiddenStyle: {
-         color: '#606063'
-      }
-   },
-
-   navigation: {
-      buttonOptions: {
-         symbolStroke: '#DDDDDD',
-         theme: {
-            fill: '#505053'
-         }
-      }
-   },
-   // special colors for some of the
-   legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
-   background2: '#505053',
-   dataLabelsColor: '#B0B0B3',
-   textColor: '#C0C0C0',
-   contrastTextColor: '#F0F0F3',
-   maskColor: 'rgba(255,255,255,0.3)'
-};
-
-Highcharts.setOptions(Highcharts.theme);
 </script>
 
-<div id="spiderChart" style="width: 100%; height: 500px; margin: 0 auto"></div>
+<div id="spiderChart" style="height: 500px; margin: 0 auto"></div>
 
 
 

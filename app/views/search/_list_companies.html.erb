@@ -1,5 +1,5 @@
-<% if (@companies.empty?) %>
-  <strong><font color="red" size="12px">Nenhuma Empresa Encontrado</font></strong>
+<% if (@entity[:company].empty?) %>
+  <!--<strong><font color="red" size="12px">Nenhuma Empresa Encontrado</font></strong>-->
 <% else %>
 	<table id="tableData1" class="hover row-border">
 		<thead>
@@ -15,7 +15,7 @@
 		<tbody>
 		<% entity = 0
 		   expense = 1
-		@companies.each do |company| %>
+		@entity[:company].each do |company| %>
 		  	<tr>
 			  	<td>
 			  		<center><%= link_to company[entity].name, company_path(company[entity].id) %></center>

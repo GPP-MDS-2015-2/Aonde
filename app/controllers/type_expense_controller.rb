@@ -6,9 +6,11 @@ class TypeExpenseController < ApplicationController
   def show
 
     find_agencies(params[:id])
-    @data_type_expense = get_expense_by_type(@public_agency.id).to_json
-    @expense_type_find = 1
-
+    @data_type_expense = get_expense_by_type(@public_agency.id)
+    respond_to do |format|
+      format.json { render json: @data_type_expense }
+    end
+    
   end
 
   def filter_chart

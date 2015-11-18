@@ -1,7 +1,6 @@
 # function_controller.rb
 # Process the information of functions only for federation
 class FunctionController < ApplicationController
-
   def show
     dates = HelperController.create_date
     datas = insert_expenses_functions(dates[:begin], dates[:end])
@@ -46,7 +45,12 @@ class FunctionController < ApplicationController
     dates = {}
     if year == 'Até hoje!'
       dates = HelperController.create_date
+    elsif month == 'Todos'
+      dates = HelperController.create_date(
+        from_month: 'Janeiro', end_month: 'Dezembro',
+        from_year: year, end_year: year)
     else
+
       year_filter = year.to_i
       if month == 'Todos'
         date_hash = {from_month: 'Janeiro',end_month: 'Dezembro',from_year: year_filter,end_year: year_filter}
@@ -62,7 +66,7 @@ class FunctionController < ApplicationController
   def get_expenses(dates)
 
     expenses = insert_expenses_functions(dates[:begin], dates[:end]) 
-      
+
   end
 
   def insert_expenses_functions(begin_date, end_date)

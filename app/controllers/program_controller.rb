@@ -1,10 +1,13 @@
 # program_controller.rb Process de data necessary to respond the requisitions
 # of user in the view
 class ProgramController < ApplicationController
-  def show
+  def show_programs
     find_agencies(params[:id])
     @all_programs = find_expenses(@public_agency.id)
-    @all_programs.to_json
+    respond_to do |format|
+      format.json { render json: @all_programs}
+    end
+
   end
 
   def find_expenses(public_agency_id)
@@ -29,13 +32,13 @@ class ProgramController < ApplicationController
   end
 
  ###########################################################
-  def show_program
+  def show
     program_id = params[:id].to_i
     @program = Program.find(program_id)
 
     agency_related = create_graph_nodes(@program, 'public_agency_id',
                                         PublicAgency, 1)
-    last_id = agency_related[0].last['id']
+    last_id = Graph.id_node(agency_related[0].last['id'])
 
     company_related = create_graph_nodes(@program, 'company_id',
                                          Company, last_id)
@@ -46,7 +49,7 @@ class ProgramController < ApplicationController
   end
 
   def create_graph_nodes(program, field_entity, class_entity, id_graph)
-    entity_related = [[{ 'id' => id_graph, 'label' => program.name }], []]
+    entity_related = [[{ 'id' => "#{id_graph}_", 'label' => program.name }], []]
     begin
       program_agency = create_data_program(program.id, field_entity,
                                            class_entity)
@@ -67,7 +70,7 @@ class ProgramController < ApplicationController
         value = Expense.where(program_id: program_id,
                               field_entity => entity_id).sum(:value)
         name = class_entity.find(entity_id).name.strip
-        name_value << [name, value, class_entity.name]
+        name_value << [name, value, class_entity.name,entity_id]
       end
     end
     name_value

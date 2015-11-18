@@ -1,107 +1,148 @@
-<!-- this beautifull script is to reload the page just one time when that is load -->
-<!--<script type='text/javascript'>
-(function()
-{
-  if( window.localStorage )
-  {
-    if( !localStorage.getItem( 'firstLoad' ) )
-    {
-      localStorage[ 'firstLoad' ] = true;
-      window.location.reload();
-    }  
-    else
-      localStorage.removeItem( 'firstLoad' );
-  }
-})();
-</script>
--->
-<script type="text/javascript">//Create the data to 
-//recive the array from controller to generate the datatable of chart 
-//console.log("before function of ready");
-var dataTotal = '<%= raw @list_expense_month %>';
-	//drawn the linechart with curves
-//console.log(dataTotal);
+<script type="text/javascript">
+    //The expenses of public agency
+    
+    var data = {
+                '2014': {
+                    'Janeiro': '75.50',
+                    'Fevereiro': '56.30'
+                },
+                '2013': {
+                    'Janeiro': '75.50',
+                    'Fevereiro': '56.30' 
+                },
+                '2015': {
+                    'Janeiro': '75.50',
+                    'Fevereiro': '56.30' 
+                }
+            };
 
+    $(document).ready(function(){
+        //The data for draw the chart
+        var squares = processData(data);
+        drawAgency(squares); 
+    });
+    /** Method which process the data to draw the chart
+    * @params data The expenses of public agency (Object)
+    * @return points The expense processed for chart(Array)
+    */
+    function processData(data) {
+        //Year of expenses
+        var year;
+        //The expense processed for chart
+        var points = [];
+        //Counter of year
+        var yearCount = 0;
+        console.info("Processing data to draw chart");
+        // Loop which create the points of each year
+        console.debug(data);
+        for (year in data) {
+            console.debug(year);
+            //Check if data has year
+            if (data.hasOwnProperty(year)) {
+                //Pointer for each year
+                var yearSquare = {
+                    id: 'id_' + yearCount,
+                    name: year,
+                    color: Highcharts.getOptions().colors[yearCount]
+                };
+                // The sum value of all months of a year
+                var yearValue = createPointForMonths(data[year], yearSquare, points);
+                yearSquare.value = Math.round(yearValue);
+                points.push(yearSquare);
+                yearCount = yearCount + 1;
+            }
+            else{
+                console.warn('data not have year');
+            }
+        }
+        return points;
+    }
 
-$(document).ready(function(){
-	function findGreatness(value){
-//		console.log("\n this is the value: "+value+"\n");
-		var based = 1000;
-		var count=0;
-		value/=based;
-		while(value > 1 ){
-			value/=based
-			count++;
-		}
-		return count
-	}
-	function convertValue(value,count){
-		var div = Math.pow(1000,count);
-		value = parseFloat(value/div);
-		var name = " R$: ";
-		switch(count){
-			case 0:
-					return name+""+value.toFixed(2)+"";
-			case 1:
-				return name+""+value.toFixed(2)+" mil";
-			case 2:
-				return name+""+value.toFixed(2)+" milhões";
-			case 3:
-				return name+""+value.toFixed(2)+" bilhões";
-			case 4:
-				return name+""+value.toFixed(2)+" trilhões";
-			case 5:
-				return name+""+value.toFixed(2)+" quadrilhões";
-			default:
-				return name + ""+value.toFixed(4);
-		}
-	}
-	function transformValueName(){
-		var value = '<%= @total_expense %>';
-		var count = findGreatness(value);
-//		console.log("In the method transform value name the recived var:\n\t value: "+ value + "\n\tcount: "+count);
-		var nameFinal = convertValue(value,count);
-//		console.log("name final "+nameFinal);
-		return nameFinal;
-	}
+    /** Method which create points of months for a determined year
+    * @params data[year] The data for a determined year(Object)
+    * @params value The value of expenses for a determined year(Integer)
+    * @params square The point of determined year(Object)
+    * @params The expense processed for chart(Array)
+    */
+    function createPointForMonths(data, square, points) {
+        //Month of expense
+        var month;
+        //Counter of month
+        var monthCount = 0;
+        console.info("Creating the month points for each year");
+        // The sum value of all months of a year
+        var yearValue = 0;
+        //Loop which create the points of months
+        for(month in data) {
+            //Check if data has month
+            if(data.hasOwnProperty(month)) {
+                //Pointer for each month
+                var monthSuare = {
+                    id: square.id + '_' + monthCount,
+                    name: month,
+                    parent: square.id,
+                    value: Math.round(+data[month])
+                };
+                yearValue += monthSuare.value;
+                points.push(monthSuare);
+                monthCount = monthCount + 1;
+            }
+            else{
+                console.warn('data not have month');
+            }
+        }
+        return yearValue;
+    }
+    /** Method which draw the chart of public agency
+    * @params points The expense processed for chart(Array)
+    */
+    function drawAgency(points) {
+        console.debug(points);  
+        $('#container').highcharts({
+            series: [{
+                type: 'treemap',
+                layoutAlgorithm: 'squarified',
+                allowDrillToNode: true,
+                dataLabels: {
+                    enabled: false
+                },
+                levelIsConstant: false,
+                levels: [{
+                    level: 1,
+                    dataLabels: {
+                        enabled: true
+                    },
+                    borderWidth: 3
+                }],
+                data: points
+            }],
+            subtitle: {
+                text: 'Clique nos anos para ver os gastos por mês'
+            },
+            title: {
+                text: 'Gastos dos Órgãos Publicos'
+            }
+        });
+        console.log("hahah")
+    }
 
-//	console.log("start the drawn");
-//Draw chart with options choose, the array to this chart is [['title','camp1'],['x','y'],...]
-	drawChart();	
-	function drawChart() {  
-//	  console.log("parse array or json in data table");
-	  var data = google.visualization.arrayToDataTable($.parseJSON(dataTotal));
-	//informations of the chart
-	  var options = {
-		  title: 'Gastos totais do órgão: '+ transformValueName(),
-		  curveType: 'function',
-		  legend: { position: 'left' }
-		}
-//		console.log("readed options");
-	  //create the objecto of chart and plot it
-	  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-//		console.log("start the drawn in the div");
-	  	chart.draw(data, options); 
-	}		
-
-});
-$(document).ready(function(){
-	var real_expense = '<%= raw @true_total_expense%>';
-	//alert(real_expense);
-	if( real_expense!=0 ){
-		$('.msg_error').remove();
-	}else{
-  		setTimeout(function(){
-		    $('.msg_error').remove();
-		}, 5000);
-  	}
- })
-
+    $(document).ready(function(){
+        var real_expense = '<%= raw @true_total_expense%>';
+        //alert(real_expense);
+        if( real_expense!=0 ){
+            $('.msg_error').remove();
+        }else{
+            setTimeout(function(){
+                $('.msg_error').remove();
+            }, 5000);
+        }
+     })
 
 </script>
 
 <!--Message that's show every messages of erro.-->
 <% flash.each do |name, msg| %>
+
 	<div class="msg_error">
 		<i class="fa fa-warning"></i>
 	  	<%= msg %>
@@ -120,11 +161,34 @@ $(document).ready(function(){
     <%= submit_tag 'Filtrar' %>
 </div>
 </div>
-<% end %>
-<div id="chart_div"></div>
-<div id="cont_share"> 
-<a href="https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook">
 
-<i class="fa fa-facebook"></i>acebook</a> Compartilhamentos: <%= facebook_share_amount("http://aondebrasil.com"+ public_agency_path(@public_agency.id) ) %>
-</div>
+<% end %>
+
+<!--Chart div-->
+<div id="container" style="min-width: 410px; max-width: auto; height: 500px; margin: 0 auto"></div>
+
+<!--Modal where make filter-->
+<div id="modal1" class="modal">
+  <div class="modal-content">   
+    <!-- just create the form to the filter -->
+    <div id="combobox_filter" style="background:blue; width:300px; leight: 300px;">
+        <div id="select_box">
+        <%= form_tag  filter_path , method: 'get' do %>
+            <!-- <%= hidden_field_tag :id, params[:id]%> -->
+            <%= select_tag :from_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Começa no Ano..." %>
+            <%= select_tag :from_month, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"]                                                                                              ,["Novembro"],["Dezembro"]]), prompt: "Começa no mês..." %>
+            <%= select_tag :end_year, options_for_select([["2015"],["2014"],["2013"],["2012"],["2011"]]), prompt: "Termina no Ano..." %>
+            <%= select_tag :end_month, options_for_select([["Janeiro"],["Fevereiro"],["Março"],["Abril"],["Maio"],["Junho"],["Julho"],["Agosto"],["Setembro"],["Outubro"],["Novembro"],["Dezembro"]]), prompt: "Termina no mês..." %>
+            <%= submit_tag 'Filtrar' %>
+            <% end %>
+        </div>
+        <div id="cont_share"> 
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook">
+            <i class="fa fa-facebook"></i>acebook</a> Compartilhamentos: <%= facebook_share_amount("http://aondebrasil.com"+ public_agency_path(@public_agency.id) ) %>
+        </div>
+    </div>  
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
 </div>

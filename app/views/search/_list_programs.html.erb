@@ -1,5 +1,5 @@
-<% if (@programs.empty?) %>
-  <strong><font color="red" size="12px">Nenhum Programa Encontrado</font></strong>
+<% if (@entity[:program].empty?) %>
+  <!--<strong><font color="red" size="12px">Nenhum Programa Encontrado</font></strong>-->
 <% else %>
 	<table id="tableData2" class="hover row-border">
 		<thead>
@@ -15,7 +15,7 @@
 		<tbody>
 		<% entity = 0
 		   expense = 1
-		@programs.each do |program| %>
+		@entity[:program].each do |program| %>
 		  	<tr>
 			  	<td>
 			  		<center><%= link_to program[entity].name, program_path(program[entity].id) %></center>

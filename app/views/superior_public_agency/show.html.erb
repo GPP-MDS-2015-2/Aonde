@@ -1,9 +1,36 @@
-<div id="agencynetwork">
+
+
+<header class="codrops-header">
+  <h1><%= @superior_agency.name %></h1>
+</header>
+
+<div class="container">
+  	<div class="z-depth-3" style="width:auto; margin-right:auto;  margin-left:auto;">
+  		<div id="agencynetwork"></div>
+	</div>
+  <div class="row">
+      <div class="col s12">
+        <div class="card-panel orange">         
+          <span class="white-text">
+      <b>Descrição do gráfico</b></p>
+          Eu sou um simples gráfico!
+          </span>
+        </div>
+      </div>
+   </div>
 </div>
+
+
 <script type="text/javascript">
 	var dataAgency = '<%= raw @data_superior_agency %>';
 	dataAgency = JSON.parse(dataAgency); 
 	console.log(dataAgency);
 	dataInitialized = initializeDataSuperior(dataAgency);
 	var network = createGraph(dataInitialized, "agencynetwork");
+  network.on("selectNode", function (params) {
+    if (params.nodes[0] != '1_'){
+      id = params.nodes[0].split('_')[1]
+      location.href = '/public_agency/'+id
+    }
+  });
 </script>

@@ -30,24 +30,11 @@ class BudgetControllerTest < ActionController::TestCase
 
   end
 
-  test "Route to method show" do
-    create_fake_budget
-    assert_routing 'public_agency/2/budgets', controller: 'budget', action: 'show', id: '2'
-    get :show, id: 2
-    assert_response :success
-    assert assigns(:list_budget_month)  
-    assert assigns(:list_expense_month)
-    assert assigns(:expense_find)
-  end
-
   test "Dont route to method show" do
     create_fake_budget_error
     assert_routing 'public_agency/2/budgets', controller: 'budget', action: 'show', id: '2'
     get :show, id: 2
     assert_response :success
-    assert assigns(:list_budget_month)  
-    assert assigns(:list_expense_month)
-    assert assigns(:expense_find)
   end
 
   test "Route to method filter chart budget" do

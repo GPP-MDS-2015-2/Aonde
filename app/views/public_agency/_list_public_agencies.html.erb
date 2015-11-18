@@ -1,6 +1,6 @@
 <!-- table to show the data of public agencies -->
-<div id="content_table" style="background:#FF8F2F; margin-top:0;">
-<table id="tableData" class="hover row-border">
+<div id="content_table">
+<table id="tableData" class="hover row-border" style="background:#1bcdcf;">
 	<thead>
 		<tr>
 			<th>
@@ -17,7 +17,7 @@
 
 	<tbody>
 	<% @public_agencies.each do |agency| %>
-	  	<tr onclick="location.href = '<%=public_agency_path(agency.id)%>';" style="cursor: hand;">  
+	  	<tr onclick="location.href = '<%=public_agency_path(agency.id)%>';" style="cursor: pointer;">  
 		  	<td>
 		  	<center><%= agency.name%></center>
 		  	</td>

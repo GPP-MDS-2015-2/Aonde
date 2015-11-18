@@ -12,8 +12,7 @@ class BudgetController < ApplicationController
         @list_budget_month = []
         @expense_find = 0
       end
-        @list_expense_month = @list_expense_month.to_json
-        @list_budget_month = @list_budget_month.to_json
+    
   	end
 
 	def filter
