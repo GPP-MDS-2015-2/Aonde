@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(version: 20151023125024) do
     t.datetime "updated_at",              null: false
   end
 
-  add_foreign_key "budgets", "public_agencies"
   add_foreign_key "expenses", "companies"
   add_foreign_key "expenses", "functions"
   add_foreign_key "expenses", "programs"
