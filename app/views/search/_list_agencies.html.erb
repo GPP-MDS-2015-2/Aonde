@@ -1,5 +1,5 @@
-<% if (@public_agencies.empty?) %>
-  <strong><font color="red" size="12px">Nenhum Órgão Encontrado</font></strong>
+<% if (@entity[:agency].empty?) %>
+  <!--<strong><font color="red" size="12px">Nenhum Órgão Encontrado</font></strong>-->
 <% else %>
 	<table id="tableData" class="hover row-border">
 		<thead>
@@ -15,7 +15,7 @@
 		<tbody>
 		<% entity = 0
 		   expense = 1
-		@public_agencies.each do |agency| %>
+		@entity[:agency].each do |agency| %>
 		  	<tr>
 			  	<td>
 			  		<center><%= link_to agency[entity].name,public_agency_path(agency[entity].id)%></center>

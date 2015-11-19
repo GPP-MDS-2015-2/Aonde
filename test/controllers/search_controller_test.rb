@@ -56,11 +56,15 @@ class SearchControllerTest < ActionController::TestCase
 
     assert assigns(:entity)
     assert assigns(:msg_error)
-    assert assigns(:public_agencies)
-    assert assigns(:companies)
-    assert assigns(:programs)
     assert assigns(:results)
       
+  end
+
+  test "Should not search" do
+
+    create_entities    
+    get :index, id: 1, search: "Nv", entity: "Todos"
+
   end
 
   def entities_for_search

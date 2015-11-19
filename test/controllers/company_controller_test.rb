@@ -1,13 +1,50 @@
 require 'test_helper'
+require 'database_cleaner'
 
 class CompanyControllerTest < ActionController::TestCase
+
+  def setup 
+
+    SuperiorPublicAgency.create(id: 1, name: 'valid SuperiorPublicAgency')
+    PublicAgency.create(id: 1, views_amount: 0, name: 'orgao3', superior_public_agency_id: 1)
+    PublicAgency.create(id: 2, views_amount: 0, name: 'orgao2', superior_public_agency_id: 1)
+    date = Date.new(2015, 1, 2)
+    public_agency_first = PublicAgency.first
+    public_agency_second = PublicAgency.second
+    Expense.create(document_number: 1, payment_date: date, value: 5, public_agency_id: 1)
+    Expense.create(document_number: 2, payment_date: date, value: 9, public_agency_id: 1)        
+    Expense.create(document_number: 3, payment_date: date, value: 13, public_agency_id: 2)           
+
+    nome_company = %w(CIA Comercial)
+    array = []
+    i = 1
+    2.times do
+        date = Date.new(2015, i, i)
+        company = Company.create(id:i,name: nome_company[i - 1])
+        2.times do     
+            Expense.create(document_number: i, payment_date: date, value: i + 5, company_id: company.id)  
+            i += 1
+        end
+        i -= 1
+    end
+
+  end
+
+  def teardown
+
+    DatabaseCleaner.clean
+
+  end
 	
   test 'Route to method show and the result of the request' do
-    generate_public_agency
     assert_routing 'public_agency/1/companies', controller: 'company', action: 'show', id: '1'
-    get :show, id: 1
+    
+  end
+
+  test 'Route to method find and the result of the request' do
+    assert_routing '/company/1', controller: 'company', action: 'find', id: '1'
+    get :find, id: 1
     assert_response :success
-    assert assigns :array_company_expense
   end
 
   test 'should return a ordered hash' do
@@ -40,9 +77,9 @@ class CompanyControllerTest < ActionController::TestCase
   end
 
   test 'should find a company' do
-    expenses = generate_expense
+    expenses = Expense.all
     expense = @controller.find_company(expenses)
-    expense_expected = [['CIA', 6], ['Comercial', 15]]
+    expense_expected = [['CIA', 13], ['Comercial', 15]]
     assert_equal(expense, expense_expected)
 
     a = []
@@ -136,7 +173,6 @@ class CompanyControllerTest < ActionController::TestCase
   end
 
   test 'should find public agencies' do
-    generate_public_agency
     expenses = Expense.all
     expected_hash = [["orgao2",1],["orgao3",2]]
     hash_returned = @controller.find_public_agencies(expenses)
@@ -145,7 +181,6 @@ class CompanyControllerTest < ActionController::TestCase
   end
 
   test 'should find hiring count' do
-    generate_public_agency
     public_agency = PublicAgency.first
     counting = @controller.find_hiring_count(public_agency)
     expected_counting = 2
@@ -153,47 +188,4 @@ class CompanyControllerTest < ActionController::TestCase
     assert_equal(counting,expected_counting)
   end
 
-  def generate_public_agency
-    SuperiorPublicAgency.create(id: 1, name: 'valid SuperiorPublicAgency')
-    PublicAgency.create(id: 1, views_amount: 0, name: 'orgao3', superior_public_agency_id: 1)
-    PublicAgency.create(id: 2, views_amount: 0, name: 'orgao2', superior_public_agency_id: 1)
-    date = Date.new(2015, 1, 2)
-    public_agency_first = PublicAgency.first
-    public_agency_second = PublicAgency.second
-    Expense.create(document_number: 1, payment_date: date, value: 5, public_agency_id: 1)
-    Expense.create(document_number: 2, payment_date: date, value: 9, public_agency_id: 1)        
-    Expense.create(document_number: 3, payment_date: date, value: 13, public_agency_id: 2)           
-  end
-
-  def generate_companies
-    companies = []
-    nome_company = %w(company1 company2 company3)
-
-    i = 0
-    3.times do
-      created_company = Company.create(name: nome_company[i])
-      companies[i] = created_company
-      i += 1
-    end
-    companies
-  end
-
-  def generate_expense
-    nome_company = %w(CIA Comercial)
-    array = []
-
-    i = 1
-    2.times do
-      date = Date.new(2015, i, i)
-      company = Company.create(name: nome_company[i - 1])
-      2.times do
-        expenses = Expense.create(document_number: i, payment_date: date, value: i + 5, company_id: company.id)
-        array[i - 1] = expenses
-        i += 1
-      end
-      i -= 1
-    end
-
-    array
-  end
 end

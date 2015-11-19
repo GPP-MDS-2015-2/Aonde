@@ -6,15 +6,15 @@ Rails.application.routes.draw do
   
   get "public_agency/:id", to: "public_agency#show", as: 'public_agency'
   get "public_agency/:id/list_chart" ,to: "public_agency#filter_chart", as: "filter"
-  get "public_agency/:id/type_expense",to: "type_expense#show", as: "type_expense"
+  get "public_agency/:id/type_expense",to: "type_expense#show", as: "type_expense", format: :json
   get "public_agency/:id/filter_type_expense",to: "type_expense#filter_chart", as: "filter_type_expense"
-  get "public_agency/:id/companies", to: "company#show", as: "companies"
-  get 'public_agency/:id/budgets', to: "budget#show", as: "budget"
-  get "public_agency/:id/programs", to: "program#show", as: "programs"
+  get "public_agency/:id/companies", to: "company#show", as: "companies", format: :json
+  get 'public_agency/:id/budgets', to: "budget#show", as: "budget", format: :json
+  get "public_agency/:id/programs", to: "program#show_programs", as: "programs", format: :json
   
-  get "/program/:id", to: "program#show_program", as: "program"
+  get "/program/:id", to: "program#show", as: "program"
 
-  get "public_agency/:id/filter_budget",to: "budget#filter_chart_budget", as: "filter_budget"
+  get "public_agency/:id/filter",to: "budget#filter", as: "filter_budget"
   get "search/list", to:"search#index", as: "search"
   #Routes of Programs
   get "/functions", to: "function#show", as: "functions"

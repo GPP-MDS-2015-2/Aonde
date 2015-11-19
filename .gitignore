@@ -15,5 +15,6 @@
 /log/*
 !/log/.keep
 
-.DS_Store
-Aonde/Gemfile.lock
+# SSH private key, used by Travis w/ Capistrano
+# We do not have to hide the public key... :)
+deploy_id_rsa

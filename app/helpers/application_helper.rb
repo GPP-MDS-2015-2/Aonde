@@ -7,7 +7,7 @@ module ApplicationHelper
 			return title_default
 		end
 	end
-
+=begin
 #Define how flash messages will work
   def flash_message
     messages = ""
@@ -19,4 +19,5 @@ module ApplicationHelper
 
     messages
   end
+=end
 end

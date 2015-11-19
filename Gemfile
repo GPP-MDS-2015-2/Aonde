@@ -34,8 +34,6 @@ gem "factory_girl_rails"
     gem 'cucumber-rails', require: false
 end
 
-#Gem for bootstrap
-gem 'bootstrap-sass', '3.2.0.2'
 #Gem for test the connection with fake page web
 gem "fakeweb", "~> 1.3"
 
@@ -57,9 +55,6 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -71,5 +66,8 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
+  # Capistrano to automatize deploy
+  gem 'capistrano-rails', '~> 1.1'
 end
 

@@ -1,5 +1,3 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
 .content_table{
   width: 960px;
@@ -18,7 +16,6 @@ body{
 	position: fix;
 	color: black;
 	height: 100%;
-	background: #E1E4D6;
 }
 section{
 	overflow: auto;
@@ -65,7 +62,7 @@ textarea{
 #CompanyTable{
   text-align: center;
 }
-#Exibir {
+#Display {
   background: #F38000;
   text-align: center;
   cursor: pointer;
@@ -73,7 +70,7 @@ textarea{
   height: 30px;
   border-radius: 10px 10px 10px 10px;  
 }
-a.exibir {
+a.display {
   text-align: center;
   color: white;
   font-size: 18px;
@@ -81,7 +78,7 @@ a.exibir {
   list-style-type: none;
   text-align: center;
 }
-a.exibir:hover {
+a.display:hover {
   text-decoration: underline;
   color: #036564;
 }
@@ -97,4 +94,80 @@ a.exibir:hover {
   margin-top:0;
   background:#FF8F2F;
   position:fixed;     
+}
+
+.codrops-header,
+.codrops-header {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+.codrops-header h1 {
+  margin: 30px;
+  font-weight: 300;
+  font-size: 2.625em;
+  line-height: 1.3;
+}
+
+.codrops-header span {
+  display: block;
+  padding: 0 0 0.2em 0.1em;
+  font-size: 60%;
+  color: #aca89a;
+}
+
+/* To Navigation Style */
+.codrops-top {
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 0.69em;
+  line-height: 2.2;
+  font-weight: 400;
+  background: rgba(255,255,255,0.3);
+}
+
+.codrops-top a {
+  display: inline-block;
+  padding: 0 1em;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+}
+.codrops-top span.right {
+  float: right;
+}
+
+.codrops-top span.right a {
+  display: block;
+  float: left;
+}
+
+#slide-out a{
+  text-decoration: none;
+}
+
+#container_render{
+  margin-bottom:155px; 
+  width:946px; 
+  height:auto; 
+  margin-right:auto; 
+  margin-left:auto;
+}
+#content_table{
+  background:#FF8F2F; 
+  width:960px; 
+  margin-left:auto; 
+  margin-right:auto; 
+  margin-bottom:155px; 
+  margin-top:60px;
+}
+#contencao_outros{
+  width:1160px;
+  height:auto;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:15px;
+  margin-bottom:100px; 
+  padding:10px;
+  /*background:#CCC;*/
 }

@@ -1,22 +1,86 @@
-<%= provide(:title, "Orgao Publico") %>
-<p>
+<header class="codrops-header">
+  <h1><%= @program.name %></h1>
+</header>
 
-<center><font color="white"><h4><%= link_to @superior_public_agency.name, superior_path(@superior_public_agency.id) %></h4></font></center>
-<center><font color="white"><h3><%= @public_agency.name %></h3></font></center>
-<!-- create the tabs and render the informations of the public agency -->
-<div class = 'container-tabs'>
- 	<ul class="tabs">
-		<li class="tab-link" data-tab="tab-1"><%= link_to "Gastos do Órgão",public_agency_path%></li>
-		<li class="tab-link" data-tab="tab-2"><%= link_to "Empresas", companies_path %></li>
-        <li class="tab-link" data-tab="tab-3" current><%= link_to "Programas", programs_path %></li>
-		<li class="tab-link" data-tab="tab-4"><%= link_to "Tipos de Despesas", type_expense_path %></li>
-		<li class="tab-link" data-tab="tab-5"><%= link_to "Orçamento", budget_path %></li>
-	</ul>
+<div class="container">
+  <div class="z-depth-3" style="width:auto; margin-right:auto;  margin-left:auto; margin-bottom:30px;">
+    <div id="mynetwork"></div>
+  </div>
 
- 	<div id="tab-3" class="tab-content current">
-		<%= render 'chart_programs' %>
- 	</div>
-	<!-- <div id="tab-2" class="tab-content">
-		huhuasaushuah
-	</div>  -->
- </div>
+  <div class="row">
+      <div class="col s6 m5">
+        <div class="card-panel orange">         
+          <span class="white-text">
+      <b>Descrição do gráfico</b></p>
+          Eu sou um cartao de descrição
+          </span>
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="card-panel orange">
+          <span class="white-text">
+        <b>Filtragem do gráfico</b>
+        <p>     
+    <p></p>
+    <button class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Agrupe as Empreses e os Órgãos públicos" type="button" onclick="clusterByGroup()" value="Agrupar entidades">Agrupar
+    </button>
+    
+    <button class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Desagrupe as Empreses e os Órgãos públicos" type="button" onclick="unclusterByGroup()" value="Desagrupar">Desagrupar
+    </button>
+
+<!--Make Pagination of materialize-->
+<div id="page" style="color:black;"></div>
+
+          </span>
+         </div>
+      </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+var dataProgram = '<%= raw @data_program %>';
+console.debug(dataProgram);
+
+dataProgram = JSON.parse(dataProgram);
+dataInitialized = initializeDataProgram(dataProgram);
+
+var network = createGraph(dataInitialized,'mynetwork');
+$(document).ready(function(){
+  console.debug(dataProgram);
+  createPagesButton(dataProgram[2]);
+  network.on("selectNode", function(params) {
+    console.debug(params);
+    if (network.isCluster(params.nodes[0]) == true) {
+      network.openCluster(params.nodes[0]);
+    }else if( params.nodes[0] != '1_'){
+      linkByGroup(params.nodes[0])
+    }
+  });
+});
+function linkByGroup(node){
+  
+  nodeOrigin = dataInitialized.nodes['_data'][node];
+  nodeId = node.split('_')[1]
+
+  if (nodeOrigin.group == "PublicAgency"){
+    location.href = '/public_agency/'+nodeId;
+  }else{
+    location.href = '/company/'+nodeId;
+  }
+}
+function changePage(page){
+   $(".selected").removeClass('selected');
+   $("#"+page).addClass('selected');
+   console.log(network.isCluster(['Company']));
+   makeChangePage(page,network);
+}  
+  function clusterByGroup(){
+    cluster(network);
+  }
+  function unclusterByGroup(){
+    uncluster(network,['PublicAgency','Company']);
+  }
+
+
+
+</script>

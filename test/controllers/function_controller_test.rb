@@ -1,9 +1,53 @@
 require 'test_helper'
+require 'database_cleaner'
 
 class FunctionControllerTest < ActionController::TestCase
 
+  def teardown
+    DatabaseCleaner.clean
+  end
+
+  test "Should sort by sumValue" do
+
+    hash = {"C terceira"=>3,"B segunda"=>2,"A primeira"=>1}
+    hash = @controller.sort_by_description(hash)
+    expected_hash = [["A primeira", 1], ["B segunda", 2], ["C terceira", 3]]
+    assert_equal(expected_hash,hash)
+
+  end
+
+  test "Should find all dates until today" do
+
+    first_date = Date.new(2009,1,1)
+    last_date = Date.new(2020,12,31)
+    expected_date = { begin: first_date, end: last_date }
+    dates = @controller.find_dates
+    assert_equal(dates,expected_date)
+
+  end
+
+  test "Should find dates in a year" do
+
+    first_date = Date.new(2015,1,1)
+    last_date = Date.new(2015,12,31)
+    expected_date = { begin: first_date, end: last_date }
+    dates = @controller.find_dates("2015")
+    assert_equal(dates,expected_date)
+
+  end
+
+  test "Should find dates in a month" do
+
+    first_date = Date.new(2015,12,1)
+    last_date = Date.new(2015,12,31)
+    expected_date = { begin: first_date, end: last_date }
+    dates = @controller.find_dates(year ='2015',month = 'Dezembro')
+    assert_equal(dates,expected_date)
+
+  end
 
   test "Empty return of method to insert expenses" do
+  
     begin_date = Date.new(2015,1,12)
     end_date = Date.new(2015,1,31)
     expenses_function = @controller
@@ -11,14 +55,21 @@ class FunctionControllerTest < ActionController::TestCase
     assert_empty(expenses_function)
     
   end
+
   test "Route to method show" do
 
     assert_routing '/functions', { :controller => "function", :action => "show" } 
     get :show
-
     assert_response :success
+
   end
 
+  test "Route to method filter" do
+
+    get :filter, year: "2015", month: "Todos"
+    assert_response :success
+
+  end
 
   test "Should convert to a hash" do
 

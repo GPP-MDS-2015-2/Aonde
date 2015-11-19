@@ -3,16 +3,13 @@
 # or a graph with all public agencies make hires
 class CompanyController < ApplicationController
   def show
-    find_public_agency
+    find_agencies(params[:id])
     expenses_public_agency = Expense.where(public_agency_id: @public_agency.id)
     @array_company_expense = find_company(expenses_public_agency)
-    @array_company_expense.to_json
-  end
+    respond_to do |format|
+      format.json { render json: @array_company_expense}
+    end
 
-  def find_public_agency
-    @public_agency = PublicAgency.find(params[:id])
-    @superior_public_agency = SuperiorPublicAgency
-                              .find(@public_agency.superior_public_agency_id)
   end
 
   def find_company(expenses_public_agency)
@@ -44,7 +41,7 @@ class CompanyController < ApplicationController
     expenses = Expense.where(company_id: params[:id])
     company_hiring_incidence = find_public_agencies(expenses)
     # company_hiring_incidence = get_15_first_nodes(company_hiring_incidence)
-    company_name = company_name = Company.find(params[:id]).name
+    company_name = Company.find(params[:id]).name
     data_company = generate_company_node(company_name)
     array = generate_public_agency_node(company_name, company_hiring_incidence,
                                         data_company)
