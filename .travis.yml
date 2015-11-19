@@ -1,9 +1,9 @@
 language: ruby
 
 before_script:
-  - cp config/database.yml.travis config/database.yml
-  - mysql -e "create database IF NOT EXISTS aonde_test;" -uroot
-  - rake db:migrate RAILS_ENV=test
+- cp config/database.yml.travis config/database.yml
+- mysql -e "create database IF NOT EXISTS aonde_test;" -uroot
+- rake db:migrate RAILS_ENV=test
 
 addons:
   code_climate:
@@ -12,13 +12,27 @@ addons:
 script: rake test
 
 rvm:
-  - 2.2.0
+- 2.2.0
+
 notifications:
   email:
     recipients:
-      - jonathan.rufinotkd@gmail.com
+    - jonathan.rufinotkd@gmail.com
+
 branches:
   only:
-
   - master
   - develop
+
+after_success:
+- "openssl aes-256-cbc -K $encrypted_cab6a4cb5a16_key -iv $encrypted_cab6a4cb5a16_iv -in config/deploy/deploy_id_rsa.enc -out config/deploy/deploy_id_rsa -d"
+- "cap production deploy"
+#- "gem install capistrano-rails"
+
+#deploy:
+#  provider: script
+#  skip_cleanup: true
+#  script: 
+#    - ./deploy.sh
+#  on:
+#    branch: develop
