@@ -15,82 +15,46 @@
 
   <%= yield :css %>
   <%= csrf_meta_tags %>
+
 </head>
-
-<!--NavBar-->
-<ul id="slide-out" class="side-nav">
-    <li><%= link_to 'Home', root_path %></li>
-      <li class='active'><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
-      <li><%= link_to 'Gasto por Função', functions_path %></li><li class="no-padding">
-    </li>
-  </ul>
-<a href="#" data-activates="slide-out" class="button-collapse"><i class="btn-floating btn-large orange small mdi-navigation-menu" style="float:left; left:20px;"></i></a>
-  
-
-<!--Search field-->
- <nav  style="width:75%;margin-left:auto; margin-right:auto; background:#FF8F2F; margin-top:10px;">
-    <div class="nav-wrapper">
-      <form id='search_bar' name='search' onsubmit="return validSearch()" action="<%= search_path %>">
-        <div class="input-field" style="height:70px;">
-          <input name="search" type="text" autocomplete="off" required<%= text_field_tag :search, params[:search], placeholder: "Pesquisa órgão públic, empresa, programa"%>
-          <label for="search"><i class="material-icons">search</i></label>
-        </div>
-      </form>
+<body>
+  <!--This part is to menu-->
+  <div id="content_menu">
+    <div class="container" style="width:auto;">
+      <div id="menu_index">
+        <ul>
+          <li><%= link_to '(Imagem) AondÊ', root_path %></li>
+          <li class='active'><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
+          <li><%= link_to 'Gasto por Função', functions_path %></li>
+  <!--Search field-->
+          <li>
+            <form id='search_bar' name='search' onsubmit="return validSearch()" action="<%= search_path %>" style="width:300px; height:80px; margin-left: 52%;">
+              <div class="input-field" style=" width:270px; margin-right:auto;">
+                <i class="material-icons prefix">search</i>
+                <input name="search" type="text" autocomplete="off" required<%= text_field_tag :search, params[:search]%>
+                <label for="icon_prefix">Pesquisar...</label>
+              </div>
+              </div>
+            </form> 
+          </li>
+        </ul>
+      </div>
     </div>
-  </nav>
-
-<!--Modal where make error message to search-->
-<a id='error_search_link' href="#error_search" class="modal-trigger"></a>
-
-<div id="error_search" class="modal">
-  <div class="modal-content">   
-    <!-- just create the form to the filter -->
-    Por favor, digite uma palavra chave maior
   </div>
-  <div class="modal-footer">
-    <a id='error_search_close' href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
-  </div>
-</div>
 
-<!--Combobox -->
-<!--
-<div id="contetion_combobox_search">                
-  <div class="input-field">
-    <%= form_tag search_path, :method => 'get' do %>
-      <%= select_tag :entity, options_for_select([["Todos"], ["Órgãos Públicos"], ["Empresas"], ["Programas"]])%>
-    <% end%>
+  <!--Modal where make error message to search-->
+  <a id='error_search_link' href="#error_search" class="modal-trigger"></a>
+
+  <div id="error_search" class="modal">
+    <div class="modal-content">Por favor, digite uma palavra chave maior</div>
+    <div class="modal-footer">
+      <a id='error_search_close' href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+    </div>
   </div>
-</div>
--->
+<!--Container to render-->
 <div class="container_render">     
     <%= yield %>
 </div> 
-
-      <!--Esse é o rodape-->
-       <footer class="page-footer" style="background:#1bcdcf; margin-top:0;">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Oi como vai você?</h5>
-                <p class="grey-text text-lighten-4">Acesse os links ao lado para saber mais sobre nossa aplicação </p>
-              </div>
-              <div class="col l4 offset-6 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="https://fga.unb.br/">Portal FGA</a></li>
-                  <li><a class="grey-text text-lighten-3" href="http://lappis.unb.br/redm/projects/grupo-5-portal-da-transparencia/wiki">Wiki</a></li>
-                  <li><a class="grey-text text-lighten-3" href="https://github.com/GPP-MDS-2015-2/Aonde" class="util_link">GitHub</a></li>
-                  <li><a class="grey-text text-lighten-3" href="http://transparencia.gov.br/">Portal Transparencia</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-              AondE
-            </div>
-          </div>
-        </footer>
-        
+ <footer></footer>
     </body>
 </html>

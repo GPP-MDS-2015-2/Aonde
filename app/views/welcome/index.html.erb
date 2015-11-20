@@ -1,121 +1,57 @@
 <% provide(:title,"Inicial") %>
-  
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aonde</title>
+</head>
+<body>
 
-      <!--This part is to menu-->
-    <div id='cssmenu'>
-      <ul>
-       <li class='active' style="background:#1bcdcf5;"><%= link_to 'Home', root_path %></li>  
-		<li><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
-      <li><%= link_to 'Gasto por Função', functions_path %></li>
-      </ul>
-    </div>
-  <!--Div for image-->
-    <div class="parallax-container">
-      <div class="parallax"><%= image_tag("red.jpg")%></div>
-    </div>
 
-  <div class="section" style="background:#23AFB5; color:#FF8F2F;">
-    <div class="row container">
-      <h2 class="header">Sobre a aplicação</h2>
-      <p class="white-text">Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-      <p class="white-text">Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi. Aenean vel dui dui. Nullam leo erat, aliquet quis tempus a, posuere ut mi. Ut scelerisque neque et turpis posuere pulvinar pellentesque nibh ullamcorper. Pharetra in mattis molestie, volutpat elementum justo. Aenean ut ante turpis. Pellentesque laoreet mé vel lectus scelerisque interdum cursus velit auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac mauris lectus, non scelerisque augue. Aenean justo massa.</p>
-    </div>
-  </div>
-   <!--Div for image-->
-    <div class="parallax-container">
-      <div class="parallax"><%= image_tag("red.jpg")%></div>
-    </div>
-
-  <div class="section">
-    <div class="row" >
-      <div class="container" style="width:88%; margin-right:auto; margin-left:auto;">
-
-      <!--Public Agency-->
-      <div class="card" style="width:300px; float:left; margin-right:15px; background:#23AFB5;">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator"> <%= image_tag("public_agency.png")%>
-        </div>
-        
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Órgãos públicos<i class="material-icons right">more_vert</i></span>
-          <p><a href="#" style="color: #FF8F2F;">Veja um exemplo</a></p>
-        </div>
-
-        <div class="card-reveal"  style="color:orange;">
-          <span class="card-title grey-text text-darken-4">Órgãos públicos<i class="material-icons right">close</i></span>
-          <p>Veja os informações dos gastos dos órgãos públicos</p>
-        </div>
-      </div>
-
-      <!--Program-->
-      <div class="card" style="width:300px; float:left; margin-right:15px; background:#23AFB5;">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator"> <%= image_tag("program_busca_mini.png")%>
-        </div>
-        
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Empresas<i class="material-icons right">more_vert</i></span>
-          <p><a href="#" style="color: #FF8F2F;">Veja um exemplo</a></p>
-        </div>
-
-        <div class="card-reveal"  style="color:orange;">
-          <span class="card-title grey-text text-darken-4" >Empresas<i class="material-icons right">close</i></span>
-          <p>Veja a relação dos empresas com as empresas e com os órgãos públicos</p>
-        </div>
-      </div>
-   
-      <!--Company-->
-      <div class="card" style="width:300px; float:left; margin-right:15px; background:#23AFB5;">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator"> <%= image_tag("company_busca.png")%>
-        </div>
-        
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Programas<i class="material-icons right">more_vert</i></span>
-          <p><a href="#" style="color: #FF8F2F;">Veja um exemplo</a></p>
-        </div>
-
-        <div class="card-reveal"  style="color:orange;">
-          <span class="card-title grey-text text-darken-4" >Programas<i class="material-icons right">close</i></span>
-          <p>Veja a relação dos programas com as empresas e com os órgãos públicos</p>
-        </div>
-      </div>
-
-    </div>
+<div id="government_spending">
+  <div class="container">
+    <div id="video" style="width:auto; height:300px; border:3px solid #603813;"></div>
   </div>
 </div>
 
+<div id="explanation_public_agencies">
+  <div class="container">
+    <div id="information_public_agency" style="width:auto; height:300px; border:3px solid #603813; margin-bottom:15px; margin-top:25px;"></div>
+    <center><a class="waves-effect waves-light btn orange" <%= link_to 'Acessar', public_agency_list_path %></a></center>
+  </div>
+</div>
 
-   <!--Div for image-->
-    <div class="parallax-container">
-       <div class="parallax"><%= image_tag("red.jpg")%></div>
-    </div>
+<div id="explanation_function">
+  <div class="container">
+    <div id="information_function" style="width:auto; height:300px; border:3px solid #603813; margin-bottom:15px; margin-top:25px;"></div>
+    <center><a class="waves-effect waves-light btn orange" <%= link_to 'Acessar', functions_path %></a></center>
+  </div>
+</div>
 
-    <!--Esse é o rodape-->
-     <footer class="page-footer" style="background:#1bcdcf; margin-top:0;">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Oi como vai você?</h5>
-              <p class="grey-text text-lighten-4">Acesse os links ao lado para saber mais sobre nossa aplicação </p>
-            </div>
-            <div class="col l4 offset-6 s12">
-              <h5 class="white-text">Links</h5>
-              <ul>
-                <li><a class="grey-text text-lighten-3" href="https://fga.unb.br/">Portal FGA</a></li>
-                <li><a class="grey-text text-lighten-3" href="http://lappis.unb.br/redm/projects/grupo-5-portal-da-transparencia/wiki">Wiki</a></li>
-                <li><a class="grey-text text-lighten-3" href="https://github.com/GPP-MDS-2015-2/Aonde" class="util_link">GitHub</a></li>
-                <li><a class="grey-text text-lighten-3" href="http://transparencia.gov.br/">Portal Transparencia</a></li>
-              </ul>
-            </div>
-          </div>
+<div id="free">
+  <div class="container">
+   <div class="row">
+    <form class="col">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <%= text_field_tag :subject, params[:subject]%>
+          <label for="icon_prefix">First Name</label>
         </div>
-        <div class="footer-copyright">
-          <div class="container">
-            AondE
-          </div>
+        <div class="input-field col s6">
+           <%= email_field_tag :email, params[:email]%>
+          <label for="email" data-error="wrong" data-success="right">Email</label>
         </div>
-      </footer>
-      
-  
+        <div class="input-field col s12">
+           <textarea id="textarea1" class="materialize-textarea" length="500"<%= text_area_tag :textarea1, params[:textarea1]%></textarea>
+           <label for="textarea1">Textarea</label>
+      </div>
+      <button><%=submit_tag%></button>
+    </form>
+  </div>
+  </div>
+</div>
+
+</div>
+<footer></footer>
+
+</body>
+</html>
