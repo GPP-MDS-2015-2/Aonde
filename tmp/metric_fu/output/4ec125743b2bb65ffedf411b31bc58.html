@@ -35,7 +35,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>&lt;<span class="string"><span class="delimiter">% </span><span class="content">if</span><span class="delimiter"> </span></span>(<span class="instance-variable">@companies</span>.empty?) %&gt;
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>&lt;<span class="string"><span class="delimiter">% </span><span class="content">if</span><span class="delimiter"> </span></span>(<span class="instance-variable">@entity</span>[<span class="symbol">:company</span>].empty?) %&gt;
 </pre></div>
 </div>
 
@@ -51,7 +51,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>  &lt;strong&gt;&lt;font color=<span class="string"><span class="delimiter">&quot;</span><span class="content">red</span><span class="delimiter">&quot;</span></span> size=<span class="string"><span class="delimiter">&quot;</span><span class="content">12px</span><span class="delimiter">&quot;</span></span>&gt;<span class="constant">Nenhuma</span> <span class="constant">Empresa</span> <span class="constant">Encontrado</span>&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">font&gt;&lt;</span><span class="delimiter">/</span><span class="modifier">s</span></span>trong&gt;
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>  &lt;!--&lt;strong&gt;&lt;font color=<span class="string"><span class="delimiter">&quot;</span><span class="content">red</span><span class="delimiter">&quot;</span></span> size=<span class="string"><span class="delimiter">&quot;</span><span class="content">12px</span><span class="delimiter">&quot;</span></span>&gt;<span class="constant">Nenhuma</span> <span class="constant">Empresa</span> <span class="constant">Encontrado</span>&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">font&gt;&lt;</span><span class="delimiter">/</span><span class="modifier">s</span></span>trong&gt;--&gt;
 </pre></div>
 </div>
 
@@ -307,7 +307,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="instance-variable">@companies</span>.each <span class="keyword">do</span> |company| <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="instance-variable">@entity</span>[<span class="symbol">:company</span>].each <span class="keyword">do</span> |company| <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
 <span class="line-numbers"><a href="#n19" name="n19">19</a></span><span class="string"><span class="content"></span></span></pre></div>
 </div>
 

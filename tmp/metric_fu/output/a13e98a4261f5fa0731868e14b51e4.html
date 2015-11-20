@@ -96,11 +96,11 @@
            
              <ul>
                
-                 <li>DuplicateMethodCall - calls agency.id 2 times &raquo; reek</li>
-               
                  <li>Score of 6.39 &raquo; flog</li>
                
                  <li>Complexity 2 &raquo; saikuro</li>
+               
+                 <li>DuplicateMethodCall - calls agency.id 2 times &raquo; reek</li>
                
             </ul>
           
@@ -248,9 +248,7 @@
            
              <ul>
                
-                 <li>TooManyStatements - has approx 6 statements &raquo; reek</li>
-               
-                 <li>Score of 10.25 &raquo; flog</li>
+                 <li>Score of 9.30 &raquo; flog</li>
                
                  <li>Complexity 1 &raquo; saikuro</li>
                
@@ -259,7 +257,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>  <span class="keyword">def</span> <span class="function">show</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span><span class="keyword">def</span> <span class="function">show</span>
 </pre></div>
 </div>
 
@@ -323,7 +321,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>    <span class="instance-variable">@list_expense_month</span> = expenses_public_agency[<span class="symbol">:total_date</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>    expenses_month = expenses_public_agency[<span class="symbol">:total_date</span>]
 </pre></div>
 </div>
 
@@ -339,7 +337,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>    <span class="instance-variable">@total_expense</span> = expenses_public_agency[<span class="symbol">:total</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>
 </pre></div>
 </div>
 
@@ -355,7 +353,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    <span class="instance-variable">@list_expense_month</span>.unshift(<span class="string"><span class="delimiter">%w(</span><span class="content">Data gasto</span><span class="delimiter">)</span></span>)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    <span class="instance-variable">@list_expenses</span> = change_type_list_expenses(expenses_month)
 </pre></div>
 </div>
 
@@ -400,18 +398,138 @@
            
              <ul>
                
+                 <li>Score of 3.61 &raquo; flog</li>
+               
+                 <li>Complexity 1 &raquo; saikuro</li>
+               
                  <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>  <span class="keyword">def</span> <span class="function">change_type_list_expenses</span>(expenses_month)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>    <span class="constant">HelperController</span>.int_to_month(expenses_month)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>    temporary_expense = { <span class="string"><span class="delimiter">'</span><span class="content">2015</span><span class="delimiter">'</span></span>=&gt; expenses_month.to_h }
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>    expenses_month = temporary_expense.to_json
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>    expenses_month
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>  <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
                
                  <li>Score of 2.42 &raquo; flog</li>
                
                  <li>Complexity 1 &raquo; saikuro</li>
                
+                 <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
+               
             </ul>
           
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>  <span class="keyword">def</span> <span class="function">expenses_public_agency</span>(id_pub_agency)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>  <span class="keyword">def</span> <span class="function">expenses_public_agency</span>(id_pub_agency)
 </pre></div>
 </div>
 
@@ -427,7 +545,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>    total_expense = <span class="constant">Expense</span>.where(<span class="key">public_agency_id</span>: id_pub_agency).sum(<span class="symbol">:value</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span>    total_expense = <span class="constant">Expense</span>.where(<span class="key">public_agency_id</span>: id_pub_agency).sum(<span class="symbol">:value</span>)
 </pre></div>
 </div>
 
@@ -443,7 +561,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>    total_expense
+  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>    total_expense
 </pre></div>
 </div>
 
@@ -459,7 +577,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>  <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -475,7 +593,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>
 </pre></div>
 </div>
 
@@ -488,18 +606,18 @@
            
              <ul>
                
-                 <li>TooManyStatements - has approx 10 statements &raquo; reek</li>
-               
-                 <li>Score of 15.43 &raquo; flog</li>
+                 <li>Score of 14.56 &raquo; flog</li>
                
                  <li>Complexity 2 &raquo; saikuro</li>
                
+                 <li>TooManyStatements - has approx 9 statements &raquo; reek</li>
+               
             </ul>
           
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>  <span class="keyword">def</span> <span class="function">filter_chart</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>  <span class="keyword">def</span> <span class="function">filter_chart</span>
 </pre></div>
 </div>
 
@@ -515,7 +633,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>    <span class="comment"># find the same thing then the show</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>    <span class="comment"># find the same thing then the show</span>
 </pre></div>
 </div>
 
@@ -531,7 +649,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    find_agencies(params[<span class="symbol">:id</span>])
+  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>    find_agencies(params[<span class="symbol">:id</span>])
 </pre></div>
 </div>
 
@@ -547,7 +665,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span>    expenses_agency = <span class="predefined-constant">nil</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span>    expenses_agency = <span class="predefined-constant">nil</span>
 </pre></div>
 </div>
 
@@ -563,7 +681,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>    <span class="keyword">begin</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>    <span class="keyword">begin</span>
 </pre></div>
 </div>
 
@@ -579,7 +697,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>      expenses_agency = create_list_expense(params, <span class="instance-variable">@public_agency</span>)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>      expenses_agency = create_list_expense(params, <span class="instance-variable">@public_agency</span>)
 </pre></div>
 </div>
 
@@ -595,7 +713,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>    <span class="keyword">rescue</span> <span class="constant">Exception</span> =&gt; erro
+  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span>    <span class="keyword">rescue</span> <span class="constant">Exception</span> =&gt; erro
 </pre></div>
 </div>
 
@@ -611,7 +729,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>      flash[<span class="symbol">:error</span>] = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>erro<span class="inline-delimiter">}</span></span><span class="char">\n</span><span class="content"> Veja o grfico com todos gastos</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n42" name="n42">42</a></span>      flash[<span class="symbol">:error</span>] = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>erro<span class="inline-delimiter">}</span></span><span class="char">\n</span><span class="content"> Veja o grfico com todos gastos</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -627,7 +745,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>      expenses_agency = get_expenses_agency(<span class="instance-variable">@public_agency</span>.id)
+  <div class="code"><pre><span class="line-numbers"><a href="#n43" name="n43">43</a></span>      expenses_agency = get_expenses_agency(<span class="instance-variable">@public_agency</span>.id)
 </pre></div>
 </div>
 
@@ -643,7 +761,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n44" name="n44">44</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -659,7 +777,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span>    <span class="instance-variable">@list_expense_month</span> = expenses_agency[<span class="symbol">:total_date</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n45" name="n45">45</a></span>    expenses_month = expenses_agency[<span class="symbol">:total_date</span>]
 </pre></div>
 </div>
 
@@ -675,7 +793,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>    <span class="instance-variable">@total_expense</span> = expenses_agency[<span class="symbol">:total</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n46" name="n46">46</a></span>    <span class="instance-variable">@list_expenses</span> = change_type_list_expenses(expenses_month)
 </pre></div>
 </div>
 
@@ -691,7 +809,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>    <span class="comment"># Insert the head in the list</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n47" name="n47">47</a></span>    render <span class="string"><span class="delimiter">'</span><span class="content">show</span><span class="delimiter">'</span></span>
 </pre></div>
 </div>
 
@@ -707,7 +825,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span>    <span class="instance-variable">@list_expense_month</span>.unshift(<span class="string"><span class="delimiter">%w(</span><span class="content">Data Gasto</span><span class="delimiter">)</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n48" name="n48">48</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -723,7 +841,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n42" name="n42">42</a></span>    render <span class="string"><span class="delimiter">'</span><span class="content">show</span><span class="delimiter">'</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n49" name="n49">49</a></span>
 </pre></div>
 </div>
 
@@ -739,39 +857,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n43" name="n43">43</a></span>  <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n44" name="n44">44</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n45" name="n45">45</a></span>  <span class="keyword">def</span> <span class="function">create_list_expense</span>(date, public_agency)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>  <span class="keyword">def</span> <span class="function">create_list_expense</span>(date, public_agency)
 </pre></div>
 </div>
 
@@ -783,6 +869,10 @@
           <td valign='top'>
            
              <ul>
+               
+                 <li>Score of 13.22 &raquo; flog</li>
+               
+                 <li>Complexity 3 &raquo; saikuro</li>
                
                  <li>DuplicateMethodCall - calls dates[:begin] 2 times &raquo; reek</li>
                
@@ -790,16 +880,12 @@
                
                  <li>FeatureEnvy - refers to dates more than self &raquo; reek</li>
                
-                 <li>Score of 13.22 &raquo; flog</li>
-               
-                 <li>Complexity 3 &raquo; saikuro</li>
-               
             </ul>
           
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n46" name="n46">46</a></span>    dates = <span class="constant">HelperController</span>.create_date(date)
+  <div class="code"><pre><span class="line-numbers"><a href="#n51" name="n51">51</a></span>    dates = <span class="constant">HelperController</span>.create_date(date)
 </pre></div>
 </div>
 
@@ -815,7 +901,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n47" name="n47">47</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n52" name="n52">52</a></span>
 </pre></div>
 </div>
 
@@ -831,7 +917,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n48" name="n48">48</a></span>    expenses_agency = { <span class="key">total_date</span>: {} }
+  <div class="code"><pre><span class="line-numbers"><a href="#n53" name="n53">53</a></span>    expenses_agency = { <span class="key">total_date</span>: {} }
 </pre></div>
 </div>
 
@@ -847,7 +933,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n49" name="n49">49</a></span>    <span class="keyword">if</span> <span class="constant">HelperController</span>.date_valid?(dates[<span class="symbol">:begin</span>], dates[<span class="symbol">:end</span>])
+  <div class="code"><pre><span class="line-numbers"><a href="#n54" name="n54">54</a></span>    <span class="keyword">if</span> <span class="constant">HelperController</span>.date_valid?(dates[<span class="symbol">:begin</span>], dates[<span class="symbol">:end</span>])
 </pre></div>
 </div>
 
@@ -863,7 +949,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>      expenses_agency = get_expenses_agency(public_agency.id,
+  <div class="code"><pre><span class="line-numbers"><a href="#n55" name="n55">55</a></span>      expenses_agency = get_expenses_agency(public_agency.id,
 </pre></div>
 </div>
 
@@ -879,7 +965,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n51" name="n51">51</a></span>                                            dates[<span class="symbol">:begin</span>], dates[<span class="symbol">:end</span>])
+  <div class="code"><pre><span class="line-numbers"><a href="#n56" name="n56">56</a></span>                                            dates[<span class="symbol">:begin</span>], dates[<span class="symbol">:end</span>])
 </pre></div>
 </div>
 
@@ -895,7 +981,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n52" name="n52">52</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n57" name="n57">57</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -911,7 +997,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n53" name="n53">53</a></span>    <span class="comment"># puts expenses_agency</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n58" name="n58">58</a></span>    <span class="keyword">if</span> expenses_agency[<span class="symbol">:total_date</span>].empty?
 </pre></div>
 </div>
 
@@ -927,7 +1013,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n54" name="n54">54</a></span>    <span class="keyword">if</span> expenses_agency[<span class="symbol">:total_date</span>].empty?
+  <div class="code"><pre><span class="line-numbers"><a href="#n59" name="n59">59</a></span>      fail <span class="string"><span class="delimiter">'</span><span class="content">No encontrou nenhum gasto no periodo</span><span class="delimiter">'</span></span>
 </pre></div>
 </div>
 
@@ -943,7 +1029,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n55" name="n55">55</a></span>      fail <span class="string"><span class="delimiter">'</span><span class="content">No encontrou nenhum gasto no periodo</span><span class="delimiter">'</span></span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -959,7 +1045,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n56" name="n56">56</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n61" name="n61">61</a></span>    expenses_agency
 </pre></div>
 </div>
 
@@ -975,7 +1061,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n57" name="n57">57</a></span>    expenses_agency
+  <div class="code"><pre><span class="line-numbers"><a href="#n62" name="n62">62</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -991,7 +1077,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n58" name="n58">58</a></span>  <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n63" name="n63">63</a></span>
 </pre></div>
 </div>
 
@@ -1007,23 +1093,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n59" name="n59">59</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>  <span class="keyword">def</span> <span class="function">get_expenses_agency</span>(id_public_agency,
+  <div class="code"><pre><span class="line-numbers"><a href="#n64" name="n64">64</a></span>  <span class="keyword">def</span> <span class="function">get_expenses_agency</span>(id_public_agency,
 </pre></div>
 </div>
 
@@ -1035,25 +1105,25 @@
           <td valign='top'>
            
              <ul>
+               
+                 <li>Score of 18.07 &raquo; flog</li>
+               
+                 <li>Complexity 3 &raquo; saikuro</li>
                
                  <li>DuplicateMethodCall - calls expense.payment_date 2 times &raquo; reek</li>
                
                  <li>DuplicateMethodCall - calls expenses_agency[:total_date] 2 times &raquo; reek</li>
                
-                 <li>TooManyStatements - has approx 9 statements &raquo; reek</li>
+                 <li>TooManyStatements - has approx 8 statements &raquo; reek</li>
                
                  <li>FeatureEnvy - refers to expenses_agency more than self &raquo; reek</li>
-               
-                 <li>Score of 19.19 &raquo; flog</li>
-               
-                 <li>Complexity 3 &raquo; saikuro</li>
                
             </ul>
           
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n61" name="n61">61</a></span>    begin_date = <span class="string"><span class="delimiter">'</span><span class="content">2009-01-01</span><span class="delimiter">'</span></span>, end_date = <span class="string"><span class="delimiter">'</span><span class="content">2020-12-31</span><span class="delimiter">'</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n65" name="n65">65</a></span>    begin_date = <span class="string"><span class="delimiter">'</span><span class="content">2014-01-01</span><span class="delimiter">'</span></span>, end_date = <span class="string"><span class="delimiter">'</span><span class="content">2015-12-31</span><span class="delimiter">'</span></span>)
 </pre></div>
 </div>
 
@@ -1069,7 +1139,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n62" name="n62">62</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n66" name="n66">66</a></span>  
 </pre></div>
 </div>
 
@@ -1085,7 +1155,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n63" name="n63">63</a></span>    expenses = <span class="constant">Expense</span>.where(<span class="key">public_agency_id</span>: id_public_agency,
+  <div class="code"><pre><span class="line-numbers"><a href="#n67" name="n67">67</a></span>    expenses = <span class="constant">Expense</span>.where(<span class="key">public_agency_id</span>: id_public_agency,
 </pre></div>
 </div>
 
@@ -1101,7 +1171,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n64" name="n64">64</a></span>                             <span class="key">payment_date</span>: begin_date..end_date)
+  <div class="code"><pre><span class="line-numbers"><a href="#n68" name="n68">68</a></span>                             <span class="key">payment_date</span>: begin_date..end_date)
 </pre></div>
 </div>
 
@@ -1117,7 +1187,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n65" name="n65">65</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n69" name="n69">69</a></span>
 </pre></div>
 </div>
 
@@ -1133,7 +1203,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n66" name="n66">66</a></span>    expenses_agency = { <span class="key">total</span>: <span class="integer">0</span>, <span class="key">total_date</span>: {} }
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n70" name="n70">70</a></strong></span>    expenses_agency = {<span class="key">total_date</span>: {}}
 </pre></div>
 </div>
 
@@ -1149,7 +1219,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n67" name="n67">67</a></span>    expenses.each <span class="keyword">do</span> |expense|
+  <div class="code"><pre><span class="line-numbers"><a href="#n71" name="n71">71</a></span>    expenses.each <span class="keyword">do</span> |expense|
 </pre></div>
 </div>
 
@@ -1165,7 +1235,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n68" name="n68">68</a></span>      expenses_agency[<span class="symbol">:total</span>] += expense.value
+  <div class="code"><pre><span class="line-numbers"><a href="#n72" name="n72">72</a></span>      date = <span class="constant">Date</span>.new(expense.payment_date.year, expense.payment_date.month, <span class="integer">1</span>)
 </pre></div>
 </div>
 
@@ -1181,7 +1251,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n69" name="n69">69</a></span>      date = <span class="constant">Date</span>.new(expense.payment_date.year, expense.payment_date.month, <span class="integer">1</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n73" name="n73">73</a></span>      <span class="constant">HelperController</span>.sum_expense(l(date), expense,
 </pre></div>
 </div>
 
@@ -1197,7 +1267,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n70" name="n70">70</a></strong></span>      <span class="constant">HelperController</span>.sum_expense(l(date), expense,
+  <div class="code"><pre><span class="line-numbers"><a href="#n74" name="n74">74</a></span>                                   expenses_agency[<span class="symbol">:total_date</span>])
 </pre></div>
 </div>
 
@@ -1213,7 +1283,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n71" name="n71">71</a></span>                                   expenses_agency[<span class="symbol">:total_date</span>])
+  <div class="code"><pre><span class="line-numbers"><a href="#n75" name="n75">75</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1229,7 +1299,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n72" name="n72">72</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n76" name="n76">76</a></span>
 </pre></div>
 </div>
 
@@ -1245,7 +1315,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n73" name="n73">73</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n77" name="n77">77</a></span>    expenses_agency[<span class="symbol">:total_date</span>] = expenses_agency[<span class="symbol">:total_date</span>]
 </pre></div>
 </div>
 
@@ -1261,7 +1331,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n74" name="n74">74</a></span>    expenses_agency[<span class="symbol">:total_date</span>] = expenses_agency[<span class="symbol">:total_date</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n78" name="n78">78</a></span>                                   .sort_by { |date, _value| <span class="constant">Date</span>.parse(date) }
 </pre></div>
 </div>
 
@@ -1277,7 +1347,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n75" name="n75">75</a></span>                                   .sort_by { |date, _value| <span class="constant">Date</span>.parse(date) }
+  <div class="code"><pre><span class="line-numbers"><a href="#n79" name="n79">79</a></span>    <span class="keyword">return</span> expenses_agency
 </pre></div>
 </div>
 
@@ -1293,7 +1363,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n76" name="n76">76</a></span>    <span class="keyword">return</span> expenses_agency
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n80" name="n80">80</a></strong></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1309,7 +1379,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n77" name="n77">77</a></span>  <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n81" name="n81">81</a></span>
 </pre></div>
 </div>
 
@@ -1325,23 +1395,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n78" name="n78">78</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n79" name="n79">79</a></span>  <span class="keyword">def</span> <span class="function">increment_views_amount</span>(public_agency)
+  <div class="code"><pre><span class="line-numbers"><a href="#n82" name="n82">82</a></span>  <span class="keyword">def</span> <span class="function">increment_views_amount</span>(public_agency)
 </pre></div>
 </div>
 
@@ -1354,18 +1408,18 @@
            
              <ul>
                
-                 <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
-               
                  <li>Score of 3.86 &raquo; flog</li>
                
                  <li>Complexity 1 &raquo; saikuro</li>
+               
+                 <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
                
             </ul>
           
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n80" name="n80">80</a></strong></span>    views_amount = public_agency.views_amount
+  <div class="code"><pre><span class="line-numbers"><a href="#n83" name="n83">83</a></span>    views_amount = public_agency.views_amount
 </pre></div>
 </div>
 
@@ -1381,7 +1435,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n81" name="n81">81</a></span>    views_amount += <span class="integer">1</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n84" name="n84">84</a></span>    views_amount += <span class="integer">1</span>
 </pre></div>
 </div>
 
@@ -1397,7 +1451,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n82" name="n82">82</a></span>    public_agency.update(<span class="key">views_amount</span>: views_amount)
+  <div class="code"><pre><span class="line-numbers"><a href="#n85" name="n85">85</a></span>    public_agency.update(<span class="key">views_amount</span>: views_amount)
 </pre></div>
 </div>
 
@@ -1413,7 +1467,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n83" name="n83">83</a></span>  <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n86" name="n86">86</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1429,7 +1483,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n84" name="n84">84</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n87" name="n87">87</a></span>
 </pre></div>
 </div>
 
@@ -1445,7 +1499,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n85" name="n85">85</a></span>  <span class="comment"># methods that's need to be private</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n88" name="n88">88</a></span>  <span class="comment"># methods that's need to be private</span>
 </pre></div>
 </div>
 
@@ -1461,7 +1515,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n86" name="n86">86</a></span>  private <span class="symbol">:increment_views_amount</span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n89" name="n89">89</a></span>  private <span class="symbol">:increment_views_amount</span>,
 </pre></div>
 </div>
 
@@ -1477,7 +1531,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n87" name="n87">87</a></span>          <span class="symbol">:get_expenses_agency</span>, <span class="symbol">:create_list_expense</span>, <span class="symbol">:expenses_public_agency</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n90" name="n90">90</a></strong></span>          <span class="symbol">:get_expenses_agency</span>, <span class="symbol">:create_list_expense</span>, <span class="symbol">:expenses_public_agency</span>
 </pre></div>
 </div>
 
@@ -1493,7 +1547,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n88" name="n88">88</a></span>  <span class="comment"># private :increment_views_amount, :month_to_int</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n91" name="n91">91</a></span>  <span class="comment"># private :increment_views_amount, :month_to_int</span>
 </pre></div>
 </div>
 
@@ -1509,7 +1563,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n89" name="n89">89</a></span><span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n92" name="n92">92</a></span><span class="keyword">end</span>
 </pre></div>
 </div>
 

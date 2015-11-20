@@ -96,7 +96,7 @@
            
              <ul>
                
-                 <li>Score of 4.64 &raquo; flog</li>
+                 <li>Score of 12.84 &raquo; flog</li>
                
             </ul>
           
@@ -119,7 +119,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">sum_expense</span>(key, expense, sum_expeses)
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">int_to_month</span>(array)
 </pre></div>
 </div>
 
@@ -135,7 +135,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>    <span class="keyword">if</span> !sum_expeses[key]
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>    i = <span class="integer">0</span>
 </pre></div>
 </div>
 
@@ -151,7 +151,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>      sum_expeses[key] = expense.value
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>    <span class="keyword">while</span> i &lt; array.length
 </pre></div>
 </div>
 
@@ -167,7 +167,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span class="keyword">else</span>
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>      array_date = array[i][<span class="integer">0</span>].to_date
 </pre></div>
 </div>
 
@@ -183,7 +183,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>      sum_expeses[key] += expense.value
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>      array[i][<span class="integer">0</span>] = <span class="constant">MONTHNAMES_BR</span>[array_date.month]
 </pre></div>
 </div>
 
@@ -199,7 +199,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>      i += <span class="integer">1</span>
 </pre></div>
 </div>
 
@@ -215,7 +215,171 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>  <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>    <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>    <span class="keyword">return</span> array
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>  <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>Score of 4.64 &raquo; flog</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">sum_expense</span>(key, expense, sum_expeses)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>    <span class="keyword">if</span> !sum_expeses[key]
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>      sum_expeses[key] = expense.value
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>    <span class="keyword">else</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>      sum_expeses[key] += expense.value
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>    <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -235,7 +399,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>
 </pre></div>
 </div>
 
@@ -251,7 +415,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">create_date</span>(date ={<span class="key">from_month</span>: <span class="string"><span class="delimiter">'</span><span class="content">Janeiro</span><span class="delimiter">'</span></span>,<span class="key">end_month</span>: <span class="string"><span class="delimiter">'</span><span class="content">Dezembro</span><span class="delimiter">'</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">create_date</span>(date ={<span class="key">from_month</span>: <span class="string"><span class="delimiter">'</span><span class="content">Janeiro</span><span class="delimiter">'</span></span>,<span class="key">end_month</span>: <span class="string"><span class="delimiter">'</span><span class="content">Dezembro</span><span class="delimiter">'</span></span>,
 </pre></div>
 </div>
 
@@ -267,7 +431,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>    <span class="key">from_year</span>: <span class="integer">2009</span>,<span class="key">end_year</span>: <span class="integer">2020</span>})
+  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>    <span class="key">from_year</span>: <span class="integer">2009</span>,<span class="key">end_year</span>: <span class="integer">2020</span>})
 </pre></div>
 </div>
 
@@ -283,7 +447,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>    <span class="comment">#puts date</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>    <span class="comment">#puts date</span>
 </pre></div>
 </div>
 
@@ -299,7 +463,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>    first_month = month_to_int(date[<span class="symbol">:from_month</span>])
+  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>    first_month = month_to_int(date[<span class="symbol">:from_month</span>])
 </pre></div>
 </div>
 
@@ -315,7 +479,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>    last_month = month_to_int(date[<span class="symbol">:end_month</span>])
+  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>    last_month = month_to_int(date[<span class="symbol">:end_month</span>])
 </pre></div>
 </div>
 
@@ -331,7 +495,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>    first_date = <span class="constant">Date</span>.new(date[<span class="symbol">:from_year</span>].to_i, first_month, <span class="integer">1</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>    first_date = <span class="constant">Date</span>.new(date[<span class="symbol">:from_year</span>].to_i, first_month, <span class="integer">1</span>)
 </pre></div>
 </div>
 
@@ -347,7 +511,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    last_date = <span class="constant">Date</span>.new(date[<span class="symbol">:end_year</span>].to_i, last_month, <span class="integer">1</span>)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    last_date = <span class="constant">Date</span>.new(date[<span class="symbol">:end_year</span>].to_i, last_month, <span class="integer">1</span>)
 </pre></div>
 </div>
 
@@ -359,174 +523,6 @@
           <td valign='top'>
            
               &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>    last_date = last_day_date(last_date)
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>    date = { <span class="key">begin</span>: first_date, <span class="key">end</span>: last_date }
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>    <span class="comment"># puts date</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>    date
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>  <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-             <ul>
-               
-                 <li>Score of 1.00 &raquo; flog</li>
-               
-            </ul>
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">month_to_int</span>(month)
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>    <span class="constant">MONTHNAMES_BR</span>.index(month)
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>  <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-             <ul>
-               
-                 <li>Score of 12.17 &raquo; flog</li>
-               
-            </ul>
           
           </td>
           <td valign='top'>
@@ -547,7 +543,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">date_valid?</span>(begin_date, end_date)
+  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>    last_date = last_day_date(last_date)
 </pre></div>
 </div>
 
@@ -563,7 +559,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>    valid = <span class="predefined-constant">true</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>    date = { <span class="key">begin</span>: first_date, <span class="key">end</span>: last_date }
 </pre></div>
 </div>
 
@@ -579,7 +575,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>    <span class="comment"># puts date</span>
 </pre></div>
 </div>
 
@@ -595,7 +591,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>    <span class="keyword">if</span> (begin_date.year == end_date.year)
+  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>    date
 </pre></div>
 </div>
 
@@ -611,119 +607,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>      valid = <span class="predefined-constant">false</span> <span class="keyword">if</span> begin_date.month &gt; end_date.month
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>    <span class="keyword">elsif</span> begin_date.year &gt; end_date.year
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span>      valid = <span class="predefined-constant">false</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>    <span class="keyword">else</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>      valid = <span class="predefined-constant">true</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span>    <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n42" name="n42">42</a></span>    valid
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n43" name="n43">43</a></span>  <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -736,9 +620,125 @@
            
              <ul>
                
-                 <li>Score of 13.47 &raquo; flog</li>
+                 <li>Score of 1.00 &raquo; flog</li>
                
             </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">month_to_int</span>(month)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>    <span class="constant">MONTHNAMES_BR</span>.index(month)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>  <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>Score of 12.17 &raquo; flog</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n42" name="n42">42</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">date_valid?</span>(begin_date, end_date)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n43" name="n43">43</a></span>    valid = <span class="predefined-constant">true</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
           
           </td>
           <td valign='top'>
@@ -759,7 +759,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n45" name="n45">45</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">last_day_date</span>(date)
+  <div class="code"><pre><span class="line-numbers"><a href="#n45" name="n45">45</a></span>    <span class="keyword">if</span> (begin_date.year == end_date.year)
 </pre></div>
 </div>
 
@@ -775,7 +775,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n46" name="n46">46</a></span>    month = date.month
+  <div class="code"><pre><span class="line-numbers"><a href="#n46" name="n46">46</a></span>      valid = <span class="predefined-constant">false</span> <span class="keyword">if</span> begin_date.month &gt; end_date.month
 </pre></div>
 </div>
 
@@ -791,7 +791,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n47" name="n47">47</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n47" name="n47">47</a></span>    <span class="keyword">elsif</span> begin_date.year &gt; end_date.year
 </pre></div>
 </div>
 
@@ -807,7 +807,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n48" name="n48">48</a></span>    last_day = <span class="integer">0</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n48" name="n48">48</a></span>      valid = <span class="predefined-constant">false</span>
 </pre></div>
 </div>
 
@@ -823,7 +823,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n49" name="n49">49</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n49" name="n49">49</a></span>    <span class="keyword">else</span>
 </pre></div>
 </div>
 
@@ -839,7 +839,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>    <span class="keyword">if</span> month == <span class="integer">2</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>      valid = <span class="predefined-constant">true</span>
 </pre></div>
 </div>
 
@@ -855,7 +855,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n51" name="n51">51</a></span>      last_day = leap_year_day(date)
+  <div class="code"><pre><span class="line-numbers"><a href="#n51" name="n51">51</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -871,7 +871,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n52" name="n52">52</a></span>    <span class="keyword">elsif</span> (month.odd? &amp;&amp; month &lt;= <span class="integer">7</span>) || (month.even? &amp;&amp; month &gt;= <span class="integer">8</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n52" name="n52">52</a></span>    valid
 </pre></div>
 </div>
 
@@ -887,87 +887,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n53" name="n53">53</a></span>      last_day = <span class="integer">31</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n54" name="n54">54</a></span>    <span class="keyword">else</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n55" name="n55">55</a></span>      last_day = <span class="integer">30</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n56" name="n56">56</a></span>    <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n57" name="n57">57</a></span>    date.change(<span class="key">day</span>: last_day)
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n58" name="n58">58</a></span>  <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n53" name="n53">53</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -980,9 +900,89 @@
            
              <ul>
                
-                 <li>Score of 3.69 &raquo; flog</li>
+                 <li>Score of 13.47 &raquo; flog</li>
                
             </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n54" name="n54">54</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n55" name="n55">55</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">last_day_date</span>(date)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n56" name="n56">56</a></span>    month = date.month
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n57" name="n57">57</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n58" name="n58">58</a></span>    last_day = <span class="integer">0</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
           
           </td>
           <td valign='top'>
@@ -1003,7 +1003,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">leap_year_day</span>(date)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>    <span class="keyword">if</span> month == <span class="integer">2</span>
 </pre></div>
 </div>
 
@@ -1019,7 +1019,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n61" name="n61">61</a></span>    day = <span class="integer">0</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n61" name="n61">61</a></span>      last_day = leap_year_day(date)
 </pre></div>
 </div>
 
@@ -1035,7 +1035,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n62" name="n62">62</a></span>    <span class="keyword">if</span> date.leap?
+  <div class="code"><pre><span class="line-numbers"><a href="#n62" name="n62">62</a></span>    <span class="keyword">elsif</span> (month.odd? &amp;&amp; month &lt;= <span class="integer">7</span>) || (month.even? &amp;&amp; month &gt;= <span class="integer">8</span>)
 </pre></div>
 </div>
 
@@ -1051,7 +1051,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n63" name="n63">63</a></span>      day = <span class="integer">29</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n63" name="n63">63</a></span>      last_day = <span class="integer">31</span>
 </pre></div>
 </div>
 
@@ -1083,7 +1083,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n65" name="n65">65</a></span>      day = <span class="integer">28</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n65" name="n65">65</a></span>      last_day = <span class="integer">30</span>
 </pre></div>
 </div>
 
@@ -1115,7 +1115,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n67" name="n67">67</a></span>    day
+  <div class="code"><pre><span class="line-numbers"><a href="#n67" name="n67">67</a></span>    date.change(<span class="key">day</span>: last_day)
 </pre></div>
 </div>
 
@@ -1142,12 +1142,176 @@
         <tr>
           <td valign='top'>
            
+             <ul>
+               
+                 <li>Score of 3.69 &raquo; flog</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n69" name="n69">69</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
               &nbsp;
           
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n69" name="n69">69</a></span><span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n70" name="n70">70</a></strong></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">leap_year_day</span>(date)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n71" name="n71">71</a></span>    day = <span class="integer">0</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n72" name="n72">72</a></span>    <span class="keyword">if</span> date.leap?
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n73" name="n73">73</a></span>      day = <span class="integer">29</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n74" name="n74">74</a></span>    <span class="keyword">else</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n75" name="n75">75</a></span>      day = <span class="integer">28</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n76" name="n76">76</a></span>    <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n77" name="n77">77</a></span>    day
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n78" name="n78">78</a></span>  <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n79" name="n79">79</a></span><span class="keyword">end</span>
 </pre></div>
 </div>
 

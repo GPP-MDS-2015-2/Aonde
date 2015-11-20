@@ -64,15 +64,15 @@
            
              <ul>
                
+                 <li>Score of 10.83 &raquo; flog</li>
+               
+                 <li>Complexity 2 &raquo; saikuro</li>
+               
                  <li>DuplicateMethodCall - calls data[url_shared] 2 times &raquo; reek</li>
                
                  <li>DuplicateMethodCall - calls data[url_shared]["shares"] 2 times &raquo; reek</li>
                
                  <li>UtilityFunction - doesn't depend on instance state &raquo; reek</li>
-               
-                 <li>Score of 9.47 &raquo; flog</li>
-               
-                 <li>Complexity 2 &raquo; saikuro</li>
                
             </ul>
           
@@ -95,7 +95,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>                data = <span class="constant">Net</span>::<span class="constant">HTTP</span>.get(<span class="constant">URI</span>.parse(<span class="string"><span class="delimiter">&quot;</span><span class="content">http://graph.facebook.com/?ids=</span><span class="inline"><span class="inline-delimiter">#{</span><span class="constant">URI</span>.escape(url_shared)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>))
+  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>                <span class="comment">#url = URI.parse(&quot;http://graph.facebook.com/?ids=#{URI.escape(url_shared)}&quot;)</span>
 </pre></div>
 </div>
 
@@ -111,7 +111,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>            <span class="comment">#data = {'url_shared' =&gt; &quot;asdf&quot;, 'shares' =&gt; 1}</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>                <span class="comment">#puts url</span>
 </pre></div>
 </div>
 
@@ -127,7 +127,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>            data = <span class="constant">JSON</span>.parse(data)        
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>                <span class="comment">#data = Net::HTTP.get(url)</span>
 </pre></div>
 </div>
 
@@ -143,7 +143,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>            <span class="comment">#print(&quot;\n\n\n #{data} \n\n\n&quot;)</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>                data = <span class="constant">Net</span>::<span class="constant">HTTP</span>.get(<span class="constant">URI</span>.parse(<span class="string"><span class="delimiter">&quot;</span><span class="content">http://graph.facebook.com/?ids=</span><span class="inline"><span class="inline-delimiter">#{</span><span class="constant">URI</span>.escape(url_shared)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>))
 </pre></div>
 </div>
 
@@ -159,7 +159,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>            <span class="keyword">if</span> data[url_shared][<span class="string"><span class="delimiter">'</span><span class="content">shares</span><span class="delimiter">'</span></span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>            <span class="comment">#data = {'url_shared' =&gt; &quot;asdf&quot;, 'shares' =&gt; 1}</span>
 </pre></div>
 </div>
 
@@ -175,7 +175,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                    <span class="keyword">return</span> data[url_shared][<span class="string"><span class="delimiter">'</span><span class="content">shares</span><span class="delimiter">'</span></span>]
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            data = <span class="constant">JSON</span>.parse(data)        
 </pre></div>
 </div>
 
@@ -191,7 +191,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            <span class="comment">#         return data['shares']</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            <span class="comment">#print(&quot;\n\n\n #{data} \n\n\n&quot;)</span>
 </pre></div>
 </div>
 
@@ -207,7 +207,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="keyword">else</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="keyword">if</span> data[url_shared][<span class="string"><span class="delimiter">'</span><span class="content">shares</span><span class="delimiter">'</span></span>]
 </pre></div>
 </div>
 
@@ -223,7 +223,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>                    <span class="keyword">return</span> <span class="integer">0</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>                    <span class="keyword">return</span> data[url_shared][<span class="string"><span class="delimiter">'</span><span class="content">shares</span><span class="delimiter">'</span></span>]
 </pre></div>
 </div>
 
@@ -239,7 +239,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>            <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    <span class="keyword">return</span> data[<span class="string"><span class="delimiter">'</span><span class="content">shares</span><span class="delimiter">'</span></span>]
 </pre></div>
 </div>
 
@@ -255,7 +255,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="keyword">else</span>
 </pre></div>
 </div>
 
@@ -271,7 +271,55 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span><span class="keyword">end</span>        
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>                    <span class="keyword">return</span> <span class="integer">0</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>            <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span><span class="keyword">end</span>        
 </pre></div>
 </div>
 
