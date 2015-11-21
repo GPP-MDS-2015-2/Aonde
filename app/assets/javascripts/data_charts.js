@@ -43,10 +43,12 @@ function setChart(path,idChart,drawFunction){
 * @param idChart The id of field to drawn the chart (String)
 * @param drawnFunction Function drawn the chart
 */
-function obtainData(path,idChart,drawFunction){
+function obtainData(path,idChart,drawFunction,year,year_stop){
   loadinScreen(idChart);
   $.ajax({
       url: path,
+      method: 'GET',
+      data: {year: year},
       format: 'json',
       error: function(){
           console.error("Error to try connect with server");
@@ -54,7 +56,8 @@ function obtainData(path,idChart,drawFunction){
           $('#'+idChart+"."+CHART).append("Ops, nao obtivemos os dados para desenhar o gráfico");
       },
       success: function(data){
-        console.log(data);
+        console.debug(data);
+        
         if(isValidData(data) && isValidId(idChart)){
           console.info("Process of data received from controller");
           $('#'+idChart+"."+CHART).empty();
@@ -63,7 +66,12 @@ function obtainData(path,idChart,drawFunction){
           console.warn("Data received from controller or id of chart"
             +"has length == 0");
         }
-        
+
+        if ( year != year_stop ){
+          console.log(year);
+          console.log(year_stop);
+          obtainData(path,idChart,drawFunction,year+1,year_stop);
+        }
       }
       
   });
