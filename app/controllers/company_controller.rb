@@ -4,35 +4,20 @@
 class CompanyController < ApplicationController
   def show
     find_agencies(params[:id])
-    expenses_public_agency = Expense.where(public_agency_id: @public_agency.id)
-    array_company_expense = find_company(expenses_public_agency)
+    array_company_expense = find_company_and_expenses_array
+ 
     respond_to do |format|
       format.json { render json: array_company_expense}
     end
 
   end
 
-  def find_company(expenses_public_agency)
-    companies_expense = {}
+  def find_company_and_expenses_array
 
-    expenses_public_agency.each do |expense|
-      company = Company.where(id: expense.company_id)
-      test_add_expense(company, expense, companies_expense)
-    end
+    Expense.joins(:company)
+    .where(public_agency_id: @public_agency.id).select(:name)
+    .order('sum_value DESC').group(:name).sum(:value).to_a  
 
-    sort_by_expense(companies_expense)
-  end
-
-  # assert that company array is not empty
-  def test_add_expense(company, expense, companies_expense)
-    if !company.empty? && company.length == 1
-      name = company[0].name
-      HelperController.sum_expense(name, expense, companies_expense)
-    end
-  end
-
-  def sort_by_expense(companies_expense)
-    companies_expense.sort_by { |_name, expense| expense }
   end
 
   ######################################### View hiring incidence ######################
