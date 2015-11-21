@@ -3,7 +3,7 @@
 */
 
 // Define constant of key for dataExpenses (String)
-var TYPE = 'type';
+var TYPE = 'type_expense';
 var BUDGET = 'budget';
 var COMPANY = 'company';
 var PROGRAM = 'program';
@@ -12,10 +12,8 @@ var PROGRAM = 'program';
 var dataExpenses = {type: null, budget: null, company: null, program: null, agency: null};
 
 // Define constants of id for drawn charts (String)
-var PROGRAMCHART = 'program_chart';
-var COMPANYCHART = 'company_chart';
-var TYPECHART = 'type_expense_chart';
-var BUDGETCHART = 'budget_chart';
+var CHART = 'chart';
+var FILTER = 'filter';
 
 // Define constants of id for list
 var PROGRAMLIST = 'program_list';
@@ -31,7 +29,7 @@ function setChart(path,idChart,drawFunction){
     console.debug(path+" "+idChart);
 
     // Verify the chart in page (Object)
-    var hasChart = $('#'+idChart).highcharts();
+    var hasChart = $('#'+idChart+'.'+CHART).highcharts();
     if (!hasChart){
       console.info("The page has no chart draw");
       obtainData(path,idChart,drawFunction);
@@ -52,11 +50,14 @@ function obtainData(path,idChart,drawFunction){
       format: 'json',
       error: function(){
           console.error("Error to try connect with server");
+          $('#'+idChart+"."+CHART).empty();
+          $('#'+idChart+"."+CHART).append("Ops, nao obtivemos os dados para desenhar o gráfico");
       },
       success: function(data){
+        console.log(data);
         if(isValidData(data) && isValidId(idChart)){
           console.info("Process of data received from controller");
-          $('#'+idChart).empty();
+          $('#'+idChart+"."+CHART).empty();
           drawFunction(data);
         }else{ 
           console.warn("Data received from controller or id of chart"
@@ -115,8 +116,8 @@ function isValidId(idChart){
     // The valid id of the chart (Boolean)
     var validId = true;
     if (idChart != null && idChart != undefined && idChart.length){
-      if (idChart === PROGRAMCHART || idChart === COMPANYCHART || 
-        idChart === TYPECHART || idChart === BUDGETCHART){
+      if (idChart === PROGRAM || idChart === COMPANY || 
+        idChart === TYPE || idChart === BUDGET){
         console.info("The id is valid"+idChart);
       }else{
         console.warn("Invalid id of chart"+ idChart);
@@ -139,8 +140,8 @@ function loadinScreen(idChart){
   '</div><div class="circle-clipper right">'+
   '<div class="circle"></div>'+
   '</div></div></div> </center>'
-  $('#'+idChart).empty();
-  $('#'+idChart).append(node);
+  $('#'+idChart+'.'+CHART).empty();
+  $('#'+idChart+'.'+CHART).append(node);
 }
 /** Generate list and show list of elements in chart
 * @param idList add again in list chart (String)
@@ -167,6 +168,6 @@ function generateList(idList,nameElement,idChart) {
 */
 function addElementChart(nameElement,idChart){
   // Add point again in the list 
-  chart = $('#'+idChart).highcharts(); 
+  chart = $('#'+idChart+'.'+CHART).highcharts(); 
   chart.series[0].addPoint(removedPoints[nameElement]);
 }

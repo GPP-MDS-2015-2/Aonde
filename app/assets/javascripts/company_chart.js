@@ -1,5 +1,6 @@
 function drawCompany(dataCompany){
-  $('#'+COMPANYCHART).highcharts({
+  show_filter(COMPANY);
+  $('#'+COMPANY+'.'+CHART).highcharts({
   chart: {
       plotBackgroundColor: null,
       plotBorderWidth: 0,
@@ -42,7 +43,7 @@ function drawCompany(dataCompany){
         point: {
           events: {
             click: function(){
-              removePointToList(this,COMPANYLIST,COMPANYCHART);
+              removePointToList(this,COMPANYLIST,COMPANY);
             }
           }
         }

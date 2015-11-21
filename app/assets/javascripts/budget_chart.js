@@ -1,6 +1,6 @@
 function drawBudget(dataBudgetExpense){
 
-    $('#'+BUDGETCHART).highcharts({
+    $('#'+BUDGET+'.'+CHART).highcharts({
         chart: {
             zoomType: 'xy'
         },
@@ -71,11 +71,11 @@ function drawBudget(dataBudgetExpense){
             }
         }
     });
-    a = $('#'+BUDGETCHART).highcharts();
-    var max = Math.max(a.yAxis[0].dataMax,a.yAxis[1].dataMax);
-    var min = Math.min(a.yAxis[0].dataMin,a.yAxis[1].dataMin);
+    var chart = $('#'+BUDGET+"."+CHART).highcharts();
+    var max = Math.max(chart.yAxis[0].dataMax,chart.yAxis[1].dataMax);
+    var min = Math.min(chart.yAxis[0].dataMin,chart.yAxis[1].dataMin);
     console.info("The value of max("+max+") and min("+min+") of the chart");
-    a.yAxis[0].setExtremes(min,max);
-    a.yAxis[1].setExtremes(min,max);
+    chart.yAxis[0].setExtremes(min,max);
+    chart.yAxis[1].setExtremes(min,max);
 
 }
