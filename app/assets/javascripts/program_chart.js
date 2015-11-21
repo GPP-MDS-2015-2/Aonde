@@ -1,40 +1,13 @@
 
-var dataProgram;
-var removedProgram=[],inChartProgram = [];
-
-$("#listChange_1 ul li").click(function(){
-    contentRemove = $(this)[0].innerHTML;
-
-    var node = $(this);
-    console.log(contentRemove);
-    dataProgram.forEach(function(element){
-        console.log(removedProgram.indexOf(element) == -1);              
-        if ( contentRemove === element[0] ){
-            if( removedProgram.indexOf(element) == -1 ){
-                removedProgram.push(element);
-                inChartProgram.remove(inChartProgram.indexOf(element),1);
-                node.addClass("notinChart_1");
-                node.removeClass("inChart_1");
-            }else{
-                node.addClass("inChart_1");
-                node.removeClass("notinChart_1");
-                inChartProgram.push(element);
-                removedProgram.remove(removedProgram.indexOf(element),1);
-            }                
-        }
-    });
-    drawChart(inChartProgram);
-});
-
-
 /** Draw the chart in respective id with the options for type expenses
 * @param dataProgram Matrix (nx2) with all expenses by type with [name,value]
 */
 function drawProgram(dataProgram){
     console.log(dataProgram);
+    show_filter(PROGRAM);
     dataProgram.sort(function(a, b) {return b[1] - a[1]})
 
-    $('#'+PROGRAMCHART).highcharts({
+    $('#'+PROGRAM+'.'+CHART).highcharts({
         chart: {
             type: 'pyramid',
             marginRight: 400
@@ -55,7 +28,7 @@ function drawProgram(dataProgram){
                 point: {
                     events: {                        
                         click: function(){
-                            removePointToList(this,PROGRAMLIST,PROGRAMCHART);
+                            removePointToList(this,PROGRAMLIST,PROGRAM);
                         }
                     }
                 }

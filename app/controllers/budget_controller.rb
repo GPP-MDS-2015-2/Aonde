@@ -2,17 +2,19 @@ class BudgetController < ApplicationController
 
 	def show
   		find_public_agency
-        @list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", 2015, "Dezembro", 2015)
-        @expense_find = 1
+        list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", 2015, "Dezembro", 2015)
+        budget_month = []
       begin
        	budget_month = subtract_expenses_on_budget(@public_agency.id, 2015)
-        @list_budget_month
+        list_budget_month
       rescue Exception => error
         flash[:error] = error
-        @list_budget_month = []
-        @expense_find = 0
+        list_budget_month = []
       end
-    
+      dataBudget = {'expenses'=> list_expense_month,'budgets'=>budget_month}
+      respond_to do |format|
+		format.json {render json: dataBudget}
+      end
   	end
 
 	def filter

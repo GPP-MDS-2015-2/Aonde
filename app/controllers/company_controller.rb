@@ -5,9 +5,9 @@ class CompanyController < ApplicationController
   def show
     find_agencies(params[:id])
     expenses_public_agency = Expense.where(public_agency_id: @public_agency.id)
-    @array_company_expense = find_company(expenses_public_agency)
+    array_company_expense = find_company(expenses_public_agency)
     respond_to do |format|
-      format.json { render json: @array_company_expense}
+      format.json { render json: array_company_expense}
     end
 
   end
