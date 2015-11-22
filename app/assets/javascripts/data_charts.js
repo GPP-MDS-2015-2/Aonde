@@ -9,7 +9,7 @@ var COMPANY = 'company';
 var PROGRAM = 'program';
 
 // Contain all type of expenses of requisitions (Hash)
-var dataExpenses = {type: null, budget: null, company: null, program: null, agency: null};
+var dataExpenses = {type: {}, budget: {}, company: {}, program: {}, agency: {}};
 
 // Define constants of id for drawn charts (String)
 var CHART = 'chart';
@@ -31,53 +31,64 @@ function setChart(path,idChart,drawFunction){
     // Verify the chart in page (Object)
     var hasChart = $('#'+idChart+'.'+CHART).highcharts();
     if (!hasChart){
+      loadinScreen(idChart);
       console.info("The page has no chart draw");
-      obtainData(path,idChart,drawFunction);
+      obtainData(path,idChart,drawFunction,2015,2015);
+      
     }else{
         console.info("The chart is already draw");
     }   
 }
-
 /** Make the requisition to the controller and obtain the data of expenses
 * @param path The route to controller (String)
 * @param idChart The id of field to drawn the chart (String)
 * @param drawnFunction Function drawn the chart
 */
 function obtainData(path,idChart,drawFunction,year,year_stop){
-  loadinScreen(idChart);
-  $.ajax({
-      url: path,
-      method: 'GET',
-      data: {year: year},
-      format: 'json',
-      error: function(){
-          console.error("Error to try connect with server");
-          $('#'+idChart+"."+CHART).empty();
-          $('#'+idChart+"."+CHART).append("Ops, nao obtivemos os dados para desenhar o gráfico");
-      },
-      success: function(data){
-        console.debug(data);
+  if ( dataExpenses[idChart][year] == undefined ){
+    $.ajax({
+        url: path,
+        method: 'GET',
+        data: {year: year},
+        format: 'json',
+        error: function(){
+            console.error("Error to try connect with server");
+            $('#'+idChart+"."+CHART).empty();
+            $('#'+idChart+"."+CHART).append("Ops, nao obtivemos os dados para desenhar o gráfico");
+        },
+        success: function(data){
+          console.debug(data);
+          
+          if(isValidData(data) && isValidId(idChart)){
+            console.info("Process of data received from controller");
+            addData(year,idChart,data);
+            drawFunction(path,cloneObject(data));
+          }else{ 
+            console.warn("Data received from controller or id of chart"
+              +"has length == 0");
+          }
+          obtainNextYear(path,idChart,drawFunction,year,year_stop)
+        }
         
-        if(isValidData(data) && isValidId(idChart)){
-          console.info("Process of data received from controller");
-          $('#'+idChart+"."+CHART).empty();
-          drawFunction(data);
-        }else{ 
-          console.warn("Data received from controller or id of chart"
-            +"has length == 0");
-        }
+    });
+    console.info("Requisição ajax realizada");
+  }else {
+    drawFunction(path,cloneObject(dataExpenses[idChart][year]));
+    obtainNextYear(path,idChart,drawFunction,year,year_stop);
+  }
+}
+function obtainNextYear(path,idChart,drawFunction,year,year_stop){
 
-        if ( year != year_stop ){
-          console.log(year);
-          console.log(year_stop);
-          obtainData(path,idChart,drawFunction,year+1,year_stop);
-        }
-      }
-      
-  });
-  console.info("Requisição ajax realizada")
+  if ( year < year_stop ){
+    console.log(year);
+    console.log(year_stop);
+    obtainData(path,idChart,drawFunction,year+1,year_stop);
+  }
 }
 
+function addData(year,entity,data){
+  dataExpenses[entity][year] = data;
+}
 
 /** Verify if the data received from controllers is valid
 * @param data Data received from controller in determined data struct (Object)
