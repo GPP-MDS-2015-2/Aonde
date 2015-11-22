@@ -10,7 +10,7 @@ function show_filter(){
   dataExpenses.program = {'2015': e,'2014': f};
 }
 */
-function show_filter(idEntity){
+function showFilter(path,idEntity){
   sliderDiv = $('#'+idEntity+"."+FILTER);
   if ( !sliderDiv.hasClass('ui-slider') ){
 
@@ -21,18 +21,21 @@ function show_filter(idEntity){
       values: [2015,2015],
       slide: function( event, ui ) {        
           console.info("Change the slider")
-            var c = $("#"+idEntity+"."+CHART).highcharts();
-            console.log(c.series[0].points.lenght);
-            
-            d = c.series[0].points.length-1
-            
-            console.debug(d);
-            for (var j = 0; j <= d; j++){
-              c.series[0].points[0].remove();
-            }
-            obtainData('/public_agency/10/companies',idEntity,drawCompany,ui.values[0],ui.values[1])
+          clearChart(idEntity);
+          obtainData(path,idEntity,drawCompany,ui.values[0],ui.values[1])
         }
              
     });
+  }
+}
+function clearChart(idEntity){
+  var chart = $("#"+idEntity+"."+CHART).highcharts();
+  if ( chart != undefined && chart != null ){
+    sizePoints = chart.series[0].points.length;
+    
+    console.debug(sizePoints);
+    for (var j = 0; j < sizePoints; j++){
+      chart.series[0].points[0].remove();
+    }
   }
 }

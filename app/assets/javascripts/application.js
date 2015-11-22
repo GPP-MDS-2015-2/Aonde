@@ -102,3 +102,13 @@ function validSearch(){
   }
   return validSize;
 }
+
+function cloneObject(object){
+  var newObject;
+  if (object != undefined && object != null){
+    newObject = JSON.parse(JSON.stringify(object));
+  }else{
+    newObject = object;
+  }
+  return newObject;
+}
