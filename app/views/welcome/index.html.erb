@@ -44,7 +44,9 @@
            <textarea id="textarea1" class="materialize-textarea" length="500"<%= text_area_tag :text, params[:text]%></textarea>
            <label for="textarea1">Texto</label>
       </div>
-      <button><%=submit_tag "Enviar"%></button>
+      <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+        <i class="material-icons right">email</i>
+      </button>
     </form>
   </div>
   </div>
