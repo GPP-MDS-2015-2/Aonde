@@ -21,6 +21,16 @@ module HelperController
     end
   end
 
+  def self.find_expenses_entity(year = '2015',id,name_entity)
+    begin_year = Date.new(year.to_i,01,01)
+    end_year = Date.new(year.to_i,12,31)
+    Expense.joins(name_entity)
+            .where(public_agency_id: id,payment_date: begin_year..end_year)
+            .select(:name).order('sum_value DESC').group(:name)
+            .sum(:value).to_a
+
+  end
+
   def self.create_date(date ={from_month: 'Janeiro',end_month: 'Dezembro',
     from_year: 2009,end_year: 2020})
     #puts date

@@ -2,33 +2,18 @@
 # of user in the view
 class ProgramController < ApplicationController
   def show_programs
-    find_agencies(params[:id])
-    @all_programs = find_expenses(@public_agency.id)
+    #find_agencies(params[:id])
+
+    if  params[:year].nil? 
+      params[:year] = '2015'
+    end
+
+    all_programs = HelperController.find_expenses_entity(params[:year],params[:id],:program)
+    #puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n#{all_programs}\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
     respond_to do |format|
-      format.json { render json: @all_programs}
+      format.json { render json: all_programs}
     end
 
-  end
-
-  def find_expenses(public_agency_id)
-    expenses_public_agency = Expense.where(public_agency_id: public_agency_id)
-                             .select(:program_id, :value)
-    list_expenses = find_program(expenses_public_agency).to_a
-    list_expenses
-  end
-
-  def find_program(find_expenses_public_agency)
-    programs_expense = {}
-
-    find_expenses_public_agency.each do |expense|
-      # PROBLEMA AQUI
-      program = Program.where(id: expense.program_id).select(:name)
-      name = program[0].name
-      #puts name
-      HelperController.sum_expense(name, expense, programs_expense)
-      # puts "#{programs_expense}"
-    end
-    programs_expense
   end
 
  ###########################################################
