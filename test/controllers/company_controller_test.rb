@@ -36,24 +36,21 @@ class CompanyControllerTest < ActionController::TestCase
 
   end
   
+=begin
   test 'Route to method show and the result of the request' do
-    assert_routing 'public_agency/1/companies', controller: 'company', action: 'show', id: '1'
+   
     get :show, id: 1
     assert_response :success
     
   end
+=end
+
 
   test 'Route to method find and the result of the request' do
     assert_routing '/company/1', controller: 'company', action: 'find', id: '1'
     get :find, id: 1
     assert_response :success
   end 
-
-  test 'Find an array with companies and exepenses' do
-
-
-
-  end
 
   test 'should return an array with a few nodes' do
     hash = [{ 'nome1' => 1 }, { 'nome2' => 2 }, { 'nome3' => 3 },

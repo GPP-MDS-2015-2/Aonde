@@ -38,46 +38,6 @@ class ProgramControllerTest < ActionController::TestCase
 
   end
 
-
-  test 'Not empty list to find_expenses' do
-    not_empty_list = @controller.find_expenses(1)
-    assert_not_empty(not_empty_list)
-  end
-  test 'Size of list find_expenses' do
-    expenses_program = @controller.find_expenses(1)
-    # the public_agency_id = 1 has 2 programs with expenses
-
-    size_expected = 2
-    size_list = expenses_program.size
-    assert_equal(size_expected, size_list)
-  end
-  test 'Not exist id of Public Agency' do
-    PublicAgency.create(id: 2, name: 'PublicAgency2', views_amount: 1)
-    empty_list = @controller.find_expenses(2)
-    assert_empty(empty_list)
-  end
-
-  test 'Verify method find_program' do
-    expenses = []
-    Expense.all.each do |expense|
-      if expense.value.nil? || expense.public_agency_id.nil? ||
-         expense.program_id.nil?
-        # do nothing
-      else
-        expenses << expense
-      end
-    end
-    expense = @controller.find_program(expenses)
-    expense_expected = { 'Programa1' => 12, 'Programa2' => 14 }
-    assert_equal(expense_expected, expense)
-  end
-  test 'empty return to find_program' do
-    a = []
-    expense_empty = @controller.find_program(a)
-    assert_empty(expense_empty)
-  end
-  
-
   test 'Verify method show' do
 
     assert_routing '/public_agency/1/programs', controller: 'program',

@@ -3,27 +3,17 @@
 # or a graph with all public agencies make hires
 class CompanyController < ApplicationController
   def show
-    find_agencies(params[:id])
+    #find_agencies(params[:id])
     
     if  params[:year].nil? 
       params[:year] = '2015'
     end
     
-    array_company_expense = find_expenses_entity(params[:year],params[:id],:company)
+    array_company_expense = HelperController.find_expenses_entity(params[:year],params[:id],:company)
   
     respond_to do |format|
       format.json { render json: array_company_expense}
     end
-
-  end
-
-  def find_expenses_entity(year = '2015',id,name_entity)
-    begin_year = Date.new(year.to_i,01,01)
-    end_year = Date.new(year.to_i,12,31)
-    Expense.joins(name_entity)
-            .where(public_agency_id: id,payment_date: begin_year..end_year)
-            .select(:name).order('sum_value DESC').group(:name)
-            .sum(:value).to_a
 
   end
 
