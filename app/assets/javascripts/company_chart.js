@@ -62,6 +62,35 @@ function drawCompany(path,dataCompany){
   showFilter(path,COMPANY);
 }
 
-function updateChart(){
-  
+function updateChart(path,data){
+  var chart = $('#'+COMPANY+"."+CHART).highcharts();
+  if( chart != undefined){
+    if ( chart.series[0].points.length ){
+      chart.series[0].points.forEach(function(point){
+        var sizeData = data.length;
+        var i = 0;
+        var found = false;
+        do{
+          if (data[i][0] === point.name ){
+            found = true; 
+            console.debug("found"+data[i][0]+" == "+point.name);
+          }
+        }while( !found && ++i < sizeData );
+        if (found){
+          point.y+=data[i][1];
+          data.remove(i,1);
+        }      
+      });
+      data.forEach(function(element){
+        chart.series[0].addPoint(element);
+      });
+    }else{
+      data.forEach(function(element){
+        chart.series[0].addPoint(element);
+      });
+    }
+  }else{
+    console.error("No graph ploted");
+  } 
+  chart.render();
 }
