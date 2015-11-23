@@ -22,7 +22,7 @@ function showFilter(path,idEntity){
       slide: function( event, ui ) {        
           console.info("Change the slider")
           clearChart(idEntity);
-          obtainData(path,idEntity,drawCompany,ui.values[0],ui.values[1])
+          obtainData(path,idEntity,updateChart,ui.values[0],ui.values[1])
         }
              
     });
