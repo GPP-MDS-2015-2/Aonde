@@ -9,16 +9,13 @@ var COMPANY = 'company';
 var PROGRAM = 'program';
 
 // Contain all type of expenses of requisitions (Hash)
-var dataExpenses = {type: {}, budget: {}, company: {}, program: {}, agency: {}};
+var dataExpenses = {type_expense: {}, budget: {}, company: {}, program: {}, agency: {}};
+var removedPoints = {};
 
 // Define constants of id for drawn charts (String)
 var CHART = 'chart';
 var FILTER = 'filter';
-
-// Define constants of id for list
-var PROGRAMLIST = 'program_list';
-var COMPANYLIST = 'company_list';
-var TYPELIST = 'type_list';
+var LIST = 'list';
 
 /** Verify if the chart is drawn and if the data has the interval of data need
 * @param path The route to controller (String)
@@ -113,13 +110,12 @@ function isValidData(data){
 * @param idListRemoved add again in list chart (String)
 * @param idChart add again in list chart (String)
 */
-var removedPoints = {};
-function removePointToList(point,idListRemoved,idChart){
+function removePointToList(point,idChart){
   console.debug(point);
   // Use name for id
   
   removedPoints[point.options.name] = point.options;
-  generateList(idListRemoved,point.options.name,idChart);
+  generateList(point.options.name,idChart);
   point.remove();
 }
 
@@ -167,13 +163,13 @@ function loadinScreen(idChart){
 * @param nameElement name of element in list (String)
 * @param idChart add again in list chart (String)
 */
-function generateList(idList,nameElement,idChart) {
+function generateList(nameElement,idChart) {
       name = nameElement.replace(/[^\w]/gi,'_');
       // Build element to add in the list (String)
       newElement = "<a class='collection-item' id='"+name+"' style='cursor:n-resize'>"+
                     nameElement+"</a>";
-      console.info("Insert element "+ nameElement +"/"+name+" in the list " + idList);
-      $('#'+ idList).append(newElement);
+      console.info("Insert element "+ nameElement +"/"+name+" in the list " + idChart);
+      $('#'+ idChart+'.'+LIST).append(newElement);
 
       $("#"+name).click(function(){
         addElementChart(nameElement,idChart);

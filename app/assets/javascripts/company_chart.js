@@ -44,7 +44,7 @@ function drawCompany(path,dataCompany){
           point: {
             events: {
               click: function(){
-                removePointToList(this,COMPANYLIST,COMPANY);
+                removePointToList(this,COMPANY);
               }
             }
           }
@@ -59,10 +59,10 @@ function drawCompany(path,dataCompany){
 
     }]
   });
-  showFilter(path,COMPANY);
+  showFilter(path,COMPANY,updateCompany);
 }
 
-function updateChart(path,data){
+function updateCompany(path,data){
   var chart = $('#'+COMPANY+"."+CHART).highcharts();
   if( chart != undefined){
     if ( chart.series[0].points.length ){

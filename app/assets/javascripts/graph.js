@@ -1,4 +1,4 @@
-var COMPANIESPERPAGE = 150;
+var COMPANIESPERPAGE = 100;
 var nodes = new vis.DataSet();
 var edges = new vis.DataSet();
 var companies;
