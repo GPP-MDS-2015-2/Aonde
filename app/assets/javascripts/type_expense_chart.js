@@ -1,9 +1,8 @@
 /** Draw the chart in respective id with the options for type expenses
 * @param dataTypeExpenses Matrix (nx2) with all expenses by type with [type,value]
 */
-function drawTypeExpense(dataTypeExpenses){
+function drawTypeExpense(path,dataTypeExpenses){
     console.debug(dataTypeExpenses);
-    show_filter(TYPE);
     $('#'+TYPE+'.'+CHART).highcharts({
         colorAxis: {
             minColor: '#FFFFFF',
@@ -23,11 +22,15 @@ function drawTypeExpense(dataTypeExpenses){
                 point:{
                     events:{
                         click: function(){
-                            removePointToList(this,TYPELIST,TYPE);
+                            removePointToList(this,TYPE);
                         }
                     }
                 }
             }
         }
     });
+    showFilter(path,TYPE,updateType);
+}
+function updateType(path,data){
+    console.info("Update chart");
 }

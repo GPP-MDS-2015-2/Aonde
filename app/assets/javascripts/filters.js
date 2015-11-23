@@ -10,10 +10,9 @@ function show_filter(){
   dataExpenses.program = {'2015': e,'2014': f};
 }
 */
-function showFilter(path,idEntity){
+function showFilter(path,idEntity,updateChart){
   sliderDiv = $('#'+idEntity+"."+FILTER);
   if ( !sliderDiv.hasClass('ui-slider') ){
-
     sliderDiv.slider({
       range: true,
       min: 2011,
@@ -29,6 +28,11 @@ function showFilter(path,idEntity){
   }
 }
 function clearChart(idEntity){
+  // Clear list removeds
+  removedPoints = {};
+  $('#'+idEntity+'.'+LIST).empty();
+
+  // Remove points
   var chart = $("#"+idEntity+"."+CHART).highcharts();
   if ( chart != undefined && chart != null ){
     sizePoints = chart.series[0].points.length;
