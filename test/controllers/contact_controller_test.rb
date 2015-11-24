@@ -17,13 +17,6 @@ class ContactControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'Should not have all params' do
-    create_fake_web
-    assert_raise(Exception) do
-      @controller.send_simple_message
-    end
-  end
-
   def create_fake_web
     url = create_url('teste@email.com', 'contato@aondebrasil.com', 'Teste',
                      'Teste')
