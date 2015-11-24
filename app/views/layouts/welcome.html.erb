@@ -13,6 +13,29 @@
 		<%= javascript_include_tag 'application' %>
 	</head>
 	<body>
+		<!--This part is to menu-->
+		<div id="content_menu">
+		  <div class="container" style="width:auto;height:60px;">
+		    <div id="menu_index">
+		      <ul>
+		        <li class='active'><%= link_to '(Imagem) AondÊ', root_path %></li>
+		        <li><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
+		        <li><%= link_to 'Gasto por Função', functions_path %></li>
+		<!--Search field-->
+		        <li>
+		          <form id='search_bar' name='search' onsubmit="return validSearch()" action="<%= search_path %>" style="width:300px; height:60px; margin-left: 52%;">
+		            <div class="input-field" style=" width:270px; margin-right:auto;">
+		              <i class="material-icons prefix">search</i>
+		              <input name="search" type="text" autocomplete="off" required<%= text_field_tag :search, params[:search]%>
+		              <label for="icon_prefix">Pesquisar...</label>
+		            </div>
+		            </div>
+		          </form> 
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</div>
 		<%=yield%>
 	</body>
 </html>

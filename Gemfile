@@ -36,7 +36,8 @@ end
 
 #Gem for test the connection with fake page web
 gem "fakeweb", "~> 1.3"
-
+#Gem to create a DSN
+gem 'rest-client'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

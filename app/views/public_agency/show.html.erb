@@ -5,17 +5,52 @@
   <h1 style="padding-top: 30px;"><%= link_to @superior_public_agency.name.downcase.split.map(&:capitalize).join(' '), superior_path(@superior_public_agency) %><span id="surprise"><%= @public_agency.name.downcase.capitalize %></span></h1>
 </header>
 
-<!-- create the tabs and render the informations of the public agency 
-<div class = 'container-tabs'>
-  <ul class="tabs">
-    <li class="tab-link" data-tab="tab-1" current><%= link_to "Gastos do Órgão",public_agency_path%></li>
-    <li class="tab-link" data-tab="tab-2"><%= link_to "Empresas", companies_path %></li>
-        <li class="tab-link" data-tab="tab-3"><%= link_to "Programas", programs_path %></li>
-    <li class="tab-link" data-tab="tab-4"><%= link_to "Tipos de Despesas", type_expense_path %></li>
-    <li class="tab-link" data-tab="tab-5"><%= link_to "Orçamento", budget_path %></li>
-  </ul>
-</div>-->
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <script type="text/javascript">
+function aa(){
+  var c = $("#"+PROGRAMCHART).highcharts();
+  d = c.series[0].points;
+  e = []
+  d.forEach(function(element){ e.push(element.options); });
+  //d.forEach(function(e){ f.push(e.options) });
+  f = e.clone();
+  dataExpenses.program = {'2015': e,'2014': f};
+
+}
+function a(){
+  $('#la').slider({
+      range: true,
+      min: 2011,
+      max: 2015,
+      values: [2014,2015],
+      slide: function( event, ui ) {        
+          
+            var c = $("#"+PROGRAMCHART).highcharts();
+            console.log(c.series[0].points.lenght);
+            
+            d = c.series[0].points.length-1
+            
+            for (var j = 0; j < d;j++){
+              console.log(j);
+              c.series[0].points[0].remove();
+            }
+          for (var i =ui.values[0];i<=ui.values[1];i++){
+            console.debug("To lo looop"+i);
+            console.log(dataExpenses);
+           
+            if (i in dataExpenses.program){              
+              dataExpenses.program[i].forEach(function(element){c.series[0].addPoint(element)});
+            }else{
+              console.log("ha");
+            }
+        }
+        }
+        
+      
+    });
+}
 var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-green','waves-teal']
   $('#surprise').dblclick(function(){
       $('#haha').show();
@@ -29,7 +64,7 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
     $('#haha').addClass(WAVES[count%7]);
   }
 </script>
-
+<div id="la" style="width: 50%;"></div>
 <div class="container">
   <button id='haha' class='btn waves-effect' onclick="haha()" style='background: white; color:black; width:200px; height: 50px; display: none;'>Surpreenda-me</button>
 </div>
