@@ -14,12 +14,28 @@ class PublicAgencyController < ApplicationController
 def show
     find_agencies(params[:id])
     increment_views_amount(@public_agency)
-    expenses_public_agency = get_expenses_agency(@public_agency.id)
-    expenses_month = expenses_public_agency[:total_date]
+  end
+  def agency_chart
+    if !params[:year]
+      params[:year] = '2015'
+    end
+    expenses_public_agency = expenses_year(params[:id].to_i,params[:year]).to_a
+    list_expenses = change_type_list_expenses(expenses_public_agency)
+    respond_to do |format|
+      format.json {render json: list_expenses}
+    end
 
-    @list_expenses = change_type_list_expenses(expenses_month)
   end
 
+  def expenses_year(id_public_agency,year)
+
+    begin_date = Date.new(year.to_i,01,01)
+    end_date = Date.new(year.to_i,12,31)
+    expense_year = Expense.where(public_agency_id: id_public_agency,
+                                  payment_date: begin_date..end_date)
+                          .group('MONTH(payment_date)').sum(:value)
+    return expense_year
+  end
   def change_type_list_expenses(expenses_month)
     HelperController.int_to_month(expenses_month)
     temporary_expense = { '2015'=> expenses_month.to_h }
