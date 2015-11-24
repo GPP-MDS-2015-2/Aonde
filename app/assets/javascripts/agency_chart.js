@@ -29,9 +29,11 @@
                 text: 'Gastos dos Órgãos Publicos'
             }
         });
-        console.log("hahah")
+        showFilter(path,AGENCY,updateAgency);
     }
-
+function updateAgency(path,data){
+    
+}
   /** Method which process the data to draw the chart
     * @params data The expenses of public agency (Object)
     * @return points The expense processed for chart(Array)

@@ -4,11 +4,9 @@ module HelperController
   MONTHNAMES_BR = [nil] + %w(Janeiro Fevereiro Março Abril Maio Junho
                              Julho Agosto Setembro Outubro Novembro Dezembro)
   def self.int_to_month(array)
-    i = 0
-    while i < array.length
-      array_date = array[i][0].to_date
-      array[i][0] = MONTHNAMES_BR[array_date.month]
-      i += 1
+    
+    array.each do |month|
+      month[0] = MONTHNAMES_BR[month[0]]
     end
     return array
   end
