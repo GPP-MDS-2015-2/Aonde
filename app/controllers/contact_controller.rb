@@ -15,7 +15,7 @@ class ContactController < ApplicationController
                       text: text
       redirect_to root_path
     else
-      fail 'Campos vazios'
+      puts 'Campos vazios'
     end
   end
 end
