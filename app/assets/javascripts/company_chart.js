@@ -65,7 +65,7 @@ function drawCompany(path,dataCompany){
 function updateCompany(path,data){
   var chart = $('#'+COMPANY+"."+CHART).highcharts();
   if( chart != undefined){
-    if ( chart.series[0].points.length ){
+    if ( chart.series[0].points.length && data.length){
       chart.series[0].points.forEach(function(point){
         var sizeData = data.length;
         var i = 0;

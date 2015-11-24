@@ -47,13 +47,13 @@ function drawProgram(path,dataProgram){
 function updateProgram(path,data){
   var chart = $('#'+PROGRAM+"."+CHART).highcharts();
   if( chart != undefined){
-    if ( chart.series[0].points.length ){
+    if ( chart.series[0].points.length && data.length){
       chart.series[0].points.forEach(function(point){
         var sizeData = data.length;
         var i = 0;
         var found = false;
         do{
-          if (data[i][0] === point.name ){
+          if ( data[i][0] === point.name ){
             found = true; 
             console.debug("found"+data[i][0]+" == "+point.name);
           }
