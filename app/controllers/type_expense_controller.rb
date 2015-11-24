@@ -6,9 +6,12 @@ class TypeExpenseController < ApplicationController
   def show
 
     find_agencies(params[:id])
-    @data_type_expense = get_expense_by_type(@public_agency.id)
+    if !params[:year]
+      params[:year] = '2015'
+    end
+    data_type_expense = get_expense_by_type(params[:id], params[:year])
     respond_to do |format|
-      format.json { render json: @data_type_expense }
+      format.json { render json: data_type_expense }
     end
     
   end
@@ -34,21 +37,20 @@ class TypeExpenseController < ApplicationController
 
   end
   
-  def get_expense_by_type(id_public_agency, year = "Todos", month = "Todos")
-    list_type_expenses = []     
-    types_expense = TypeExpense.all
+  def get_expense_by_type(id_public_agency, year = '2015')
+
+    all_expenses = HelperController
+                  .find_expenses_entity(year,id_public_agency,
+                                        :type_expense,:description)
+
+    list_type_expenses = []
     total_expense = 0
-    types_expense.each do |type|
-      total_expense_by_type = find_expenses(id_public_agency,type.id,year,month)
-      dictionary_expense = create_dictionary(total_expense_by_type,type)
-      if not dictionary_expense.empty?
-        total_expense += total_expense_by_type
-        list_type_expenses << dictionary_expense
-      else
-        # Do nothing
-      end
+    all_expenses.each do |type_expense|
+      list_type_expenses << {name: type_expense[0], value: type_expense[1]}
+      total_expense += type_expense[1]
+      #puts "aqui"
     end
-    define_color(total_expense,list_type_expenses)
+    define_color(total_expense,list_type_expenses)  
     return list_type_expenses
   end
 
