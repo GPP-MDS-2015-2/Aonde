@@ -30,11 +30,12 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
 <div id="contencao_outros">
     <ul class="collapsible popout" data-collapsible="accordion">
       <li>
-        <div class='collapsible-header' style='background:#FF8F2F;' ><i class="material-icons">money_off</i>Gastos</div>
+        <div class='collapsible-header' style='background:#FF8F2F;' onclick='setChart("<%= public_agency_chart_path %>",AGENCY,drawAgency)'><i class="material-icons">money_off</i>Gastos</div>
         <div class='collapsible-body'>
-          <div id="public_agency_chart" ><!--style="height:auto; margin-right:auto;  margin-left:auto;"> -->
+          <div class="filter" id="public_agency"></div>
+          <div class="chart" id="public_agency" ><!--style="height:auto; margin-right:auto;  margin-left:auto;"> -->
             <div class="z-depth-3"><!-- style="width:auto; margin-right:auto;  margin-left:auto;">-->
-                <%= render 'chart_expenses' %>
+                
             </div>
             <center>
               <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:980px; margin-top:20px;">Filtragem</a>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "public_agency/list" => "public_agency#index"
   
   get "public_agency/:id", to: "public_agency#show", as: 'public_agency'
+  get "public_agency/:id/chart",to: "public_agency#agency_chart", as: 'public_agency_chart', format: :json
 
   get "public_agency/:id/list_chart" ,to: "public_agency#filter_chart", as: "filter"
   

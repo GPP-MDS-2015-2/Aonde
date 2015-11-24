@@ -7,9 +7,10 @@ var TYPE = 'type_expense';
 var BUDGET = 'budget';
 var COMPANY = 'company';
 var PROGRAM = 'program';
+var AGENCY = 'public_agency';
 
 // Contain all type of expenses of requisitions (Hash)
-var dataExpenses = {type_expense: {}, budget: {}, company: {}, program: {}, agency: {}};
+var dataExpenses = {type_expense: {}, budget: {}, company: {}, program: {}, public_agency: {}};
 var removedPoints = {};
 
 // Define constants of id for drawn charts (String)
@@ -125,14 +126,14 @@ function removePointToList(point,idChart){
 */
 function isValidId(idChart){
 
-    console.debug("Data in method processData:");
+    console.debug("id in method processData:");
     console.debug(idChart);
 
     // The valid id of the chart (Boolean)
     var validId = true;
     if (idChart != null && idChart != undefined && idChart.length){
       if (idChart === PROGRAM || idChart === COMPANY || 
-        idChart === TYPE || idChart === BUDGET){
+        idChart === TYPE || idChart === BUDGET || idChart === AGENCY){
         console.info("The id is valid"+idChart);
       }else{
         console.warn("Invalid id of chart"+ idChart);

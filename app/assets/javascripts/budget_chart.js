@@ -1,5 +1,5 @@
-function drawBudget(dataBudgetExpense){
-
+function drawBudget(path,dataBudgetExpense){
+console.debug(dataBudgetExpense);
     $('#'+BUDGET+'.'+CHART).highcharts({
         chart: {
             zoomType: 'xy'
