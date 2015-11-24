@@ -26,7 +26,7 @@ class ContactControllerTest < ActionController::TestCase
   end
 
   def create_url(_from, _to, _subject, _text)
-    url = 'https://api:key-a62565e9b90e81656f70602e3b4d1cae'\
+    url = 'https://api:'+ Rails.application.secrets.secret_mailgun_api +
     '@api.mailgun.net/v3/aondebrasil.com/messages'
     url
   end
