@@ -9,7 +9,7 @@ class CompanyController < ApplicationController
       params[:year] = '2015'
     end
     
-    array_company_expense = HelperController.find_expenses_entity(params[:year],params[:id],:company)
+    array_company_expense = HelperController.find_expenses_entity(params[:year],params[:id],:company,:name)
   
     respond_to do |format|
       format.json { render json: array_company_expense}

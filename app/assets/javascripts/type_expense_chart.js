@@ -31,8 +31,10 @@ function drawTypeExpense(path,dataTypeExpenses){
     });
     showFilter(path,TYPE,updateType);
 }
-function updateColor(value,totalValue){
-    return {value: value, colorValue: value*100/totalValue};
+function updateColor(points,totalValue){
+    points.forEach(function(point){
+        point.update({colorValue: point.value*100/totalValue});
+    });
 }
 function updateType(path,data){
     console.info("Update chart");
@@ -50,7 +52,7 @@ function updateType(path,data){
                     }
                 }while(!found && ++i<sizeData);
                 if(found){
-                    element.update(updateColor(element.value+data[i]['value'],chart.series[0].tree.val));
+                    element.update({value: element.value+data[i]['value']});
                     data.remove(i,1);
                 }                
             });
@@ -62,5 +64,6 @@ function updateType(path,data){
                 chart.series[0].addPoint(element);
             });
         }
+    updateColor(chart.series[0].points,chart.series[0].tree.val);
     }
 }
