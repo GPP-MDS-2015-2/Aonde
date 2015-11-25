@@ -18,6 +18,8 @@ var CHART = 'chart';
 var FILTER = 'filter';
 var LIST = 'list';
 
+var LIMITCOMPANY = 100;
+
 /** Verify if the chart is drawn and if the data has the interval of data need
 * @param path The route to controller (String)
 * @param idChart The id of field to drawn the chart (String)

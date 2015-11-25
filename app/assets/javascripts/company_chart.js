@@ -1,6 +1,6 @@
 function drawCompany(path,dataCompany){
   $('#'+COMPANY+"."+CHART).empty();
-
+  dataCompany = preProcess(dataCompany);
   $('#'+COMPANY+'.'+CHART).highcharts({
     chart: {
         plotBackgroundColor: null,
@@ -93,4 +93,30 @@ function updateCompany(path,data){
     console.error("No graph ploted");
   } 
   chart.render();
+}
+
+function preProcess(data){
+  console.debug(data);
+  newData = []
+  var numberCompanies = 0;
+  var sizeData = data.length;
+  while(numberCompanies < sizeData && numberCompanies < LIMITCOMPANY){
+    console.debug(data[numberCompanies]);
+    console.debug(numberCompanies);
+    
+    newData.push(data[numberCompanies]);
+    
+    numberCompanies++;
+  }
+
+  if(sizeData!=numberCompanies){
+    outros = ["Outras empresas",0];
+    while(sizeData > numberCompanies){
+      outros[1] += data[numberCompanies][1];
+      numberCompanies++;
+    }
+    newData.push(outros);
+  }
+  console.debug(newData);
+  return newData;
 }
