@@ -18,10 +18,12 @@ function showFilter(path,idEntity,updateChart){
       min: 2011,
       max: 2015,
       values: [2015,2015],
-      slide: function( event, ui ) {        
+      /*slide: function( event, ui ) {        
           console.info("Change the slider")
+        },*/
+        stop: function(event,ui){
           if (idEntity!=AGENCY){
-            clearChart(idEntity);
+            clearChart(idEntity,0);
           }else{
             console.debug(AGENCY);
             clearAgency();
@@ -29,10 +31,31 @@ function showFilter(path,idEntity,updateChart){
           }
           obtainData(path,idEntity,updateChart,ui.values[0],ui.values[1])
         }
-             
     });
   }
 }
+
+function budgetFilter(path,idEntity,updateChart){
+  sliderDiv = $('#'+idEntity+"."+FILTER);
+  if ( !sliderDiv.hasClass('ui-slider') ){
+    sliderDiv.slider({
+      range: false,
+      min: 2011,
+      max: 2015,
+      value: 2015,
+      /*slide: function( event, ui ) {        
+          console.info("Change the slider")
+        },*/
+        stop: function(event,ui){
+          console.debug(ui);
+          clearChart(idEntity,0);
+          clearChart(idEntity,1);
+          obtainData(path,idEntity,drawBudget,ui.value,ui.value);
+        }
+    });
+  }
+}
+
 function clearAgency(){
   var chart = $('#'+AGENCY+'.'+CHART).highcharts();
   var size = chart.series[0].points.length;
@@ -51,7 +74,7 @@ function clearAgency(){
     chart.series[0].points[0].remove();
   }
 }
-function clearChart(idEntity){
+function clearChart(idEntity,series){
   // Clear list removeds
   removedPoints = {};
   $('#'+idEntity+'.'+LIST).empty();

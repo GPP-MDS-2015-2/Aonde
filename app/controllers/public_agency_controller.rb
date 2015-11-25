@@ -19,8 +19,8 @@ def show
     if !params[:year]
       params[:year] = '2015'
     end
-    expenses_public_agency = expenses_year(params[:id].to_i,params[:year]).to_a
-    list_expenses = change_type_list_expenses(expenses_public_agency)
+    expenses_public_agency = expenses_year(params[:id].to_i,params[:year])
+    list_expenses = change_type_list_expenses(expenses_public_agency,params[:year])
     respond_to do |format|
       format.json {render json: list_expenses}
     end
@@ -36,10 +36,10 @@ def show
                           .group('MONTH(payment_date)').sum(:value)
     return expense_year
   end
-  def change_type_list_expenses(expenses_month)
+  def change_type_list_expenses(expenses_month, year)
     HelperController.int_to_month(expenses_month)
-    temporary_expense = { '2015'=> expenses_month.to_h }
-    expenses_month = temporary_expense.to_json
+    temporary_expense = { year => expenses_month }
+    expenses_month = temporary_expense
     expenses_month
   end
 

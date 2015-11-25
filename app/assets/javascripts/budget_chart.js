@@ -1,5 +1,5 @@
 function drawBudget(path,dataBudgetExpense){
-console.debug(dataBudgetExpense);
+    console.debug(dataBudgetExpense);
     $('#'+BUDGET+'.'+CHART).highcharts({
         chart: {
             zoomType: 'xy'
@@ -77,5 +77,19 @@ console.debug(dataBudgetExpense);
     console.info("The value of max("+max+") and min("+min+") of the chart");
     chart.yAxis[0].setExtremes(min,max);
     chart.yAxis[1].setExtremes(min,max);
+    budgetFilter(path,BUDGET,updateBudget);
+}
 
+
+function updateBudget(path,data){
+
+    //chart.addSeries({type: 'column',name: 'Gastos',data: dataExpenses.budget[2015]['expenses'] });
+    console.log(data);
+    var chart = $('#'+BUDGET+'.'+CHART).highcharts();
+    data['expenses'].forEach(function(expense){
+        chart.series[0].addPoint(expense);
+    });
+    data['budgets'].forEach(function(budget){
+        chart.series[1].addPoint(budget);
+    });
 }

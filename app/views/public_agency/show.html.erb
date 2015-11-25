@@ -108,10 +108,17 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
       <p></p>
       <li>
           <div class="collapsible-header" style="background:#FF8F2F;" onclick='setChart("<%= budget_path %>",BUDGET,drawBudget)'><!--<i class="material-icons">assignment_late</i>--><i class="material-icons">attach_money</i>Orcamento</div>
-          <div class="collapsible-body"><div class="chart" id="budget"></div>
-              <center>
-                <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:1080px; margin-bottom:15px;">Filtragem</a>
-              </center>
+          <div class="collapsible-body">
+            <div class="filter" id="budget"></div>
+            <div class="chart" id="budget"></div>
+            <div class="col s6 m5">
+              <div class="card-panel orange" style="margin:10px;">         
+                <span class="white-text">
+                  <b>Descrição do gráfico:</b>
+                  Eu sou outra descrição de gráfico
+                </span>
+              </div>
+           </div>
           </div>
       </li>
     </ul>
