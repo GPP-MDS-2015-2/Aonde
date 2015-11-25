@@ -3,12 +3,11 @@
 module HelperController
   MONTHNAMES_BR = [nil] + %w(Janeiro Fevereiro Março Abril Maio Junho
                              Julho Agosto Setembro Outubro Novembro Dezembro)
-  def self.int_to_month(array)
+  def self.int_to_month(expense_month)
     
-    array.each do |month|
-      month[0] = MONTHNAMES_BR[month[0]]
+    expense_month.transform_keys! do |month|
+      MONTHNAMES_BR[month]
     end
-    return array
   end
 
   def self.sum_expense(key, expense, sum_expeses)

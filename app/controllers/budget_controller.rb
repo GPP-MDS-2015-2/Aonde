@@ -1,15 +1,18 @@
 class BudgetController < ApplicationController
 
 	def show
-  		find_public_agency
-        list_expense_month = get_list_expenses_by_period(@public_agency.id, "Janeiro", 2015, "Dezembro", 2015)
+#  		find_public_agency
+		if params[:year]
+			params[:year]=2015
+		end
+        list_expense_month = get_list_expenses_by_period(params[:id], "Janeiro", params[:year], "Dezembro", 2015)
         budget_month = []
       begin
-       	budget_month = subtract_expenses_on_budget(@public_agency.id, 2015)
+       	budget_month = subtract_expenses_on_budget(params[:id], params[:year])
         list_budget_month
       rescue Exception => error
-        flash[:error] = error
-        list_budget_month = []
+        logger.error "#{error}"
+		list_budget_month = []
       end
       dataBudget = {'expenses'=> list_expense_month,'budgets'=>budget_month}
       respond_to do |format|
@@ -56,12 +59,18 @@ class BudgetController < ApplicationController
 
 	def get_list_expenses_by_period(id_public_agency,first_month="Janeiro",first_year=0000,last_month="Dezembro",last_year=9999)
 
-		get_total_expense(id_public_agency,first_month,first_year,last_month,last_year)
+		begin_date = Date.new(first_year,01,01)
+		end_date = Date.new(first_year,12,31)
+		
 		#return the hash with expenses like a array
-	  	expense_by_month = transform_hash_to_array(@new_total_expense_per_date)
-	  	expense_by_month.sort_by! {|expense_month| Date.parse(expense_month[0])}
+	  	expense_by_month = Expense.where(public_agency_id: id_public_agency,
+	  									payment_date: begin_date..end_date)
+	  								.order('MONTH(payment_date)').group('MONTH(payment_date)')
+	  								.sum(:value)
+	  	HelperController.int_to_month(expense_by_month)
+	  	expense_by_month = expense_by_month.to_a
+	  	logger.debug "#{expense_by_month}"
 	  	return expense_by_month
-
 	end	
 
 	def get_total_expense(id_public_agency,first_month,first_year,last_month,last_year)
@@ -204,18 +213,20 @@ def filter_chart_budget
 	     	if !expense.empty?
   				budget_array = create_budget_array(expense ,budgets, year)
   			end
-	    rescue 
-	    	raise "Não foi possível obter o orçamento do ano #{year} do Órgão Público desejado"
+	    rescue Exception => error
+	    	raise "Não foi possível obter o orçamento do ano #{year} do Órgão Público desejado\n#{error}"
 		end
     	budget_array
 	end
 	
     def create_budget_array(expenses, budgets, year)
+		puts year
+		puts budgets
 		budget_array = []
 		budget = budgets[0]
 		#puts "\n#{expenses}\n"
 		if (budget['year']+1) == year
-			for i in 0..11	
+			for i in 0..11
 				value = expenses[i][1]
 				budget["value"] -= value
 				budget_array << budget['value']

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def owl_zueira
     logger.info "  ,,,\n {0,0}\n./) )\n==\"=\"=="
-    sleep(1)
+    #sleep(1)
   end
 
   #create a hash to convert a name of month to int
