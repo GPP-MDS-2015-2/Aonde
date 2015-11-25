@@ -19,3 +19,6 @@
 # SSH private key, used by Travis w/ Capistrano
 # We do not have to hide the public key... :)
 deploy_id_rsa
+
+# Env vars
+config/env_vars.rb
