@@ -20,11 +20,35 @@ function showFilter(path,idEntity,updateChart){
       values: [2015,2015],
       slide: function( event, ui ) {        
           console.info("Change the slider")
-          clearChart(idEntity);
+          if (idEntity!=AGENCY){
+            clearChart(idEntity);
+          }else{
+            console.debug(AGENCY);
+            clearAgency();
+            console.debug(AGENCY);
+          }
           obtainData(path,idEntity,updateChart,ui.values[0],ui.values[1])
         }
              
     });
+  }
+}
+function clearAgency(){
+  var chart = $('#'+AGENCY+'.'+CHART).highcharts();
+  var size = chart.series[0].points.length;
+  var superPoint = 0;
+  console.log("ha");
+  for (var i = 0; i < size; i++){
+    if (chart.series[0].points[superPoint].id.contains('_')){
+        chart.series[0].points[superPoint].remove();
+    }else{
+      superPoint++;
+    }
+  }
+  console.log("ha");
+  var size = chart.series[0].points.length;
+  for(var i =0; i<size; i++){
+    chart.series[0].points[0].remove();
   }
 }
 function clearChart(idEntity){

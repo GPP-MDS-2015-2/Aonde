@@ -32,15 +32,19 @@
         showFilter(path,AGENCY,updateAgency);
     }
 function updateAgency(path,data){
-    
+    points = processData(data);
+    sizePoint = points.length;
+    var chart = $('#'+AGENCY+'.'+CHART).highcharts();
+    for (var i = sizePoint-1; i>=0; i--){
+        chart.series[0].addPoint(points[i]);
+    }
 }
   /** Method which process the data to draw the chart
     * @params data The expenses of public agency (Object)
     * @return points The expense processed for chart(Array)
     */
     function processData(data) {
-        //Year of expenses
-        var year;
+        
         //The expense processed for chart
         var points = [];
         //Counter of year
@@ -54,7 +58,7 @@ function updateAgency(path,data){
             if (data.hasOwnProperty(year)) {
                 //Pointer for each year
                 var yearSquare = {
-                    id: 'id_' + yearCount,
+                    id: year,
                     name: year,
                     color: Highcharts.getOptions().colors[yearCount]
                 };
