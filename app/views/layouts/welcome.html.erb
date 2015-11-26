@@ -7,30 +7,26 @@
 	    <!--Let browser know website is optimized for mobile-->
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <!--Reference to menu-->
-	    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-		<!--Import jQuery -->
-		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<%= javascript_include_tag 'application' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	</head>
 	<body>
 		<!--This part is to menu-->
 		<div id="content_menu">
-		  <div class="container" style="width:auto;height:60px;">
+		  <div class="container" style="width:auto; height:60px;">
 		    <div id="menu_index">
+		       <div class="logo"> <%= link_to image_tag("logo_aonde.png"), root_path%> </div>
 		      <ul>
-		        <li class='active'><%= link_to '(Imagem) AondÊ', root_path %></li>
 		        <li><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
 		        <li><%= link_to 'Gasto por Função', functions_path %></li>
+		        <li><%= link_to 'Ajuda', root_path %></li>
 		<!--Search field-->
 		        <li>
-		          <form id='search_bar' name='search' onsubmit="return validSearch()" action="<%= search_path %>" style="width:300px; height:60px; margin-left: 52%;">
-		            <div class="input-field" style=" width:270px; margin-right:auto;">
-		              <i class="material-icons prefix">search</i>
-		              <input name="search" type="text" autocomplete="off" required<%= text_field_tag :search, params[:search]%>
-		              <label for="icon_prefix">Pesquisar...</label>
-		            </div>
+		          <form id='search_bar' name='search' onsubmit="return validSearch()" action="<%= search_path %>">
+		            <div class="input-field">
+		              <input name="search" type="text" placeholder="Pesquisar..." autocomplete="off" required<%= text_field_tag :search, params[:search]%>
 		            </div>
 		          </form> 
+		          		              <!--<i class="material-icons prefix">search</i>-->
 		        </li>
 		      </ul>
 		    </div>

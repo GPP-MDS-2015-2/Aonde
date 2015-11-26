@@ -1,9 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
+
 #menu_index {
   width: auto;
   margin-left: 3%;
   margin-right: 3%;
-  height: 60px;
+  height: 80px;
   background:white;
 }
 #menu_index ul {
@@ -37,7 +38,9 @@
   color: #603813;
   text-decoration: none;
   display: block;
-  padding: 15px 25px;
+  padding-bottom: 8px;
+  margin-right: 60px;
+  margin-top: 12px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
@@ -48,6 +51,12 @@
   -ms-transition: color .25s;
   -o-transition: color .25s;
   transition: color .25s;
+}
+.logo{
+  float: left;
+  padding: 0px;
+  margin-right: 75px;
+  margin-top: 12px;
 }
 #menu_index ul li a:hover {
   color: #333333;
@@ -120,4 +129,12 @@
   #menu_index ul li a:before {
     display: none;
   }
+}
+
+#search_bar input{
+  border: #CCC solid 1px;
+  border-radius: 6px;
+  color: #999;
+  font-size: 14px;
+
 }
