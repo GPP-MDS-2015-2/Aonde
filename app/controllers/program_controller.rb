@@ -2,20 +2,17 @@
 # of user in the view
 class ProgramController < ApplicationController
   def show_programs
-    #find_agencies(params[:id])
+    # find_agencies(params[:id])
 
-    if  params[:year].nil? 
-      params[:year] = '2015'
-    end
+    params[:year] = '2015' if params[:year].nil?
 
-    all_programs = HelperController.find_expenses_entity(params[:year],params[:id],:program,:name)
+    all_programs = HelperController.find_expenses_entity(params[:year], params[:id], :program, :name)
     respond_to do |format|
-      format.json { render json: all_programs}
+      format.json { render json: all_programs }
     end
-
   end
 
- ###########################################################
+  ###########################################################
   def show
     program_id = params[:id].to_i
     @program = Program.find(program_id)
@@ -39,7 +36,7 @@ class ProgramController < ApplicationController
                                            class_entity)
       Graph.create_nodes(program, program_agency, entity_related)
     rescue Exception => error
-      #puts "\n#{error}"
+      # puts "\n#{error}"
     end
     entity_related
   end
@@ -54,7 +51,7 @@ class ProgramController < ApplicationController
         value = Expense.where(program_id: program_id,
                               field_entity => entity_id).sum(:value)
         name = class_entity.find(entity_id).name.strip
-        name_value << [name, value, class_entity.name,entity_id]
+        name_value << [name, value, class_entity.name, entity_id]
       end
     end
     name_value

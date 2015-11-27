@@ -4,32 +4,28 @@ module HelperController
   MONTHNAMES_BR = [nil] + %w(Janeiro Fevereiro Março Abril Maio Junho
                              Julho Agosto Setembro Outubro Novembro Dezembro)
   def self.int_to_month(expense_month)
-    
     expense_month.transform_keys! do |month|
       MONTHNAMES_BR[month]
     end
   end
 
-  def self.expenses_year(id_public_agency,year)
-
+  def self.expenses_year(id_public_agency, year)
     expense_year = Expense.where(public_agency_id: id_public_agency,
-                                  payment_date: "#{year}-01-01".."#{year}-12-31")
-                          .group('MONTH(payment_date)').sum(:value)
-    return expense_year
+                                 payment_date: "#{year}-01-01".."#{year}-12-31")
+                   .group('MONTH(payment_date)').sum(:value)
+    expense_year
   end
 
-  def self.find_expenses_entity(year = '2015',id,name_entity,attribute)
-
+  def self.find_expenses_entity(year = '2015', id, name_entity, attribute)
     Expense.joins(name_entity)
-            .where(public_agency_id: id,payment_date: "#{year}-01-01".."#{year}-12-31")
-            .select(attribute).order('sum_value DESC').group(attribute)
-            .sum(:value).to_a
-
+      .where(public_agency_id: id, payment_date: "#{year}-01-01".."#{year}-12-31")
+      .select(attribute).order('sum_value DESC').group(attribute)
+      .sum(:value).to_a
   end
 
-  def self.create_date(date ={from_month: 'Janeiro',end_month: 'Dezembro',
-    from_year: 2009,end_year: 2020})
-    #puts date
+  def self.create_date(date = { from_month: 'Janeiro', end_month: 'Dezembro',
+                                from_year: 2009, end_year: 2020 })
+    # puts date
     first_month = month_to_int(date[:from_month])
     last_month = month_to_int(date[:end_month])
     first_date = Date.new(date[:from_year].to_i, first_month, 1)

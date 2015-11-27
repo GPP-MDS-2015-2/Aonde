@@ -15,16 +15,14 @@ class PublicAgencyController < ApplicationController
     find_agencies(params[:id])
     increment_views_amount(@public_agency)
   end
-  def agency_chart
-    if !params[:year]
-      params[:year] = '2015'
-    end
-    expenses_public_agency = HelperController.expenses_year(params[:id].to_i,params[:year])
-    list_expenses = change_type_list_expenses(expenses_public_agency,params[:year])
-    respond_to do |format|
-      format.json {render json: list_expenses}
-    end
 
+  def agency_chart
+    params[:year] = '2015' unless params[:year]
+    expenses_public_agency = HelperController.expenses_year(params[:id].to_i, params[:year])
+    list_expenses = change_type_list_expenses(expenses_public_agency, params[:year])
+    respond_to do |format|
+      format.json { render json: list_expenses }
+    end
   end
 
   def change_type_list_expenses(expenses_month, year)

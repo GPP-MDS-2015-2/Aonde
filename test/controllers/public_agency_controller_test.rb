@@ -36,7 +36,7 @@ class PublicAgencyControllerTest < ActionController::TestCase
     get :filter_chart, id: 1, from_year: 2010, end_year: 2015,
                        from_month: 'Janeiro', end_month: 'Junho'
     assert_response :success
-    #assert assigns(:list_expenses)
+    # assert assigns(:list_expenses)
   end
   test 'get filter chart with invalid date' do
     create_public_agency
@@ -98,13 +98,13 @@ class PublicAgencyControllerTest < ActionController::TestCase
     expenses_public_agency = @controller.send(:get_expenses_agency, 1,
                                               begin_date, end_date)
     expected_expenses = { total_date: [
-                            ['02/2015', 100], ['03/2015', 100],
-                            ['04/2015', 100]] }
+      ['02/2015', 100], ['03/2015', 100],
+      ['04/2015', 100]] }
     assert_equal(expected_expenses, expenses_public_agency)
   end
 
   test 'change type of array' do
-    array = [["01/2015", 10], ["02/2015", 20]]
+    array = [['01/2015', 10], ['02/2015', 20]]
     controller_array = @controller.change_type_list_expenses(array)
     correct_array = "{\"2015\":{\"Janeiro\":10,\"Fevereiro\":20}}"
 
