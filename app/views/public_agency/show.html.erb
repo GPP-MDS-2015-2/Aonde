@@ -8,6 +8,8 @@
 
 
 <script type="text/javascript">
+var countClick =0;
+
 
 var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-green','waves-teal']
   $('#surprise').dblclick(function(){
@@ -20,11 +22,19 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
   function haha(){    
     $('#haha').removeClass(WAVES[count++%7]);
     $('#haha').addClass(WAVES[count%7]);
+    countClick++;
+    if(countClick % 3 == 2){
+      var v = new Fireworks('hahaBoom');
+      setTimeout(function(){
+        v = null;
+        $('canvas').remove();
+      },10000)
+    }
   }
 </script>
 
 <div class="container">
-  <button id='haha' class='btn waves-effect' onclick="haha()" style='background: white; color:black; width:200px; height:50px; display:none;'>Surpreenda-me</button>
+  <center><button id='haha' class='btn waves-effect' onclick="haha()" style='background: white; color:black; width:300px; height:100px; display:none; z-index: 0;'>Surpreenda-me</button></center>
 </div>
   
 <div id="contencao_outros">
