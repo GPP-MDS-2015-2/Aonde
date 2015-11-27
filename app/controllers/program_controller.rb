@@ -9,7 +9,6 @@ class ProgramController < ApplicationController
     end
 
     all_programs = HelperController.find_expenses_entity(params[:year],params[:id],:program,:name)
-    #puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n#{all_programs}\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
     respond_to do |format|
       format.json { render json: all_programs}
     end

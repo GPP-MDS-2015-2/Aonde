@@ -10,19 +10,18 @@ module HelperController
     end
   end
 
-  def self.sum_expense(key, expense, sum_expeses)
-    if !sum_expeses[key]
-      sum_expeses[key] = expense.value
-    else
-      sum_expeses[key] += expense.value
-    end
+  def self.expenses_year(id_public_agency,year)
+
+    expense_year = Expense.where(public_agency_id: id_public_agency,
+                                  payment_date: "#{year}-01-01".."#{year}-12-31")
+                          .group('MONTH(payment_date)').sum(:value)
+    return expense_year
   end
 
   def self.find_expenses_entity(year = '2015',id,name_entity,attribute)
-    begin_year = Date.new(year.to_i,01,01)
-    end_year = Date.new(year.to_i,12,31)
+
     Expense.joins(name_entity)
-            .where(public_agency_id: id,payment_date: begin_year..end_year)
+            .where(public_agency_id: id,payment_date: "#{year}-01-01".."#{year}-12-31")
             .select(attribute).order('sum_value DESC').group(attribute)
             .sum(:value).to_a
 

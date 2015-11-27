@@ -30,29 +30,6 @@ class CompanyController < ApplicationController
     @correct_datas = array.to_json
   end
 
-  def get_15_first_nodes(company_hiring_incidence)
-    final_array = []
-    length = company_hiring_incidence.length
-
-    if length < 15
-
-      length.times do
-        final_array.push(company_hiring_incidence[length - 1])
-        length -= 1
-      end
-
-    else
-
-      15.times do
-        final_array.push(company_hiring_incidence[length - 1])
-        length -= 1
-      end
-
-  end
-
-    final_array
-  end
-
   def find_public_agencies(expenses)
     company_hiring_incidence = {}
     expenses.each do |expense|
