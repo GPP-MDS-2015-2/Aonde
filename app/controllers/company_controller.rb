@@ -3,21 +3,18 @@
 # or a graph with all public agencies make hires
 class CompanyController < ApplicationController
   def show
-    #find_agencies(params[:id])
-    
-    if  params[:year].nil? 
-      params[:year] = '2015'
-    end
-    
-    array_company_expense = HelperController.find_expenses_entity(params[:year],params[:id],:company,:name)
-  
+    # find_agencies(params[:id])
+
+    params[:year] = '2015' if params[:year].nil?
+
+    company_expense = HelperController
+                      .find_expenses_entity(params[:year],
+                                            params[:id], :company, :name)
+
     respond_to do |format|
-      format.json { render json: array_company_expense}
+      format.json { render json: company_expense }
     end
-
   end
-
-  ######################################### View hiring incidence ######################
 
   def find
     expenses = Expense.where(company_id: params[:id])

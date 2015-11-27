@@ -2,14 +2,14 @@
 module Graph
   def self.create_nodes(entity, data_array, graph_data)
     entity_name = entity.class.name
-  # puts "start process of create nodes"
+    # puts "start process of create nodes"
     i = 0
     data_array.each do |data|
-      name_value = obtain_name_value(entity_name,data)
+      name_value = obtain_name_value(entity_name, data)
       create_node(graph_data, name_value)
-      i+=1
+      i += 1
     end
-    #puts "end process of create nodes"
+    # puts "end process of create nodes"
   end
 
   def self.obtain_name_value(entity_name, data)
@@ -20,35 +20,37 @@ module Graph
     name_value = {}
     if entity_name == Program.name
       name_value = { name: data[name], value: data[value],
-                     class_entity: data[class_name],id: data[id] }
+                     class_entity: data[class_name], id: data[id] }
     elsif entity_name == SuperiorPublicAgency.name
-      name_value = { name: data.name, class_entity: PublicAgency.name ,id: data.id}
+      name_value = { name: data.name, class_entity: PublicAgency.name, id: data.id }
     end
     name_value
   end
 
   def self.create_node(data_graph, name_value)
-    add_node(name_value[:name], data_graph, name_value[:class_entity],name_value[:id])
+    add_node(name_value[:name], data_graph, name_value[:class_entity], name_value[:id])
     add_edge(data_graph, name_value[:class_entity])
     if name_value[:value]
       begin
-      add_value(name_value[:value], data_graph) 
+        add_value(name_value[:value], data_graph)
       rescue Exception => error
-        #puts "Negative value #{error}"
+        # puts "Negative value #{error}"
       end
     end
   end
 
-  def self.add_node(name, data_graph, name_entity,id_entity)
+  def self.add_node(name, data_graph, name_entity, id_entity)
     node = 0
     next_id = id_node(data_graph[node].last['id']) + 1
     data_graph[node] << { 'id' => "#{next_id}_#{id_entity}", 'label' => name,
-                          'group' => name_entity}
+                          'group' => name_entity }
   end
+
   def self.id_node(full_id)
     id = full_id.split('_')
-    return id[0].to_i
+    id[0].to_i
   end
+
   def self.add_edge(data_graph, class_entity)
     node = 0
     last_id = data_graph[node].last['id']
@@ -60,13 +62,13 @@ module Graph
   def self.add_value(value, data_graph)
     edge = 1
     if value >= 0
-      value_currency = ActionController::Base.
-      helpers.number_to_currency(value, unit: 'R$',
-         separator: ',', delimiter: '.')
+      value_currency = ActionController::Base
+                       .helpers.number_to_currency(value, unit: 'R$',
+                                                          separator: ',', delimiter: '.')
       data_graph[edge].last['title'] = value_currency
       data_graph[edge].last['value'] = value
     else
-      raise 'Value negative'
+      fail 'Value negative'
     end
   end
 
@@ -80,5 +82,5 @@ module Graph
       color
     end
   end
-#  private :color_edge, :add_value
+  #  private :color_edge, :add_value
 end

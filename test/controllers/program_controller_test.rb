@@ -2,9 +2,7 @@ require 'test_helper'
 require 'database_cleaner'
 
 class ProgramControllerTest < ActionController::TestCase
-
   def setup
-
     SuperiorPublicAgency.create(id: 1, name: 'SuperiorPublicAgency')
     PublicAgency.create(id: 1, name: 'PublicAgency1', views_amount: 10,
                         superior_public_agency_id: 1)
@@ -27,28 +25,22 @@ class ProgramControllerTest < ActionController::TestCase
   end
 
   def teardown
-
     DatabaseCleaner.clean
-
   end
 
-  test "Exception on create graph nodes" do 
-
+  test 'Exception on create graph nodes' do
     program = Program.new
-    @controller.create_graph_nodes(program, nil,nil, nil)
-
+    @controller.create_graph_nodes(program, nil, nil, nil)
   end
 
   test 'Verify method show' do
-
     assert_routing '/public_agency/1/programs', controller: 'program',
                                                 action: 'show_programs', id: '1'
   end
 
   test 'create related entities of programs' do
-    
-    program = Program.new(name:'Programa1',id: 1 )
-    graph_nodes = @controller.create_graph_nodes(program, 'public_agency_id',PublicAgency, 1)
+    program = Program.new(name: 'Programa1', id: 1)
+    graph_nodes = @controller.create_graph_nodes(program, 'public_agency_id', PublicAgency, 1)
     expected_sizes = [2, 1]
 
     find_sizes = [graph_nodes[0].size, graph_nodes[1].size]
@@ -57,15 +49,14 @@ class ProgramControllerTest < ActionController::TestCase
   end
 
   test 'not include entitie in the association' do
+    expected_related = [[{ 'id' => '1_', 'label' => 'Programa1' }], []]
 
-    expected_related = [[{ 'id' => "1_", 'label' => 'Programa1' }], []]
-
-    program = Program.new(name: 'Programa1',id: 1)
-    program_related = @controller.create_graph_nodes(program, 'company_id', Company,1)
+    program = Program.new(name: 'Programa1', id: 1)
+    program_related = @controller.create_graph_nodes(program, 'company_id', Company, 1)
 
     assert_equal(expected_related, program_related)
   end
-  
+
   test 'return valid public_agency_id' do
     entity = Expense.new(public_agency_id: 3)
     id = @controller.obtain_id(entity, PublicAgency)
@@ -92,7 +83,6 @@ class ProgramControllerTest < ActionController::TestCase
   test 'management of nodes' do
     get :show, id: 1
 
-
     assert_response :success
 
     assert assigns(:data_program)
@@ -104,14 +94,13 @@ class ProgramControllerTest < ActionController::TestCase
                                 id: '1'
   end
 
-  test 'Create data program to public agencies' do 
-    process_data = @controller.create_data_program(2,'public_agency_id',PublicAgency)
-    expected_data = [['PublicAgency1',14,PublicAgency.name,1]]
-    assert_equal(expected_data,process_data)
+  test 'Create data program to public agencies' do
+    process_data = @controller.create_data_program(2, 'public_agency_id', PublicAgency)
+    expected_data = [['PublicAgency1', 14, PublicAgency.name, 1]]
+    assert_equal(expected_data, process_data)
   end
-  test 'Empty array to not create id of program' do 
-    process_data = @controller.create_data_program(3,'public_agency_id',PublicAgency)
+  test 'Empty array to not create id of program' do
+    process_data = @controller.create_data_program(3, 'public_agency_id', PublicAgency)
     assert_empty(process_data)
   end
-
 end

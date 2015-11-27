@@ -51,9 +51,7 @@ class BudgetAPI
     results_hash = budget_hash['results']
     if !results_hash.nil? && !results_hash.empty?
       bindings_array = results_hash['bindings']
-      if bindings_array.nil? || bindings_array.empty?
-        valid_data = false
-      end
+      valid_data = false if bindings_array.nil? || bindings_array.empty?
     else
       valid_data = false
     end
