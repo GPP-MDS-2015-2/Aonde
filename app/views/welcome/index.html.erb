@@ -18,21 +18,21 @@
 <div id="free">
   <div class="container">
    <div class="row">
-    <form class="col" action="<%= contact_path %>" method="post">
+    <form class="col" onsubmit="return sendEmail('<%= contact_path %>')">
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
-           <%= email_field_tag :from, params[:from], required: true%>
+           <%= email_field_tag :from%>
           <label for="email" data-error="wrong" data-success="right">Email</label>
         </div>
         <div class="input-field col s6">
-          <%= text_field_tag :subject, params[:subject], required: true%>
+          <%= text_field_tag :subject%>
           <label for="icon_prefix">Assunto</label>
         </div>
         <div class="input-field col s12">
-           <textarea id="textarea1" class="materialize-textarea" length="500"<%= text_area_tag :text, params[:text], required: true%></textarea>
+           <textarea id="textarea1" class="materialize-textarea" length="500"<%= text_area_tag :text%></textarea>
            <label for="textarea1">Texto</label>
       </div>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+      <button class="btn waves-effect waves-light" name="action">Enviar
         <i class="material-icons right">email</i>
       </button>
     </form>
@@ -40,7 +40,17 @@
   </div>
 </div>
 
+<!-- Modal for error in send email -->
+  <a id='error_field_contact' href="#error_send" class="modal-trigger"></a>
+
+  <div id="error_send" class="modal">
+    <div class="modal-content" id="message_error_field"></div>
+    <div class="modal-footer">
+      <a id='error_search_close' href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+    </div>
+  </div>
 </div>
+
 <footer></footer>
 
 </body>

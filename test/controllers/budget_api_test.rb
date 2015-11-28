@@ -171,7 +171,7 @@ class BudgetAPITest < ActiveSupport::TestCase
     public_agency_id = 20_000
     year = 2013
     data_api = BudgetAPI.send(:obtain_api_data, public_agency_id, year)
-    # puts "#{data_api}"
+    
     assert_not_empty data_api
   end
 
@@ -182,7 +182,7 @@ class BudgetAPITest < ActiveSupport::TestCase
       year = 1000
       public_agency_id = 20_000
       data_api = BudgetAPI.send(:obtain_api_data, public_agency_id, year)
-      # puts "#{data_api}"
+
     end
     
   end
