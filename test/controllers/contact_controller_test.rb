@@ -12,9 +12,8 @@ class ContactControllerTest < ActionController::TestCase
   test 'Should redirect to home' do
     create_fake_web
     post :send_simple_message, from: 'teste@email.com', subject: 'Teste',
-                               text: 'Teste'
-    assert_response :redirect
-    assert_redirected_to root_path
+                               text: 'Teste', format: :json
+    assert_response :success
   end
 
   def create_fake_web
