@@ -4,7 +4,7 @@ class TypeExpenseControllerTest < ActionController::TestCase
   
   # assert_routing({ path: 'public_agency/:id/expenese_type', method: :get },{ controller: 'type_expense', action: 'get_expense_by_type' })
 
-  test 'Route to method show and the result of the request' do
+  test 'Route to method show and the result of the request on type expense controller' do
     create_entities
     assert_routing '/public_agency/1/type_expense',
                    controller: 'type_expense', action: 'show', id: '1'
@@ -17,6 +17,7 @@ class TypeExpenseControllerTest < ActionController::TestCase
     assert_routing '/public_agency/1/filter_type_expense',
                    controller: 'type_expense', action: 'filter_chart', id: '1'
   end
+  
   test 'Sum of the type expenses in method get_expense_by_type' do
     create_entities
     id_public_agency = 1

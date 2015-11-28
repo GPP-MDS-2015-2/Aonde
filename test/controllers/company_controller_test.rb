@@ -44,34 +44,11 @@ class CompanyControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should return an array with a few nodes' do
-    hash = [{ 'nome1' => 1 }, { 'nome2' => 2 }, { 'nome3' => 3 },
-            { 'nome4' => 4 }, { 'nome5' => 5 }, { 'nome6' => 6 },
-            { 'nome7' => 7 }, { 'nome8' => 8 }, { 'nome9' => 9 },
-            { 'nome10' => 10 }, { 'nome11' => 11 }, { 'nome12' => 12 },
-            { 'nome13' => 13 }, { 'nome14' => 14 }, { 'nome15' => 15 },
-            { 'nome16' => 16 }, { 'nome17' => 17 }, { 'nome18' => 18 }
-           ]
-    few_hash = [{ 'nome18' => 18 }, { 'nome17' => 17 }, { 'nome16' => 16 },
-                { 'nome15' => 15 }, { 'nome14' => 14 }, { 'nome13' => 13 },
-                { 'nome12' => 12 }, { 'nome11' => 11 }, { 'nome10' => 10 },
-                { 'nome9' => 9 }, { 'nome8' => 8 }, { 'nome7' => 7 },
-                { 'nome6' => 6 }, { 'nome5' => 5 }, { 'nome4' => 4 }]
-    test_hash = @controller.get_15_first_nodes(hash)
-
-    assert_equal(few_hash, test_hash)
-  end
-
-  test 'should return an array with 8 nodes but ordered by value' do
-    hash = [{ 'nome1' => 1 }, { 'nome2' => 2 }, { 'nome3' => 3 },
-            { 'nome4' => 4 }, { 'nome5' => 5 }, { 'nome6' => 6 },
-            { 'nome7' => 7 }, { 'nome8' => 8 }]
-    few_hash = [{ 'nome8' => 8 }, { 'nome7' => 7 }, { 'nome6' => 6 },
-                { 'nome5' => 5 }, { 'nome4' => 4 }, { 'nome3' => 3 },
-                { 'nome2' => 2 }, { 'nome1' => 1 }]
-    test_hash = @controller.get_15_first_nodes(hash)
-
-    assert_equal(few_hash, test_hash)
+  test 'Route to method show and the result of the request on company controller' do
+    assert_routing 'public_agency/1/companies',
+                   controller: 'company', action: 'show', id: '1' 
+    get :show, id: 1,year: '2014', format: :json 
+    assert_response :success
   end
 
   test 'should return a node' do
