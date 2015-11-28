@@ -28,6 +28,14 @@ class ProgramControllerTest < ActionController::TestCase
     DatabaseCleaner.clean
   end
 
+  test "Should route show_programs" do
+
+    assert_routing 'public_agency/1/programs',controller: 'program',id:'1',
+                    action: 'show_programs'
+    get :show_programs,id:1,year: 2015,format: :json
+    assert_response :success
+
+  end  
   test 'Exception on create graph nodes' do
     program = Program.new
     @controller.create_graph_nodes(program, nil, nil, nil)
