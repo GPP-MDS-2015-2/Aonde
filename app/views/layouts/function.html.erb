@@ -18,9 +18,9 @@
 		  <div class="container" style="width:auto;height:60px;">
 		    <div id="menu_index">
 		      <ul>
-		        <li class='active'><%= link_to '(Imagem) AondÊ', root_path %></li>
+		        <li><%= link_to '(Imagem) AondÊ', root_path %></li>
 		        <li><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
-		        <li><%= link_to 'Gasto por Função', functions_path %></li>
+		        <li class='active'><%= link_to 'Gasto por Função', functions_path %></li>
 		<!--Search field-->
 		        <li>
 		          <form id='search_bar' name='search' onsubmit="return validSearch()" action="<%= search_path %>" style="width:300px; height:60px; margin-left: 52%;">
@@ -37,5 +37,6 @@
 		  </div>
 		</div>
 		<%=yield%>
+		<footer></footer>
 	</body>
 </html>

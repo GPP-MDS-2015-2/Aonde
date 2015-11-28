@@ -13,7 +13,7 @@
 </script>
 
 <center><h2> 
-  <strong><font color="white">Resultado da Pesquisa</font></strong>
+  <strong>Resultado da Pesquisa</strong>
 </h2></center>
 <%if @results.empty? %>
 <% flash.each do |name, msg| %>
@@ -27,3 +27,4 @@
     <%= render 'list_companies' %>
     <%= render 'list_programs' %>
 <% end %>
+<div id="margin" style="margin-bottom:150px;"></div>

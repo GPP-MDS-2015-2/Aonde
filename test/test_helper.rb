@@ -11,7 +11,7 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
-
+puts "  ,,,\n {0,0}\n./) )\n==\"=\"=="
 SimpleCov.start do
   add_filter "config/"
 end
