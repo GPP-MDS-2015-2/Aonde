@@ -79,3 +79,5 @@ module HelperController
     day
   end
 end
+
+private_class_method :leap_year_day,:last_day_date,:date_valid?,:month_to_int

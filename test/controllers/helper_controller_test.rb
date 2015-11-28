@@ -47,21 +47,6 @@ class HelperControllerTest < ActiveSupport::TestCase
     assert_equal(expected_last_day, day_not_leap)
   end
 
-  test 'add of a sum expense with not exist key' do
-    sum_expense = {}
-    expense = Expense.new(value: 100)
-    HelperController.sum_expense(:name, expense, sum_expense)
-    assert_not_empty(sum_expense)
-  end
-
-  test 'add of a sum expense with exist key' do
-    sum_expense = { name: 100 }
-    expense = Expense.new(value: 100)
-    HelperController.sum_expense(:name, expense, sum_expense)
-    expect_sum = { name: 200 }
-    assert_equal(expect_sum, sum_expense)
-  end
-
   test 'create the dates hash with begin and end months' do
     param_date = { from_month: 'Janeiro', end_month: 'Novembro',
                    from_year: 2014, end_year: 2015 }
@@ -96,7 +81,7 @@ class HelperControllerTest < ActiveSupport::TestCase
 
   test 'Change int to name of month' do
     array = { 01 => 100, 03 => 100, 04 => 100, 10 => 100 }
-    array_expect = [['Janeiro', 100], ['Março', 100], ['Abril', 100], ['Outubro', 100]]
+    array_expect = {"Janeiro"=>100, "Março"=>100, "Abril"=>100, "Outubro"=>100}
     array_month = HelperController.int_to_month(array)
     assert_equal(array_expect, array_month)
   end
