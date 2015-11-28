@@ -5,6 +5,7 @@ class ContactController < ApplicationController
     user_email = params[:from]
     subject = params[:subject]
     text = params[:text]
+    puts params
     mailgun_api = Rails.application.secrets.secret_mailgun_api
     RestClient.post 'https://api:' + mailgun_api +
       '@api.mailgun.net/v3/aondebrasil.com/messages',
@@ -12,6 +13,9 @@ class ContactController < ApplicationController
       to: 'contato@aondebrasil.com',
       subject: subject,
       text: text
-    redirect_to root_path
+    #puts "Emails enviado e agora redirecionando o usuário"
+    respond_to do |format|
+      format.json {render json: "enviado".to_json}
+    end
   end
 end
