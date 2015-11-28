@@ -4,24 +4,20 @@
 class SearchController < ApplicationController
   def index
     search = params[:search]
-    @entity = 'Todos'
-    @msg_error = 1
+    @results = {}
     if search.tr(' ', '').length > 4
-      find_entities
-      @results = [1]
+      @results = find_entities(search)
     else
-      flash[:error] = 'A Pesquisa não pode ter menos que 5 caracteres'
-      @msg_error = 0
-      @results = []
+      logger.warn 'Try search with less the 5 characters'
     end
   end
 
-  def find_entities
-    keyword = params[:search]
+  def find_entities(keyword)
     public_agencies = search_entities(PublicAgency, :public_agency_id, keyword)
     programs = search_entities(Program, :program_id, keyword)
     companies = search_entities(Company, :company_id, keyword)
-    @entity = { agency: public_agencies, program: programs, company: companies }
+    entities = { agency: public_agencies, program: programs, company: companies }
+    return entities
   end
 
   def search_entities(class_entity, name_field, keyword)
@@ -37,4 +33,5 @@ class SearchController < ApplicationController
     total_expense = Expense.where(name_field => entity_id).sum(:value)
     total_expense
   end
+  private :expense_entities, :search_entities, :find_entities
 end

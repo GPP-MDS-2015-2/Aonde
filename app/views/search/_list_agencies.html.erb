@@ -1,4 +1,4 @@
-<% if (@entity[:agency].empty?) %>
+<% if (@results[:agency].empty?) %>
 
 <% else %>
 	<table id="tableData" class="hover row-border" style="margin-top:70px; margin-bottom:40px;">
@@ -15,7 +15,7 @@
 		<tbody>
 		<% entity = 0
 		   expense = 1
-		@entity[:agency].each do |agency| %>
+		@results[:agency].each do |agency| %>
 		  	<tr>
 			  	<td>
 			  		<center><%= link_to agency[entity].name,public_agency_path(agency[entity].id)%></center>

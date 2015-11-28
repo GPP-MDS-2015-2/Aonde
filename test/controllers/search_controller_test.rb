@@ -4,28 +4,28 @@ class SearchControllerTest < ActionController::TestCase
   test 'Should sum value expense of company' do
     create_entities
     id_company = 1
-    company_expense = @controller.expense_entities(:company_id, id_company)
+    company_expense = @controller.send(:expense_entities,:company_id, id_company)
     assert_equal(company_expense, 400)
   end
 
   test 'Should sum value expense of program' do
     create_entities
     id_program = 1
-    program_expense = @controller.expense_entities(:company_id, id_program)
+    program_expense = @controller.send(:expense_entities,:company_id, id_program)
     assert_equal(program_expense, 400)
   end
 
-  test 'Should return un especific entity' do
+  test 'Should return a especific entity' do
     entities_for_search
-    entity = @controller.search_entities(PublicAgency, :public_agency_id, 'ministerio da educacao')
+    entity = @controller.send(:search_entities,PublicAgency, :public_agency_id, 'ministerio da educacao')
     entity_compare = PublicAgency.find(2)
     expected_result = [[entity_compare, 0]]
     assert_equal(expected_result, entity)
   end
 
-  test 'Should return un array of public agencies' do
+  test 'Should return a array of public agencies' do
     entities_for_search
-    entity = @controller.search_entities(PublicAgency, :public_agency_id, 'minis')
+    entity = @controller.send(:search_entities,PublicAgency, :public_agency_id, 'minis')
     entity_compare_first = PublicAgency.find(1)
     entity_compare_seccond = PublicAgency.find(2)
     entity_compare_third = Company.find(3)
@@ -36,7 +36,7 @@ class SearchControllerTest < ActionController::TestCase
   test 'Should sum value expense of agency' do
     create_entities
     id_public_agency = 1
-    agency_expense = @controller.expense_entities(:company_id, id_public_agency)
+    agency_expense = @controller.send(:expense_entities,:company_id, id_public_agency)
     assert_equal(agency_expense, 400)
   end
 
@@ -46,9 +46,7 @@ class SearchControllerTest < ActionController::TestCase
     get :index, id: 1, search: 'valid', entity: 'Todos'
 
     assert_response :success
-
-    assert assigns(:entity)
-    assert assigns(:msg_error)
+    
     assert assigns(:results)
   end
 

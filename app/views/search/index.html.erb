@@ -1,27 +1,11 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-    var is_less_4 = '<%= raw @msg_error %>';
-    
-    if( is_less_4 != 0 ){
-        $('.msg_error').remove();
-    }else{
-        setTimeout(function(){
-            $('.msg_error').remove();
-        }, 5000);
-    }
- });
-</script>
+<center>
+    <h2> 
+        <strong>Resultado da Pesquisa</strong>
+    </h2>
+</center>
 
-<center><h2> 
-  <strong>Resultado da Pesquisa</strong>
-</h2></center>
 <%if @results.empty? %>
-<% flash.each do |name, msg| %>
-    <div class="msg_error">
-        <i class="fa fa-warning"></i>
-        <%= msg %>
-    </div>
-<% end %>
+    <h1> Não encontrou nenhum resultado</h1>
 <%else %>
     <%= render 'list_agencies' %>
     <%= render 'list_companies' %>
