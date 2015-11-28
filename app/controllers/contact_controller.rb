@@ -5,9 +5,9 @@ class ContactController < ApplicationController
     user_email = params[:from]
     subject = params[:subject]
     text = params[:text]
-    puts params
+    #puts params
     mailgun_api = Rails.application.secrets.secret_mailgun_api
-    RestClient.post 'https://api:' + mailgun_api +
+    RestClient.post 'https://api:' + "#{mailgun_api}" +
       '@api.mailgun.net/v3/aondebrasil.com/messages',
       from: user_email,
       to: 'contato@aondebrasil.com',
