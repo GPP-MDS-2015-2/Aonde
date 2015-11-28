@@ -62,13 +62,6 @@ class BudgetControllerTest < ActionController::TestCase
     }
   end
 
-  def process_expense(year,id_public_agency)
-        
-    expense_month = HelperController.expenses_year(id_public_agency, year)
-    expense_month = initialize_hash(year, expense_month)
-    expense_month = HelperController.int_to_month(expense_month).to_a
-    return expense_month
-  end
 
   test "process the expense" do
     
