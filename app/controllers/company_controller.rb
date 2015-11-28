@@ -2,6 +2,7 @@
 # Process the expenses of companies to create chart related to a public agency
 # or a graph with all public agencies make hires
 class CompanyController < ApplicationController
+ 
   def show
     # find_agencies(params[:id])
 

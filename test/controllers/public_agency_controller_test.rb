@@ -38,6 +38,7 @@ class PublicAgencyControllerTest < ActionController::TestCase
     assert_response :success
     # assert assigns(:list_expenses)
   end
+  
   test 'get filter chart with invalid date' do
     create_public_agency
     get :filter_chart, id: 1, from_year: 2016, end_year: 2015,
