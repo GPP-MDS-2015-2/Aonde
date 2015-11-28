@@ -28,8 +28,7 @@ class PublicAgencyController < ApplicationController
   def change_type_list_expenses(expenses_month, year)
     HelperController.int_to_month(expenses_month)
     temporary_expense = { year => expenses_month }
-    puts temporary_expense
-    temporary_expense
+    temporary_expense  
   end
 
   def expenses_public_agency(id_pub_agency)

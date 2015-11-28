@@ -39,8 +39,8 @@ class BudgetAPI
       # puts "#{url_query}"
       uri_query = URI.parse(url_query)
       data_api = Net::HTTP.get(uri_query)
-    rescue
-      raise 'Não foi possível conectar a API'
+    rescue Exception => error
+      raise "Não foi possível conectar a API\n#{error}"
     end
     data_api
   end

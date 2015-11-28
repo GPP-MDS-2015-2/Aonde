@@ -57,7 +57,7 @@ class CompanyControllerTest < ActionController::TestCase
       { 'data' => { 'id' => 'Órgãos Públicos' } }, { 'data' => { 'id' => 'qtde Contratações' } }
     ]
 
-    node_test = @controller.generate_company_node('empresa')
+    node_test = @controller.send(:generate_company_node,'empresa')
 
     assert_equal(node, node_test)
   end
@@ -66,7 +66,7 @@ class CompanyControllerTest < ActionController::TestCase
     public_agency = PublicAgency.new(id: 1)
     expense = Expense.where(public_agency_id: public_agency.id).count
 
-    test_expense = @controller.find_hiring_count(public_agency)
+    test_expense = @controller.send(:find_hiring_count,public_agency)
 
     assert_equal(expense, test_expense)
   end
@@ -88,7 +88,7 @@ class CompanyControllerTest < ActionController::TestCase
     }, 'position' => { 'x' => 700, 'y' => 100 } }, { 'data' =>     { 'id' => 'nome1', 'parent' => 'Órgãos Públicos' }, 'position' =>     { 'x' => 400, 'y' => 150 } }, { 'data' => { 'id' => 1, 'parent' => 'qtde Contratações'
     }, 'position' => { 'x' => 700, 'y' => 150 } }], [{ 'data' =>     { 'source' => 'nome2', 'target' => 'empresa' } }, { 'data' =>     { 'source' => 2, 'target' => 'nome2' } }, { 'data' =>     { 'source' => 'nome3', 'target' => 'empresa' } }, { 'data' =>     { 'source' => 3, 'target' => 'nome3' } }, { 'data' =>     { 'source' => 'nome1', 'target' => 'empresa' } }, { 'data' =>     { 'source' => 1, 'target' => 'nome1' } }]]
 
-    test_node = @controller.generate_public_agency_node('empresa', few_hash, company_node)
+    test_node = @controller.send(:generate_public_agency_node,'empresa', few_hash, company_node)
 
     assert_equal(node, test_node)
   end
@@ -96,14 +96,14 @@ class CompanyControllerTest < ActionController::TestCase
   test 'should find public agencies' do
     expenses = Expense.all
     expected_hash = [['orgao2', 1], ['orgao3', 2]]
-    hash_returned = @controller.find_public_agencies(expenses)
+    hash_returned = @controller.send(:find_public_agencies,expenses)
 
     assert_equal(expected_hash, hash_returned)
   end
 
   test 'should find hiring count' do
     public_agency = PublicAgency.first
-    counting = @controller.find_hiring_count(public_agency)
+    counting = @controller.send(:find_hiring_count,public_agency)
     expected_counting = 2
 
     assert_equal(counting, expected_counting)
