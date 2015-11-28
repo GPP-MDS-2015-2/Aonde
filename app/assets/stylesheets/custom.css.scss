@@ -191,7 +191,7 @@ a.display:hover {
 
 #content_menu{
   width:auto;
-  height:77px;
+  height:90px;
   font-size: 25px;
   background: white;
 }
@@ -224,7 +224,7 @@ a.display:hover {
 }
 footer{
   width:auto;
-  height:50px;
+  height:25px;
   background: #603813;
 }
 #free{
@@ -235,4 +235,25 @@ footer{
 
 canvas{
   cursor: crosshair;
+}
+
+#free input{
+  border: #CCC solid 1px;
+  border-radius: 6px;
+  color: #999;
+  font-size: 14px;
+}
+
+#textarea1{
+  border: #CCC solid 1px;
+  border-radius: 6px;
+  color: #999;
+  font-size: 14px;
+}
+
+#search_bar input{
+  border: #CCC solid 1px;
+  border-radius: 6px;
+  color: #999;
+  font-size: 14px;
 }

@@ -15,13 +15,13 @@
 	<div id="hahaBoom" style="background: dark-gray;z-index: 1;position:absolute;"></div>
 		<!--This part is to menu-->
 		<div id="content_menu">
-		  <div class="container" style="width:auto; height:60px;">
+		  <div class="container" style="width:auto;">
 		    <div id="menu_index">
 		       <div class="logo"> <%= link_to image_tag("logo_aonde.png"), root_path%> </div>
 		      <ul>
 		        <li><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
 		        <li><%= link_to 'Gasto por Função', functions_path %></li>
-		        <li><%= link_to 'Ajuda', root_path %></li>
+		        <li><a href="#free">Ajuda</a></li>
 		<!--Search field-->
 		        <li>
 		          <form id='search_bar' name='search' onsubmit="return validSearch()" action="<%= search_path %>">
