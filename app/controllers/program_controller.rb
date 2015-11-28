@@ -1,10 +1,11 @@
 # program_controller.rb Process de data necessary to respond the requisitions
 # of user in the view
 class ProgramController < ApplicationController
+
   def show_programs
     # find_agencies(params[:id])
 
-    params[:year] = '2015' if params[:year].nil?
+    initialize_year(params)
 
     all_programs = HelperController.find_expenses_entity(params[:year], params[:id], :program, :name)
     respond_to do |format|
