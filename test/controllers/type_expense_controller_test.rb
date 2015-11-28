@@ -17,7 +17,7 @@ class TypeExpenseControllerTest < ActionController::TestCase
     assert_routing '/public_agency/1/filter_type_expense',
                    controller: 'type_expense', action: 'filter_chart', id: '1'
   end
-  
+
   test 'Sum of the type expenses in method get_expense_by_type' do
     create_entities
     id_public_agency = 1
@@ -28,47 +28,6 @@ class TypeExpenseControllerTest < ActionController::TestCase
                        colorValue: 50 }]
 
     assert_equal(expected_list, expense_type_list)
-  end
-
-  test 'The method find_expenses' do
-    public_agency_default = @controller.find_expenses
-    expense_value_init = 0
-    assert_equal(expense_value_init, public_agency_default)
-
-    create_entities
-
-    id_public_agency = 1
-    type_expense_one = 1
-    public_agency = @controller.find_expenses(id_public_agency,
-                                              type_expense_one)
-    assert_equal(public_agency, 500)
-
-    type_expense_two = 2
-    public_agency_false = @controller.find_expenses(id_public_agency, type_expense_two)
-    assert_equal(public_agency_false, 0)
-  end
-
-  test 'The method create_dictionary' do
-    type_expense_equal = TypeExpense.new(description: 'teste description')
-    value_expense_positive = 100
-    positive_expense = @controller.create_dictionary(value_expense_positive,
-                                                     type_expense_equal)
-    expect_dictionary_equal = { name: 'teste description', value: 100,
-                                colorValue: 0 }
-
-    assert_equal(expect_dictionary_equal, positive_expense)
-
-    expect_dictionary_different = { name: 'teste description', value: 101, colorValue: 0 }
-    assert_not_equal(expect_dictionary_different, positive_expense)
-
-    value_expense_negative = -1
-    negative_expense = @controller.create_dictionary(value_expense_negative, type_expense_equal)
-    assert (negative_expense.empty?)
-
-    value_expense_zero = 0
-
-    zero_expense = @controller.create_dictionary(value_expense_negative, type_expense_equal)
-    assert (zero_expense.empty?)
   end
 
   test 'The calculo of the color based in the porcent in method define_color' do
@@ -169,5 +128,4 @@ class TypeExpenseControllerTest < ActionController::TestCase
                                                  expense_test)
     assert(params_validate)
   end
-
 end
