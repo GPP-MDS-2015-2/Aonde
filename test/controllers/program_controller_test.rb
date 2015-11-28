@@ -4,18 +4,19 @@ require 'database_cleaner'
 class ProgramControllerTest < ActionController::TestCase
 
   def setup
-    
+
     SuperiorPublicAgency.create(id: 1, name: 'SuperiorPublicAgency')
     PublicAgency.create(id: 1, name: 'PublicAgency1', views_amount: 10,
                         superior_public_agency_id: 1)
     name_program = %w(Programa1 Programa2)
     j = 0
     for i in 1..2
+      j += 1
       date = Date.new(2015, i, i)
       program = Program.create(id: i, name: name_program[i - 1],
                                description: 'Outros')
       2.times do
-        Expense.create(id: j, document_number: i, payment_date: date,
+        Expense.create(document_number: j, payment_date: date,
                        value: i + 5, program_id: i, public_agency_id: 1)
         j += 1
       end

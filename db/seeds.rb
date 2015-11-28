@@ -29,9 +29,11 @@
 	
 
 	i=1
+  j=0
 	public_agency = PublicAgency.all
 	public_agency.each do |agency|
 		4.times do
+      j = j+1
 			print("Add expense #{i} from public agency #{agency.id}\n")
 			date = Date.new(2015,day_month[rand(9)],day_month[rand(9)])
 			#name_company = nome_company.sample(1).join+" "+complemento_company.sample(1).join
@@ -40,7 +42,8 @@
 			type = TypeExpense.create(description: "TypeExpense"+i.to_s)
 			program = Program.create(name: "Program"+i.to_s,description: "Description"+i.to_s)
 			4.times do
-				Expense.create(document_number: i,payment_date: date,public_agency_id: agency.id,
+        j=j+1
+				Expense.create(document_number: j,payment_date: date,public_agency_id: agency.id,
 					    value: day_month[(rand(9))],company_id: company.id,function_id: function.id,
 					    type_expense_id: type.id,program_id: program.id)
 				

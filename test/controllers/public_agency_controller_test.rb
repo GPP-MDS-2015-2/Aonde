@@ -120,7 +120,7 @@ class PublicAgencyControllerTest < ActionController::TestCase
   end
 
   def clean_database
-    Expense.destroy_all
+    ActiveRecord::Base.connection.execute('delete from expenses')
     PublicAgency.destroy_all
     SuperiorPublicAgency.destroy_all
   end
@@ -131,15 +131,15 @@ class PublicAgencyControllerTest < ActionController::TestCase
     PublicAgency.create(name: 'PublicAgency1', id: 1,
                         superior_public_agency_id: 1, views_amount: 1)
 
-    Expense.create(id: 1, document_number: '0000', value: 100,
+    Expense.create(document_number: '0001', value: 100,
                    public_agency_id: 1, payment_date: Date.new(2015, 6, 2))
-    Expense.create(id: 2, document_number: '0000', value: 100,
+    Expense.create(document_number: '0002', value: 100,
                    public_agency_id: 1, payment_date: Date.new(2015, 2, 2))
-    Expense.create(id: 3, document_number: '0000', value: 100,
+    Expense.create(document_number: '0003', value: 100,
                    public_agency_id: 1, payment_date: Date.new(2015, 3, 2))
-    Expense.create(id: 4, document_number: '0000', value: 100,
+    Expense.create(document_number: '0004', value: 100,
                    public_agency_id: 1, payment_date: Date.new(2015, 5, 2))
-    Expense.create(id: 5, document_number: '0000', value: 100,
+    Expense.create(document_number: '0005', value: 100,
                    public_agency_id: 1, payment_date: Date.new(2015, 4, 2))
   end
 end

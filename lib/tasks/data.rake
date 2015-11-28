@@ -60,5 +60,9 @@ namespace :data do
     con.execute("REPLACE INTO public_agency_graph (id_public_agency, year, value) \
   		SELECT public_agency_id, EXTRACT(YEAR FROM payment_date), SUM(value) \
   		FROM expenses GROUP BY public_agency_id, EXTRACT(YEAR FROM payment_date)")
+
+    con.execute("REPLACE INTO function_graph (function_id, description, year, value) \
+  		SELECT function_id, (SELECT description FROM functions WHERE id=function_id), EXTRACT(YEAR FROM payment_date), SUM(value) \
+  		FROM expenses GROUP BY function_id, EXTRACT(YEAR FROM payment_date)")
   end
 end

@@ -280,14 +280,17 @@ class TypeExpenseControllerTest < ActionController::TestCase
      TypeExpense.create(id: 2, description: 'Type expense two invalid')
      TypeExpense.create(id: 3, description: 'Type expense three valid')
 
-     Expense.create(document_number: '0000', payment_date: Date.new(2010, 1, 1),
+     j = 1
+     Expense.create(document_number: j, payment_date: Date.new(2010, 1, 1),
                           public_agency_id: 2, type_expense_id: 2, value: 100)
      for i in 1..5
-         Expense.create(document_number: '0000', payment_date: Date.new(2013, i, 1),
+         j += 1
+         Expense.create(document_number: j, payment_date: Date.new(2013, i, 1),
                            public_agency_id: 1, type_expense_id: 1, value: 100)
       end
      for i in 1..5
-         Expense.create(document_number: '0000', payment_date: Date.new(2013, i, 1),
+         j += 1
+         Expense.create(document_number: j, payment_date: Date.new(2013, i, 1),
                            public_agency_id: 1, type_expense_id: 3, value: 100)
       end
   end

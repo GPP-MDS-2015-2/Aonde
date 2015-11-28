@@ -6,3 +6,4 @@ languages:
 exclude_paths:
 - "**.js"
 - "test/*"
+- "lib/tasks/*"
