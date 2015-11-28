@@ -18,21 +18,21 @@
 <div id="free">
   <div class="container">
    <div class="row">
-    <form class="col" onsubmit="return sendEmail('<%= contact_path %>')">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>
-           <%= email_field_tag :from%>
+    <h3>Criticas, sugestões, comentarios</h3>
+    <form class="col" action="<%= contact_path %>" method="post">
+        <div class="input-field col s12">
+          <%= email_field_tag :from, params[:from], required: true%>
           <label for="email" data-error="wrong" data-success="right">Email</label>
         </div>
-        <div class="input-field col s6">
-          <%= text_field_tag :subject%>
+        <div class="input-field col s12">
+          <%= text_field_tag :subject, params[:subject], required: true%>
           <label for="icon_prefix">Assunto</label>
         </div>
         <div class="input-field col s12">
            <textarea id="textarea1" class="materialize-textarea" length="500"<%= text_area_tag :text%></textarea>
            <label for="textarea1">Texto</label>
       </div>
-      <button class="btn waves-effect waves-light" name="action">Enviar
+        <button class="btn waves-effect waves-light" type="submit" name="action" style="margin-top:25px;float:right; background:#006699">Enviar
         <i class="material-icons right">email</i>
       </button>
     </form>
