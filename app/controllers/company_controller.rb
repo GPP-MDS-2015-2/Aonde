@@ -6,7 +6,7 @@ class CompanyController < ApplicationController
   def show
     # find_agencies(params[:id])
 
-    params[:year] = '2015' if params[:year].nil?
+    initialize_year(params)
 
     company_expense = HelperController
                       .find_expenses_entity(params[:year],
@@ -88,4 +88,8 @@ class CompanyController < ApplicationController
     array_general << data_company
     array_general << edges
   end
+
+  private :generate_public_agency_node,:generate_company_node,:find_hiring_count,:find_public_agencies,
+          :verify_insert
+
 end

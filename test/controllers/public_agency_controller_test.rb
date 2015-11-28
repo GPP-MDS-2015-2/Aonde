@@ -25,49 +25,13 @@ class PublicAgencyControllerTest < ActionController::TestCase
   test 'get show public agency' do
     create_public_agency
     get :show, id: 1
-
     assert_response :success
-
-    assert assigns(:list_expenses)
-  end
-
-  test 'get to filter chart' do
-    create_public_agency
-    get :filter_chart, id: 1, from_year: 2010, end_year: 2015,
-                       from_month: 'Janeiro', end_month: 'Junho'
-    assert_response :success
-    # assert assigns(:list_expenses)
-  end
-  
-  test 'get filter chart with invalid date' do
-    create_public_agency
-    get :filter_chart, id: 1, from_year: 2016, end_year: 2015,
-                       from_month: 'Janeiro', end_month: 'Junho'
-    assert_response :success
-    assert assigns(:list_expenses)
-    assert_equal("Não encontrou nenhum gasto no periodo\n Veja o gráfico"\
-      ' com todos gastos', flash[:error])
   end
 
   test 'increment one unit in views amount' do
     public_agency = PublicAgency.find(1)
     @controller.send(:increment_views_amount, public_agency)
     assert_equal(2, public_agency.views_amount)
-  end
-  test 'valid date to generate a list with expenses of public agency' do
-    date = { from_month: 'Janeiro', end_month: 'Dezembro', from_year: 2014,
-             end_year: 2015 }
-    public_agency = PublicAgency.find(1)
-    list = @controller.send(:create_list_expense, date, public_agency)
-    assert_not_empty(list[:total_date])
-  end
-  test 'Raise exception to invalid data' do
-    date = { from_month: 'Janeiro', end_month: 'Dezembro', from_year: 2015,
-             end_year: 2010 }
-    public_agency = PublicAgency.find(1)
-    assert_raise(Exception) do
-      list = @controller.send(:create_list_expense, date, public_agency)
-    end
   end
 
   test 'sum of expenses for public agency' do
@@ -76,38 +40,11 @@ class PublicAgencyControllerTest < ActionController::TestCase
     assert_equal(expected_expense, total_expense)
   end
 
-  test 'size of generate expenses by date for public agency' do
-    begin_date = Date.new(2015, 1, 2)
-    end_date = Date.new(2015, 4, 2)
-    expenses_public_agency = @controller.send(:get_expenses_agency, 1,
-                                              begin_date, end_date)
-    assert_equal(3, expenses_public_agency[:total_date].size)
-  end
-
-  test 'empty list to public agency without expenses in date interval' do
-    begin_date = Date.new(2014, 1, 2)
-    end_date = Date.new(2014, 6, 2)
-    expenses_public_agency = @controller.send(:get_expenses_agency, 1,
-                                              begin_date, end_date)
-    assert_empty(expenses_public_agency[:total_date])
-    assert_equal(nil, expenses_public_agency[:total])
-  end
-
-  test 'sorted result of list' do
-    begin_date = Date.new(2015, 1, 2)
-    end_date = Date.new(2015, 4, 2)
-    expenses_public_agency = @controller.send(:get_expenses_agency, 1,
-                                              begin_date, end_date)
-    expected_expenses = { total_date: [
-      ['02/2015', 100], ['03/2015', 100],
-      ['04/2015', 100]] }
-    assert_equal(expected_expenses, expenses_public_agency)
-  end
-
   test 'change type of array' do
-    array = [['01/2015', 10], ['02/2015', 20]]
-    controller_array = @controller.change_type_list_expenses(array)
-    correct_array = "{\"2015\":{\"Janeiro\":10,\"Fevereiro\":20}}"
+    array = {3=>14, 5=>16, 7=>18}
+    year = 2015
+    controller_array = @controller.send(:change_type_list_expenses,array,year)
+    correct_array = {2015=>{"Março"=>14, "Maio"=>16, "Julho"=>18}}
 
     assert_equal(correct_array, controller_array)
   end
