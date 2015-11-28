@@ -40,7 +40,7 @@ function budgetFilter(path,idEntity,updateChart){
   if ( !sliderDiv.hasClass('ui-slider') ){
     sliderDiv.slider({
       range: false,
-      min: 2011,
+      min: 2012,
       max: 2015,
       value: 2015,
       /*slide: function( event, ui ) {        
