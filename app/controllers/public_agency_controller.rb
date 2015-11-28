@@ -6,7 +6,7 @@ class PublicAgencyController < ApplicationController
     @public_agencies = PublicAgency.all
     @total_expense_agency = {}
     @public_agencies.each do |agency|
-      @total_expense_agency[agency.id] = expenses_public_agency(agency.id)
+      @total_expense_agency[agency.id] = PublicAgencyGraph.where(id_public_agency: agency.id).sum(:value)
     end
   end
 
