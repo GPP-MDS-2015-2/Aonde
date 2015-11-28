@@ -21,5 +21,6 @@ class ApplicationController < ActionController::Base
     @public_agency = PublicAgency.find(id)
     @superior_public_agency = SuperiorPublicAgency
                               .find(@public_agency.superior_public_agency_id)
+    return @public_agency
   end
 end
