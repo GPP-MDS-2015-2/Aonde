@@ -60,12 +60,13 @@ textarea{
   height: 500px; 
 }
 
-#cont_share{
-  background: #F38630;
+#share{
   width: 200px;
   height: 30px;
-  margin-top: 10px;
-  border-radius: 10px 10px 10px 10px;  
+  margin-top: 10px;  
+}
+#share button {
+  margin-left:22px;
 }
 
 .msg_error{
@@ -80,19 +81,6 @@ textarea{
   margin: 3px 22px;
   font-size: 20px;
   vertical-aling: middle;
-}
-
-#cont_share{
-  background: #F38000;
-  width: 260px;
-  height: 30px;
-  margin-top: 10px;
-  border-radius: 10px 10px 10px 10px;  
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbd5b7), color-stop(40%, #f38630));
-}
-
-#cont_share a{
-  color: blue;
 }
 
 #CompanyTable{
