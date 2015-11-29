@@ -70,13 +70,6 @@ class FunctionControllerTest < ActionController::TestCase
     assert_not_equal(expected_hash, returned_hash)
   end
 
-  test 'Should filter datas' do
-    hash_json = [{ 'id' => nil, 'description' => 'Saúde', 'sumValue' => 2 }]
-    expected_hash = { 'Saúde' => 2 }
-    returned_hash = @controller.filter_datas_in_expense(hash_json)
-    assert_equal(expected_hash, returned_hash)
-  end
-
   test 'Should return the n first elements of a hash' do
     hash_with_11 = { a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9, j: 10, k: 11 }
 

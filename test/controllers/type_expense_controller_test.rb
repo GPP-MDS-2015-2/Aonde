@@ -63,23 +63,23 @@ class TypeExpenseControllerTest < ActionController::TestCase
     assert_not_equal(not_expected_list, expense_list, 'The list is equals at the not expected')
   end
 
-  test 'Verify the list is empty in the method is_empty_filter' do
-    list_type_expenses = [{ name: 'Compra cadeiras', value: 100, colorValue: 50 },
-                          { name: 'Compra livros', value: 100, colorValue: 50 }]
-    not_empty_list = @controller.is_empty_filter(list_type_expenses)
-    assert_not (not_empty_list)
-
-    list_type_expenses = []
-    empty_list = @controller.is_empty_filter(list_type_expenses)
-    assert (empty_list)
-
-    no_param = @controller.is_empty_filter
-    assert (no_param)
-
-    # need the begin ... rescue instructions
-    # null_type_expenses = nil
-    # null_list = @controller.is_empty_filter(null_type_expenses)
-  end
+#  test 'Verify the list is empty in the method is_empty_filter' do
+#    list_type_expenses = [{ name: 'Compra cadeiras', value: 100, colorValue: 50 },
+#                          { name: 'Compra livros', value: 100, colorValue: 50 }]
+#    not_empty_list = @controller.is_empty_filter(list_type_expenses)
+#    assert_not (not_empty_list)
+#
+#    list_type_expenses = []
+#    empty_list = @controller.is_empty_filter(list_type_expenses)
+#    assert (empty_list)
+#
+#    no_param = @controller.is_empty_filter
+#    assert (no_param)
+#
+#    # need the begin ... rescue instructions
+#    # null_type_expenses = nil
+#    # null_list = @controller.is_empty_filter(null_type_expenses)
+#  end
 
    def create_entities
      SuperiorPublicAgency.create(id: 1, name: 'valid SuperiorPublicAgency')
@@ -106,26 +106,26 @@ class TypeExpenseControllerTest < ActionController::TestCase
       end
   end
 
-  test 'Verify if is_date_select is true' do
-    default_params = @controller.is_date_select
-    assert(default_params)
-    year = '2014'
-    expense_test = Expense.new(payment_date: Date.new(2015, 2, 20))
-    year_params_false = @controller.is_date_select(year, 'Todos',
-                                                   expense_test)
-
-    assert_not(year_params_false)
-
-    year_params_true = @controller.is_date_select('2015', 'Janeiro',
-                                                  expense_test)
-    assert_not(year_params_true)
-
-    all_month_params = @controller.is_date_select('2015', 'Todos',
-                                                  expense_test)
-    assert(all_month_params)
-
-    params_validate = @controller.is_date_select('2015', 'Fevereiro',
-                                                 expense_test)
-    assert(params_validate)
-  end
+#  test 'Verify if is_date_select is true' do
+#    default_params = @controller.is_date_select
+#    assert(default_params)
+#    year = '2014'
+#    expense_test = Expense.new(payment_date: Date.new(2015, 2, 20))
+#    year_params_false = @controller.is_date_select(year, 'Todos',
+#                                                   expense_test)
+#
+#    assert_not(year_params_false)
+#
+#    year_params_true = @controller.is_date_select('2015', 'Janeiro',
+#                                                  expense_test)
+#    assert_not(year_params_true)
+#
+#    all_month_params = @controller.is_date_select('2015', 'Todos',
+#                                                  expense_test)
+#    assert(all_month_params)
+#
+#    params_validate = @controller.is_date_select('2015', 'Fevereiro',
+#                                                 expense_test)
+#    assert(params_validate)
+#  end
 end

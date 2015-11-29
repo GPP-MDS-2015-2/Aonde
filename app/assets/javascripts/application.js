@@ -17,7 +17,6 @@
 //= require highcharts/highcharts
 //= require Fireworks
 //= require_tree ../../../vendor/assets/javascripts/slider
-//= require_tree ../../../vendor/assets/javascripts/dataTable
 //= require_tree ../../../vendor/assets/javascripts/visjs
 //= require_tree ../../../vendor/assets/javascripts/highcharts
 //= require visjs/vis
