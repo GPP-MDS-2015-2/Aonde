@@ -1,7 +1,7 @@
 body{
   height: 100%;
   background:#F4F4F4;
-  color: #603813;
+  color: #333;
   text-decoration: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 200;
@@ -21,8 +21,8 @@ body{
 }
 
 .content_header{
-  width: 960px;
-  height: 80px;
+  width: 1090px;
+  height: 100px;
   margin-right:auto;
   margin-left:auto;
   margin-top:35px;
@@ -284,6 +284,7 @@ canvas{
 
 #align_page{
   margin: 0px;
+
 }
 
 #align_form{

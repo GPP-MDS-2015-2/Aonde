@@ -40,7 +40,7 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
 <div id="container_tabs">
     <ul class="collapsible popout" data-collapsible="accordion">
       <li>
-        <div class='collapsible-header' style='background:#FF8F2F;' onclick='setChart("<%= public_agency_chart_path %>",AGENCY,drawAgency)'><i class="material-icons">money_off</i>Gastos</div>
+        <div class='collapsible-header' style='background:#FF8F2F;' onclick='setChart("<%= public_agency_chart_path %>",AGENCY,drawAgency)'><i class="material-icons">money_off</i>Gastos do Órgão Público</div>
         <div class='collapsible-body'>
           <div class="filter" id="public_agency"></div>
           <div class="chart" id="public_agency" ><!--style="height:auto; margin-right:auto;  margin-left:auto;"> -->
@@ -55,7 +55,7 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
       </li>
       <p></p>
       <li>
-        <div class="collapsible-header" style="background:#FF8F2F;"onclick='setChart("<%= programs_path %>",PROGRAM,drawProgram)'><!--<i class="material-icons">assessment</i>--><i class="material-icons">assignment</i>Programas</div>
+        <div class="collapsible-header" style="background:#FF8F2F;"onclick='setChart("<%= programs_path %>",PROGRAM,drawProgram)'><!--<i class="material-icons">assessment</i>--><i class="material-icons">assignment</i>Programas relacionados ao Órgão Público</div>
         <div class="collapsible-body">
             <div class="filter" id="program"></div>
             <div class="chart" id="program"></div>
@@ -75,7 +75,7 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
       </li>
       <p></p>
       <li>
-          <div class="collapsible-header" style="background:#FF8F2F;" onclick="setChart('<%= companies_path%>',COMPANY,drawCompany)"><i class="material-icons">business</i>Empresas</div>
+          <div class="collapsible-header" style="background:#FF8F2F;" onclick="setChart('<%= companies_path%>',COMPANY,drawCompany)"><i class="material-icons">business</i>Empresas relacionadas ao Órgão Público</div>
           <div class="collapsible-body">
             <div class="filter" id="company"></div>
             <div class="chart" id="company"></div>
@@ -96,7 +96,7 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
           <p></p>
       <li>
           <div class="collapsible-header" style="background:#FF8F2F;" onclick='setChart("<%= type_expense_path %>",TYPE,drawTypeExpense)'>
-              <i class="material-icons">assignment_late</i>Gastos por tipo
+              <i class="material-icons">assignment_late</i>Gastos detalhados por Tipo
           </div>
           <div class="collapsible-body">
             <div class="filter" id="type_expense"></div>
@@ -117,7 +117,7 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
       </li>
       <p></p>
       <li>
-          <div class="collapsible-header" style="background:#FF8F2F;" onclick='setChart("<%= budget_path %>",BUDGET,drawBudget)'><!--<i class="material-icons">assignment_late</i>--><i class="material-icons">attach_money</i>Orcamento</div>
+          <div class="collapsible-header" style="background:#FF8F2F;" onclick='setChart("<%= budget_path %>",BUDGET,drawBudget)'><!--<i class="material-icons">assignment_late</i>--><i class="material-icons">attach_money</i>Orçamento do Órgão Público</div>
           <div class="collapsible-body">
             <div class="filter" id="budget"></div>
             <div class="chart" id="budget"></div>
