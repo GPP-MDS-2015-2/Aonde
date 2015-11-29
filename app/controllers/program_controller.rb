@@ -7,7 +7,7 @@ class ProgramController < ApplicationController
 
     initialize_year(params)
 
-    all_programs = HelperController.find_expenses_entity(params[:id], :program, :name)
+    all_programs = HelperController.find_expenses_entity(params[:year],params[:id], :program, :name)
     respond_to do |format|
       format.json { render json: all_programs }
     end

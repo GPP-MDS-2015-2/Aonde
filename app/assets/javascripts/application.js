@@ -10,13 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require_tree ../../../vendor/assets/javascripts/jQuery
 //= require materialize-sprockets
 //= require jquery.turbolinks
-//= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require highcharts/highcharts
-//= require_tree ../../../vendor/assets/javascripts
+//= require Fireworks
+//= require_tree ../../../vendor/assets/javascripts/slider
+//= require_tree ../../../vendor/assets/javascripts/dataTable
+//= require_tree ../../../vendor/assets/javascripts/visjs
+//= require_tree ../../../vendor/assets/javascripts/highcharts
 //= require visjs/vis
 //= require turbolinks
 //= require_tree .
