@@ -26,13 +26,13 @@
     Você pode nos enviar um e-mail com suas dúvidas, críticas, 
     sugestões ou comentários.<p></p>
     Preencha os campos abaixo:
-    <form class="col" action="<%= contact_path %>" method="post">
+    <form class="col" onsubmit="return sendEmail('<%= contact_path %>')">
         <div class="input-field col s12">
-          <%= email_field_tag :from, params[:from], required: true%>
+          <%= email_field_tag :from, params[:from]%>
           <label for="email" data-error="wrong" data-success="right">E-mail</label>
         </div>
         <div class="input-field col s12">
-          <%= text_field_tag :subject, params[:subject], required: true%>
+          <%= text_field_tag :subject, params[:subject]%>
           <label for="icon_prefix">Assunto</label>
         </div>
         <div class="input-field col s12">

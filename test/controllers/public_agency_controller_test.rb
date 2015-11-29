@@ -50,11 +50,12 @@ class PublicAgencyControllerTest < ActionController::TestCase
   end
 
   def create_fake_facebook
-    url = 'http://graph.facebook.com/?ids=http://aondebrasil.com'\
-    '/public_agency/1'
+  
+    url = 'http://graph.facebook.com/?ids=http://aondebrasil.com/public_agency/1'
     shares = { 'http://aondebrasil.com/public_agency/1' => {
       'id' => 'http://aondebrasil.com/public_agency/1', 'shares' => 6 } }
     FakeWeb.register_uri(:get, url, body: shares.to_json)
+
   end
 
   def clean_database
@@ -81,3 +82,4 @@ class PublicAgencyControllerTest < ActionController::TestCase
                    public_agency_id: 1, payment_date: Date.new(2015, 4, 2))
   end
 end
+  
