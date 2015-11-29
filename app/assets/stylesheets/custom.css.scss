@@ -247,7 +247,7 @@ footer{
 }
 #free{
   width:auto;
-  height:500px;
+  height:550px;
   background: white;
 }
 
@@ -280,4 +280,15 @@ canvas{
   border-radius: 6px;
   color: #999;
   font-size: 14px;
+}
+
+#align_page{
+  margin: 0px;
+}
+
+#align_form{
+  margin-left: 40px;
+}
+#align_row{
+  padding-left: 0px;
 }

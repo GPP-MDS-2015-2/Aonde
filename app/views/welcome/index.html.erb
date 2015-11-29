@@ -20,22 +20,23 @@
 </div>
 
 <div id="free">
-  <div class="container">
-   <div class="row">
+  <div class="container" id="align_page">
+   <div class="row" id="align_form">
     <h3>Fale Conosco</h3>
+    <span style="position: relative; float:left; ">
     Você pode nos enviar um e-mail com suas dúvidas, críticas, 
-    sugestões ou comentários.<p></p>
-    Preencha os campos abaixo:
-    <form class="col" onsubmit="return sendEmail('<%= contact_path %>')">
-        <div class="input-field col s12">
+    sugestões ou comentários.<p></p><p>
+    Preencha os campos abaixo:</span>
+    <form class="col"id="align_row"  onsubmit="return sendEmail('<%= contact_path %>')">
+        <div class="input-field col s12" id="align_row" >
           <%= email_field_tag :from, params[:from]%>
           <label for="email" data-error="wrong" data-success="right">E-mail</label>
         </div>
-        <div class="input-field col s12">
+        <div class="input-field col s12"id="align_row" >
           <%= text_field_tag :subject, params[:subject]%>
           <label for="icon_prefix">Assunto</label>
         </div>
-        <div class="input-field col s12">
+        <div class="input-field col s12"id="align_row" >
            <textarea id="textarea1" class="materialize-textarea" length="500"<%= text_area_tag :text%></textarea>
            <label for="textarea1">Texto</label>
       </div>
