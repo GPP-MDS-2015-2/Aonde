@@ -13,27 +13,40 @@ function show_filter(){
 function showFilter(path,idEntity,updateChart){
   sliderDiv = $('#'+idEntity+"."+FILTER);
   if ( !sliderDiv.hasClass('ui-slider') ){
-    sliderDiv.slider({
+    sliderDiv.rangeSlider({
+      bounds: {min: 2011, max: 2015},
+      defaultValues: {min: 2015,max:2015},
+      symmetricPositionning: true,
+      range: false,
+      step: 1,
+      arrows: false
+    });
+    // Preferred method
+  sliderDiv.on("valuesChanged", function(e, data){
+    if (idEntity!=AGENCY){
+            clearChart(idEntity,0);
+    }else{
+      console.debug(AGENCY);
+      clearAgency();
+      console.debug(AGENCY);
+    }
+    obtainData(path,idEntity,updateChart,data.values.min,data.values.max)
+    console.log("Something moved. min: " + data.values.min + " max: " + data.values.max);
+});
+  }
+}
+/*{
       range: true,
       min: 2011,
       max: 2015,
       values: [2015,2015],
       /*slide: function( event, ui ) {        
           console.info("Change the slider")
-        },*/
+        },
         stop: function(event,ui){
-          if (idEntity!=AGENCY){
-            clearChart(idEntity,0);
-          }else{
-            console.debug(AGENCY);
-            clearAgency();
-            console.debug(AGENCY);
-          }
-          obtainData(path,idEntity,updateChart,ui.values[0],ui.values[1])
+          
         }
-    });
-  }
-}
+    }*/
 
 function budgetFilter(path,idEntity,updateChart){
   sliderDiv = $('#'+idEntity+"."+FILTER);
