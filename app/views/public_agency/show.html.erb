@@ -132,4 +132,10 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
           </div>
       </li>
     </ul>
+    <div id="share">
+      <button onclick="location.href='https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>'"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook" style="background:#133783">
+        <i class="fa fa-facebook"></i>
+      </button>
+      <%= facebook_share_amount("https://aondebrasil.com#{request.fullpath}") %>
+    </div>
 </div>
