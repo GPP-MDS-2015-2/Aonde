@@ -8,21 +8,28 @@
 
 
 <div id="government_spending">
-    <div id="video"></div>
+    <div id="video">
+      <%= link_to image_tag("dados_abertos.jpg")%>
+    </div>
     <div id="info">
-      <h1>Conhecimento dos gastos federais</h1>
-      <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id lorem ut enim hendrerit luctus.</h2>
+      <h1> Acompanhe os gastos dos Órgãos Públicos </h1>
+      <h2>Com o Aondê é possível visualizar o orçamento dos Órgãos 
+      Públicos Federais e comparar com as despesas realizadas 
+      advindas do Portal da transparência.</h2>
     </div>
 </div>
 
 <div id="free">
   <div class="container">
    <div class="row">
-    <h3>Criticas, sugestões, comentarios</h3>
+    <h3>Fale Conosco</h3>
+    Você pode nos enviar um e-mail com suas dúvidas, críticas, 
+    sugestões ou comentários.<p></p>
+    Preencha os campos abaixo:
     <form class="col" action="<%= contact_path %>" method="post">
         <div class="input-field col s12">
           <%= email_field_tag :from, params[:from], required: true%>
-          <label for="email" data-error="wrong" data-success="right">Email</label>
+          <label for="email" data-error="wrong" data-success="right">E-mail</label>
         </div>
         <div class="input-field col s12">
           <%= text_field_tag :subject, params[:subject], required: true%>
