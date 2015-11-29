@@ -18,4 +18,6 @@ class ContactController < ApplicationController
       format.json {render json: "enviado".to_json}
     end
   end
+  def help
+  end
 end
