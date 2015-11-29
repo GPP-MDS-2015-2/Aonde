@@ -22,7 +22,7 @@
 <div id="hahaBoom"style="background: dark-gray;z-index: 1;position:absolute;"></div>
     <!--This part is to menu-->
     <div id="content_menu">
-      <div class="container" style="width:auto; height:70px;">
+      <div class="container" id="align_content">
         <div id="menu_index">
            <div class="logo"> <%= link_to image_tag("logo_aonde.png"), root_path%> </div>
           <ul>
@@ -53,7 +53,7 @@
     </div>
   </div>
 <!--Container to render-->
-<div class="container">     
+<div class="container" style="width: 100%; margin-left: 0; max-width: 100000px;">     
     <%= yield %>
 </div> 
  <footer></footer>

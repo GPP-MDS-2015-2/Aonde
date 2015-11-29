@@ -15,19 +15,22 @@ body{
   width: 960px;
   height:auto;
   margin-right:auto;
-  margin-left:auto;
+  margin-left:14%;
   margin-bottom:35px;
   background:#036564;
 }
 
 .content_header{
-  width: 1090px;
+  width: auto;
   height: 100px;
   margin-right:auto;
   margin-left:auto;
   margin-top:35px;
   margin-bottom:35px;
   background-color: #603813;
+  color: white;
+}
+.content_header a{
   color: white;
 }
 
@@ -41,6 +44,7 @@ body{
 }
 
 .content_header h4 {
+  margin-left: 14%;
   text-align: left;
   padding: 20px;
   color: #FFFFFF;
@@ -195,7 +199,7 @@ a.display:hover {
 #container_tabs{
   width:960px;
   height:auto;
-  margin-left:auto;
+  margin-left:13%;
   margin-right:auto;
   margin-top:15px;
   margin-bottom:100px; 
@@ -292,4 +296,16 @@ canvas{
 }
 #align_row{
   padding-left: 0px;
+}
+.accordion_agency{
+  color: white;
+}
+#align_content{
+  margin-left: 13%;
+}
+
+#infor_link{
+  margin-left: 14%;
+  font-size: 19px;
+  margin-bottom: 14px;
 }
