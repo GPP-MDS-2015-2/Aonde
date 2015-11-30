@@ -49,8 +49,44 @@ class PublicAgencyControllerTest < ActionController::TestCase
     assert_equal(correct_array, controller_array)
   end
 
+  test 'test agencies chart with null year' do
+    create_public_agency
+    get :agency_chart, year: nil, id: 1, format: :json
+
+    assert_response :success
+    json_response = JSON.parse(@response.body)
+    assert_equal json_response['2015'].count, 5
+  end
+
+  test 'test agencies chart with valid year' do
+    create_public_agency
+    get :agency_chart, year: 2015, id: 1, format: :json
+
+    assert_response :success
+    json_response = JSON.parse(@response.body)
+    assert_equal json_response['2015'].count, 5
+  end
+
+  test 'test agencies chart with invalid year' do
+    create_public_agency
+    get :agency_chart, year: 2014, id: 1, format: :json
+
+    assert_response :success
+    json_response = JSON.parse(@response.body)
+    assert_equal json_response['2014'].count, 0
+  end
+
+  test 'test agencies chart with invalid id' do
+    create_public_agency
+    get :agency_chart, year: nil, id: 300, format: :json
+
+    assert_response :success
+    json_response = JSON.parse(@response.body)
+    assert_equal json_response['2015'].count, 0
+  end
+
   def create_fake_facebook
-  
+
     url = 'http://graph.facebook.com/?ids=http://aondebrasil.com/public_agency/1'
     shares = { 'http://aondebrasil.com/public_agency/1' => {
       'id' => 'http://aondebrasil.com/public_agency/1', 'shares' => 6 } }

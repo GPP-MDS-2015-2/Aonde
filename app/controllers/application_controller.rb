@@ -8,16 +8,8 @@ class ApplicationController < ActionController::Base
   #  logger.info "  ,,,\n {0,0}\n./) )\n==\"=\"=="
   # sleep(1)
   # end
-  def initialize_year(params)
-  
-    if params[:year].nil?
-      params[:year] = '2015'
-    end 
-  
-  end
 
   def find_agencies(id = 0)
-    
     @public_agency = PublicAgency.find(id)
     @superior_public_agency = SuperiorPublicAgency
                               .find(@public_agency.superior_public_agency_id)

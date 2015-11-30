@@ -3,10 +3,6 @@
 class ProgramController < ApplicationController
 
   def show_programs
-    # find_agencies(params[:id])
-
-    initialize_year(params)
-
     all_programs = HelperController.find_expenses_entity(params[:year],params[:id], :program, :name)
     respond_to do |format|
       format.json { render json: all_programs }

@@ -4,13 +4,10 @@
 class CompanyController < ApplicationController
  
   def show
-    # find_agencies(params[:id])
-
-    initialize_year(params)
-
+    year = params[:year]
+    id = params[:id]
     company_expense = HelperController
-                      .find_expenses_entity(params[:year],
-                                            params[:id], :company, :name)
+                      .find_expenses_entity(year, id, :company, :name)
 
     respond_to do |format|
       format.json { render json: company_expense }

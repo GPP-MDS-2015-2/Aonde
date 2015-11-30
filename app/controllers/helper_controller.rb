@@ -17,7 +17,8 @@ module HelperController
   end
 
   def self.find_expenses_entity(year = '2015', id, name_entity, attribute)
-    Expense.joins(name_entity)
+   year ||= 2015
+   Expense.joins(name_entity)
       .where(public_agency_id: id, payment_date: "#{year}-01-01".."#{year}-12-31")
       .select(attribute).order('sum_value DESC').group(attribute)
       .sum(:value).transform_values! {|v| v.to_f}.to_a
