@@ -42,7 +42,7 @@ namespace :data do
     user = conf['parser']['username']
     password = conf['parser']['password']
     dump_file = args[:file]
-    p "Dumping on: "+dump_file 
+    p "Dumping on: "+dump_file
     `mysqldump --no-create-info --replace --complete-insert -u #{user} #{db_name} -p#{password} > #{dump_file}`
   end
 

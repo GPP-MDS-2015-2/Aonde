@@ -20,7 +20,7 @@ module HelperController
     Expense.joins(name_entity)
       .where(public_agency_id: id, payment_date: "#{year}-01-01".."#{year}-12-31")
       .select(attribute).order('sum_value DESC').group(attribute)
-      .sum(:value).to_a
+      .sum(:value).transform_values! {|v| v.to_f}.to_a
   end
 
   def self.create_date(date = { from_month: 'Janeiro', end_month: 'Dezembro',

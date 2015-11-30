@@ -14,7 +14,7 @@ class BudgetController < ApplicationController
     
     expense_month = HelperController.expenses_year(id_public_agency, year)
     expense_month = initialize_hash(expense_month)
-    expense_month = HelperController.int_to_month(expense_month).to_a
+    expense_month = HelperController.int_to_month(expense_month).transform_values! {|v| v.to_f}.to_a
     return expense_month
   end
 
