@@ -4,13 +4,10 @@
 class CompanyController < ApplicationController
  
   def show
-    # find_agencies(params[:id])
-
-    initialize_year(params)
-
+    year = params[:year]
+    id = params[:id]
     company_expense = HelperController
-                      .find_expenses_entity(params[:year],
-                                            params[:id], :company, :name)
+                      .find_expenses_entity(year, id, :company, :name)
 
     respond_to do |format|
       format.json { render json: company_expense }
@@ -21,9 +18,9 @@ class CompanyController < ApplicationController
     expenses = Expense.where(company_id: params[:id])
     company_hiring_incidence = find_public_agencies(expenses)
     # company_hiring_incidence = get_15_first_nodes(company_hiring_incidence)
-    company_name = Company.find(params[:id]).name
-    data_company = generate_company_node(company_name)
-    array = generate_public_agency_node(company_name, company_hiring_incidence,
+    @company = Company.find(params[:id])
+    data_company = generate_company_node(@company.name)
+    array = generate_public_agency_node(@company.name, company_hiring_incidence,
                                         data_company)
     @correct_datas = array.to_json
   end

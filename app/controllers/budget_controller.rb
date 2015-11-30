@@ -1,7 +1,6 @@
 # Controller of budget to manage the data of expenses and budget
 class BudgetController < ApplicationController
   def show
-    initialize_year(params)
     expense_month = process_expense(params[:year],params[:id].to_i)
     budget_month = process_budget(params[:year], params[:id],expense_month)
     data_budget = { 'expenses' => expense_month, 'budgets' => budget_month }
@@ -9,9 +8,9 @@ class BudgetController < ApplicationController
       format.json { render json: data_budget }
     end
   end
-  
+
   def process_expense(year,id_public_agency)
-    
+    year ||= 2015
     expense_month = HelperController.expenses_year(id_public_agency, year)
     expense_month = initialize_hash(expense_month)
     expense_month = HelperController.int_to_month(expense_month).transform_values! {|v| v.to_f}.to_a

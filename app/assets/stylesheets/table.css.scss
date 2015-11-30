@@ -1,12 +1,19 @@
 /*
  * Table styles
  */
-
+#tableLocation{
+  margin-left: 6%;
+  width: 960px;
+  margin-bottom: 3%;
+}
 table.dataTable tr:hover,
 table tr:hover td a{
   text-decoration:none;
   font-size: 14px;
   color: black;
+}
+table.dataTable tr{
+  height: 65px;
 }
 table.dataTable th,
 table.dataTable th:hover,
@@ -60,15 +67,15 @@ table.dataTable {
     background-repeat: no-repeat;
     background-position: center right; }
   table.dataTable thead .sorting {
-    background-image: url("../images/sort_both.png"); }
+    background-image: url("sort_both.png"); }
   table.dataTable thead .sorting_asc {
-    background-image: url("../images/sort_asc.png"); }
+    background-image: url("sort_asc.png"); }
   table.dataTable thead .sorting_desc {
-    background-image: url("../images/sort_desc.png"); }
+    background-image: url("sort_desc.png"); }
   table.dataTable thead .sorting_asc_disabled {
-    background-image: url("../images/sort_asc_disabled.png"); }
+    background-image: url("sort_asc_disabled.png"); }
   table.dataTable thead .sorting_desc_disabled {
-    background-image: url("../images/sort_desc_disabled.png"); }
+    background-image: url("sort_desc_disabled.png"); }
   table.dataTable tbody tr {
     background-color: #F4F4F4; }
     table.dataTable tbody tr.selected {
@@ -241,7 +248,6 @@ table.dataTable td {
     .dataTables_wrapper .dataTables_filter input {
       margin-left: 0.5em; }
   .dataTables_wrapper .dataTables_info {
-    clear: both;
     float: left;
     padding-top: 0.755em; }
   .dataTables_wrapper .dataTables_paginate {
@@ -281,40 +287,40 @@ table.dataTable td {
         /*Alter "primeiro" and "anterior" */
       .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
         cursor: default;
-        color: white !important;
+        color: #333 !important;
         border: 1px solid transparent;
         background: transparent;
         box-shadow: none; }
       .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
         color: white !important;
         border: 1px solid #555555;
-        background-color: #fbd5b7;
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbd5b7), color-stop(100%, #555555));
+        background-color: #DCDCDC;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #DCDCDC), color-stop(100%, #555555));
         /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top, #fbd5b7 0%, #555555 100%);
+        background: -webkit-linear-gradient(top, #DCDCDC 0%, #555555 100%);
         /* Chrome10+,Safari5.1+ */
-        background: -moz-linear-gradient(top, #fbd5b7 0%, #555555 100%);
+        background: -moz-linear-gradient(top, #DCDCDC 0%, #555555 100%);
         /* FF3.6+ */
-        background: -ms-linear-gradient(top, #fbd5b7 0%, #555555 100%);
+        background: -ms-linear-gradient(top, #DCDCDC 0%, #555555 100%);
         /* IE10+ */
-        background: -o-linear-gradient(top, #fbd5b7 0%, #555555 100%);
+        background: -o-linear-gradient(top, #DCDCDC 0%, #555555 100%);
         /* Opera 11.10+ */
-        background: linear-gradient(to bottom, #fbd5b7 0%, #555555 100%);
+        background: linear-gradient(to bottom, #DCDCDC 0%, #555555 100%);
         /* W3C */ }
       .dataTables_wrapper .dataTables_paginate .paginate_button:active {
         outline: none;
-        background-color: #f6a260;
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6a260), color-stop(100%, #f28026));
+        background-color: #DCDCDC;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #DCDCDC), color-stop(100%, #DCDCDC));
         /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top, #f6a260 0%, #f28026 100%);
+        background: -webkit-linear-gradient(top, #DCDCDC 0%, #DCDCDC 100%);
         /* Chrome10+,Safari5.1+ */
-        background: -moz-linear-gradient(top, #f6a260 0%, #f28026 100%);
+        background: -moz-linear-gradient(top, #DCDCDC 0%, #DCDCDC 100%);
         /* FF3.6+ */
-        background: -ms-linear-gradient(top, #f6a260 0%, #f28026 100%);
+        background: -ms-linear-gradient(top, #DCDCDC 0%, #DCDCDC 100%);
         /* IE10+ */
-        background: -o-linear-gradient(top, #f6a260 0%, #f28026 100%);
+        background: -o-linear-gradient(top, #DCDCDC 0%, #DCDCDC 100%);
         /* Opera 11.10+ */
-        background: linear-gradient(to bottom, #f6a260 0%, #f28026 100%);
+        background: linear-gradient(to bottom, #DCDCDC 0%, #DCDCDC 100%);
         /* W3C */
         box-shadow: inset 0 0 3px #111; }
     .dataTables_wrapper .dataTables_paginate .ellipsis {
@@ -343,7 +349,7 @@ table.dataTable td {
   .dataTables_wrapper .dataTables_processing,
   .dataTables_wrapper .dataTables_paginate {
   /*Color of "Mostrando de 1 até 10 de 294 registros"*/
-    color: white; }
+    color: #333; }
   .dataTables_wrapper .dataTables_scroll {
     clear: both; }
     .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody {

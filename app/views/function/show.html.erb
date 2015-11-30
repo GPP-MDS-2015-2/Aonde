@@ -6,35 +6,30 @@
 </div>
 
 
-<div class="container">  
+<div class="container" style="margin-left: 6%;">  
 	<div class="z-depth-4" style="margin-right:auto;  margin-left:auto; margin-bottom:15px;">
   		<%= render 'chart_function' %>
 	</div>
-</div>
 
-<div class="container">
   <center>
     <div class="collection">
     <a class="collection-item active grey darken-4">Itens excluidos do gráfico   
     <div id='removed_chart_elements'></div>
     </div>    
   </center>
-</div>
 
-<div class="container">
 	<div class="row">
       <div class="col s6 m5">
         <div class="card-panel grey darken-4">      		
           <span class="white-text">
-		      <b>Descrição do gráfico</b></p>
-          Descrição do gráfico para ser atualizado!
+		     O gráfico de gastos por função mostra em quais áreas estão sendo investidos mais recursos. Para ver a quantia investida passe o mouse sobre uma das função.
           </span>
         </div>
       </div>
       <div class="col" style="width:58%;">
         <div class="card-panel grey darken-4">
           <span class="white-text">
-             <b>Filtragem do gráfico <h1>?</h1></b>
+             <b>Filtre o gráfico</b>
         <p>     
 		<p></p>
 		<button class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Visualize o gráfico em sua forma padrão" type="submit" name="action" id="Default" value="Padrão" onclick="select_default()" style="background:#006699;">Padrão<i class="material-icons right">send</i>
@@ -51,6 +46,11 @@
          </div>
       </div>
     </div>
+    <div id="share" style="margin-bottom: 15px;">
+ <button onclick="location.href='https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= functions_path %>'"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook" style="background:#133783">
+        <i class="fa fa-facebook"></i>
+</button> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Compartilhamentos: <%=facebook_share_amount("http://aondebrasil.com#{request.fullpath}") %>
+</div>
 </div>
 
 <!-- Modal Structure -->

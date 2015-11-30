@@ -1,6 +1,6 @@
 body{
   height: 100%;
-  background:#F4F4F4;
+  background:white;
   color: #333;
   text-decoration: none;
   font-family: 'Open Sans', sans-serif;
@@ -8,21 +8,25 @@ body{
   position: relative;
   display: flex;
   min-height: 100vh;
+  min-width:1090px;
   flex-direction: column;    
 }
 
+#background_color{
+  background:#F4F4F4;
+}
 .content_table{
   width: 960px;
   height:auto;
-  margin-right:auto;
-  margin-left:14%;
+  margin-right:90%;
+  margin-left:6%;
   margin-bottom:35px;
   background:#036564;
 }
 
 .content_header{
   width: auto;
-  height: 100px;
+  height: 110px;
   margin-right:auto;
   margin-left:auto;
   margin-top:35px;
@@ -37,16 +41,17 @@ body{
 .content_header h6 {
   color: #ac6122;
   margin-right:10px;
-  margin-top: -60px;
+  margin-top: -20px;
   text-align: right;
   font-style: italic;
   font-size: 18px;
 }
 
 .content_header h4 {
-  margin-left: 14%;
+  margin-left: 6%;
+  margin-right: 6%;
   text-align: left;
-  padding: 20px;
+  padding: 20px 20px 10px 0px;
   color: #FFFFFF;
   font-family: 'Open Sans', sans-serif;
   font-size: 32px;
@@ -68,7 +73,8 @@ textarea{
 #share{
   width: 500px;
   height: 30px;
-  margin-top: 10px;  
+  margin-top: 10px;
+  
 }
 #share button {
   margin-left:22px;
@@ -197,13 +203,13 @@ a.display:hover {
 }
 
 #container_tabs{
-  width:960px;
+  width:auto;
   height:auto;
-  margin-left:13%;
-  margin-right:auto;
+  margin-left:5%;
+  margin-right:10%;
   margin-top:15px;
   margin-bottom:100px; 
-  padding:10px;
+  padding:10px 10px 10px 0px;
 }
 
 #content_menu{
@@ -253,6 +259,7 @@ footer{
   width:auto;
   height:550px;
   background: white;
+
 }
 
 canvas{
@@ -278,7 +285,11 @@ canvas{
   color: #999;
   font-size: 14px;
 }
-
+#search_bar {
+  position: relative;
+  float: right;
+  width: auto;
+}
 #search_bar input{
   border: #CCC solid 1px;
   border-radius: 6px;
@@ -287,8 +298,8 @@ canvas{
 }
 
 #align_page{
-  margin: 0px;
-
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 #align_form{
@@ -301,11 +312,13 @@ canvas{
   color: white;
 }
 #align_content{
-  margin-left: 13%;
+  margin-left: 6%;
+  margin-right: 6%;
 }
 
 #infor_link{
-  margin-left: 14%;
+  margin-left: 6%;
+  margin-right: 6%;
   font-size: 19px;
   margin-bottom: 14px;
 }

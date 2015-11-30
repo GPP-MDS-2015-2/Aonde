@@ -5,7 +5,7 @@ class FunctionController < ApplicationController
     dates = HelperController.create_date
     datas = insert_expenses_functions(dates[:begin], dates[:end])
     datas.transform_values! {|value| value.to_i}
-    ordered_data = datas.sort_by { |_description, sumValue| sumValue }
+    ordered_data = datas.sort_by { |_description, sumValue| -sumValue }
     @correct_datas = datas.to_json
     @top_10_data = get_top_10_data(ordered_data).to_h.to_json
   end
@@ -13,8 +13,9 @@ class FunctionController < ApplicationController
   def filter
     dates = find_dates(params[:year], params[:month])
     expenses = get_expenses(dates)
+    expenses.transform_values! {|value| value.to_i}
     @correct_datas = expenses.to_json
-    ordered_data = expenses.sort_by { |_description, sumValue| sumValue }
+    ordered_data = expenses.sort_by { |_description, sumValue| -sumValue }
     @top_10_data = get_top_10_data(ordered_data).to_h.to_json
     render 'show'
   end
@@ -64,14 +65,14 @@ class FunctionController < ApplicationController
     expenses = insert_expenses_functions(dates[:begin], dates[:end])
   end
 
-  def insert_expenses_functions(begin_year,end_year)
-    expenses = metodo(begin_year,end_year)
+  def insert_expenses_functions(begin_date,end_date)
+    expenses = find_functions_values(begin_date,end_date)
     exp = convert_to_a_hash(expenses)
     exp
   end
 
-  def metodo(begin_year,end_year)
-    functions_expenses = FunctionGraph.where(year: "#{2014}-01-01".."#{2015}-12-31")
+  def find_functions_values(begin_date,end_date)
+    functions_expenses = FunctionGraph.where(year: (begin_date.year..end_date.year))
     .select(:description).group(:description).sum(:value).to_json
   end
 

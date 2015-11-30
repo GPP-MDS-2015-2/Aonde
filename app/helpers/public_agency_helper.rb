@@ -14,7 +14,7 @@ module PublicAgencyHelper
 				return 0
 			end
 		rescue Exception => error
-			puts error
+			#puts error
 			return 0
 		end
 	end
