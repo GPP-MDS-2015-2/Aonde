@@ -7,4 +7,5 @@ module ApplicationHelper
 			return title_default
 		end
 	end
+
 end
