@@ -516,7 +516,7 @@ table td.score {
 <p><a href="http://github.com/troessner/reek">Reek</a> detects common code smells in ruby code.</p>
 
 <div id="graph_container"></div>
-<script language="javascript" src="reek.js?1448744974" type="text/javascript"></script>
+<script language="javascript" src="reek.js?1448918675" type="text/javascript"></script>
 
 <table>
   <tr>
@@ -538,34 +538,6 @@ table td.score {
         </td>
         <td>
           IrresponsibleModule
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/application_controller.rb'>app/controllers/application_controller.rb</a></td>
-        <td>
-          ApplicationController#month_to_int
-        </td>
-        <td>
-          doesn't depend on instance state
-        </td>
-        <td>
-          UtilityFunction
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/application_controller.rb'>app/controllers/application_controller.rb</a></td>
-        <td>
-          ApplicationController#month_to_int
-        </td>
-        <td>
-          has approx 15 statements
-        </td>
-        <td>
-          TooManyStatements
         </td>
       </tr>
       
@@ -652,7 +624,7 @@ table td.score {
           BudgetAPI#self.obtain_api_data
         </td>
         <td>
-          has approx 6 statements
+          has approx 7 statements
         </td>
         <td>
           TooManyStatements
@@ -693,20 +665,6 @@ table td.score {
       <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
-          BudgetController
-        </td>
-        <td>
-          has no descriptive comment
-        </td>
-        <td>
-          IrresponsibleModule
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
           BudgetController#create_budget_array
         </td>
         <td>
@@ -718,7 +676,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
           BudgetController#create_budget_array
@@ -732,7 +690,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
           BudgetController#create_budget_array
@@ -746,7 +704,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
           BudgetController#create_budget_array
@@ -760,27 +718,13 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#create_budget_array
-        </td>
-        <td>
-          is controlled by argument year
-        </td>
-        <td>
-          ControlParameter
-        </td>
-      </tr>
-      
-    
       <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
-          BudgetController#filter
+          BudgetController#initialize_hash
         </td>
         <td>
-          calls params[:year] 2 times
+          calls expense_month[month] 2 times
         </td>
         <td>
           DuplicateMethodCall
@@ -791,49 +735,7 @@ table td.score {
       <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
-          BudgetController#filter
-        </td>
-        <td>
-          has approx 7 statements
-        </td>
-        <td>
-          TooManyStatements
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#get_expenses_agency
-        </td>
-        <td>
-          calls exp.payment_date 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#get_expenses_agency
-        </td>
-        <td>
-          calls total_expense_per_date[date] 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#get_expenses_agency
+          BudgetController#initialize_hash
         </td>
         <td>
           doesn't depend on instance state
@@ -844,13 +746,13 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
-          BudgetController#get_expenses_agency
+          BudgetController#process_expense
         </td>
         <td>
-          has approx 7 statements
+          has approx 6 statements
         </td>
         <td>
           TooManyStatements
@@ -858,58 +760,16 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#get_expenses_agency
-        </td>
-        <td>
-          performs a nil-check
-        </td>
-        <td>
-          NilCheck
-        </td>
-      </tr>
-      
-    
       <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
-          BudgetController#get_list_expenses_by_period
+          BudgetController#process_expense
         </td>
         <td>
-          has 5 parameters
+          has the variable name 'v'
         </td>
         <td>
-          LongParameterList
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#get_total_expense
-        </td>
-        <td>
-          calls @new_total_expense_per_date[date.year] 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#get_total_expense
-        </td>
-        <td>
-          calls date.year 4 times
-        </td>
-        <td>
-          DuplicateMethodCall
+          UncommunicativeVariableName
         </td>
       </tr>
       
@@ -917,125 +777,13 @@ table td.score {
       <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
-          BudgetController#get_total_expense
+          BudgetController#show
         </td>
         <td>
-          has 5 parameters
-        </td>
-        <td>
-          LongParameterList
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#get_total_expense
-        </td>
-        <td>
-          has approx 7 statements
-        </td>
-        <td>
-          TooManyStatements
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#get_total_expense
-        </td>
-        <td>
-          performs a nil-check
-        </td>
-        <td>
-          NilCheck
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#is_date_in_interval
-        </td>
-        <td>
-          calls date.month 2 times
+          calls params[:id] 2 times
         </td>
         <td>
           DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#is_date_in_interval
-        </td>
-        <td>
-          calls date.month.to_i 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#is_date_in_interval
-        </td>
-        <td>
-          calls date.year 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#is_date_in_interval
-        </td>
-        <td>
-          calls date.year.to_i 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#is_date_in_interval
-        </td>
-        <td>
-          has 5 parameters
-        </td>
-        <td>
-          LongParameterList
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
-        <td>
-          BudgetController#is_date_in_interval
-        </td>
-        <td>
-          refers to date more than self
-        </td>
-        <td>
-          FeatureEnvy
         </td>
       </tr>
       
@@ -1046,7 +794,7 @@ table td.score {
           BudgetController#show
         </td>
         <td>
-          calls @public_agency.id 2 times
+          calls params[:year] 2 times
         </td>
         <td>
           DuplicateMethodCall
@@ -1060,10 +808,10 @@ table td.score {
           BudgetController#show
         </td>
         <td>
-          has approx 9 statements
+          contains iterators nested 2 deep
         </td>
         <td>
-          TooManyStatements
+          NestedIterators
         </td>
       </tr>
       
@@ -1071,7 +819,7 @@ table td.score {
       <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
-          BudgetController#subtract_expenses_on_budget
+          BudgetController#show
         </td>
         <td>
           has approx 6 statements
@@ -1085,13 +833,13 @@ table td.score {
       <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/budget_controller.rb'>app/controllers/budget_controller.rb</a></td>
         <td>
-          BudgetController#transform_hash_to_array
+          BudgetController#subtract_expenses_budget
         </td>
         <td>
-          doesn't depend on instance state
+          has approx 6 statements
         </td>
         <td>
-          UtilityFunction
+          TooManyStatements
         </td>
       </tr>
       
@@ -1120,7 +868,7 @@ table td.score {
           CompanyController#find
         </td>
         <td>
-          calls params[:id] 2 times
+          calls @company.name 2 times
         </td>
         <td>
           DuplicateMethodCall
@@ -1134,6 +882,20 @@ table td.score {
           CompanyController#find
         </td>
         <td>
+          calls params[:id] 2 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
+        <td>
+          CompanyController#find
+        </td>
+        <td>
           has approx 6 statements
         </td>
         <td>
@@ -1142,7 +904,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
         <td>
           CompanyController#find_hiring_count
@@ -1156,7 +918,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
         <td>
           CompanyController#find_public_agencies
@@ -1170,7 +932,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
         <td>
           CompanyController#find_public_agencies
@@ -1184,7 +946,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
         <td>
           CompanyController#find_public_agencies
@@ -1198,7 +960,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
         <td>
           CompanyController#find_public_agencies
@@ -1212,7 +974,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
         <td>
           CompanyController#generate_public_agency_node
@@ -1226,7 +988,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
         <td>
           CompanyController#generate_public_agency_node
@@ -1240,83 +1002,13 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
         <td>
           CompanyController#generate_public_agency_node
         </td>
         <td>
           has approx 16 statements
-        </td>
-        <td>
-          TooManyStatements
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
-        <td>
-          CompanyController#get_15_first_nodes
-        </td>
-        <td>
-          calls company_hiring_incidence[length - 1] 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
-        <td>
-          CompanyController#get_15_first_nodes
-        </td>
-        <td>
-          calls final_array.push(company_hiring_incidence[length - 1]) 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
-        <td>
-          CompanyController#get_15_first_nodes
-        </td>
-        <td>
-          calls length - 1 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
-        <td>
-          CompanyController#get_15_first_nodes
-        </td>
-        <td>
-          doesn't depend on instance state
-        </td>
-        <td>
-          UtilityFunction
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
-        <td>
-          CompanyController#get_15_first_nodes
-        </td>
-        <td>
-          has approx 9 statements
         </td>
         <td>
           TooManyStatements
@@ -1348,34 +1040,6 @@ table td.score {
         </td>
         <td>
           TooManyStatements
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
-        <td>
-          CompanyController#sort_by_expense
-        </td>
-        <td>
-          doesn't depend on instance state
-        </td>
-        <td>
-          UtilityFunction
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/company_controller.rb'>app/controllers/company_controller.rb</a></td>
-        <td>
-          CompanyController#test_add_expense
-        </td>
-        <td>
-          doesn't depend on instance state
-        </td>
-        <td>
-          UtilityFunction
         </td>
       </tr>
       
@@ -1430,7 +1094,21 @@ table td.score {
           ContactController#send_simple_message
         </td>
         <td>
-          has approx 6 statements
+          contains iterators nested 2 deep
+        </td>
+        <td>
+          NestedIterators
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/contact_controller.rb'>app/controllers/contact_controller.rb</a></td>
+        <td>
+          ContactController#send_simple_message
+        </td>
+        <td>
+          has approx 8 statements
         </td>
         <td>
           TooManyStatements
@@ -1440,7 +1118,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/lib/tasks/db_helper.rb'>lib/tasks/db_helper.rb</a></td>
         <td>
           DBHelper#self.insert_row
@@ -1454,7 +1132,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/lib/tasks/db_helper.rb'>lib/tasks/db_helper.rb</a></td>
         <td>
           DBHelper#self.insert_row
@@ -1468,7 +1146,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/lib/tasks/db_helper.rb'>lib/tasks/db_helper.rb</a></td>
         <td>
           DBHelper#self.insert_row
@@ -1482,7 +1160,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/lib/tasks/db_helper.rb'>lib/tasks/db_helper.rb</a></td>
         <td>
           DBHelper#self.insert_row
@@ -1496,7 +1174,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/lib/tasks/db_helper.rb'>lib/tasks/db_helper.rb</a></td>
         <td>
           DBHelper#self.insert_row
@@ -1510,7 +1188,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/lib/tasks/db_helper.rb'>lib/tasks/db_helper.rb</a></td>
         <td>
           DBHelper#self.insert_row
@@ -1524,7 +1202,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/lib/tasks/db_helper.rb'>lib/tasks/db_helper.rb</a></td>
         <td>
           DBHelper#self.insert_row
@@ -1540,7 +1218,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/models/expense.rb'>app/models/expense.rb</a></td>
         <td>
           Expense
@@ -1556,7 +1234,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/expense_controller.rb'>app/controllers/expense_controller.rb</a></td>
         <td>
           ExpenseController
@@ -1572,7 +1250,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/models/function.rb'>app/models/function.rb</a></td>
         <td>
           Function
@@ -1588,7 +1266,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#convert_to_a_hash
@@ -1602,13 +1280,13 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#filter
         </td>
         <td>
-          has approx 7 statements
+          has approx 9 statements
         </td>
         <td>
           TooManyStatements
@@ -1616,7 +1294,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#filter
@@ -1626,20 +1304,6 @@ table td.score {
         </td>
         <td>
           UncommunicativeVariableName
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
-        <td>
-          FunctionController#filter_datas_in_expense
-        </td>
-        <td>
-          doesn't depend on instance state
-        </td>
-        <td>
-          UtilityFunction
         </td>
       </tr>
       
@@ -1745,6 +1409,20 @@ table td.score {
       <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
+          FunctionController#find_functions_values
+        </td>
+        <td>
+          doesn't depend on instance state
+        </td>
+        <td>
+          UtilityFunction
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
+        <td>
           FunctionController#get_expenses
         </td>
         <td>
@@ -1756,27 +1434,13 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
-        <td>
-          FunctionController#get_expenses_by_function
-        </td>
-        <td>
-          doesn't depend on instance state
-        </td>
-        <td>
-          UtilityFunction
-        </td>
-      </tr>
-      
-    
       <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/function_controller.rb'>app/controllers/function_controller.rb</a></td>
         <td>
           FunctionController#show
         </td>
         <td>
-          has approx 6 statements
+          has approx 8 statements
         </td>
         <td>
           TooManyStatements
@@ -1829,6 +1493,22 @@ table td.score {
   
     
       <tr class='dark'>
+        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/models/function_graph.rb'>app/models/function_graph.rb</a></td>
+        <td>
+          FunctionGraph
+        </td>
+        <td>
+          has no descriptive comment
+        </td>
+        <td>
+          IrresponsibleModule
+        </td>
+      </tr>
+      
+    
+  
+    
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.add_node
@@ -1842,7 +1522,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.add_node
@@ -1856,7 +1536,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.add_value
@@ -1870,7 +1550,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.add_value
@@ -1884,7 +1564,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.color_edge
@@ -1898,7 +1578,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.create_node
@@ -1912,7 +1592,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.create_node
@@ -1926,7 +1606,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.create_nodes
@@ -1940,7 +1620,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.create_nodes
@@ -1954,7 +1634,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.obtain_name_value
@@ -1968,7 +1648,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/graph.rb'>app/controllers/graph.rb</a></td>
         <td>
           Graph#self.obtain_name_value
@@ -1984,7 +1664,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/helper_controller.rb'>app/controllers/helper_controller.rb</a></td>
         <td>
           HelperController#self.create_date
@@ -1998,7 +1678,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/helper_controller.rb'>app/controllers/helper_controller.rb</a></td>
         <td>
           HelperController#self.date_valid?
@@ -2012,7 +1692,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/helper_controller.rb'>app/controllers/helper_controller.rb</a></td>
         <td>
           HelperController#self.date_valid?
@@ -2026,27 +1706,27 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/helper_controller.rb'>app/controllers/helper_controller.rb</a></td>
         <td>
-          HelperController#self.int_to_month
+          HelperController#self.find_expenses_entity
         </td>
         <td>
-          calls array[i] 2 times
+          has 4 parameters
         </td>
         <td>
-          DuplicateMethodCall
+          LongParameterList
         </td>
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/helper_controller.rb'>app/controllers/helper_controller.rb</a></td>
         <td>
-          HelperController#self.int_to_month
+          HelperController#self.find_expenses_entity
         </td>
         <td>
-          has the variable name 'i'
+          has the variable name 'v'
         </td>
         <td>
           UncommunicativeVariableName
@@ -2054,7 +1734,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/helper_controller.rb'>app/controllers/helper_controller.rb</a></td>
         <td>
           HelperController#self.last_day_date
@@ -2068,43 +1748,15 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/helper_controller.rb'>app/controllers/helper_controller.rb</a></td>
-        <td>
-          HelperController#self.sum_expense
-        </td>
-        <td>
-          calls expense.value 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/helper_controller.rb'>app/controllers/helper_controller.rb</a></td>
-        <td>
-          HelperController#self.sum_expense
-        </td>
-        <td>
-          calls sum_expeses[key] 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/lib/tasks/parser.rb'>lib/tasks/parser.rb</a></td>
         <td>
           Parser#self.parse
         </td>
         <td>
-          has approx 7 statements
+          has approx 6 statements
         </td>
         <td>
           TooManyStatements
@@ -2114,7 +1766,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/models/program.rb'>app/models/program.rb</a></td>
         <td>
           Program
@@ -2130,7 +1782,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
         <td>
           ProgramController#create_data_program
@@ -2144,7 +1796,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
         <td>
           ProgramController#create_data_program
@@ -2158,7 +1810,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
         <td>
           ProgramController#create_data_program
@@ -2172,7 +1824,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
         <td>
           ProgramController#create_graph_nodes
@@ -2186,7 +1838,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
         <td>
           ProgramController#create_graph_nodes
@@ -2200,35 +1852,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
-        <td>
-          ProgramController#find_program
-        </td>
-        <td>
-          doesn't depend on instance state
-        </td>
-        <td>
-          UtilityFunction
-        </td>
-      </tr>
-      
-    
       <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
-        <td>
-          ProgramController#find_program
-        </td>
-        <td>
-          has approx 6 statements
-        </td>
-        <td>
-          TooManyStatements
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
         <td>
           ProgramController#obtain_id
@@ -2242,7 +1866,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
         <td>
           ProgramController#show
@@ -2256,7 +1880,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/program_controller.rb'>app/controllers/program_controller.rb</a></td>
         <td>
           ProgramController#show_programs
@@ -2272,7 +1896,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/models/public_agency.rb'>app/models/public_agency.rb</a></td>
         <td>
           PublicAgency
@@ -2287,6 +1911,48 @@ table td.score {
       
     
   
+    
+      <tr class='light'>
+        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
+        <td>
+          PublicAgencyController#agency_chart
+        </td>
+        <td>
+          calls params[:year] 3 times
+        </td>
+        <td>
+          DuplicateMethodCall
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
+        <td>
+          PublicAgencyController#agency_chart
+        </td>
+        <td>
+          contains iterators nested 2 deep
+        </td>
+        <td>
+          NestedIterators
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
+        <td>
+          PublicAgencyController#agency_chart
+        </td>
+        <td>
+          has approx 6 statements
+        </td>
+        <td>
+          TooManyStatements
+        </td>
+      </tr>
+      
     
       <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
@@ -2305,48 +1971,6 @@ table td.score {
       <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
         <td>
-          PublicAgencyController#create_list_expense
-        </td>
-        <td>
-          calls dates[:begin] 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
-        <td>
-          PublicAgencyController#create_list_expense
-        </td>
-        <td>
-          calls dates[:end] 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
-        <td>
-          PublicAgencyController#create_list_expense
-        </td>
-        <td>
-          refers to dates more than self
-        </td>
-        <td>
-          FeatureEnvy
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
-        <td>
           PublicAgencyController#expenses_public_agency
         </td>
         <td>
@@ -2354,76 +1978,6 @@ table td.score {
         </td>
         <td>
           UtilityFunction
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
-        <td>
-          PublicAgencyController#filter_chart
-        </td>
-        <td>
-          has approx 9 statements
-        </td>
-        <td>
-          TooManyStatements
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
-        <td>
-          PublicAgencyController#get_expenses_agency
-        </td>
-        <td>
-          calls expense.payment_date 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
-        <td>
-          PublicAgencyController#get_expenses_agency
-        </td>
-        <td>
-          calls expenses_agency[:total_date] 2 times
-        </td>
-        <td>
-          DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
-        <td>
-          PublicAgencyController#get_expenses_agency
-        </td>
-        <td>
-          has approx 8 statements
-        </td>
-        <td>
-          TooManyStatements
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/public_agency_controller.rb'>app/controllers/public_agency_controller.rb</a></td>
-        <td>
-          PublicAgencyController#get_expenses_agency
-        </td>
-        <td>
-          refers to expenses_agency more than self
-        </td>
-        <td>
-          FeatureEnvy
         </td>
       </tr>
       
@@ -2459,6 +2013,22 @@ table td.score {
   
     
       <tr class='dark'>
+        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/models/public_agency_graph.rb'>app/models/public_agency_graph.rb</a></td>
+        <td>
+          PublicAgencyGraph
+        </td>
+        <td>
+          has no descriptive comment
+        </td>
+        <td>
+          IrresponsibleModule
+        </td>
+      </tr>
+      
+    
+  
+    
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/helpers/public_agency_helper.rb'>app/helpers/public_agency_helper.rb</a></td>
         <td>
           PublicAgencyHelper#facebook_share_amount
@@ -2472,7 +2042,7 @@ table td.score {
       </tr>
       
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/helpers/public_agency_helper.rb'>app/helpers/public_agency_helper.rb</a></td>
         <td>
           PublicAgencyHelper#facebook_share_amount
@@ -2486,7 +2056,7 @@ table td.score {
       </tr>
       
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/helpers/public_agency_helper.rb'>app/helpers/public_agency_helper.rb</a></td>
         <td>
           PublicAgencyHelper#facebook_share_amount
@@ -2496,6 +2066,20 @@ table td.score {
         </td>
         <td>
           UtilityFunction
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/helpers/public_agency_helper.rb'>app/helpers/public_agency_helper.rb</a></td>
+        <td>
+          PublicAgencyHelper#facebook_share_amount
+        </td>
+        <td>
+          has approx 7 statements
+        </td>
+        <td>
+          TooManyStatements
         </td>
       </tr>
       
@@ -2519,20 +2103,6 @@ table td.score {
       <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/search_controller.rb'>app/controllers/search_controller.rb</a></td>
         <td>
-          SearchController#index
-        </td>
-        <td>
-          has approx 8 statements
-        </td>
-        <td>
-          TooManyStatements
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/search_controller.rb'>app/controllers/search_controller.rb</a></td>
-        <td>
           SearchController#search_entities
         </td>
         <td>
@@ -2546,7 +2116,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/models/superior_public_agency.rb'>app/models/superior_public_agency.rb</a></td>
         <td>
           SuperiorPublicAgency
@@ -2562,7 +2132,7 @@ table td.score {
     
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/superior_public_agency_controller.rb'>app/controllers/superior_public_agency_controller.rb</a></td>
         <td>
           SuperiorPublicAgencyController#find_public_agencies
@@ -2578,7 +2148,7 @@ table td.score {
     
   
     
-      <tr class='dark'>
+      <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/models/type_expense.rb'>app/models/type_expense.rb</a></td>
         <td>
           TypeExpense
@@ -2593,20 +2163,6 @@ table td.score {
       
     
   
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
-        <td>
-          TypeExpenseController#create_dictionary
-        </td>
-        <td>
-          doesn't depend on instance state
-        </td>
-        <td>
-          UtilityFunction
-        </td>
-      </tr>
-      
     
       <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
@@ -2625,41 +2181,13 @@ table td.score {
       <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
-          TypeExpenseController#filter_chart
+          TypeExpenseController#get_expense_by_type
         </td>
         <td>
-          calls @public_agency.id 2 times
+          calls type_expense[1] 2 times
         </td>
         <td>
           DuplicateMethodCall
-        </td>
-      </tr>
-      
-    
-      <tr class='dark'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
-        <td>
-          TypeExpenseController#filter_chart
-        </td>
-        <td>
-          has approx 7 statements
-        </td>
-        <td>
-          TooManyStatements
-        </td>
-      </tr>
-      
-    
-      <tr class='light'>
-        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
-        <td>
-          TypeExpenseController#find_expenses
-        </td>
-        <td>
-          has 4 parameters
-        </td>
-        <td>
-          LongParameterList
         </td>
       </tr>
       
@@ -2670,7 +2198,7 @@ table td.score {
           TypeExpenseController#get_expense_by_type
         </td>
         <td>
-          has approx 10 statements
+          has approx 8 statements
         </td>
         <td>
           TooManyStatements
@@ -2681,13 +2209,13 @@ table td.score {
       <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
-          TypeExpenseController#is_date_select
+          TypeExpenseController#get_expense_by_type
         </td>
         <td>
-          calls expense.payment_date 2 times
+          refers to type_expense more than self
         </td>
         <td>
-          DuplicateMethodCall
+          FeatureEnvy
         </td>
       </tr>
       
@@ -2695,13 +2223,13 @@ table td.score {
       <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
-          TypeExpenseController#is_date_select
+          TypeExpenseController#show
         </td>
         <td>
-          refers to expense more than self
+          calls params[:id] 2 times
         </td>
         <td>
-          FeatureEnvy
+          DuplicateMethodCall
         </td>
       </tr>
       
@@ -2709,13 +2237,13 @@ table td.score {
       <tr class='light'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
         <td>
-          TypeExpenseController#is_date_select
+          TypeExpenseController#show
         </td>
         <td>
-          refers to year more than self
+          calls params[:year] 2 times
         </td>
         <td>
-          FeatureEnvy
+          DuplicateMethodCall
         </td>
       </tr>
       
@@ -2734,9 +2262,23 @@ table td.score {
       </tr>
       
     
+      <tr class='light'>
+        <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/type_expense_controller.rb'>app/controllers/type_expense_controller.rb</a></td>
+        <td>
+          TypeExpenseController#show
+        </td>
+        <td>
+          has approx 6 statements
+        </td>
+        <td>
+          TooManyStatements
+        </td>
+      </tr>
+      
+    
   
     
-      <tr class='light'>
+      <tr class='dark'>
         <td><a href='file:///Users/Dudu2/Documents/RubyProjects/Aonde/app/controllers/welcome_controller.rb'>app/controllers/welcome_controller.rb</a></td>
         <td>
           WelcomeController
@@ -2754,7 +2296,7 @@ table td.score {
 
 </table>
 
-<p>Generated on 2015-11-28 19:09:34 -0200</p>
+<p>Generated on 2015-11-30 19:24:35 -0200</p>
 
     </div>
 

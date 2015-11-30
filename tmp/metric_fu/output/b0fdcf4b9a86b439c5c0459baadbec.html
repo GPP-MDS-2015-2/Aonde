@@ -228,7 +228,7 @@
            
              <ul>
                
-                 <li>Score of 1.00 &raquo; flog</li>
+                 <li>Score of 2.00 &raquo; flog</li>
                
             </ul>
           
@@ -331,7 +331,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>  <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>
 </pre></div>
 </div>
 
@@ -347,7 +347,87 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span><span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    con.execute(<span class="string"><span class="delimiter">&quot;</span><span class="content">CREATE TABLE IF NOT EXISTS function_graph(function_id INTEGER(11), description </span><span class="char">\</span></span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="string"><span class="char"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>        VARCHAR(<span class="integer">256</span>), year INTEGER(<span class="integer">4</span>), value <span class="constant">NUMERIC</span> (<span class="integer">13</span>,<span class="integer">2</span>), \
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>        <span class="constant">CONSTRAINT</span> function_graph_PK <span class="constant">PRIMARY</span> <span class="constant">KEY</span> (function_id, year), \
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>        <span class="constant">CONSTRAINT</span> function_graph_functions <span class="constant">FOREIGN</span> <span class="constant">KEY</span> (function_id) <span class="constant">REFERENCES</span> functions(id))<span class="string"><span class="delimiter">&quot;</span><span class="content">)</span></span>
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>  <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span><span class="keyword">end</span>
 </pre></div>
 </div>
 

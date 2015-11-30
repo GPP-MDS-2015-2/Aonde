@@ -128,7 +128,7 @@
            
              <ul>
                
-                 <li>Score of 14.26 &raquo; flog</li>
+                 <li>Score of 14.51 &raquo; flog</li>
                
             </ul>
           
@@ -263,7 +263,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>      <span class="constant">DBHelper</span>::insert_row(con, row)
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>      <span class="constant">DBHelper</span>::insert_row(con, row) <span class="keyword">if</span> row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo Favorecido</span><span class="delimiter">&quot;</span></span>] =~ <span class="regexp"><span class="delimiter">/</span><span class="char">\A</span><span class="content">[0-9]*+</span><span class="char">\Z</span><span class="delimiter">/</span></span>
 </pre></div>
 </div>
 
@@ -311,7 +311,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>      system <span class="string"><span class="delimiter">&quot;</span><span class="content">clear</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>      print <span class="string"><span class="delimiter">&quot;</span><span class="char">\r</span><span class="inline"><span class="inline-delimiter">#{</span>((count/file_size)*<span class="integer">100</span>).round(<span class="integer">2</span>)<span class="inline-delimiter">}</span></span><span class="content">% processed</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -327,7 +327,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -343,7 +343,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>((count/file_size)*<span class="integer">100</span>).round(<span class="integer">2</span>)<span class="inline-delimiter">}</span></span><span class="content">%</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -359,39 +359,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>    <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>  <span class="keyword">end</span>
-</pre></div>
-</div>
-
-          </td>
-         </tr>
-         
-        
-        <tr>
-          <td valign='top'>
-           
-              &nbsp;
-          
-          </td>
-          <td valign='top'>
-            <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span><span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="keyword">end</span>
 </pre></div>
 </div>
 
