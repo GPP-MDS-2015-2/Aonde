@@ -1,19 +1,148 @@
 <%= provide(:title, "Orgao Publico") %>
 <p>
 
-<center><font color="white"><h4><%= @superior_public_agency.name %></h4></font></center>
-<center><font color="white"><h3><%= @public_agency.name %></h3></font></center>
-<!-- create the tabs and render the informations of the public agency -->
-<div class = 'container-tabs'>
- 	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">Gastos do Órgão</li>
-		<!-- <li class="tab-link" data-tab="tab-2">Gastos do Órgão</li> -->
-	</ul>
+<div class="content_header">
+  <h4  id="align_content"><%= @public_agency.name.downcase.capitalize %></h4>
+  <h6>
+   <span >Orgão superior: <%= link_to @superior_public_agency.name.downcase.split.map(&:capitalize).join(' '), superior_path(@superior_public_agency) %>
+   </span><br>
+   <font size='3px'>
+   <%= link_to "clique e acesse", superior_path(@superior_public_agency),{style: "color:#AC6122;"}  %></font></br></h6>
 
- 	<div id="tab-1" class="tab-content current">
-		<%= render 'chart_expenses' %>
- 	</div>
-	<!-- <div id="tab-2" class="tab-content">
-		huhuasaushuah
-	</div>  -->
- </div>
+  </h6> 
+</div>
+
+
+
+
+<script type="text/javascript">
+var countClick =0;
+
+
+var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-green','waves-teal']
+  $('.content_header').dblclick(function(){
+      $('#haha').show();
+      setTimeout(function(){
+        $('#haha').hide();
+      },6000);
+  });
+  var count =0;
+  function haha(){    
+    $('#haha').removeClass(WAVES[count++%7]);
+    $('#haha').addClass(WAVES[count%7]);
+    countClick++;
+    if(countClick % 3 == 2){
+      var v = new Fireworks('hahaBoom');
+      setTimeout(function(){
+        v = null;
+        $('canvas').remove();
+      },10000)
+    }
+  }
+</script>
+
+<div class="container">
+  <center><button id='haha' class='btn waves-effect' onclick="haha()" style='background: white; color:black; width:300px; height:100px; display:none; z-index: 0;'>Surpreenda-me</button></center>
+</div>
+  
+<div id="container_tabs">
+    <ul class="collapsible popout" data-collapsible="accordion">
+      <li>
+        <div class='collapsible-header grey darken-4 accordion_agency' onclick='setChart("<%= public_agency_chart_path %>",AGENCY,drawAgency)'><i class="material-icons">money_off</i>Gastos do Órgão Público</div>
+        <div class='collapsible-body'>
+          <div class="filter" id="public_agency"></div>
+          <div class="chart" id="public_agency" ><!--style="height:auto; margin-right:auto;  margin-left:auto;"> -->
+          
+          </div>
+          <div class="col s6 m5">
+            <div class="card-panel grey darken-4" style="margin:10px;">         
+                <span class="white-text">
+                Passe o mouse sobre cada mês para ver a quantia gasta.
+                </span>
+              </div>
+           </div>
+        </div>
+      </li>
+      <p></p>
+      <li>
+        <div class="collapsible-header grey darken-4 accordion_agency"onclick='setChart("<%= programs_path %>",PROGRAM,drawProgram)'><!--<i class="material-icons">assessment</i>--><i class="material-icons">assignment</i>Programas relacionados ao Órgão Público</div>
+        <div class="collapsible-body">
+            <div class="filter" id="program"></div>
+            <div class="chart" id="program"></div>
+            <center>
+              <div class="collection list" id='program'></div>  
+            </center>
+          <div class="col s6 m5">
+            <div class="card-panel grey darken-4" style="margin:10px;">         
+                <span class="white-text">
+                O gráfico acima mostra em quais programas o órgão público investiu. Passe o mouse sobre um programa para ver a quantia investida.
+                </span>
+              </div>
+           </div>
+     
+        </div>
+      </li>
+      <p></p>
+      <li>
+          <div class="collapsible-header grey darken-4 accordion_agency" onclick="setChart('<%= companies_path%>',COMPANY,drawCompany)"><i class="material-icons">business</i>Empresas relacionadas ao Órgão Público</div>
+          <div class="collapsible-body">
+            <div class="filter" id="company"></div>
+            <div class="chart" id="company"></div>
+            <center>
+              <div class="collection list" id='company'></div>
+            </center>
+            <div class="col s6 m5">
+            <div class="card-panel grey darken-4" style="margin:10px;">         
+                <span class="white-text">
+                  Este gráfico mostra a porcentagem que um órgão público investiu em uma empresa. Para ver o percentual investido passe o mouse sobre uma das empresas.
+
+                </span>
+              </div>
+           </div>
+     
+          </div>
+      </li>
+          <p></p>
+      <li>
+          <div class="collapsible-header grey darken-4 accordion_agency"  onclick='setChart("<%= type_expense_path %>",TYPE,drawTypeExpense)'>
+              <i class="material-icons">assignment_late</i>Gastos detalhados por Tipo
+          </div>
+          <div class="collapsible-body">
+            <div class="filter" id="type_expense"></div>
+            <div class="chart" id="type_expense"></div>
+            <center>
+              <div class="collection list" id='type_expense'></div>
+            </center>
+            <div class="col s6 m5">
+            <div class="card-panel grey darken-4" style="margin:10px;">         
+                <span class="white-text">
+Este gráfico mostra as despesas realizadas pelo órgão público separadas por tipo. Os tipos mais recorrentes possuem uma cor mais escura, enquanto os menos recorrentes possuem uma cor mais clara, conforme a escala. 
+Para visualizar a quantia investida com cada tipo posicione o mouse sobre um dos tipos.
+                </span>
+              </div>
+           </div>
+     
+          </div>
+      </li>
+      <p></p>
+      <li>
+          <div class="collapsible-header grey darken-4 accordion_agency" onclick='setChart("<%= budget_path %>",BUDGET,drawBudget)'><!--<i class="material-icons">assignment_late</i>--><i class="material-icons">attach_money</i>Orçamento do Órgão Público</div>
+          <div class="collapsible-body">
+            <div id=""><center id="year_filter">Ano atual: 2015</center></div><div class="filter" id="budget"></div>
+            <div class="chart" id="budget"></div>
+            <div class="col s6 m5">
+              <div class="card-panel grey darken-4" style="margin:10px;">         
+                <span class="white-text">
+      Através do gráfico acima é possível comparar o orçamento do órgão público com seus gastos. Passe o mouse para ver a quantia gasta.
+                </span>
+              </div>
+           </div>
+          </div>
+      </li>
+    </ul>
+    <div id="share">
+      <button onclick="location.href='https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= public_agency_path(@public_agency.id) %>'"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook" style="background:#133783">
+        <i class="fa fa-facebook"></i>
+      </button> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCompartilhamentos: <%= facebook_share_amount("http://aondebrasil.com#{request.fullpath}") %>
+    </div>
+</div>

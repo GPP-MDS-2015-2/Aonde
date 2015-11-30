@@ -1,0 +1,179 @@
+<script type="text/javascript">  
+
+    var data = ('<%= raw @correct_datas%>');
+
+    console.log(data)
+    var correct_data = JSON.parse(data);
+    console.log(correct_data)
+    
+    var arrayKeys = new Array();
+    var arrayValues = new Array();
+    var arrayRemovedValues = [];
+    var arrayRemovedKeys = [];
+
+
+    var spiderChart;
+
+    function remove_all_elements_list() {
+      for(var i = 0, l = arrayRemovedKeys.length; i < l; i++) {
+        $("#"+arrayRemovedKeys[i].replace(/\s/g,"_")).remove();
+        console.log(arrayRemovedKeys.length);
+      }
+      arrayRemovedValues = [];
+      arrayRemovedKeys = [];
+    }
+
+    function select_top_10() {
+      var data = ('<%= raw @top_10_data%>');
+      var correct_data = JSON.parse(data);
+      drawnChartFunction(correct_data);
+      remove_all_elements_list();
+    }
+
+    function select_default() {
+      var data = ('<%= raw @correct_datas%>');
+      var correct_data = JSON.parse(data);
+      drawnChartFunction(correct_data);
+      remove_all_elements_list(); 
+    }
+    
+    function transform_arrays_in_hash(arrayKeys, arrayValues){
+      var newHash = {};
+      for(var i = 0, l = arrayKeys.length; i < l; i++) {
+          newHash[arrayKeys[i]] = arrayValues[i];
+      }
+      return newHash;
+    }
+
+    function get_list_removed_point(arrayKeys, arrayValues, index){
+      arrayRemovedKeys.push(arrayKeys[index]);
+      arrayRemovedValues.push(arrayValues[index]);
+    }
+
+    function readd_element(name_element) {
+      index = arrayRemovedKeys.indexOf(name_element);
+      arrayKeys.push(arrayRemovedKeys[index]);
+      arrayValues.push(arrayRemovedValues[index]);
+
+    }
+
+    function generate_list(name_element) {
+      name_element_id = name_element.replace(/\s/g,"_");
+
+      new_element = "<a class=\"collection-item\" id=\""+name_element_id+"\">"+
+                    name_element+"</a>"
+      $('#removed_chart_elements').append(new_element);
+
+      console.log("#"+name_element_id);
+      //console.log(name_element);
+
+      $("#"+name_element_id).click(function(){
+        readd_element(name_element);
+        correct_datas = transform_arrays_in_hash(arrayKeys,arrayValues);
+        drawnChartFunction(correct_datas);
+        $(this).remove();
+      });
+    }
+
+
+    function remove_point(element){
+      spiderChart = $('#spiderChart').highcharts();
+      console.log(spiderChart);
+      var name = '';
+      if ( element[0].innerHTML.match('<tspan>')){
+        name = element[0].lastChild.innerHTML;
+        console.log("if");
+      }else{
+        name = element[0].innerHTML;
+        console.log("else");
+      }
+      var index;
+      for (index=0; index < spiderChart.series[0].data.length; index++){
+        console.log(index);
+        if (spiderChart.series[0].data[index].category === name){
+          console.log(index);
+          break;
+        }
+      }
+
+      get_list_removed_point(arrayKeys,arrayValues, index);
+      generate_list(arrayKeys[index]);
+
+      arrayKeys = arrayKeys.remove(index,1);
+      arrayValues = arrayValues.remove(index,1);
+      console.log(index);
+
+      var newHash = {};
+      newHash = transform_arrays_in_hash(arrayKeys, arrayValues);
+
+      console.log(arrayKeys);
+      console.log(arrayValues);
+      console.log(newHash);
+      drawnChartFunction(newHash);
+    }
+    $(document).ready(function(){  
+      drawnChartFunction(correct_data); 
+      
+    });
+
+    function setData(correct_data,arrayKeys,arrayValues){
+        arrayKeys.clear();
+        arrayValues.clear();
+        for (var key in correct_data) {
+            arrayKeys.push(key);
+            arrayValues.push(correct_data[key]);
+        }
+    }
+
+    function drawnChartFunction(correct_data) {
+        setData(correct_data,arrayKeys,arrayValues)
+        Highcharts.setOptions({
+            lang: {
+                numericSymbols: ['Mil','Milhão','Bilhões','Trilhão']
+            }
+        });
+        
+    $('#spiderChart').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+        title: {
+            text: '',
+            x: -80
+        },
+        pane: {
+            size: '80%'
+        },
+        xAxis: {
+            categories: arrayKeys,
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>R${point.y:,.0f}</b><br/>'
+        },
+        series: [{
+            name: 'Gastos por tipo de função',
+            data: arrayValues,
+            pointPlacement: 'on'
+        }]
+
+    });
+    $(".highcharts-xaxis-labels text").click(function(){
+        remove_point($(this));
+    });
+}
+</script>
+
+<div id="spiderChart" style="height: 500px; margin: 0 auto"></div>
+
+
+

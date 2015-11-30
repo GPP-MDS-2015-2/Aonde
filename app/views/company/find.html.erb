@@ -1,0 +1,104 @@
+<script type="text/javascript"> 
+
+ $(document).ready(function(){
+      var totalExpense = '<%= raw @correct_datas %>';
+      b = JSON.parse(totalExpense);
+     // totalExpense.to_json;
+      var nodes_a = b[0];
+      var edges_a = b[1];
+      generate_nodes_edges(nodes_a, edges_a);
+ });
+
+  
+function generate_nodes_edges(nodes_a, edges_a){ // on dom ready
+
+var cy = cytoscape({
+  container: document.getElementById('cy'),
+  
+  boxSelectionEnabled: false,
+  autounselectify: true,
+  
+  style: [
+    {
+//Change style of node
+      selector: 'node',
+      css: {
+        'content': 'data(id)',
+        'text-valign': 'center',
+        'text-halign': 'center',
+        'background-color': 'darkorange'
+      }
+    },
+    {
+      selector: '$node > node',
+      css: {
+        'padding-top': '10px',
+        'padding-left': '10px',
+        'padding-bottom': '10px',
+        'padding-right': '10px',
+        'text-valign': 'top',
+        'text-halign': 'center',
+        'background-color': 'lightblue',
+      }
+    },
+    {
+      selector: 'edge',
+      css: {
+        'target-arrow-shape': 'triangle',
+        'line-color': 'orange'
+      }
+    },
+    {
+//Don't work this part of code
+      selector: ':selected',
+      css: {
+        'background-color': 'black',
+        'line-color': 'black',
+        'target-arrow-color': 'black',
+        'source-arrow-color': 'black'
+      }
+    }
+  ],
+//Insert new elements
+  elements: {
+    nodes: nodes_a,
+    edges: edges_a
+  },
+  
+  layout: {
+    name: 'preset',
+    padding: 5
+  }
+});
+
+}
+</script>
+<div class="content_header">
+  <h4  id="align_content"><%= @company.name %></h4>
+  <h6>
+   <span >Órgãos públicos relacionados</span>
+  </h6>
+
+  </h6> 
+</div>
+
+
+<div class="container" style="margin-left: 6%;">
+  <div class="z-depth-3" style="width:auto; margin-right:auto;  margin-left:auto;">
+    <div id="cy" style="width:auto; height:500px; margin-bottom:30px;"></div>
+  </div>
+  <div class="row">
+      <div class="col s12">
+        <div class="card-panel grey darken-4">         
+          <span class="white-text">
+         Com este gráfico é possível ver a quantidade de vezes que um órgão público contratou uma determinada empresa.
+          </span>
+        </div>
+      </div>
+   </div>
+   <div id="share" style="margin-bottom: 15px;">
+ <button onclick="location.href='https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= company_path(@company.id) %>'"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook" style="background:#133783">
+        <i class="fa fa-facebook"></i>
+</button> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Compartilhamentos: <%=facebook_share_amount("http://aondebrasil.com#{request.fullpath}") %>
+</div>
+</div>

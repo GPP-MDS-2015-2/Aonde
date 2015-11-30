@@ -1,5 +1,9 @@
 require 'test_helper'
-
+=begin
+  
+rescue Exception => e
+  
+end
 class SuperiorPublicAgencyTest < ActiveSupport::TestCase
   
   def test_save_name_nil
@@ -17,3 +21,4 @@ class SuperiorPublicAgencyTest < ActiveSupport::TestCase
   end
 
 end
+=end

@@ -1,5 +1,7 @@
 <!-- table to show the data of public agencies -->
-<table id="tableData" class="hover row-border">
+<div id="infor_link" >Selecione um órgão público</div>
+<div id="tableLocation">
+<table id="tableData" class="hover row-border" style="background:#333333;">
 	<thead>
 		<tr>
 			<th>
@@ -16,19 +18,20 @@
 
 	<tbody>
 	<% @public_agencies.each do |agency| %>
-	  	<tr>
+	  	<tr onclick="location.href = '<%=public_agency_path(agency.id)%>';" style="cursor: pointer;">  
 		  	<td>
-		  	<center><%= link_to agency.name,public_agency_path(agency.id)%></center>
+		  	<center><%= agency.name%></center>
 		  	</td>
 		  	<td>
 		  		<center><%= agency.views_amount %></center>
 		  	</td>
 		  	<td>
-		  	<!-- <%=  number_with_precision(expenses_public_agency(agency.id), :delimiter => ".", :separator => ",", :precision => 2)%> -->
-		  	<center><%= expenses_public_agency(agency.id) %> 
-		  	<!--<%= number_to_currency(expenses_public_agency(agency.id))%>--></center>
+		  	
+		  	<center><%= number_to_currency(@total_expense_agency[agency.id],
+		  				separator:",",delimiter: ".",unit: "") %></center>
 		  	</td>
 	  	</tr>
 	<% end %>
 	</tbody>
 </table>
+</div>

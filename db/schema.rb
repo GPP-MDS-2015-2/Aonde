@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930002126) do
+ActiveRecord::Schema.define(version: 20151128230101) do
+
+  create_table "budgets", force: :cascade do |t|
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "public_agency_id", limit: 4
+  end
+
+  add_index "budgets", ["public_agency_id"], name: "index_budgets_on_public_agency_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -19,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150930002126) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "expenses", force: :cascade do |t|
+  create_table "expenses", id: false, force: :cascade do |t|
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.integer  "program_id",       limit: 4
@@ -37,6 +45,16 @@ ActiveRecord::Schema.define(version: 20150930002126) do
   add_index "expenses", ["program_id"], name: "index_expenses_on_program_id", using: :btree
   add_index "expenses", ["public_agency_id"], name: "index_expenses_on_public_agency_id", using: :btree
   add_index "expenses", ["type_expense_id"], name: "index_expenses_on_type_expense_id", using: :btree
+  add_index "expenses", ["value", "payment_date", "document_number"], name: "index_expenses_on_value_and_payment_date_and_document_number", unique: true, using: :btree
+
+  create_table "function_graphs", id: false, force: :cascade do |t|
+    t.string  "description", limit: 255
+    t.integer "year",        limit: 4
+    t.integer "function_id", limit: 4
+    t.decimal "value",                   precision: 10
+  end
+
+  add_index "function_graphs", ["function_id", "year"], name: "index_function_graphs_on_function_id_and_year", unique: true, using: :btree
 
   create_table "functions", force: :cascade do |t|
     t.string   "description", limit: 255

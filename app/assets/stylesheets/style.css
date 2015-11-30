@@ -1,0 +1,10 @@
+.filter{
+  top: 20px;
+  width: 50%;
+}
+#cy {
+  position: relative;
+  background-color: white;
+  height: 100%;
+  width: 80%;
+}

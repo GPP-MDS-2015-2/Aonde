@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <!--Import Google Icon Font-->
+	    <%=stylesheet_link_tag href="http://fonts.googleapis.com/icon?family=Material+Icons"%>
+	    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	    <!--Let browser know website is optimized for mobile-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <!--Reference to menu-->
+	    <%= javascript_include_tag src="http://code.jquery.com/jquery-latest.min.js"%>
+		<!--Import jQuery -->
+		<%= javascript_include_tag 'application' %>
+	</head>
+	<body>
+	<div id="hahaBoom"style="z-index: 1;position:absolute;"></div>
+		<!--This part is to menu-->
+		<div id="content_menu" >
+		  <div class="" id="align_content">
+		    <div id="menu_index">
+		       <div class="logo"> <%= link_to image_tag("logo_aonde.png"), root_path%> </div>
+		      <ul>
+		        <li><%= link_to 'Órgãos Públicos', public_agency_list_path %></li>  
+		        <li><%= link_to 'Gasto por Função', functions_path %></li>
+		        <li><%= link_to 'Ajuda', help_path %></li>
+		<!--Search field-->
+		          <form id='search_bar' name='search' onsubmit="return validSearch()" action="<%= search_path %>">
+		            <div class="input-field">
+		              <input name="search" type="text" placeholder="Pesquisar..." autocomplete="off" required<%= text_field_tag :search, params[:search]%>
+		            </div>
+		          </form> 
+		          		              <!--<i class="material-icons prefix">search</i>-->
+		        
+		      </ul>
+		    </div>
+		  </div>
+		</div>
+		
+		<div id="background_color">
+		<%=yield%>
+		</div>
+		<footer></footer>
+	</body>
+</html>

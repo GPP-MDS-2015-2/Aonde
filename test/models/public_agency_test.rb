@@ -1,5 +1,5 @@
 #Here the test are made.
-
+=begin
 require 'test_helper'
 
 class PublicAgencyTest < ActiveSupport::TestCase
@@ -34,3 +34,4 @@ class PublicAgencyTest < ActiveSupport::TestCase
     assert public_agency.save
   end
 end
+=end

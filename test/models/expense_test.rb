@@ -1,5 +1,5 @@
 require 'test_helper'
-
+=begin
 class ExpenseTest < ActiveSupport::TestCase
 
   def document_number_nil
@@ -32,3 +32,4 @@ class ExpenseTest < ActiveSupport::TestCase
   end
 
 end
+=end

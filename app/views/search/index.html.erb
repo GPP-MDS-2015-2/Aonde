@@ -1,0 +1,21 @@
+<div class="content_header">
+  <h4  id="align_content">Resultado da pesquisa</h4>
+  <h6>
+   <span >Clique sobre um dos itens</span>
+  </h6>
+
+  </h6> 
+</div>
+<%if @results.empty? || (@results[:company].empty? && 
+	 @results[:agency].empty? && @results[:program].empty?) %>
+    <h1> Não encontrou nenhum resultado</h1>
+<%else %>
+    <div style="margin-left: 6%;">
+    <button class='btn waves-effect' onclick="filterTable('/public_agency/')" style='width:auto; height:50px; margin-left: 10px;'>Órgãos Públicos</button>
+    <button class='btn waves-effect' onclick="filterTable('/program/')" style='width:auto; height:50px; margin-left: 10px;'>Programas</button>
+    <button class='btn waves-effect' onclick="filterTable('/company/')" style='width:auto; height:50px; margin-left: 10px;'>Empresas</button>
+    <button class='btn waves-effect' onclick="filterTable('')" style='width:auto; height:50px; margin-left: 10px;'>Todos</button>
+    </div>
+    <%= render 'list_entity' %>
+<% end %>
+<div id="margin" style="margin-bottom:150px;"></div>

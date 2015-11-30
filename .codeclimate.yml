@@ -1,0 +1,9 @@
+languages:
+   Ruby: true
+   JavaScript: true
+   Python: true
+   PHP: true
+exclude_paths:
+- "**.js"
+- "test/*"
+- "lib/tasks/*"
