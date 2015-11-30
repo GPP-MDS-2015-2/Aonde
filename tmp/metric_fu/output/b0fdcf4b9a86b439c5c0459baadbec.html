@@ -1,0 +1,359 @@
+<html>
+  <head>
+    <style>
+      table { background: #fff; color: #000; }
+.ruby .normal { color: #000; }
+.ruby .comment { color: #005; font-style: italic; }
+.ruby .keyword { color: #A44; font-weight: bold; }
+.ruby .method { color: #44f; }
+.ruby .class { color: #b1713d; }
+.ruby .module { color: #050; }
+.ruby .punct { color: #668; font-weight: bold; }
+.ruby .symbol { color: #00f; }
+.ruby .string { color: #4a4; }
+.ruby .char { color: #F07; }
+.ruby .ident { color: #000; }
+.ruby .constant { color: #b1713d; }
+.ruby .regex { color: #B66; background: #FEF; }
+.ruby .number { color: #F99; }
+.ruby .attribute { color: #f84; }
+.ruby .global { color: #7FB; }
+.ruby .expr { color: #227; }
+.ruby .escape { color: #277; }
+    </style>
+    <title>Analyzed File Report</title>
+  </head>
+  <body>
+    <table cellpadding='0' cellspacing='0' class='ruby'>
+      
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="keyword">module</span> <span class="class">DBHelper</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>Score of 34.80 &raquo; flog</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">insert_row</span>(con, row)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>    con.execute(<span class="string"><span class="delimiter">&quot;</span><span class="content">INSERT IGNORE INTO superior_public_agencies(id, name) VALUES(</span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo rgo Superior</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Nome rgo Superior</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">)</span><span class="delimiter">&quot;</span></span>)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>    con.execute(<span class="string"><span class="delimiter">&quot;</span><span class="content">INSERT IGNORE INTO public_agencies(id, name, superior_public_agency_id) VALUES(</span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo rgo</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Nome rgao</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo rgo Superior</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">)</span><span class="delimiter">&quot;</span></span>)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>    con.execute(<span class="string"><span class="delimiter">&quot;</span><span class="content">INSERT IGNORE INTO programs(id, name, description) VALUES(</span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo Programa</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Nome Programa</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Linguagem Cidad</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">)</span><span class="delimiter">&quot;</span></span>)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>    con.execute(<span class="string"><span class="delimiter">&quot;</span><span class="content">INSERT IGNORE INTO type_expenses(id, description) VALUES(</span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo Elemento Despesa</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Nome Elemento Despesa</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">)</span><span class="delimiter">&quot;</span></span>)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>    con.execute(<span class="string"><span class="delimiter">&quot;</span><span class="content">INSERT IGNORE INTO companies(id, name) VALUES(</span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo Favorecido</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Nome Favorecido</span><span class="delimiter">&quot;</span></span>].gsub(<span class="string"><span class="delimiter">&quot;</span><span class="char">\&quot;</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="char">\'</span><span class="delimiter">&quot;</span></span>)<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">)</span><span class="delimiter">&quot;</span></span>)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    con.execute(<span class="string"><span class="delimiter">&quot;</span><span class="content">INSERT IGNORE INTO functions(id, description) VALUES(</span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo Funo</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Nome Funo</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">)</span><span class="delimiter">&quot;</span></span>)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    con.execute(<span class="string"><span class="delimiter">&quot;</span><span class="content">INSERT IGNORE INTO expenses(public_agency_id, document_number, value, payment_date, program_id, function_id, type_expense_id, company_id) </span><span class="char">\</span></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span><span class="string"><span class="char"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    VALUES(<span class="error">\</span><span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo rgo</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Nmero Documento</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Valor</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, STR_TO_DATE('</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Data Pagamento</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="content">', '%d/%m/%Y'), </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo Programa</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo Funo</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo Elemento Despesa</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">, </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>row[<span class="string"><span class="delimiter">&quot;</span><span class="content">Cdigo Favorecido</span><span class="delimiter">&quot;</span></span>]<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">)</span><span class="delimiter">&quot;</span></span>)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>  <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>Score of 1.00 &raquo; flog</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">create_preprocess_data_table</span>(con)
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>    con.execute(<span class="string"><span class="delimiter">&quot;</span><span class="content">CREATE TABLE IF NOT EXISTS public_agency_graph(id_public_agency </span><span class="char">\</span></span>
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span><span class="string"><span class="char"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>        INTEGER(<span class="integer">11</span>), year INTEGER(<span class="integer">4</span>), value <span class="constant">NUMERIC</span> (<span class="integer">13</span>,<span class="integer">2</span>), \
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="constant">CONSTRAINT</span> public_agency_graph_PK <span class="constant">PRIMARY</span> <span class="constant">KEY</span> (id_public_agency, year), \
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>        <span class="constant">CONSTRAINT</span> public_agency_graph_public_agencies <span class="constant">FOREIGN</span> <span class="constant">KEY</span> (id_public_agency) <span class="constant">REFERENCES</span> public_agencies(id))<span class="string"><span class="delimiter">&quot;</span><span class="content">)</span></span>
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>  <span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span><span class="keyword">end</span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+    </table>
+  </body>
+</html>
