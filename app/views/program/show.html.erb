@@ -7,7 +7,7 @@
   </h6> 
 </div>
 
-<div class="container">
+<div class="container" style="margin-left: 6%;">
   <div class="z-depth-3" style="width:auto; margin-right:auto;  margin-left:auto; margin-bottom:30px;">
     <div id="mynetwork"></div>
   </div>
@@ -16,8 +16,7 @@
       <div class="col s6 m5">
         <div class="card-panel grey darken-4">         
           <span class="white-text">
-      <b>Descrição do gráfico</b></p>
-          Eu sou um cartao de descrição
+          Este gráfico mostra as empresas e órgãos relacionados a um programa específico. Clique em um deles para acessar mais informações.
           </span>
         </div>
       </div>
@@ -40,6 +39,12 @@
          </div>
       </div>
     </div>
+</div>
+
+ <div id="share" style="margin-left: 6%; margin-bottom: 15px;">
+ <button onclick="location.href='https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= program_path(@program.id) %>'"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook" style="background:#133783">
+        <i class="fa fa-facebook"></i>
+</button> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Compartilhamentos: <%=facebook_share_amount("http://aondebrasil.com#{request.fullpath}") %>
 </div>
 <script type="text/javascript">
 

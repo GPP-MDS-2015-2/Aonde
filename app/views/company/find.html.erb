@@ -74,7 +74,7 @@ var cy = cytoscape({
 }
 </script>
 <div class="content_header">
-  <h4  id="align_content">Empresas</h4>
+  <h4  id="align_content"><%= @company.name %></h4>
   <h6>
    <span >Órgãos públicos relacionados</span>
   </h6>
@@ -83,7 +83,7 @@ var cy = cytoscape({
 </div>
 
 
-<div class="container">
+<div class="container" style="margin-left: 6%;">
   <div class="z-depth-3" style="width:auto; margin-right:auto;  margin-left:auto;">
     <div id="cy" style="width:auto; height:500px; margin-bottom:30px;"></div>
   </div>
@@ -91,11 +91,14 @@ var cy = cytoscape({
       <div class="col s12">
         <div class="card-panel grey darken-4">         
           <span class="white-text">
-      <b>Descrição do gráfico</b></p>
-          I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+         Com este gráfico é possível ver a quantidade de vezes que um órgão público contratou uma determinada empresa.
           </span>
         </div>
       </div>
    </div>
+   <div id="share" style="margin-bottom: 15px;">
+ <button onclick="location.href='https://www.facebook.com/sharer/sharer.php?u=http://aondebrasil.com<%= company_path(@company.id) %>'"  title="Compartilhe no Facebook" target="_blank" class="btn btn-facebook" style="background:#133783">
+        <i class="fa fa-facebook"></i>
+</button> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Compartilhamentos: <%=facebook_share_amount("http://aondebrasil.com#{request.fullpath}") %>
+</div>
 </div>
