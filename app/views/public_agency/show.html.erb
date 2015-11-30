@@ -5,9 +5,9 @@
   <h4  id="align_content"><%= @public_agency.name.downcase.capitalize %></h4>
   <h6>
    <span >Orgão superior: <%= link_to @superior_public_agency.name.downcase.split.map(&:capitalize).join(' '), superior_path(@superior_public_agency) %>
-   </span><br style="color: rgb(172, 97, 34);">
+   </span><br>
    <font size='3px'>
-   <%= link_to "clique e acesse", superior_path(@superior_public_agency) %></font></br></h6>
+   <%= link_to "clique e acesse", superior_path(@superior_public_agency),{style: "color:#AC6122;"}  %></font></br></h6>
 
   </h6> 
 </div>
@@ -52,13 +52,16 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
         <div class='collapsible-body'>
           <div class="filter" id="public_agency"></div>
           <div class="chart" id="public_agency" ><!--style="height:auto; margin-right:auto;  margin-left:auto;"> -->
-            <div class="z-depth-3"><!-- style="width:auto; margin-right:auto;  margin-left:auto;">-->
-                
-            </div>
-            <center>
-              <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width:980px; margin-top:20px;">Filtragem</a>
-            </center>
+          
           </div>
+          <div class="col s6 m5">
+            <div class="card-panel grey darken-4" style="margin:10px;">         
+                <span class="white-text">
+                  <b>Descrição do gráfico:</b>
+                  Eu sou a descrição do gráfico do programa!
+                </span>
+              </div>
+           </div>
         </div>
       </li>
       <p></p>
@@ -71,7 +74,7 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
               <div class="collection list" id='program'></div>  
             </center>
           <div class="col s6 m5">
-            <div class="card-panel orange" style="margin:10px;">         
+            <div class="card-panel grey darken-4" style="margin:10px;">         
                 <span class="white-text">
                   <b>Descrição do gráfico:</b>
                   Eu sou a descrição do gráfico do programa!
@@ -91,7 +94,7 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
               <div class="collection list" id='company'></div>
             </center>
             <div class="col s6 m5">
-            <div class="card-panel orange" style="margin:10px;">         
+            <div class="card-panel grey darken-4" style="margin:10px;">         
                 <span class="white-text">
                   <b>Descrição do gráfico:</b>
                   Sou a descrição do gráfico
@@ -113,7 +116,7 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
               <div class="collection list" id='type_expense'></div>
             </center>
             <div class="col s6 m5">
-            <div class="card-panel orange" style="margin:10px;">         
+            <div class="card-panel grey darken-4" style="margin:10px;">         
                 <span class="white-text">
                   <b>Descrição do gráfico:</b>
                   Eu sou outra descrição de gráfico
@@ -130,7 +133,7 @@ var WAVES = ['waves-red','waves-yellow','waves-orange','waves-purple','waves-gre
             <div class="filter" id="budget"></div>
             <div class="chart" id="budget"></div>
             <div class="col s6 m5">
-              <div class="card-panel orange" style="margin:10px;">         
+              <div class="card-panel grey darken-4" style="margin:10px;">         
                 <span class="white-text">
                   <b>Descrição do gráfico:</b>
                   Eu sou outra descrição de gráfico

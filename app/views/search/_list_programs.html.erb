@@ -1,6 +1,4 @@
-<% if (@results[:program].empty?) %>
-  <strong><font color="red" size="12px">Nenhum Programa Encontrado</font></strong>
-<% else %>
+
 	<table id="tableData2" class="hover row-border" style="margin-top:70px; margin-bottom:40px;">
 		<thead>
 			<tr>
@@ -16,9 +14,9 @@
 		<% entity = 0
 		   expense = 1
 		@results[:program].each do |program| %>
-		  	<tr>
+		  	<tr onclick="location.href='<%= program_path(program[entity].id) %>'" style="cursor: pointer;">
 			  	<td>
-			  		<center><%= link_to program[entity].name, program_path(program[entity].id) %></center>
+			  		<center><%= program[entity].name%></center>
 			  	</td>
 			  	<td>	
 			  		<center><%= program[expense] %></center>
@@ -27,4 +25,3 @@
 		<% end %>
 		</tbody>
 	</table>
-<% end %>

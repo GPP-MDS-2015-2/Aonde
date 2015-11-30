@@ -1,10 +1,13 @@
-<center>
-    <h2> 
-        <strong>Resultado da Pesquisa</strong>
-    </h2>
-</center>
+<div class="content_header">
+  <h4  id="align_content">Resultado da pesquisa</h4>
+  <h6>
+   <span >Clique sobre um dos itens</span>
+  </h6>
 
-<%if @results.empty? %>
+  </h6> 
+</div>
+<%if @results.empty? || (@results[:company].empty? && 
+	 @results[:agency].empty? && @results[:program].empty?) %>
     <h1> Não encontrou nenhum resultado</h1>
 <%else %>
     <%= render 'list_agencies' %>

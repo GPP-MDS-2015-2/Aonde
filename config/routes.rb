@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   #Routes of contact
   post "/contact", to: "contact#send_simple_message", as: "contact"
   #Routes of Contac
-  get "/help", to: "contact#help"
+  get "/help", to: "contact#help", as: "help"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
