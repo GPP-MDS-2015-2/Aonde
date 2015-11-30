@@ -60,6 +60,8 @@ function budgetFilter(path,idEntity,updateChart){
           console.info("Change the slider")
         },*/
         stop: function(event,ui){
+          $('#year_filter').empty();
+          $('#year_filter').append("Ano atual: "+ui.value);
           console.debug(ui);
           clearChart(idEntity,0);
           clearChart(idEntity,1);
