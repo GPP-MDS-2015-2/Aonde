@@ -4,7 +4,9 @@ $(document).ready( function(){
 		autoWidth: true,
 		pagingType: "full_numbers",
 		searching: true,
-		columnDefs:[],
+		columnDefs:[{
+			type: 'currency', targets: 2
+		}],
 		order: [1,'desc'],
 		//dom: "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 		 dom: "<'top'>t<'bottom'pi>",
@@ -23,6 +25,8 @@ $(document).ready( function(){
 		searching: true,
 		columnDefs:[
 			{
+			type: 'currency', targets: 2
+			},{
 				visible: false,
 				targets:0
 			}],
@@ -36,6 +40,20 @@ $(document).ready( function(){
 
 });
 
+jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+    "currency-pre": function ( a ) {
+        a = (a==="-") ? 0 : a.replace( /[^\d\-\,]/g, "" );
+        return parseFloat( a );
+    },
+ 
+    "currency-asc": function ( a, b ) {
+        return a - b;
+    },
+ 
+    "currency-desc": function ( a, b ) {
+        return b - a;
+    }
+} );
 
 function filterTable(name){
 	var table = $('#tableData1').DataTable();

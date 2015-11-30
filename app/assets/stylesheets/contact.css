@@ -1,7 +1,8 @@
 .conteiner_help{
-	margin-left: 14%;
+	margin-left: 6%;
 	font-size: 20px;
-	margin-right: 14%;
+	margin-right: 6%;
+	text-align: justify
 }
 .conteiner_help br{
 	margin-bottom: 18px;

@@ -27,7 +27,8 @@
 		  	</td>
 		  	<td>
 		  	
-		  	<center><%= @total_expense_agency[agency.id] %></center>
+		  	<center><%= number_to_currency(@total_expense_agency[agency.id],
+		  				separator:",",delimiter: ".",unit: "") %></center>
 		  	</td>
 	  	</tr>
 	<% end %>

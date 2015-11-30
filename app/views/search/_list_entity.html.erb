@@ -37,7 +37,8 @@
 				  		<center><%= entity_object[entity_idx].name %></center>
 				  	</td>
 				  	<td>	
-				  		<center><%= entity_object[expense] %></center>
+				  		<center><%= number_to_currency(entity_object[expense],
+				  					unit: "", separator: ",",delimiter: ".") %></center>
 				  	</td>
 			  	</tr>
 			<% end %>
