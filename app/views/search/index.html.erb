@@ -10,8 +10,12 @@
 	 @results[:agency].empty? && @results[:program].empty?) %>
     <h1> Não encontrou nenhum resultado</h1>
 <%else %>
-    <%= render 'list_agencies' %>
-    <%= render 'list_companies' %>
-    <%= render 'list_programs' %>
+    <center>
+    <button class='btn waves-effect' onclick="filterTable('/public_agency/')" style='width:auto; height:50px; margin-left: 10px;'>Órgãos Públicos</button>
+    <button class='btn waves-effect' onclick="filterTable('/program/')" style='width:auto; height:50px; margin-left: 10px;'>Programas</button>
+    <button class='btn waves-effect' onclick="filterTable('/company/')" style='width:auto; height:50px; margin-left: 10px;'>Empresas</button>
+    <button class='btn waves-effect' onclick="filterTable('')" style='width:auto; height:50px; margin-left: 10px;'>Todos</button>
+    </center>
+    <%= render 'list_entity' %>
 <% end %>
 <div id="margin" style="margin-bottom:150px;"></div>
