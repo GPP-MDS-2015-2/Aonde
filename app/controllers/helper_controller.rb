@@ -3,27 +3,30 @@
 module HelperController
   MONTHNAMES_BR = [nil] + %w(Janeiro Fevereiro Março Abril Maio Junho
                              Julho Agosto Setembro Outubro Novembro Dezembro)
-  def self.int_to_month(array)
-    i = 0
-    while i < array.length
-      array_date = array[i][0].to_date
-      array[i][0] = MONTHNAMES_BR[array_date.month]
-      i += 1
-    end
-    return array
-  end
-
-  def self.sum_expense(key, expense, sum_expeses)
-    if !sum_expeses[key]
-      sum_expeses[key] = expense.value
-    else
-      sum_expeses[key] += expense.value
+  def self.int_to_month(expense_month)
+    expense_month.transform_keys! do |month|
+      MONTHNAMES_BR[month]
     end
   end
 
-  def self.create_date(date ={from_month: 'Janeiro',end_month: 'Dezembro',
-    from_year: 2009,end_year: 2020})
-    #puts date
+  def self.expenses_year(id_public_agency, year)
+    expense_year = Expense.where(public_agency_id: id_public_agency,
+                                 payment_date: "#{year}-01-01".."#{year}-12-31")
+                   .group('MONTH(payment_date)').sum(:value)
+    expense_year
+  end
+
+  def self.find_expenses_entity(year = '2015', id, name_entity, attribute)
+   year ||= 2015
+   Expense.joins(name_entity)
+      .where(public_agency_id: id, payment_date: "#{year}-01-01".."#{year}-12-31")
+      .select(attribute).order('sum_value DESC').group(attribute)
+      .sum(:value).transform_values! {|v| v.to_f}.to_a
+  end
+
+  def self.create_date(date = { from_month: 'Janeiro', end_month: 'Dezembro',
+                                from_year: 2009, end_year: 2020 })
+    # puts date
     first_month = month_to_int(date[:from_month])
     last_month = month_to_int(date[:end_month])
     first_date = Date.new(date[:from_year].to_i, first_month, 1)
@@ -76,4 +79,5 @@ module HelperController
     end
     day
   end
+private_class_method :leap_year_day,:last_day_date,:date_valid?,:month_to_int
 end

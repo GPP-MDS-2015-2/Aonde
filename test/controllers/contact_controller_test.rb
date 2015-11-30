@@ -12,9 +12,8 @@ class ContactControllerTest < ActionController::TestCase
   test 'Should redirect to home' do
     create_fake_web
     post :send_simple_message, from: 'teste@email.com', subject: 'Teste',
-                               text: 'Teste'
-    assert_response :redirect
-    assert_redirected_to root_path
+                               text: 'Teste', format: :json
+    assert_response :success
   end
 
   def create_fake_web
@@ -26,8 +25,8 @@ class ContactControllerTest < ActionController::TestCase
   end
 
   def create_url(_from, _to, _subject, _text)
-    url = 'https://api:'+ Rails.application.secrets.secret_mailgun_api +
-    '@api.mailgun.net/v3/aondebrasil.com/messages'
+    url = 'https://api:'+ "#{Rails.application.secrets.secret_mailgun_api}" +
+          '@api.mailgun.net/v3/aondebrasil.com/messages'
     url
   end
 end

@@ -1,30 +1,21 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-    var is_less_4 = '<%= raw @msg_error %>';
-    
-    if( is_less_4 != 0 ){
-        $('.msg_error').remove();
-    }else{
-        setTimeout(function(){
-            $('.msg_error').remove();
-        }, 5000);
-    }
- });
-</script>
+<div class="content_header">
+  <h4  id="align_content">Resultado da pesquisa</h4>
+  <h6>
+   <span >Clique sobre um dos itens</span>
+  </h6>
 
-<center><h2> 
-  <strong>Resultado da Pesquisa</strong>
-</h2></center>
-<%if @results.empty? %>
-<% flash.each do |name, msg| %>
-    <div class="msg_error">
-        <i class="fa fa-warning"></i>
-        <%= msg %>
-    </div>
-<% end %>
+  </h6> 
+</div>
+<%if @results.empty? || (@results[:company].empty? && 
+	 @results[:agency].empty? && @results[:program].empty?) %>
+    <h1> Não encontrou nenhum resultado</h1>
 <%else %>
-    <%= render 'list_agencies' %>
-    <%= render 'list_companies' %>
-    <%= render 'list_programs' %>
+    <div style="margin-left: 6%;">
+    <button class='btn waves-effect' onclick="filterTable('/public_agency/')" style='width:auto; height:50px; margin-left: 10px;'>Órgãos Públicos</button>
+    <button class='btn waves-effect' onclick="filterTable('/program/')" style='width:auto; height:50px; margin-left: 10px;'>Programas</button>
+    <button class='btn waves-effect' onclick="filterTable('/company/')" style='width:auto; height:50px; margin-left: 10px;'>Empresas</button>
+    <button class='btn waves-effect' onclick="filterTable('')" style='width:auto; height:50px; margin-left: 10px;'>Todos</button>
+    </div>
+    <%= render 'list_entity' %>
 <% end %>
 <div id="margin" style="margin-bottom:150px;"></div>

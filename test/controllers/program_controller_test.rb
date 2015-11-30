@@ -2,20 +2,19 @@ require 'test_helper'
 require 'database_cleaner'
 
 class ProgramControllerTest < ActionController::TestCase
-
   def setup
-    
     SuperiorPublicAgency.create(id: 1, name: 'SuperiorPublicAgency')
     PublicAgency.create(id: 1, name: 'PublicAgency1', views_amount: 10,
                         superior_public_agency_id: 1)
     name_program = %w(Programa1 Programa2)
     j = 0
     for i in 1..2
+      j += 1
       date = Date.new(2015, i, i)
       program = Program.create(id: i, name: name_program[i - 1],
                                description: 'Outros')
       2.times do
-        Expense.create(id: j, document_number: i, payment_date: date,
+        Expense.create(document_number: j, payment_date: date,
                        value: i + 5, program_id: i, public_agency_id: 1)
         j += 1
       end
@@ -26,68 +25,30 @@ class ProgramControllerTest < ActionController::TestCase
   end
 
   def teardown
-
     DatabaseCleaner.clean
-
   end
 
-  test "Exception on create graph nodes" do 
+  test "Should route show_programs" do
 
+    assert_routing 'public_agency/1/programs',controller: 'program',id:'1',
+                    action: 'show_programs'
+    get :show_programs,id:1,year: 2015,format: :json
+    assert_response :success
+
+  end  
+  test 'Exception on create graph nodes' do
     program = Program.new
-    @controller.create_graph_nodes(program, nil,nil, nil)
-
+    @controller.create_graph_nodes(program, nil, nil, nil)
   end
-
-
-  test 'Not empty list to find_expenses' do
-    not_empty_list = @controller.find_expenses(1)
-    assert_not_empty(not_empty_list)
-  end
-  test 'Size of list find_expenses' do
-    expenses_program = @controller.find_expenses(1)
-    # the public_agency_id = 1 has 2 programs with expenses
-
-    size_expected = 2
-    size_list = expenses_program.size
-    assert_equal(size_expected, size_list)
-  end
-  test 'Not exist id of Public Agency' do
-    PublicAgency.create(id: 2, name: 'PublicAgency2', views_amount: 1)
-    empty_list = @controller.find_expenses(2)
-    assert_empty(empty_list)
-  end
-
-  test 'Verify method find_program' do
-    expenses = []
-    Expense.all.each do |expense|
-      if expense.value.nil? || expense.public_agency_id.nil? ||
-         expense.program_id.nil?
-        # do nothing
-      else
-        expenses << expense
-      end
-    end
-    expense = @controller.find_program(expenses)
-    expense_expected = { 'Programa1' => 12, 'Programa2' => 14 }
-    assert_equal(expense_expected, expense)
-  end
-  test 'empty return to find_program' do
-    a = []
-    expense_empty = @controller.find_program(a)
-    assert_empty(expense_empty)
-  end
-  
 
   test 'Verify method show' do
-
     assert_routing '/public_agency/1/programs', controller: 'program',
                                                 action: 'show_programs', id: '1'
   end
 
   test 'create related entities of programs' do
-    
-    program = Program.new(name:'Programa1',id: 1 )
-    graph_nodes = @controller.create_graph_nodes(program, 'public_agency_id',PublicAgency, 1)
+    program = Program.new(name: 'Programa1', id: 1)
+    graph_nodes = @controller.create_graph_nodes(program, 'public_agency_id', PublicAgency, 1)
     expected_sizes = [2, 1]
 
     find_sizes = [graph_nodes[0].size, graph_nodes[1].size]
@@ -96,15 +57,14 @@ class ProgramControllerTest < ActionController::TestCase
   end
 
   test 'not include entitie in the association' do
+    expected_related = [[{ 'id' => '1_', 'label' => 'Programa1' }], []]
 
-    expected_related = [[{ 'id' => "1_", 'label' => 'Programa1' }], []]
-
-    program = Program.new(name: 'Programa1',id: 1)
-    program_related = @controller.create_graph_nodes(program, 'company_id', Company,1)
+    program = Program.new(name: 'Programa1', id: 1)
+    program_related = @controller.create_graph_nodes(program, 'company_id', Company, 1)
 
     assert_equal(expected_related, program_related)
   end
-  
+
   test 'return valid public_agency_id' do
     entity = Expense.new(public_agency_id: 3)
     id = @controller.obtain_id(entity, PublicAgency)
@@ -131,7 +91,6 @@ class ProgramControllerTest < ActionController::TestCase
   test 'management of nodes' do
     get :show, id: 1
 
-
     assert_response :success
 
     assert assigns(:data_program)
@@ -143,14 +102,13 @@ class ProgramControllerTest < ActionController::TestCase
                                 id: '1'
   end
 
-  test 'Create data program to public agencies' do 
-    process_data = @controller.create_data_program(2,'public_agency_id',PublicAgency)
-    expected_data = [['PublicAgency1',14,PublicAgency.name,1]]
-    assert_equal(expected_data,process_data)
+  test 'Create data program to public agencies' do
+    process_data = @controller.create_data_program(2, 'public_agency_id', PublicAgency)
+    expected_data = [['PublicAgency1', 14, PublicAgency.name, 1]]
+    assert_equal(expected_data, process_data)
   end
-  test 'Empty array to not create id of program' do 
-    process_data = @controller.create_data_program(3,'public_agency_id',PublicAgency)
+  test 'Empty array to not create id of program' do
+    process_data = @controller.create_data_program(3, 'public_agency_id', PublicAgency)
     assert_empty(process_data)
   end
-
 end

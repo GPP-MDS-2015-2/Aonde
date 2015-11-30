@@ -3,24 +3,22 @@
 */
 
 // Define constant of key for dataExpenses (String)
-var TYPE = 'type';
+var TYPE = 'type_expense';
 var BUDGET = 'budget';
 var COMPANY = 'company';
 var PROGRAM = 'program';
+var AGENCY = 'public_agency';
 
 // Contain all type of expenses of requisitions (Hash)
-var dataExpenses = {type: null, budget: null, company: null, program: null, agency: null};
+var dataExpenses = {type_expense: {}, budget: {}, company: {}, program: {}, public_agency: {}};
+var removedPoints = {};
 
 // Define constants of id for drawn charts (String)
-var PROGRAMCHART = 'program_chart';
-var COMPANYCHART = 'company_chart';
-var TYPECHART = 'type_expense_chart';
-var BUDGETCHART = 'budget_chart';
+var CHART = 'chart';
+var FILTER = 'filter';
+var LIST = 'list';
 
-// Define constants of id for list
-var PROGRAMLIST = 'program_list';
-var COMPANYLIST = 'company_list';
-var TYPELIST = 'type_list';
+var LIMITCOMPANY = 100;
 
 /** Verify if the chart is drawn and if the data has the interval of data need
 * @param path The route to controller (String)
@@ -31,44 +29,66 @@ function setChart(path,idChart,drawFunction){
     console.debug(path+" "+idChart);
 
     // Verify the chart in page (Object)
-    var hasChart = $('#'+idChart).highcharts();
+    var hasChart = $('#'+idChart+'.'+CHART).highcharts();
     if (!hasChart){
+      loadinScreen(idChart);
       console.info("The page has no chart draw");
-      obtainData(path,idChart,drawFunction);
+      obtainData(path,idChart,drawFunction,2015,2015);
+      
     }else{
         console.info("The chart is already draw");
     }   
 }
-
 /** Make the requisition to the controller and obtain the data of expenses
 * @param path The route to controller (String)
 * @param idChart The id of field to drawn the chart (String)
 * @param drawnFunction Function drawn the chart
 */
-function obtainData(path,idChart,drawFunction){
-  loadinScreen(idChart);
-  $.ajax({
-      url: path,
-      format: 'json',
-      error: function(){
-          console.error("Error to try connect with server");
-      },
-      success: function(data){
-        if(isValidData(data) && isValidId(idChart)){
-          console.info("Process of data received from controller");
-          $('#'+idChart).empty();
-          drawFunction(data);
-        }else{ 
-          console.warn("Data received from controller or id of chart"
-            +"has length == 0");
+function obtainData(path,idChart,drawFunction,year,year_stop){
+  if ( dataExpenses[idChart][year] == undefined ){
+    $.ajax({
+        url: path,
+        method: 'GET',
+        data: {year: year},
+        format: 'json',
+        error: function(){
+            console.error("Error to try connect with server");
+            $('#'+idChart+"."+CHART).empty();
+            $('#'+idChart+"."+CHART).append("Ops, nao obtivemos os dados para desenhar o gráfico");
+        },
+        success: function(data){
+          console.debug(data);
+          
+          if(isValidData(data) && isValidId(idChart)){
+            console.info("Process of data received from controller");
+            addData(year,idChart,data);
+            drawFunction(path,cloneObject(data));
+          }else{ 
+            console.warn("Data received from controller or id of chart"
+              +"has length == 0");
+          }
+          obtainNextYear(path,idChart,drawFunction,year,year_stop)
         }
         
-      }
-      
-  });
-  console.info("Requisição ajax realizada")
+    });
+    console.info("Requisição ajax realizada");
+  }else {
+    drawFunction(path,cloneObject(dataExpenses[idChart][year]));
+    obtainNextYear(path,idChart,drawFunction,year,year_stop);
+  }
+}
+function obtainNextYear(path,idChart,drawFunction,year,year_stop){
+
+  if ( year < year_stop ){
+    console.log(year);
+    console.log(year_stop);
+    obtainData(path,idChart,drawFunction,year+1,year_stop);
+  }
 }
 
+function addData(year,entity,data){
+  dataExpenses[entity][year] = data;
+}
 
 /** Verify if the data received from controllers is valid
 * @param data Data received from controller in determined data struct (Object)
@@ -93,13 +113,12 @@ function isValidData(data){
 * @param idListRemoved add again in list chart (String)
 * @param idChart add again in list chart (String)
 */
-var removedPoints = {};
-function removePointToList(point,idListRemoved,idChart){
+function removePointToList(point,idChart){
   console.debug(point);
   // Use name for id
   
   removedPoints[point.options.name] = point.options;
-  generateList(idListRemoved,point.options.name,idChart);
+  generateList(point.options.name,idChart);
   point.remove();
 }
 
@@ -109,14 +128,14 @@ function removePointToList(point,idListRemoved,idChart){
 */
 function isValidId(idChart){
 
-    console.debug("Data in method processData:");
+    console.debug("id in method processData:");
     console.debug(idChart);
 
     // The valid id of the chart (Boolean)
     var validId = true;
     if (idChart != null && idChart != undefined && idChart.length){
-      if (idChart === PROGRAMCHART || idChart === COMPANYCHART || 
-        idChart === TYPECHART || idChart === BUDGETCHART){
+      if (idChart === PROGRAM || idChart === COMPANY || 
+        idChart === TYPE || idChart === BUDGET || idChart === AGENCY){
         console.info("The id is valid"+idChart);
       }else{
         console.warn("Invalid id of chart"+ idChart);
@@ -139,21 +158,21 @@ function loadinScreen(idChart){
   '</div><div class="circle-clipper right">'+
   '<div class="circle"></div>'+
   '</div></div></div> </center>'
-  $('#'+idChart).empty();
-  $('#'+idChart).append(node);
+  $('#'+idChart+'.'+CHART).empty();
+  $('#'+idChart+'.'+CHART).append(node);
 }
 /** Generate list and show list of elements in chart
 * @param idList add again in list chart (String)
 * @param nameElement name of element in list (String)
 * @param idChart add again in list chart (String)
 */
-function generateList(idList,nameElement,idChart) {
+function generateList(nameElement,idChart) {
       name = nameElement.replace(/[^\w]/gi,'_');
       // Build element to add in the list (String)
       newElement = "<a class='collection-item' id='"+name+"' style='cursor:n-resize'>"+
                     nameElement+"</a>";
-      console.info("Insert element "+ nameElement +"/"+name+" in the list " + idList);
-      $('#'+ idList).append(newElement);
+      console.info("Insert element "+ nameElement +"/"+name+" in the list " + idChart);
+      $('#'+ idChart+'.'+LIST).append(newElement);
 
       $("#"+name).click(function(){
         addElementChart(nameElement,idChart);
@@ -167,6 +186,6 @@ function generateList(idList,nameElement,idChart) {
 */
 function addElementChart(nameElement,idChart){
   // Add point again in the list 
-  chart = $('#'+idChart).highcharts(); 
+  chart = $('#'+idChart+'.'+CHART).highcharts(); 
   chart.series[0].addPoint(removedPoints[nameElement]);
 }

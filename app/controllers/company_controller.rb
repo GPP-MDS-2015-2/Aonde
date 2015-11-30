@@ -2,73 +2,27 @@
 # Process the expenses of companies to create chart related to a public agency
 # or a graph with all public agencies make hires
 class CompanyController < ApplicationController
+ 
   def show
-    find_agencies(params[:id])
-    expenses_public_agency = Expense.where(public_agency_id: @public_agency.id)
-    @array_company_expense = find_company(expenses_public_agency)
+    year = params[:year]
+    id = params[:id]
+    company_expense = HelperController
+                      .find_expenses_entity(year, id, :company, :name)
+
     respond_to do |format|
-      format.json { render json: @array_company_expense}
-    end
-
-  end
-
-  def find_company(expenses_public_agency)
-    companies_expense = {}
-
-    expenses_public_agency.each do |expense|
-      company = Company.where(id: expense.company_id)
-      test_add_expense(company, expense, companies_expense)
-    end
-
-    sort_by_expense(companies_expense)
-  end
-
-  # assert that company array is not empty
-  def test_add_expense(company, expense, companies_expense)
-    if !company.empty? && company.length == 1
-      name = company[0].name
-      HelperController.sum_expense(name, expense, companies_expense)
+      format.json { render json: company_expense }
     end
   end
-
-  def sort_by_expense(companies_expense)
-    companies_expense.sort_by { |_name, expense| expense }
-  end
-
-  ######################################### View hiring incidence ######################
 
   def find
     expenses = Expense.where(company_id: params[:id])
     company_hiring_incidence = find_public_agencies(expenses)
     # company_hiring_incidence = get_15_first_nodes(company_hiring_incidence)
-    company_name = Company.find(params[:id]).name
-    data_company = generate_company_node(company_name)
-    array = generate_public_agency_node(company_name, company_hiring_incidence,
+    @company = Company.find(params[:id])
+    data_company = generate_company_node(@company.name)
+    array = generate_public_agency_node(@company.name, company_hiring_incidence,
                                         data_company)
     @correct_datas = array.to_json
-  end
-
-  def get_15_first_nodes(company_hiring_incidence)
-    final_array = []
-    length = company_hiring_incidence.length
-
-    if length < 15
-
-      length.times do
-        final_array.push(company_hiring_incidence[length - 1])
-        length -= 1
-      end
-
-    else
-
-      15.times do
-        final_array.push(company_hiring_incidence[length - 1])
-        length -= 1
-      end
-
-  end
-
-    final_array
   end
 
   def find_public_agencies(expenses)
@@ -131,4 +85,8 @@ class CompanyController < ApplicationController
     array_general << data_company
     array_general << edges
   end
+
+  private :generate_public_agency_node,:generate_company_node,:find_hiring_count,:find_public_agencies,
+          :verify_insert
+
 end
